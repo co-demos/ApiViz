@@ -121,7 +121,7 @@ Then, you can login with your admin user which can change settings of other user
 
 ## CREDITS 
 
-#### OpenScraper's team thanks :
+#### ApiViz's team thanks :
 
 - the [SocialConnect](https://entrepreneur-interet-general.etalab.gouv.fr/defi/2017/09/26/socialconnect/) project, aka "Carrefour des Innovations Sociales"
 - the [EIG](https://entrepreneur-interet-general.etalab.gouv.fr/) program by [Etalab](https://www.etalab.gouv.fr/)
@@ -129,7 +129,7 @@ Then, you can login with your admin user which can change settings of other user
 
 #### Contacts - maintainance :
 
-- [Julien Paris](<mailto:julien.paris@cget.gouv.fr>) (aka [JPy](https://twitter.com/jparis_py) on Twitter)
+- [Julien Paris](<mailto:codemos.infos@gmail.com>) (aka [JPy](https://twitter.com/jparis_py) on Twitter)
 
 -------
 
