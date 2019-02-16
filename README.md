@@ -1,20 +1,14 @@
 
-<h1 align=center>  SOCIAL CONNECT <br>-alias-<br> CARREFOUR DES INNOVATIONS SOCIALES </h1>
+<h1 align=center> APIVIZ </h1>
 
 
 -------
 ## PRESENTATION
 
 
-The official website for the project SocialConnect / aka (in French) Carrefour des Innovations Sociales
+Visualize data coming from an API 
 
-
--------
-
-![alt text](./screenshots/cis-front-landing.png "landing")
-
-
--------
+--------
 
 ## INSTALLATION WALKTHROUGH 
 
