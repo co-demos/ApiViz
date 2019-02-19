@@ -13,6 +13,7 @@ Visualize data coming from an API
 ## DEVELOPPERS
 
 Please check out our *[guidelines](./GUIDELINES_DEV.md)*
+
 --------
 
 ## INSTALLATION WALKTHROUGH 
