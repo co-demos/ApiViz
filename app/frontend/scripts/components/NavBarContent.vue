@@ -6,7 +6,7 @@
 				<a href="/recherche">Moteur de recherche</a>
 			</div>
 
-			<div class="navbar-item">
+			<!-- <div class="navbar-item">
 				<a href="/le-projet">Projet</a>
 			</div>
 
@@ -16,7 +16,7 @@
 
 			<div class="navbar-item">
 				<a href="/nous-rejoindre">Nous rejoindre</a>
-			</div>
+			</div> -->
 
 			<div class="navbar-item">
 				<span lang="fr">FR</span>&nbsp;/&nbsp;<a lang="en" href="/en">EN</a>

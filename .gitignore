@@ -16,10 +16,10 @@
 **/config.cfg
 
 ### BACKUP FILES
-cis/app/_backups_collections/*.json
+app/_backups_collections/*.json
 
 ### LOG FILES
-cis/app/logs/*.log
+app/logs/*.log
 
 ### DROPBOX FILES
 *.dropbox
@@ -166,4 +166,4 @@ snippets/
 
 # Front-end
 
-cis/app/frontend/node_modules
+app/frontend/node_modules

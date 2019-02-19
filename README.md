@@ -27,9 +27,6 @@ Visualize data coming from an API
 1. **install a [virtual environment](https://pypi.python.org/pypi/virtualenv)**
 	> 
 		$ virtualenv venv
-		
-1. **activate your virtual environment**  
-	> 	
 		$ source venv/bin/activate
 		
 1. **install the libraries**
@@ -44,20 +41,20 @@ Visualize data coming from an API
 
 1. **got to your `/cis` folder and run :**
 	> 	
-		$ python run_cis_front.py --mode=testing
+		$ python run_apiviz.py --mode=testing
 
 1. **Install Node.js and npm**
 1. **Build the front-end**
 	
 	> 
-		$ cd cis/app/frontend
+		$ cd app/frontend
 		$ npm install
 		$ npm run build
 
 1. (**if you encounter problems while building try this**)
 	
 	> 
-		$ rm -rf cis/app/frontend/node_modules
+		$ rm -rf app/frontend/node_modules
 		$ npm install 
 		$ npm run build
 

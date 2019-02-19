@@ -164,83 +164,83 @@ def spa(id=''):
 
 
 
-@app.route('/le-projet', methods=['GET'])
-def leProjet():
+# @app.route('/le-projet', methods=['GET'])
+# def leProjet():
 
-	log_cis.debug("entering le projet page")
+# 	log_cis.debug("entering le projet page")
 
-	return render_template(
-		"le-projet.html",
-		config_name			= config_name, # prod, testing, default...
-		app_metas			= app_metas, 
-		language			= "fr" 
-	)
-
-
-@app.route('/the-project', methods=['GET'])
-def theProject():
-
-	log_cis.debug("entering theProject page")
-
-	return render_template(
-		"le-projet-english.html",
-		config_name			= config_name, # prod, testing, default...
-		app_metas			= app_metas, 
-		language			= "en" 
-	)
+# 	return render_template(
+# 		"le-projet.html",
+# 		config_name			= config_name, # prod, testing, default...
+# 		app_metas			= app_metas, 
+# 		language			= "fr" 
+# 	)
 
 
-@app.route('/le-projet/outils', methods=['GET'])
-def lesOutils():
+# @app.route('/the-project', methods=['GET'])
+# def theProject():
 
-	log_cis.debug("entering les outils page")
+# 	log_cis.debug("entering theProject page")
 
-	return render_template(
-		"les-outils.html",
-		config_name			= config_name, # prod, testing, default...
-		app_metas			= app_metas, 
-		language			= "fr" 
-	)
-
-@app.route('/the-project/tools', methods=['GET'])
-def theTools():
-
-	log_cis.debug("entering tools page")
-
-	return render_template(
-		"les-outils-english.html",
-		config_name			= config_name, # prod, testing, default...
-		app_metas			= app_metas, 
-		language			= "en" 
-	)
+# 	return render_template(
+# 		"le-projet-english.html",
+# 		config_name			= config_name, # prod, testing, default...
+# 		app_metas			= app_metas, 
+# 		language			= "en" 
+# 	)
 
 
-@app.route('/le-projet/parlent-de-nous', methods=['GET'])
-def presse():
+# @app.route('/le-projet/outils', methods=['GET'])
+# def lesOutils():
 
-	log_cis.debug("entering presse page")
+# 	log_cis.debug("entering les outils page")
 
-	return render_template(
-		"parlent-de-nous.html",
-		config_name			= config_name, # prod, testing, default...
-		app_metas			= app_metas, 
-		language			= "fr" 
-	)
+# 	return render_template(
+# 		"les-outils.html",
+# 		config_name			= config_name, # prod, testing, default...
+# 		app_metas			= app_metas, 
+# 		language			= "fr" 
+# 	)
 
-@app.route('/le-projet/recompenses', methods=['GET'])
-def recompenses():
+# @app.route('/the-project/tools', methods=['GET'])
+# def theTools():
 
-	log_cis.debug("entering recompenses page")
+# 	log_cis.debug("entering tools page")
 
-	return render_template(
-		"recompenses.html",
-		config_name			= config_name, # prod, testing, default...
-		app_metas			= app_metas, 
-		language			= "fr" 
-	)
+# 	return render_template(
+# 		"les-outils-english.html",
+# 		config_name			= config_name, # prod, testing, default...
+# 		app_metas			= app_metas, 
+# 		language			= "en" 
+# 	)
 
-@app.route('/the-project/rewards', methods=['GET'])
-def rewards():
+
+# @app.route('/le-projet/parlent-de-nous', methods=['GET'])
+# def presse():
+
+# 	log_cis.debug("entering presse page")
+
+# 	return render_template(
+# 		"parlent-de-nous.html",
+# 		config_name			= config_name, # prod, testing, default...
+# 		app_metas			= app_metas, 
+# 		language			= "fr" 
+# 	)
+
+# @app.route('/le-projet/recompenses', methods=['GET'])
+# def recompenses():
+
+# 	log_cis.debug("entering recompenses page")
+
+# 	return render_template(
+# 		"recompenses.html",
+# 		config_name			= config_name, # prod, testing, default...
+# 		app_metas			= app_metas, 
+# 		language			= "fr" 
+# 	)
+
+# @app.route('/the-project/rewards', methods=['GET'])
+# def rewards():
 
 	log_cis.debug("entering rewards page")
 
@@ -256,50 +256,50 @@ def rewards():
 
 
 
-@app.route('/qui-sommes-nous', methods=['GET'])
-def quiSommesNous():
+# @app.route('/qui-sommes-nous', methods=['GET'])
+# def quiSommesNous():
 
-	log_cis.debug("entering qui-sommes-nous page")
+# 	log_cis.debug("entering qui-sommes-nous page")
 
-	return render_template(
-		"le-collectif.html",
-		config_name			= config_name, # prod, testing, default...
-		app_metas			= app_metas, 
-		language			= "fr" 
-	)
+# 	return render_template(
+# 		"le-collectif.html",
+# 		config_name			= config_name, # prod, testing, default...
+# 		app_metas			= app_metas, 
+# 		language			= "fr" 
+# 	)
 
-@app.route('/qui-sommes-nous/qui-fait-quoi', methods=['GET'])
-def leCollectif():
+# @app.route('/qui-sommes-nous/qui-fait-quoi', methods=['GET'])
+# def leCollectif():
 
-	log_cis.debug("entering qui-fait-quoi page")
+# 	log_cis.debug("entering qui-fait-quoi page")
 
-	return render_template(
-		"qui-fait-quoi.html",
-		config_name			= config_name, # prod, testing, default...
-		app_metas			= app_metas, 
-		language			= "fr" 
-	)
+# 	return render_template(
+# 		"qui-fait-quoi.html",
+# 		config_name			= config_name, # prod, testing, default...
+# 		app_metas			= app_metas, 
+# 		language			= "fr" 
+# 	)
 
-@app.route('/nous-rejoindre', methods=['GET'])
-def nousRejoindre():
+# @app.route('/nous-rejoindre', methods=['GET'])
+# def nousRejoindre():
 
-	log_cis.debug("entering nous-rejoindre page")
+# 	log_cis.debug("entering nous-rejoindre page")
 
-	referencedProjectCarrierForm = ReferencedProjectCarrierForm()
-	notReferencedProjectCarrierForm = NotReferencedProjectCarrierForm()
-	structureWithProjectsForm = StructureWithProjectsForm()
-	structureNoProjectsForm = StructureNoProjectsForm()
+# 	referencedProjectCarrierForm = ReferencedProjectCarrierForm()
+# 	notReferencedProjectCarrierForm = NotReferencedProjectCarrierForm()
+# 	structureWithProjectsForm = StructureWithProjectsForm()
+# 	structureNoProjectsForm = StructureNoProjectsForm()
 
-	return render_template(
-		"nous-rejoindre.html",
-		config_name			= config_name, # prod, testing, default...
-		app_metas			= app_metas, 
-		language			= "fr",
-		referencedProjectCarrierForm = referencedProjectCarrierForm,
-		notReferencedProjectCarrierForm = notReferencedProjectCarrierForm,
-		structureWithProjectsForm = structureWithProjectsForm,
-		structureNoProjectsForm = structureNoProjectsForm
-	)
+# 	return render_template(
+# 		"nous-rejoindre.html",
+# 		config_name			= config_name, # prod, testing, default...
+# 		app_metas			= app_metas, 
+# 		language			= "fr",
+# 		referencedProjectCarrierForm = referencedProjectCarrierForm,
+# 		notReferencedProjectCarrierForm = notReferencedProjectCarrierForm,
+# 		structureWithProjectsForm = structureWithProjectsForm,
+# 		structureNoProjectsForm = structureNoProjectsForm
+# 	)
 
 @app.route('/contact', methods=['GET'])
 def contact():
@@ -319,201 +319,201 @@ def contact():
 
 ANTI_SPAM_FIELD_NAME = "userMiddlename"
 
-@app.route('/feedback', methods=['POST'])
-def feedback():
+# @app.route('/feedback', methods=['POST'])
+# def feedback():
 
-	log_cis.debug("entering feedback endpoint")
+# 	log_cis.debug("entering feedback endpoint")
 	
-	form 			= FeedbackForm()
+# 	form 			= FeedbackForm()
 
 
-	if form.__dict__[ANTI_SPAM_FIELD_NAME].data == '':
-		# Likely human submitter
+# 	if form.__dict__[ANTI_SPAM_FIELD_NAME].data == '':
+# 		# Likely human submitter
 			
-		try :
-			current_session_uid = session["public_id"]
-			# Check_tokens_user ( current_session_uid, lang_set )
-		except : 
-			current_session_uid = None
+# 		try :
+# 			current_session_uid = session["public_id"]
+# 			# Check_tokens_user ( current_session_uid, lang_set )
+# 		except : 
+# 			current_session_uid = None
 
 
-		if form.validate_on_submit():
+# 		if form.validate_on_submit():
 
-			### ADD A NEW FEEDBACK
-			# create preregister data and store it in MongoDB
-			new_preregister 	= PreRegister()
-			new_preregister.populate_from_form( form=form )
-			new_preregister.add_created_at()
-			new_preregister.insert_to_mongo( coll=mongo_feedbacks )
+# 			### ADD A NEW FEEDBACK
+# 			# create preregister data and store it in MongoDB
+# 			new_preregister 	= PreRegister()
+# 			new_preregister.populate_from_form( form=form )
+# 			new_preregister.add_created_at()
+# 			new_preregister.insert_to_mongo( coll=mongo_feedbacks )
 
-			# check if email/user already exists in users db
-			# existing_user 		= mongo_users.find_one({"userEmail" : form.userEmail.data} )
+# 			# check if email/user already exists in users db
+# 			# existing_user 		= mongo_users.find_one({"userEmail" : form.userEmail.data} )
 			
-			# create a potential user if doesn't already exist in db
-			# if not existing_user :
+# 			# create a potential user if doesn't already exist in db
+# 			# if not existing_user :
 				
-			# 	# create default password
-			# 	temp_pwd = pwd_generator()
-			# 	hashpass = generate_password_hash( temp_pwd, method='sha256')
+# 			# 	# create default password
+# 			# 	temp_pwd = pwd_generator()
+# 			# 	hashpass = generate_password_hash( temp_pwd, method='sha256')
 		
-			# 	# capitalize name and surname 
-			# 	form.userName.data 		= form.userName.data.capitalize()
-			# 	form.userSurname.data 	= form.userSurname.data.capitalize()
+# 			# 	# capitalize name and surname 
+# 			# 	form.userName.data 		= form.userName.data.capitalize()
+# 			# 	form.userSurname.data 	= form.userSurname.data.capitalize()
 
-			# 	# populate user class
-			# 	new_user 	= User( userPassword = hashpass, userAuthLevel="visitor", temp_pwd=temp_pwd )
-			# 	new_user.populate_from_form(form=form)
-			# 	new_user.add_created_at()
-			# 	new_user.check_if_user_structure_is_partner()
+# 			# 	# populate user class
+# 			# 	new_user 	= User( userPassword = hashpass, userAuthLevel="visitor", temp_pwd=temp_pwd )
+# 			# 	new_user.populate_from_form(form=form)
+# 			# 	new_user.add_created_at()
+# 			# 	new_user.check_if_user_structure_is_partner()
 
-			# 	# save user in db as visitor
-			# 	new_user.insert_to_mongo( coll=mongo_users )
+# 			# 	# save user in db as visitor
+# 			# 	new_user.insert_to_mongo( coll=mongo_users )
 			
-			# flash(u"votre message a bien été envoyé, merci de votre intérêt !", category='primary')
+# 			# flash(u"votre message a bien été envoyé, merci de votre intérêt !", category='primary')
 
-		else :
+# 		else :
 			
-			log_cis.error("form was not validated / form.errors : %s", form.errors )
+# 			log_cis.error("form was not validated / form.errors : %s", form.errors )
 			
-			# flash(u"problème lors de l'envoi de votre message", category='warning')
+# 			# flash(u"problème lors de l'envoi de votre message", category='warning')
 
 		
-	else :
-		# Most certainly spam robot submitter
-		# let's store nothing in the database and pretend everything went well
-		log_cis.debug("likely spambot submission")
+# 	else :
+# 		# Most certainly spam robot submitter
+# 		# let's store nothing in the database and pretend everything went well
+# 		log_cis.debug("likely spambot submission")
 
-	return redirect(request.referrer or "/")
+# 	return redirect(request.referrer or "/")
 
 
 
-@app.route('/nous-rejoindre/porteur-projet-reference', methods=['POST'])
-def porteurProjetReference():
+# @app.route('/nous-rejoindre/porteur-projet-reference', methods=['POST'])
+# def porteurProjetReference():
 
-	log_cis.debug("entering /nous-rejoindre/porteur-projet-reference endpoint")
+# 	log_cis.debug("entering /nous-rejoindre/porteur-projet-reference endpoint")
 	
-	form = ReferencedProjectCarrierForm()
+# 	form = ReferencedProjectCarrierForm()
 		
-	if form.__dict__[ANTI_SPAM_FIELD_NAME].data == '':
-		# Likely human submitter
+# 	if form.__dict__[ANTI_SPAM_FIELD_NAME].data == '':
+# 		# Likely human submitter
 
-		if form.validate_on_submit():
+# 		if form.validate_on_submit():
 
-			log_cis.debug("form validated")
-			### ADD A NEW JOIN US ENTRY
-			referencedProjectCarrierFeedback = ModelMixin()
-			referencedProjectCarrierFeedback.populate_from_form( form=form )
-			referencedProjectCarrierFeedback.add_created_at()
-			referencedProjectCarrierFeedback.insert_to_mongo( coll=mongo_join_message_referenced_project_carrier )
+# 			log_cis.debug("form validated")
+# 			### ADD A NEW JOIN US ENTRY
+# 			referencedProjectCarrierFeedback = ModelMixin()
+# 			referencedProjectCarrierFeedback.populate_from_form( form=form )
+# 			referencedProjectCarrierFeedback.add_created_at()
+# 			referencedProjectCarrierFeedback.insert_to_mongo( coll=mongo_join_message_referenced_project_carrier )
 
-		else :
+# 		else :
 			
-			log_cis.debug("form was not validated / form.errors : %s", form.errors )
+# 			log_cis.debug("form was not validated / form.errors : %s", form.errors )
 
-	else :
-		# Most certainly spam robot submitter
-		# let's store nothing in the database and pretend everything went well
-		log_cis.debug("likely spambot submission")
+# 	else :
+# 		# Most certainly spam robot submitter
+# 		# let's store nothing in the database and pretend everything went well
+# 		log_cis.debug("likely spambot submission")
 
 		
-	return redirect(request.referrer or "/")
+# 	return redirect(request.referrer or "/")
 
 	
-@app.route('/nous-rejoindre/porteur-projet-non-reference', methods=['POST'])
-def porteurProjetNonReference():
+# @app.route('/nous-rejoindre/porteur-projet-non-reference', methods=['POST'])
+# def porteurProjetNonReference():
 
-	log_cis.debug("entering /nous-rejoindre/porteur-projet-non-reference endpoint")
+# 	log_cis.debug("entering /nous-rejoindre/porteur-projet-non-reference endpoint")
 	
-	form = NotReferencedProjectCarrierForm()
+# 	form = NotReferencedProjectCarrierForm()
 		
-	if form.__dict__[ANTI_SPAM_FIELD_NAME].data == '':
-		# Likely human submitter
+# 	if form.__dict__[ANTI_SPAM_FIELD_NAME].data == '':
+# 		# Likely human submitter
 
-		if form.validate_on_submit():
+# 		if form.validate_on_submit():
 
-			log_cis.debug("form validated")
-			### ADD A NEW JOIN US ENTRY
-			notReferencedProjectCarrierFeedback = ModelMixin()
-			notReferencedProjectCarrierFeedback.populate_from_form( form=form )
-			notReferencedProjectCarrierFeedback.add_created_at()
-			notReferencedProjectCarrierFeedback.insert_to_mongo( coll=mongo_join_message_not_referenced_project_carrier )
+# 			log_cis.debug("form validated")
+# 			### ADD A NEW JOIN US ENTRY
+# 			notReferencedProjectCarrierFeedback = ModelMixin()
+# 			notReferencedProjectCarrierFeedback.populate_from_form( form=form )
+# 			notReferencedProjectCarrierFeedback.add_created_at()
+# 			notReferencedProjectCarrierFeedback.insert_to_mongo( coll=mongo_join_message_not_referenced_project_carrier )
 
-		else :
+# 		else :
 			
-			log_cis.debug("form was not validated / form.errors : %s", form.errors )
+# 			log_cis.debug("form was not validated / form.errors : %s", form.errors )
 
-	else :
-		# Most certainly spam robot submitter
-		# let's store nothing in the database and pretend everything went well
-		log_cis.debug("likely spambot submission")
+# 	else :
+# 		# Most certainly spam robot submitter
+# 		# let's store nothing in the database and pretend everything went well
+# 		log_cis.debug("likely spambot submission")
 
 		
-	return redirect(request.referrer or "/")
+# 	return redirect(request.referrer or "/")
 
 
-@app.route('/nous-rejoindre/structure-avec-projets', methods=['POST'])
-def structureAvecProjets():
+# @app.route('/nous-rejoindre/structure-avec-projets', methods=['POST'])
+# def structureAvecProjets():
 
-	log_cis.debug("entering /nous-rejoindre/structure-avec-projets endpoint")
+# 	log_cis.debug("entering /nous-rejoindre/structure-avec-projets endpoint")
 	
-	form = StructureWithProjectsForm()
+# 	form = StructureWithProjectsForm()
 		
-	if form.__dict__[ANTI_SPAM_FIELD_NAME].data == '':
-		# Likely human submitter
+# 	if form.__dict__[ANTI_SPAM_FIELD_NAME].data == '':
+# 		# Likely human submitter
 
-		if form.validate_on_submit():
+# 		if form.validate_on_submit():
 
-			log_cis.debug("form validated")
-			### ADD A NEW JOIN US ENTRY
-			structureWithProjectsFeedback = ModelMixin()
-			structureWithProjectsFeedback.populate_from_form( form=form )
-			structureWithProjectsFeedback.add_created_at()
-			structureWithProjectsFeedback.insert_to_mongo( coll=mongo_join_message_structures )
+# 			log_cis.debug("form validated")
+# 			### ADD A NEW JOIN US ENTRY
+# 			structureWithProjectsFeedback = ModelMixin()
+# 			structureWithProjectsFeedback.populate_from_form( form=form )
+# 			structureWithProjectsFeedback.add_created_at()
+# 			structureWithProjectsFeedback.insert_to_mongo( coll=mongo_join_message_structures )
 
-		else :
+# 		else :
 			
-			log_cis.debug("form was not validated / form.errors : %s", form.errors )
+# 			log_cis.debug("form was not validated / form.errors : %s", form.errors )
 
-	else :
-		# Most certainly spam robot submitter
-		# let's store nothing in the database and pretend everything went well
-		log_cis.debug("likely spambot submission")
+# 	else :
+# 		# Most certainly spam robot submitter
+# 		# let's store nothing in the database and pretend everything went well
+# 		log_cis.debug("likely spambot submission")
 	
 
-	return redirect(request.referrer or "/")
+# 	return redirect(request.referrer or "/")
 
 
-@app.route('/nous-rejoindre/structure-sans-projets', methods=['POST'])
-def structureSansProjets():
+# @app.route('/nous-rejoindre/structure-sans-projets', methods=['POST'])
+# def structureSansProjets():
 
-	log_cis.debug("entering /nous-rejoindre/structure-sans-projets endpoint")
+# 	log_cis.debug("entering /nous-rejoindre/structure-sans-projets endpoint")
 	
-	form = StructureNoProjectsForm()
+# 	form = StructureNoProjectsForm()
 		
 		
-	if form.__dict__[ANTI_SPAM_FIELD_NAME].data == '':
-		# Likely human submitter
+# 	if form.__dict__[ANTI_SPAM_FIELD_NAME].data == '':
+# 		# Likely human submitter
 
-		if form.validate_on_submit():
+# 		if form.validate_on_submit():
 
-			log_cis.debug("form validated")
-			### ADD A NEW JOIN US ENTRY
-			structureNoProjectsFeedback = ModelMixin()
-			structureNoProjectsFeedback.populate_from_form( form=form )
-			structureNoProjectsFeedback.add_created_at()
-			structureNoProjectsFeedback.insert_to_mongo( coll=mongo_join_message_structures )
+# 			log_cis.debug("form validated")
+# 			### ADD A NEW JOIN US ENTRY
+# 			structureNoProjectsFeedback = ModelMixin()
+# 			structureNoProjectsFeedback.populate_from_form( form=form )
+# 			structureNoProjectsFeedback.add_created_at()
+# 			structureNoProjectsFeedback.insert_to_mongo( coll=mongo_join_message_structures )
 
-		else :
+# 		else :
 			
-			log_cis.debug("form was not validated / form.errors : %s", form.errors )
+# 			log_cis.debug("form was not validated / form.errors : %s", form.errors )
 			
-	else :
-		# Most certainly spam robot submitter
-		# let's store nothing in the database and pretend everything went well
-		log_cis.debug("likely spambot submission")
+# 	else :
+# 		# Most certainly spam robot submitter
+# 		# let's store nothing in the database and pretend everything went well
+# 		log_cis.debug("likely spambot submission")
 
 		
-	return redirect(request.referrer or "/")
+# 	return redirect(request.referrer or "/")
 
 
 
