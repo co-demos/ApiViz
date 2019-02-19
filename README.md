@@ -27,6 +27,11 @@ Visualize data coming from an API
 1. **install a [virtual environment](https://pypi.python.org/pypi/virtualenv)**
 	> 
 		$ virtualenv venv
+		
+1. **activate your virtual environment**  
+	> 	
+		$ source venv/bin/activate
+		
 1. **install the libraries**
 	> 
 		$ sudo pip install -r requirements.txt
