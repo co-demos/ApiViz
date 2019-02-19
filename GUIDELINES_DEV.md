@@ -1,19 +1,22 @@
 # GUIDELINES FOR DEVELOPMENT
 
-This project is prone to be developped by several developpers 
+This project is prone to be developped by several developpers, so we agreed on some basic rules...
 
 ## GENERAL 
+
 - check out our "project" board to have an idea about the priorities we collectively decided to work on
 - "see something, say something" : open new issues when you see problems to solve
 - document your own issues with everything you have : images, references, snippets, etc... 
-- 
+- we update the `README.md` and the `GUIDELINES_DEV.md` directly on github
 
 ## JAVASCRIPT
+
 - camelcase your functions' and variables' names
 - lint off your code as mush as possible
 - comment your code
 
 ## PYTHON 
+
 - comment your code
 - 
 
