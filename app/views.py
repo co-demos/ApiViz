@@ -148,6 +148,8 @@ def home_english():
 @app.route('/recherche', methods=['GET'])
 @app.route('/recherche/carte', methods=['GET'])
 @app.route('/project/<id>', methods=['GET'])
+@app.route('/login', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET'])
 def spa(id=''):
 
 	log_cis.debug("entering SPA page")
@@ -222,195 +224,195 @@ def load_user(userEmail):
 
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-	"""
-	main page for login
-	backed on flask-login classes
-	"""
-
-	form = LoginForm()
-
-	if request.method == 'POST' :
-
-		log_cis.debug("login / reading form ... " )
-		for f_field in form :
-			log_cis.info( "form name : %s / form data : %s \n", f_field.name, f_field.data )
-
-
-		if form.validate_on_submit():
-
-			user = mongo_users.find_one({"userEmail": form.userEmail.data})
-			log_cis.info("user - type : %s - : %s", type(user), pformat(user) )
-
-			if user and User.validate_login( user['userPassword'], form.userPassword.data ):
-
-				log_cis.debug("user found + User.validate_login ")
-
-				user_obj = User()
-				user_obj.populate_from_dict(dict_input=user)
-
-				### login with flask-login
-				login_user( user_obj, remember=form.userRememberMe.data )
-
-				### update login_last_at in db
-				user["login_last_at"] 	= datetime.datetime.now()
-				user["logins_total"]	= user["logins_total"] + 1
-				mongo_users.save(user)
-
-				log_cis.info("Logged in successfully")
-
-				# flash(u"Vous êtes bien connecté.e", category='light')
-
-				return redirect(request.args.get("next") or url_for("home"))
-
-			else :
-
-				log_cis.error("password was not validated / form.errors : %s", form.errors )
-
-				flash(u"Email ou mot de passe incorrect(s)", category='warning')
-
-				return redirect(url_for("login"))
-
-		else :
-
-			log_cis.error("form was not validated / form.errors : %s", form.errors )
-
-			flash(u"Email ou mot de passe incorrect(s)", category='warning')
-
-			return redirect(url_for("login"))
-
-
-	elif request.method == 'GET' :
-
-		return render_template(	'login.html',
-
-								config_name		= config_name, # prod or default...
-								app_metas		= app_metas,
-								language		= "fr" ,
-								languages_dict	= app_languages_dict ,
-
-								site_section	= 'login',
-								form			= form,
-								user_infos		= current_user.get_public_infos
-
-								)
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+# 	"""
+# 	main page for login
+# 	backed on flask-login classes
+# 	"""
+#
+# 	form = LoginForm()
+#
+# 	if request.method == 'POST' :
+#
+# 		log_cis.debug("login / reading form ... " )
+# 		for f_field in form :
+# 			log_cis.info( "form name : %s / form data : %s \n", f_field.name, f_field.data )
+#
+#
+# 		if form.validate_on_submit():
+#
+# 			user = mongo_users.find_one({"userEmail": form.userEmail.data})
+# 			log_cis.info("user - type : %s - : %s", type(user), pformat(user) )
+#
+# 			if user and User.validate_login( user['userPassword'], form.userPassword.data ):
+#
+# 				log_cis.debug("user found + User.validate_login ")
+#
+# 				user_obj = User()
+# 				user_obj.populate_from_dict(dict_input=user)
+#
+# 				### login with flask-login
+# 				login_user( user_obj, remember=form.userRememberMe.data )
+#
+# 				### update login_last_at in db
+# 				user["login_last_at"] 	= datetime.datetime.now()
+# 				user["logins_total"]	= user["logins_total"] + 1
+# 				mongo_users.save(user)
+#
+# 				log_cis.info("Logged in successfully")
+#
+# 				# flash(u"Vous êtes bien connecté.e", category='light')
+#
+# 				return redirect(request.args.get("next") or url_for("home"))
+#
+# 			else :
+#
+# 				log_cis.error("password was not validated / form.errors : %s", form.errors )
+#
+# 				flash(u"Email ou mot de passe incorrect(s)", category='warning')
+#
+# 				return redirect(url_for("login"))
+#
+# 		else :
+#
+# 			log_cis.error("form was not validated / form.errors : %s", form.errors )
+#
+# 			flash(u"Email ou mot de passe incorrect(s)", category='warning')
+#
+# 			return redirect(url_for("login"))
+#
+#
+# 	elif request.method == 'GET' :
+#
+# 		return render_template(	'login.html',
+#
+# 								config_name		= config_name, # prod or default...
+# 								app_metas		= app_metas,
+# 								language		= "fr" ,
+# 								languages_dict	= app_languages_dict ,
+#
+# 								site_section	= 'login',
+# 								form			= form,
+# 								user_infos		= current_user.get_public_infos
+#
+# 								)
 
 
 
 # POST verb is disabled until a proper solution against spam is found
 # @app.route('/register', methods=['GET', 'POST'])
-@app.route('/register', methods=['GET'])
-def register():
-
-	form = RegisterForm()
-
-	if request.method == 'POST':
-
-		print
-		log_cis.info("posting a new user \n")
-
-		# for debugging purposes
-		for f_field in form :
-			log_cis.debug( "form name : %s / form data : %s ", f_field.name, f_field.data )
-
-
-		if form.validate_on_submit():
-
-			# capitalize name and surname
-			form.userName.data 		= form.userName.data.capitalize()
-			form.userSurname.data 	= form.userSurname.data.capitalize()
-
-			existing_user = mongo_users.find_one({"userEmail" : form.userEmail.data} )
-
-			log_cis.debug("existing_user : %s", pformat(existing_user) )
-
-
-			if existing_user is None :
-				is_new_user = "create_new_user"
-			else :
-				if existing_user["userAuthLevel"] == "visitor" :
-					is_new_user = "update_visitor_to_user"
-				else :
-					is_new_user = "no"
-					flash(u"Cet email est déjà utilisé, veuillez réessayer", category='warning')
-					return redirect(url_for('register'))
-
-			log_cis.warning("is_new_user : %s", is_new_user )
-
-			# if existing_user is None or existing_user["userAuthLevel"] == "visitor" :
-			if is_new_user != "no" :
-
-				# create hashpassword
-				hashpass = generate_password_hash(form.registerPassword.data, method='sha256')
-				log_cis.debug("hashpass : %s", hashpass )
-
-				# populate user class
-				new_user 	= User( 	userPassword=hashpass,
-										userAuthLevel="user",
-										login_last_at=datetime.datetime.now(),
-										logins_total=1
-										 )
-				new_user.populate_from_form(form=form)
-				new_user.add_created_at()
-
-				# check if user declared being from a partner and set 'verified_as_partner' as 'VERIFY
-				new_user.check_if_user_structure_is_partner()
-
-
-				if is_new_user == "create_new_user":
-					# save user in db --> function from ModelMixin
-					log_cis.warning("inserting new_user in mongo_users" )
-					new_user.insert_to_mongo( coll=mongo_users )
-
-				# else : # equivalent to <--
-				if is_new_user == "update_visitor_to_user" :
-					# update visitor to user in db --> function from ModelMixin
-					log_cis.warning("updating new_user in mongo_users" )
-					new_user.update_document_in_mongo( document=existing_user,  coll=mongo_users )
-
-
-				# logout previous user if any
-				logout_user()
-
-				# log user with flask-login
-				login_user(new_user)
-
-
-
-
-				flash(u"Votre compte a bien été créé", category='success')
-
-				return redirect(url_for('home'))
-
-		else :
-
-			log_cis.error("form was not validated : form.errors : %s", form.errors )
-
-			# flash(u"Problème lors de l'envoi de votre formulaire.<br>Merci de réessayer", category='warning')
-
-			for k,errors in form.errors.iteritems() :
-				for e in errors :
-					flash( e , category='danger')
-
-			return redirect(url_for('register'))
-
-
-	elif request.method == 'GET':
-
-		return render_template(	'register.html',
-
-								config_name		= config_name, # prod or default...
-								app_metas		= app_metas,
-								language		= "fr" ,
-								languages_dict	= app_languages_dict ,
-
-								site_section 	= "register",
-								form			= form,
-								user_infos		= current_user.get_public_infos
-
-								)
-
+# @app.route('/register', methods=['GET'])
+# def register():
+#
+# 	form = RegisterForm()
+#
+# 	if request.method == 'POST':
+#
+# 		print
+# 		log_cis.info("posting a new user \n")
+#
+# 		# for debugging purposes
+# 		for f_field in form :
+# 			log_cis.debug( "form name : %s / form data : %s ", f_field.name, f_field.data )
+#
+#
+# 		if form.validate_on_submit():
+#
+# 			# capitalize name and surname
+# 			form.userName.data 		= form.userName.data.capitalize()
+# 			form.userSurname.data 	= form.userSurname.data.capitalize()
+#
+# 			existing_user = mongo_users.find_one({"userEmail" : form.userEmail.data} )
+#
+# 			log_cis.debug("existing_user : %s", pformat(existing_user) )
+#
+#
+# 			if existing_user is None :
+# 				is_new_user = "create_new_user"
+# 			else :
+# 				if existing_user["userAuthLevel"] == "visitor" :
+# 					is_new_user = "update_visitor_to_user"
+# 				else :
+# 					is_new_user = "no"
+# 					flash(u"Cet email est déjà utilisé, veuillez réessayer", category='warning')
+# 					return redirect(url_for('register'))
+#
+# 			log_cis.warning("is_new_user : %s", is_new_user )
+#
+# 			# if existing_user is None or existing_user["userAuthLevel"] == "visitor" :
+# 			if is_new_user != "no" :
+#
+# 				# create hashpassword
+# 				hashpass = generate_password_hash(form.registerPassword.data, method='sha256')
+# 				log_cis.debug("hashpass : %s", hashpass )
+#
+# 				# populate user class
+# 				new_user 	= User( 	userPassword=hashpass,
+# 										userAuthLevel="user",
+# 										login_last_at=datetime.datetime.now(),
+# 										logins_total=1
+# 										 )
+# 				new_user.populate_from_form(form=form)
+# 				new_user.add_created_at()
+#
+# 				# check if user declared being from a partner and set 'verified_as_partner' as 'VERIFY
+# 				new_user.check_if_user_structure_is_partner()
+#
+#
+# 				if is_new_user == "create_new_user":
+# 					# save user in db --> function from ModelMixin
+# 					log_cis.warning("inserting new_user in mongo_users" )
+# 					new_user.insert_to_mongo( coll=mongo_users )
+#
+# 				# else : # equivalent to <--
+# 				if is_new_user == "update_visitor_to_user" :
+# 					# update visitor to user in db --> function from ModelMixin
+# 					log_cis.warning("updating new_user in mongo_users" )
+# 					new_user.update_document_in_mongo( document=existing_user,  coll=mongo_users )
+#
+#
+# 				# logout previous user if any
+# 				logout_user()
+#
+# 				# log user with flask-login
+# 				login_user(new_user)
+#
+#
+#
+#
+# 				flash(u"Votre compte a bien été créé", category='success')
+#
+# 				return redirect(url_for('home'))
+#
+# 		else :
+#
+# 			log_cis.error("form was not validated : form.errors : %s", form.errors )
+#
+# 			# flash(u"Problème lors de l'envoi de votre formulaire.<br>Merci de réessayer", category='warning')
+#
+# 			for k,errors in form.errors.iteritems() :
+# 				for e in errors :
+# 					flash( e , category='danger')
+#
+# 			return redirect(url_for('register'))
+#
+#
+# 	elif request.method == 'GET':
+#
+# 		return render_template(	'register.html',
+#
+# 								config_name		= config_name, # prod or default...
+# 								app_metas		= app_metas,
+# 								language		= "fr" ,
+# 								languages_dict	= app_languages_dict ,
+#
+# 								site_section 	= "register",
+# 								form			= form,
+# 								user_infos		= current_user.get_public_infos
+#
+# 								)
+#
 
 
 
