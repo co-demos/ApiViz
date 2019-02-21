@@ -35,7 +35,7 @@
     "bulma-checkradio": "^2.1.0",
     "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.1",
-    "watchify": "^3.11.0"
+    "watchify": "^3.11.1"
   },
   "dependencies": {
     "bulma-carousel": "^3.0.0",
