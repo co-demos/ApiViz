@@ -142,8 +142,9 @@ def home_english():
 
 
 
-@app.route('/app/*', methods=['GET','POST'])
-def spa():
+@app.route('/app/', methods=['GET','POST'],defaults={'path': ''})
+@app.route('/app/<path:path>', methods=['GET','POST'])
+def spa(path):
 
 	log_cis.debug("entering SPA page")
 

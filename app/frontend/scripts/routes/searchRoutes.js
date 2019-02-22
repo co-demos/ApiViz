@@ -15,7 +15,7 @@ import { BRAND_DATA } from '../config/brand.js';
 export const searchRoutesGenerator = function(store){
   return [
       {
-          path: '/recherche',
+          path: '/app/recherche',
           component: SearchListScreen,
           props(route){
               return {
@@ -34,7 +34,7 @@ export const searchRoutesGenerator = function(store){
           }
       },
       {
-          path: '/recherche/carte',
+          path: '/app/recherche/carte',
           component: SearchMapScreen,
           props(route){
               return {
@@ -53,7 +53,7 @@ export const searchRoutesGenerator = function(store){
           }
       },
       {
-          path: '/project/:id',
+          path: '/app/project/:id',
           component: CISProjectScreen,
           props(route){
               return {

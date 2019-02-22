@@ -6,7 +6,7 @@ import { BRAND_DATA } from '../config/brand.js';
 export const userRoutesGenerator = function(store){
   return [
       {
-          path: '/login',
+          path: '/app/login',
           component: LoginScreen,
           props(route){
               return {
@@ -19,7 +19,7 @@ export const userRoutesGenerator = function(store){
           }
       },
       {
-          path: '/register',
+          path: '/app/register',
           component: RegisterScreen,
           props(route){
               return {
@@ -33,7 +33,7 @@ export const userRoutesGenerator = function(store){
       }
       // ,
       // {
-      //     path: '/logout',
+      //     path: '/app/logout',
       //     component: LoginScreen,
       //     props(route){
       //         return {
@@ -46,7 +46,7 @@ export const userRoutesGenerator = function(store){
       //     }
       // },
       // {
-      //     path: '/preferences/user_infos',
+      //     path: '/app/preferences/user_infos',
       //     component: LoginScreen,
       //     props(route){
       //         return {
@@ -59,7 +59,7 @@ export const userRoutesGenerator = function(store){
       //     }
       // },
       // {
-      //     path: '/preferences/user_password',
+      //     path: '/app/preferences/user_password',
       //     component: LoginScreen,
       //     props(route){
       //         return {
