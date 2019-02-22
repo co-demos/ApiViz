@@ -29,7 +29,7 @@ We are following this git principles : [link to blog](https://guillim.github.io/
 - new features must be code reviewed and then (if accepted) pulled into the branch `develop`
 - once every new feature is accepted and merged into `develop`, `develop` must be merged into `master` to constitute a new release
 
-please follow those rules when developping new features : 
+Please follow those rules when developping new features : 
 - locally : create a new branch to work on your own feature(s) named like `mypseudo_mynewfeature`
 - before pushing your changes pull the remote `develop` branch to be merged with your changes in `mypseudo_mynewfeature` branch (so to be sure the features you just developped are compatible with the checked/reviewed `develop` branch):
   >
