@@ -31,12 +31,16 @@ We are following this git principles : [link to blog](https://guillim.github.io/
 
 please follow those rules when developping new features : 
 - locally : create a new branch to work on your own feature(s) named like <mypseudo_mynewfeature>
-- before pushing your changes pull the remote `develop` branch to be merged with your changes in <mypseudo_mynewfeature> branch (so to be sure the features you just developped are compatible with the checked/reviewed `develop branch):
+- before pushing your changes pull the remote `develop` branch to be merged with your changes in `mypseudo_mynewfeature branch (so to be sure the features you just developped are compatible with the checked/reviewed `develop` branch):
 >
+  ```bash
   git pull orgin develop
+  ```
 - then push your branch to the remote repo (github repo) : 
 > 
+  ```bash
   git push origin <mypseudo_mynewfeature>
+  ```
 - ask for a pull request on Github from `mypseudo_mynewfeature` to `develop`
 - someone else must be assigned as a code reviewer, whose in charge to accept your code changes and merge
 - once accepted / reviewed delete `mypseudo_mynewfeature` from repo to keep the branches clean
