@@ -28,8 +28,11 @@ We are following this git principles : [link to blog](https://guillim.github.io/
 - once every new feature is accepted and merged into `develop`, `develop` must be merged into `master` to constitute a new release
 
 please follow those rules when developping new features : 
-- locally : create a new branch to work on your own feature(s)
-- push your branch to the remote repo (github repo) : 
+- locally : create a new branch to work on your own feature(s) named like <g_mynewfeature>
+- before pushing your changes pull the remote `develop` branch to be merged with your changes in <g_mynewfeature> branch (so to be sure the features you just developped are compatible with the checked/reviewed `develop branch):
+>
+  git pull orgin develop
+- then push your branch to the remote repo (github repo) : 
 > 
   git push origin <your_branch>
 - ask for a pull request on Github from `your_branch` to `develop`
