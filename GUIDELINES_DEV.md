@@ -34,7 +34,7 @@ please follow those rules when developping new features :
 - before pushing your changes pull the remote `develop` branch to be merged with your changes in `mypseudo_mynewfeature branch (so to be sure the features you just developped are compatible with the checked/reviewed `develop` branch):
 >
   ```bash
-  git pull orgin develop
+  git pull origin develop
   ```
 - then push your branch to the remote repo (github repo) : 
 > 
