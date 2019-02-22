@@ -31,7 +31,7 @@ We are following this git principles : [link to blog](https://guillim.github.io/
 
 please follow those rules when developping new features : 
 - locally : create a new branch to work on your own feature(s) named like <mypseudo_mynewfeature>
-- before pushing your changes pull the remote `develop` branch to be merged with your changes in `mypseudo_mynewfeature branch (so to be sure the features you just developped are compatible with the checked/reviewed `develop` branch):
+- before pushing your changes pull the remote `develop` branch to be merged with your changes in `mypseudo_mynewfeature` branch (so to be sure the features you just developped are compatible with the checked/reviewed `develop` branch):
 >
   ```bash
   git pull origin develop
