@@ -9,11 +9,11 @@ sys.setdefaultencoding('utf-8')
 
 ### import all from app.__init__
 from . 	import *
-from	flask 				import 	jsonify, flash, render_template, \
+from	flask 	import 	jsonify, flash, render_template, \
 									url_for, make_response, request, redirect, \
 									send_file
 
-from 	werkzeug.security 	import 	generate_password_hash, check_password_hash
+# from 	werkzeug.security 	import 	generate_password_hash, check_password_hash
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### AUTH - TOKEN
@@ -46,6 +46,97 @@ def token_required(f):
 	return decorated
 """
 
+### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
+### CONFIG ROUTES - BACKEND API
+### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
+
+def DocOidToString(data):
+	# log_app.debug("data : %s", data) 
+	obj = {}
+	for key in data:
+		if isinstance(data[key], ObjectId):
+			obj[key] = str(data[key])
+		else:
+			obj[key] = data[key]
+	# log_app.debug("obj : %s", obj) 
+	return obj
+
+
+def getDocuments(collection, query={}, no_oid=True, toDictField=True, Field="field") : 
+	
+	### query collection and transform as list
+	results = list(collection.find(query) ) 
+
+	### ObjectId to string
+	if no_oid : 
+		results = [ DocOidToString(i) for i in results ]
+	
+	### list to dict
+	if toDictField : 
+		results = { i[Field] : i for i in results }
+
+	return results
+
+
+
+@app.route('/backend/api/global/', methods=['GET','POST'], defaults={'path': ''})
+@app.route('/backend/api/global/<path:path>', methods=['GET','POST'])
+def config_global(path):
+
+	log_app.debug("config app route")
+
+	if request.method == 'POST':
+		return "hello config master / GLOBAL ... praise be"
+
+	if request.method == 'GET':
+		# app_config = list(mongo_config_global.find({}))
+		# log_app.debug(">>> app_config : \n%s", pformat(app_config))
+		
+		# ### ObjectId to string
+		# app_config_clean = [ DocOidToString(i) for i in app_config ]
+		# log_app.debug(">>> app_config_clean : \n%s", pformat(app_config_clean))
+		
+		# ### list to dict
+		# app_config_dict = { i["field"] : i for i in app_config_clean }
+
+		app_config_dict = getDocuments(mongo_config_global)
+		return jsonify( {
+				"msg" 				: "hello config master / GLOBAL ... praise be",
+				"app_config" 	: app_config_dict
+			})
+
+
+
+
+@app.route('/backend/api/routes/', methods=['GET', 'POST'])
+@app.route('/backend/api/routes/<string:route_id>', methods=['GET','POST'])
+def config_routes(route_id=""):
+  
+	log_app.debug("config routes for contents ")
+
+	if request.method == 'GET':
+  		pass
+
+	if request.method == 'POST':
+  		pass
+
+	return "hello config master / CONTENTS... praise be"
+
+
+@app.route('/backend/api/data/', methods=['GET', 'POST'])
+@app.route('/backend/api/data/<string:data_endpoint_id>', methods=['GET','POST'])
+def config_data(data_endpoint_id=""):
+
+	log_app.debug("config data endpoints / data_endpoint_id : %s", data_endpoint_id)
+
+	if request.method == 'GET':
+		pass
+
+	if request.method == 'POST':
+		pass
+
+	return "hello config master / DATA... praise be"
+
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### ERRORS HANDLERS
@@ -55,17 +146,17 @@ def token_required(f):
 @app.errorhandler(403)
 def error403(error):
 
-	log_cis.error( "error - 403 : %s", error )
+	log_app.error( "error - 403 : %s", error )
 
 	return render_template( "errors/403.html",
 
 							config_name			= config_name, # prod or default...
-							app_metas			= app_metas,
-							language			= "fr" ,
-							languages_dict		= app_languages_dict ,
+							app_metas				= app_metas,
+							language				= "fr" ,
+							languages_dict	= app_languages_dict ,
 
 							site_section		= "403",
-							error_msg			= u"accès interdit",
+							error_msg				= u"accès interdit",
 							user_infos			= current_user.get_public_infos
 						),403
 
@@ -73,102 +164,104 @@ def error403(error):
 @app.errorhandler(404)
 def error404(error):
 
-	log_cis.error( "error - 404 : %s", error )
+	log_app.error( "error - 404 : %s", error )
 
 	return render_template( "errors/404.html",
 
 							config_name			= config_name, # prod or default...
-							app_metas			= app_metas,
-							language			= "fr" ,
-							languages_dict		= app_languages_dict,
+							app_metas				= app_metas,
+							language				= "fr" ,
+							languages_dict	= app_languages_dict,
 
 							site_section		= "404",
-							error_msg			= u"la page demandée n'existe pas",
+							error_msg				= u"la page demandée n'existe pas",
 							user_infos			= current_user.get_public_infos
 						),404
 
 @app.errorhandler(500)
 def error500(error):
 
-	log_cis.error( "error - 500 : %s", error )
+	log_app.error( "error - 500 : %s", error )
 
 	return render_template( "errors/500.html",
 
 							config_name			= config_name, # prod or default...
-							app_metas			= app_metas,
-							language			= "fr" ,
-							languages_dict		= app_languages_dict ,
+							app_metas				= app_metas,
+							language				= "fr" ,
+							languages_dict	= app_languages_dict ,
 
 							site_section		= "500",
-							error_msg			= u"erreur serveur",
+							error_msg				= u"erreur serveur",
 							user_infos			= current_user.get_public_infos
 						),500
 
 
 
-# V3 Website
+### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
+### CLIENT ROUTES
+### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
 @app.route('/', methods=['GET'])
 def home():
 
-	log_cis.debug("entering new home page")
+	log_app.debug("entering new home page")
 
-	form 			= FeedbackForm()
+	app_config = getDocuments(mongo_config_global)
+	log_app.debug("app_config :/n%s", pformat(app_config))
 
 	return render_template(
 		"new-home.html",
-		config_name			= config_name, # prod, testing, default...
+		config_name		= config_name, # prod, testing, default...
+		app_config 		= app_config,
 		app_metas			= app_metas,
 		language			= "fr",
-		form				= form
 	)
 
 
 @app.route('/en', methods=['GET'])
 def home_english():
 
-	log_cis.debug("entering new home page in English")
+	log_app.debug("entering new home page in English")
 
 	form 			= FeedbackForm()
 
 	return render_template(
 		"new-home-english.html",
-		config_name			= config_name, # prod, testing, default...
+		config_name		= config_name, # prod, testing, default...
 		app_metas			= app_metas,
 		language			= "en",
-		form				= form
+		form					= form
 	)
-
-
 
 
 @app.route('/app/', methods=['GET','POST'],defaults={'path': ''})
 @app.route('/app/<path:path>', methods=['GET','POST'])
 def spa(path):
 
-	log_cis.debug("entering SPA page")
+	log_app.debug("entering SPA page")
 
 	return render_template(
 		"spa.html",
-		config_name			= config_name, # prod, testing, default...
+		config_name		= config_name, # prod, testing, default...
 		app_metas			= app_metas,
 		language			= "fr"
 	)
 
-@app.route('/contact', methods=['GET'])
-def contact():
 
-	form = FeedbackForm()
+# @app.route('/contact', methods=['GET'])
+# def contact():
 
-	log_cis.debug("entering contact page")
+# 	form = FeedbackForm()
 
-	return render_template(
-		"contact.html",
-		config_name			= config_name, # prod, testing, default...
-		app_metas			= app_metas,
-		language			= "fr",
-		form 				= form
-	)
+# 	log_app.debug("entering contact page")
+
+# 	return render_template(
+# 		"contact.html",
+# 		config_name		= config_name, # prod, testing, default...
+# 		app_metas			= app_metas,
+# 		language			= "fr",
+# 		form 					= form
+# 	)
 
 
 ANTI_SPAM_FIELD_NAME = "userMiddlename"
@@ -183,38 +276,38 @@ ANTI_SPAM_FIELD_NAME = "userMiddlename"
 # cf : https://www.youtube.com/watch?v=NYWEf9bZhHQ&t=320s - flask-login and flask-admin
 
 
-from models import User, AnonymousUser
+# from models import User, AnonymousUser
 
-@login_manager.user_loader
-def load_user(userEmail):
-	"""
-	populates the current_user flask_login object
-	"""
+# @login_manager.user_loader
+# def load_user(userEmail):
+# 	"""
+# 	populates the current_user flask_login object
+# 	"""
 
-	log_cis.debug("userEmail : %s", userEmail)
+# 	log_app.debug("userEmail : %s", userEmail)
 
-	user = mongo_users.find_one({ "userEmail" : userEmail })
-	# user = mongo_users.find_one({ "_id" : ObjectId(userOID) })
+# 	user = mongo_users.find_one({ "userEmail" : userEmail })
+# 	# user = mongo_users.find_one({ "_id" : ObjectId(userOID) })
 
-	if not user :
+# 	if not user :
 
-		log_cis.debug( "no user found in db" )
+# 		log_app.debug( "no user found in db" )
 
-		# return None
-		return AnonymousUser()
+# 		# return None
+# 		return AnonymousUser()
 
-	else :
+# 	else :
 
-		log_cis.debug( "user : \n %s", pformat(user)  )
-		log_cis.debug( "user['_id'] : %s", str(user["_id"]) )
+# 		log_app.debug( "user : \n %s", pformat(user)  )
+# 		log_app.debug( "user['_id'] : %s", str(user["_id"]) )
 
-		user_ = User( )
-		user_.populate_from_dict(dict_input=user)
+# 		user_ = User( )
+# 		user_.populate_from_dict(dict_input=user)
 
-		### adds forgotten OID into current_user
-		user_.userOID = str(user["_id"])
+# 		### adds forgotten OID into current_user
+# 		user_.userOID = str(user["_id"])
 
-		return user_
+# 		return user_
 
 
 
@@ -229,19 +322,19 @@ def load_user(userEmail):
 #
 # 	if request.method == 'POST' :
 #
-# 		log_cis.debug("login / reading form ... " )
+# 		log_app.debug("login / reading form ... " )
 # 		for f_field in form :
-# 			log_cis.info( "form name : %s / form data : %s \n", f_field.name, f_field.data )
+# 			log_app.info( "form name : %s / form data : %s \n", f_field.name, f_field.data )
 #
 #
 # 		if form.validate_on_submit():
 #
 # 			user = mongo_users.find_one({"userEmail": form.userEmail.data})
-# 			log_cis.info("user - type : %s - : %s", type(user), pformat(user) )
+# 			log_app.info("user - type : %s - : %s", type(user), pformat(user) )
 #
 # 			if user and User.validate_login( user['userPassword'], form.userPassword.data ):
 #
-# 				log_cis.debug("user found + User.validate_login ")
+# 				log_app.debug("user found + User.validate_login ")
 #
 # 				user_obj = User()
 # 				user_obj.populate_from_dict(dict_input=user)
@@ -254,7 +347,7 @@ def load_user(userEmail):
 # 				user["logins_total"]	= user["logins_total"] + 1
 # 				mongo_users.save(user)
 #
-# 				log_cis.info("Logged in successfully")
+# 				log_app.info("Logged in successfully")
 #
 # 				# flash(u"Vous êtes bien connecté.e", category='light')
 #
@@ -262,7 +355,7 @@ def load_user(userEmail):
 #
 # 			else :
 #
-# 				log_cis.error("password was not validated / form.errors : %s", form.errors )
+# 				log_app.error("password was not validated / form.errors : %s", form.errors )
 #
 # 				flash(u"Email ou mot de passe incorrect(s)", category='warning')
 #
@@ -270,7 +363,7 @@ def load_user(userEmail):
 #
 # 		else :
 #
-# 			log_cis.error("form was not validated / form.errors : %s", form.errors )
+# 			log_app.error("form was not validated / form.errors : %s", form.errors )
 #
 # 			flash(u"Email ou mot de passe incorrect(s)", category='warning')
 #
@@ -304,11 +397,11 @@ def load_user(userEmail):
 # 	if request.method == 'POST':
 #
 # 		print
-# 		log_cis.info("posting a new user \n")
+# 		log_app.info("posting a new user \n")
 #
 # 		# for debugging purposes
 # 		for f_field in form :
-# 			log_cis.debug( "form name : %s / form data : %s ", f_field.name, f_field.data )
+# 			log_app.debug( "form name : %s / form data : %s ", f_field.name, f_field.data )
 #
 #
 # 		if form.validate_on_submit():
@@ -319,7 +412,7 @@ def load_user(userEmail):
 #
 # 			existing_user = mongo_users.find_one({"userEmail" : form.userEmail.data} )
 #
-# 			log_cis.debug("existing_user : %s", pformat(existing_user) )
+# 			log_app.debug("existing_user : %s", pformat(existing_user) )
 #
 #
 # 			if existing_user is None :
@@ -332,14 +425,14 @@ def load_user(userEmail):
 # 					flash(u"Cet email est déjà utilisé, veuillez réessayer", category='warning')
 # 					return redirect(url_for('register'))
 #
-# 			log_cis.warning("is_new_user : %s", is_new_user )
+# 			log_app.warning("is_new_user : %s", is_new_user )
 #
 # 			# if existing_user is None or existing_user["userAuthLevel"] == "visitor" :
 # 			if is_new_user != "no" :
 #
 # 				# create hashpassword
 # 				hashpass = generate_password_hash(form.registerPassword.data, method='sha256')
-# 				log_cis.debug("hashpass : %s", hashpass )
+# 				log_app.debug("hashpass : %s", hashpass )
 #
 # 				# populate user class
 # 				new_user 	= User( 	userPassword=hashpass,
@@ -356,13 +449,13 @@ def load_user(userEmail):
 #
 # 				if is_new_user == "create_new_user":
 # 					# save user in db --> function from ModelMixin
-# 					log_cis.warning("inserting new_user in mongo_users" )
+# 					log_app.warning("inserting new_user in mongo_users" )
 # 					new_user.insert_to_mongo( coll=mongo_users )
 #
 # 				# else : # equivalent to <--
 # 				if is_new_user == "update_visitor_to_user" :
 # 					# update visitor to user in db --> function from ModelMixin
-# 					log_cis.warning("updating new_user in mongo_users" )
+# 					log_app.warning("updating new_user in mongo_users" )
 # 					new_user.update_document_in_mongo( document=existing_user,  coll=mongo_users )
 #
 #
@@ -381,7 +474,7 @@ def load_user(userEmail):
 #
 # 		else :
 #
-# 			log_cis.error("form was not validated : form.errors : %s", form.errors )
+# 			log_app.error("form was not validated : form.errors : %s", form.errors )
 #
 # 			# flash(u"Problème lors de l'envoi de votre formulaire.<br>Merci de réessayer", category='warning')
 #
@@ -417,7 +510,7 @@ def logout():
 	"""
 	logout_user()
 
-	log_cis.info("user is logged out...")
+	log_app.info("user is logged out...")
 
 	flash(u"Vous êtes maintenant déconnecté.e", category='primary')
 
@@ -432,202 +525,202 @@ def logout():
 
 
 ### TO DO
-@app.route('/preferences/user_infos', methods=['GET', 'POST'])
-@login_required
-def pref_infos():
-	"""
-	to update user infos
-	"""
+# @app.route('/preferences/user_infos', methods=['GET', 'POST'])
+# @login_required
+# def pref_infos():
+# 	"""
+# 	to update user infos
+# 	"""
 
-	form = UserParametersForm()
+# 	form = UserParametersForm()
 
-	# print current_user
+# 	# print current_user
 
 
-	if request.method == 'POST' :
+# 	if request.method == 'POST' :
 
-		print
-		log_cis.info("updating an user - POST \n")
+# 		print
+# 		log_app.info("updating an user - POST \n")
 
-		# for debugging purposes
-		for f_field in form :
-			log_cis.info( "form name : %s / form data : %s ", f_field.name, f_field.data )
+# 		# for debugging purposes
+# 		for f_field in form :
+# 			log_app.info( "form name : %s / form data : %s ", f_field.name, f_field.data )
 
 
-		if form.validate_on_submit():
+# 		if form.validate_on_submit():
 
-			existing_user = mongo_users.find_one({"_id" : ObjectId(form.userOID.data)} )
-			log_cis.debug("existing_user : %s", pformat(existing_user) )
+# 			existing_user = mongo_users.find_one({"_id" : ObjectId(form.userOID.data)} )
+# 			log_app.debug("existing_user : %s", pformat(existing_user) )
 
 
-			### check if new email is already used by someone else
-			is_new_email_taken = False
-			existing_email = mongo_users.find_one( {"userEmail" : form.userEmail.data} )
-			log_cis.debug("existing_email : %s", pformat(existing_email) )
-			if existing_email is not None :
-				if existing_user["_id"] != existing_email["_id"] :
-					is_new_email_taken = True
+# 			### check if new email is already used by someone else
+# 			is_new_email_taken = False
+# 			existing_email = mongo_users.find_one( {"userEmail" : form.userEmail.data} )
+# 			log_app.debug("existing_email : %s", pformat(existing_email) )
+# 			if existing_email is not None :
+# 				if existing_user["_id"] != existing_email["_id"] :
+# 					is_new_email_taken = True
 
-			if existing_user is None :
-				flash(u"Erreur : utilisateur inexistant", category='warning')
-				return redirect(url_for('pref_infos'))
+# 			if existing_user is None :
+# 				flash(u"Erreur : utilisateur inexistant", category='warning')
+# 				return redirect(url_for('pref_infos'))
 
-			if is_new_email_taken :
-				flash(u"Erreur : cet email déjà utilisé", category='warning')
-				return redirect(url_for('pref_infos'))
+# 			if is_new_email_taken :
+# 				flash(u"Erreur : cet email déjà utilisé", category='warning')
+# 				return redirect(url_for('pref_infos'))
 
-			else :
+# 			else :
 
-				### saving updated infos in user
-				user_obj = User()
-				user_obj.populate_from_dict(dict_input=existing_user)
+# 				### saving updated infos in user
+# 				user_obj = User()
+# 				user_obj.populate_from_dict(dict_input=existing_user)
 
-				# # update visitor to user in db --> function from ModelMixin
-				log_cis.warning("updating new_user in mongo_users" )
+# 				# # update visitor to user in db --> function from ModelMixin
+# 				log_app.warning("updating new_user in mongo_users" )
 
-				user_obj.populate_from_form( form=form )
-				user_obj.update_document_in_mongo( document=existing_user, coll=mongo_users )
+# 				user_obj.populate_from_form( form=form )
+# 				user_obj.update_document_in_mongo( document=existing_user, coll=mongo_users )
 
-				### relog user
-				login_user( user_obj, remember=existing_user['userRememberMe'] )
+# 				### relog user
+# 				login_user( user_obj, remember=existing_user['userRememberMe'] )
 
-				flash(u"Vos informations ont bien été mises à jour", category='primary')
-				return redirect(url_for('pref_infos'))
+# 				flash(u"Vos informations ont bien été mises à jour", category='primary')
+# 				return redirect(url_for('pref_infos'))
 
-		else :
+# 		else :
 
-			log_cis.error("form was not validated : form.errors : %s", form.errors )
+# 			log_app.error("form was not validated : form.errors : %s", form.errors )
 
-			flash(u"Erreur : formulaire invalide", category='warning')
-			return redirect(url_for('pref_infos'))
+# 			flash(u"Erreur : formulaire invalide", category='warning')
+# 			return redirect(url_for('pref_infos'))
 
 
-	elif request.method == 'GET' :
+# 	elif request.method == 'GET' :
 
-		log_cis.info("updating an user - GET \n")
+# 		log_app.info("updating an user - GET \n")
 
-		print current_user.__dict__
+# 		print current_user.__dict__
 
-		# prepopulate input fields
-		form.userOID.data 				= str(current_user.userOID)
-		form.userName.data 				= current_user.userName.capitalize()
-		form.userSurname.data 			= current_user.userSurname.capitalize()
-		form.userEmail.data 			= current_user.userEmail
-		form.userOtherStructure.data 	= current_user.userOtherStructure
+# 		# prepopulate input fields
+# 		form.userOID.data 				= str(current_user.userOID)
+# 		form.userName.data 				= current_user.userName.capitalize()
+# 		form.userSurname.data 			= current_user.userSurname.capitalize()
+# 		form.userEmail.data 			= current_user.userEmail
+# 		form.userOtherStructure.data 	= current_user.userOtherStructure
 
-		# prepopulate select fields
-		form.userProfile.process_data(current_user.userProfile)
-		form.userPartnerStructure.process_data(current_user.userPartnerStructure)
-		form.userStructureProfile.process_data(current_user.userStructureProfile)
+# 		# prepopulate select fields
+# 		form.userProfile.process_data(current_user.userProfile)
+# 		form.userPartnerStructure.process_data(current_user.userPartnerStructure)
+# 		form.userStructureProfile.process_data(current_user.userStructureProfile)
 
-		# prepopulate boolean fields
-		form.userHaveProjects.process_data(current_user.userHaveProjects)
-		form.userJoinCollective.process_data(current_user.userJoinCollective)
-		form.userNewsletter.process_data(current_user.userNewsletter)
+# 		# prepopulate boolean fields
+# 		form.userHaveProjects.process_data(current_user.userHaveProjects)
+# 		form.userJoinCollective.process_data(current_user.userJoinCollective)
+# 		form.userNewsletter.process_data(current_user.userNewsletter)
 
 
-		return render_template('user_preferences/user_parameters.html',
+# 		return render_template('user_preferences/user_parameters.html',
 
-								config_name		= config_name, 						# prod or default...
-								app_metas		= app_metas,
-								language		= "fr" ,
-								languages_dict	= app_languages_dict ,
+# 								config_name		= config_name, 						# prod or default...
+# 								app_metas		= app_metas,
+# 								language		= "fr" ,
+# 								languages_dict	= app_languages_dict ,
 
-								site_section 	= "preferences",
-								site_subsection = "infos",
-								form			= form,
-								user_infos		= current_user.get_public_infos 	# cf model_user.py
+# 								site_section 	= "preferences",
+# 								site_subsection = "infos",
+# 								form			= form,
+# 								user_infos		= current_user.get_public_infos 	# cf model_user.py
 
-								)
+# 								)
 
 
-@app.route('/preferences/user_password', methods=['GET', 'POST'])
-@login_required
-def pref_password():
-	"""
-	to update user infos
-	"""
+# @app.route('/preferences/user_password', methods=['GET', 'POST'])
+# @login_required
+# def pref_password():
+# 	"""
+# 	to update user infos
+# 	"""
 
-	form = UserNewPassword()
+# 	form = UserNewPassword()
 
-	# print current_user
+# 	# print current_user
 
 
-	if request.method == 'POST' :
+# 	if request.method == 'POST' :
 
-		print
-		log_cis.info("updating user password \n")
+# 		print
+# 		log_app.info("updating user password \n")
 
-		# for debugging purposes
-		for f_field in form :
-			log_cis.info( "form name : %s / form data : %s ", f_field.name, f_field.data )
+# 		# for debugging purposes
+# 		for f_field in form :
+# 			log_app.info( "form name : %s / form data : %s ", f_field.name, f_field.data )
 
-		if form.validate_on_submit():
+# 		if form.validate_on_submit():
 
-			existing_user = mongo_users.find_one({"_id" : ObjectId(form.userOID.data) } )
-			# existing_user = mongo_users.find_one({"userEmail" : form.userEmailHidden.data} )
+# 			existing_user = mongo_users.find_one({"_id" : ObjectId(form.userOID.data) } )
+# 			# existing_user = mongo_users.find_one({"userEmail" : form.userEmailHidden.data} )
 
-			log_cis.debug("existing_user : %s", pformat(existing_user) )
+# 			log_app.debug("existing_user : %s", pformat(existing_user) )
 
-			if existing_user is None :
-				flash(u"Erreur : utilisateur inexistant", category='warning')
-				return redirect(url_for('pref_password'))
+# 			if existing_user is None :
+# 				flash(u"Erreur : utilisateur inexistant", category='warning')
+# 				return redirect(url_for('pref_password'))
 
-			else :
+# 			else :
 
-				### check if old password is correct
-				log_cis.info ( "checking oldPassword : ", User.validate_login( existing_user['userPassword'], form.oldPassword.data ) )
+# 				### check if old password is correct
+# 				log_app.info ( "checking oldPassword : ", User.validate_login( existing_user['userPassword'], form.oldPassword.data ) )
 
-				### update password / create new hashpassword
-				new_hashpass = generate_password_hash(form.newPassword.data, method='sha256')
-				log_cis.debug("new_hashpass : %s", new_hashpass )
+# 				### update password / create new hashpassword
+# 				new_hashpass = generate_password_hash(form.newPassword.data, method='sha256')
+# 				log_app.debug("new_hashpass : %s", new_hashpass )
 
-				### saving new password in user
-				user_obj = User()
-				user_obj.populate_from_dict(dict_input=existing_user)
-				user_obj.userPassword = new_hashpass
+# 				### saving new password in user
+# 				user_obj = User()
+# 				user_obj.populate_from_dict(dict_input=existing_user)
+# 				user_obj.userPassword = new_hashpass
 
-				### TO DO
-				# # update visitor to user in db --> function from ModelMixin
-				log_cis.warning("updating user_obj in mongo_users" )
+# 				### TO DO
+# 				# # update visitor to user in db --> function from ModelMixin
+# 				log_app.warning("updating user_obj in mongo_users" )
 
-				user_obj.update_document_in_mongo( document=existing_user, coll=mongo_users )
+# 				user_obj.update_document_in_mongo( document=existing_user, coll=mongo_users )
 
-				### re-log user
-				### login with flask-login
-				login_user( user_obj, remember=existing_user['userRememberMe'] )
+# 				### re-log user
+# 				### login with flask-login
+# 				login_user( user_obj, remember=existing_user['userRememberMe'] )
 
 
-				flash(u"Votre mot de passe a  bien été mis à jour", category='primary')
-				return redirect(url_for('pref_password'))
+# 				flash(u"Votre mot de passe a  bien été mis à jour", category='primary')
+# 				return redirect(url_for('pref_password'))
 
-		else :
+# 		else :
 
-			log_cis.error("form was not validated : form.errors : %s", form.errors )
+# 			log_app.error("form was not validated : form.errors : %s", form.errors )
 
-			flash(u"Erreur : formulaire invalide", category='warning')
-			return redirect(url_for('pref_password'))
+# 			flash(u"Erreur : formulaire invalide", category='warning')
+# 			return redirect(url_for('pref_password'))
 
 
-	elif request.method == 'GET' :
+# 	elif request.method == 'GET' :
 
-		# prepopulate input fields
-		form.userOID.data 				= current_user.userOID
-		# form.userEmailHidden.data 	= current_user.userEmail
+# 		# prepopulate input fields
+# 		form.userOID.data 				= current_user.userOID
+# 		# form.userEmailHidden.data 	= current_user.userEmail
 
-		return render_template('user_preferences/user_parameters.html',
+# 		return render_template('user_preferences/user_parameters.html',
 
-								config_name		= config_name, 						# prod or default...
-								app_metas		= app_metas,
-								language		= "fr" ,
-								languages_dict	= app_languages_dict ,
+# 								config_name		= config_name, 						# prod or default...
+# 								app_metas		= app_metas,
+# 								language		= "fr" ,
+# 								languages_dict	= app_languages_dict ,
 
-								site_section 	= "preferences",
-								site_subsection = "password",
-								form			= form,
-								user_infos		= current_user.get_public_infos 	# cf model_user.py
+# 								site_section 	= "preferences",
+# 								site_subsection = "password",
+# 								form			= form,
+# 								user_infos		= current_user.get_public_infos 	# cf model_user.py
 
-								)
+# 								)
 
 
 
@@ -640,390 +733,390 @@ def pref_password():
 ### flask-admin formatters
 ### cf : http://flask-admin.readthedocs.io/en/latest/api/mod_model/#flask_admin.model.BaseModelView.column_type_formatters
 
-def date_format(view, value):
-	return value.strftime('%d.%m.%Y')
-
-MY_DEFAULT_FORMATTERS = dict(typefmt.BASE_FORMATTERS)
-MY_DEFAULT_FORMATTERS.update({
-		type(None): typefmt.null_formatter,
-		date: date_format
-	})
-
-class CustomWidget(XEditableWidget):
-	def get_kwargs(self, subfield, kwargs):
-		if subfield.type == 'TextAreaField':
-			kwargs['data-type'] = 'textarea'
-			kwargs['data-rows'] = '20'
-		# elif: kwargs for other fields
-
-		return kwargs
-
-class MyAdminIndexView(AdminIndexView) :
-
-	def is_accessible(self) :
-		"""
-		make it accessible via flask-login
-		"""
-		log_cis.debug("current_user : \n %s", pformat(current_user.__dict__))
-
-		# using custom property class
-		return current_user.is_staff_level # instead of : return current_user.is_authenticated
-
-	def inaccessible_callback(self, name, **kwargs) :
-
-		# TO DO : flash if auth level not enough
-		flash(u"Vous ne pouvez pas accéder à cette section", category='warning')
-		return redirect(url_for('home'))
-
-class UserViewAdmin(ModelView):
-	"""
-	view of an user in flask-admin
-	cf : https://github.com/mrjoes/flask-admin/blob/master/examples/pymongo/app.py
-	"""
-	### for flask-login
-	column_type_formatters = MY_DEFAULT_FORMATTERS
-
-	list_template 	= 'admin/list.html'
-	create_template = 'admin/create.html'
-	edit_template 	= 'admin/edit.html'
-
-	can_export = True
- 	can_set_page_size = True
-
-	def is_accessible(self) :
-		"""
-		make it accessible via flask-login
-		"""
-
-		# using custom property class
-		return current_user.is_admin_level # instead of : return current_user.is_authenticated
-
-	def inaccessible_callback(self, name, **kwargs) :
-
-		# TO DO : flash if auth level not enough
-		flash(u"Vous ne pouvez pas accéder à cette section", category='warning')
-
-		return redirect(url_for('home'))
-
-	def get_list_form(self):
-		return self.scaffold_list_form(widget=CustomWidget)
-
-	### for flask-admin
-
-	column_list 			= (
-								'userName', 'userSurname', 'userEmail',
-								'userProfile',
-								# 'last_modified_at',
-								'logins_total',
-								'userPartnerStructure', 'userOtherStructure','verified_as_partner',
-								'userAuthLevel',
-								'userHaveProjects','userJoinCollective',
-								'userMessage',
-								'follow_up_user',
-								# 'created_at',
-								'login_last_at',
-							)
-	column_details_list = column_list + ('created_at', 'last_modified_at', '_id')
-	can_view_details = True
-
-	column_searchable_list 		= ( 'userName', 'userSurname', 'userEmail',
-									'userPartnerStructure', 'userOtherStructure',
-									'verified_as_partner',
-									'userProfile',
-									'userAuthLevel',
-									)
-	column_sortable_list	= column_list
-	# column_sortable_list 	= (	'userName', 'userSurname', 'userEmail',
-	# 							'userPartnerStructure','userOtherStructure'
-	# 							)
-
-	# column_filters = (BooleanEqualFilter(column=UserID.userName, name='userName'),)
-
-
-	column_labels = dict(	userName				= 'Name',
-							userSurname				= 'Last Name',
-							userEmail				= 'Email',
-							userProfile				= 'Profile',
-							userPartnerStructure	= 'Structure (partner)',
-							userOtherStructure		= 'Structure (other)',
-							userAuthLevel			= 'Auth Level',
-							userHaveProjects		= 'Have Projects',
-							userJoinCollective		= 'Wants to join collective',
-							userMessage				= 'Message',
-							follow_up_user			= 'Suivi',
-
-						)
-
-	form 					= UserAdminInfos
-
-	# custom field rendering in admin interface
-	# cf : https://stackoverflow.com/questions/21727129/how-to-make-a-field-non-editable-in-flask-admin-view-of-a-model-class
-	form_widget_args = {
-		'userEmail'			: { 'readonly' : True },
-		'created_at'		: { 'readonly' : True },
-		'userPublicKeyAPI'	: { 'readonly' : True },
-		'temp_pwd'			: { 'readonly' : True },
-	}
+# def date_format(view, value):
+# 	return value.strftime('%d.%m.%Y')
+
+# MY_DEFAULT_FORMATTERS = dict(typefmt.BASE_FORMATTERS)
+# MY_DEFAULT_FORMATTERS.update({
+# 		type(None): typefmt.null_formatter,
+# 		date: date_format
+# 	})
+
+# class CustomWidget(XEditableWidget):
+# 	def get_kwargs(self, subfield, kwargs):
+# 		if subfield.type == 'TextAreaField':
+# 			kwargs['data-type'] = 'textarea'
+# 			kwargs['data-rows'] = '20'
+# 		# elif: kwargs for other fields
+
+# 		return kwargs
+
+# class MyAdminIndexView(AdminIndexView) :
+
+# 	def is_accessible(self) :
+# 		"""
+# 		make it accessible via flask-login
+# 		"""
+# 		log_app.debug("current_user : \n %s", pformat(current_user.__dict__))
+
+# 		# using custom property class
+# 		return current_user.is_staff_level # instead of : return current_user.is_authenticated
+
+# 	def inaccessible_callback(self, name, **kwargs) :
+
+# 		# TO DO : flash if auth level not enough
+# 		flash(u"Vous ne pouvez pas accéder à cette section", category='warning')
+# 		return redirect(url_for('home'))
+
+# class UserViewAdmin(ModelView):
+# 	"""
+# 	view of an user in flask-admin
+# 	cf : https://github.com/mrjoes/flask-admin/blob/master/examples/pymongo/app.py
+# 	"""
+# 	### for flask-login
+# 	column_type_formatters = MY_DEFAULT_FORMATTERS
+
+# 	list_template 	= 'admin/list.html'
+# 	create_template = 'admin/create.html'
+# 	edit_template 	= 'admin/edit.html'
+
+# 	can_export = True
+#  	can_set_page_size = True
+
+# 	def is_accessible(self) :
+# 		"""
+# 		make it accessible via flask-login
+# 		"""
+
+# 		# using custom property class
+# 		return current_user.is_admin_level # instead of : return current_user.is_authenticated
+
+# 	def inaccessible_callback(self, name, **kwargs) :
+
+# 		# TO DO : flash if auth level not enough
+# 		flash(u"Vous ne pouvez pas accéder à cette section", category='warning')
+
+# 		return redirect(url_for('home'))
+
+# 	def get_list_form(self):
+# 		return self.scaffold_list_form(widget=CustomWidget)
+
+# 	### for flask-admin
+
+# 	column_list 			= (
+# 								'userName', 'userSurname', 'userEmail',
+# 								'userProfile',
+# 								# 'last_modified_at',
+# 								'logins_total',
+# 								'userPartnerStructure', 'userOtherStructure','verified_as_partner',
+# 								'userAuthLevel',
+# 								'userHaveProjects','userJoinCollective',
+# 								'userMessage',
+# 								'follow_up_user',
+# 								# 'created_at',
+# 								'login_last_at',
+# 							)
+# 	column_details_list = column_list + ('created_at', 'last_modified_at', '_id')
+# 	can_view_details = True
+
+# 	column_searchable_list 		= ( 'userName', 'userSurname', 'userEmail',
+# 									'userPartnerStructure', 'userOtherStructure',
+# 									'verified_as_partner',
+# 									'userProfile',
+# 									'userAuthLevel',
+# 									)
+# 	column_sortable_list	= column_list
+# 	# column_sortable_list 	= (	'userName', 'userSurname', 'userEmail',
+# 	# 							'userPartnerStructure','userOtherStructure'
+# 	# 							)
+
+# 	# column_filters = (BooleanEqualFilter(column=UserID.userName, name='userName'),)
+
+
+# 	column_labels = dict(	userName				= 'Name',
+# 							userSurname				= 'Last Name',
+# 							userEmail				= 'Email',
+# 							userProfile				= 'Profile',
+# 							userPartnerStructure	= 'Structure (partner)',
+# 							userOtherStructure		= 'Structure (other)',
+# 							userAuthLevel			= 'Auth Level',
+# 							userHaveProjects		= 'Have Projects',
+# 							userJoinCollective		= 'Wants to join collective',
+# 							userMessage				= 'Message',
+# 							follow_up_user			= 'Suivi',
+
+# 						)
+
+# 	form 					= UserAdminInfos
+
+# 	# custom field rendering in admin interface
+# 	# cf : https://stackoverflow.com/questions/21727129/how-to-make-a-field-non-editable-in-flask-admin-view-of-a-model-class
+# 	form_widget_args = {
+# 		'userEmail'			: { 'readonly' : True },
+# 		'created_at'		: { 'readonly' : True },
+# 		'userPublicKeyAPI'	: { 'readonly' : True },
+# 		'temp_pwd'			: { 'readonly' : True },
+# 	}
 
-
-class FeedbackAdmin(ModelView):
-	"""
-	view of a message in flask-admin
-	cf : https://github.com/mrjoes/flask-admin/blob/master/examples/pymongo/app.py
-	"""
-
-	### for flask-login
-	column_type_formatters = MY_DEFAULT_FORMATTERS
-
-	list_template 	= 'admin/list.html'
-	create_template = 'admin/create.html'
-	edit_template 	= 'admin/edit.html'
-
-	can_export = True
- 	can_set_page_size = True
-
-	def is_accessible(self) :
-		"""
-		make it accessible via flask-login
-		"""
-		# using custom property class
-		# return current_user.is_admin_level # instead of : return current_user.is_authenticated
-		return current_user.is_staff_level # instead of : return current_user.is_authenticated
-
-	def inaccessible_callback(self, name, **kwargs) :
-
-		# TO DO : flash if auth level not enough
-
-		return redirect(url_for('home'))
-
-
-	### for flask-admin
-
-	column_list 			= (
-								'userName', 'userSurname', 'userEmail',
-								'userOtherStructure',
-								'userFeedbackTopic',
-								'userMessage',
-								'created_at',
-								'follow_up_user'
-							)
-	column_searchable_list 		= column_list
-	column_sortable_list	= column_list
-
-	column_labels = dict(	userName				= u'Prénom',
-							userSurname				= u'Nom',
-							userEmail				= u'Email',
-							userOtherStructure		= u'Structure',
-							userFeedbackTopic		= u'Sujet',
-							userMessage				= u'Message',
-							follow_up_user			= u'Suivi',
-							created_at				= u'Reçu le'
-						)
-
-	form 					= MessagesFromLandingAdmin
-
-	# custom field rendering in admin interface
-	form_widget_args = {
-		'userEmail'	: {'readonly': True},
-		'created_at': {'readonly': True },
-	}
+
+# class FeedbackAdmin(ModelView):
+# 	"""
+# 	view of a message in flask-admin
+# 	cf : https://github.com/mrjoes/flask-admin/blob/master/examples/pymongo/app.py
+# 	"""
+
+# 	### for flask-login
+# 	column_type_formatters = MY_DEFAULT_FORMATTERS
+
+# 	list_template 	= 'admin/list.html'
+# 	create_template = 'admin/create.html'
+# 	edit_template 	= 'admin/edit.html'
+
+# 	can_export = True
+#  	can_set_page_size = True
+
+# 	def is_accessible(self) :
+# 		"""
+# 		make it accessible via flask-login
+# 		"""
+# 		# using custom property class
+# 		# return current_user.is_admin_level # instead of : return current_user.is_authenticated
+# 		return current_user.is_staff_level # instead of : return current_user.is_authenticated
+
+# 	def inaccessible_callback(self, name, **kwargs) :
+
+# 		# TO DO : flash if auth level not enough
+
+# 		return redirect(url_for('home'))
+
+
+# 	### for flask-admin
+
+# 	column_list 			= (
+# 								'userName', 'userSurname', 'userEmail',
+# 								'userOtherStructure',
+# 								'userFeedbackTopic',
+# 								'userMessage',
+# 								'created_at',
+# 								'follow_up_user'
+# 							)
+# 	column_searchable_list 		= column_list
+# 	column_sortable_list	= column_list
+
+# 	column_labels = dict(	userName				= u'Prénom',
+# 							userSurname				= u'Nom',
+# 							userEmail				= u'Email',
+# 							userOtherStructure		= u'Structure',
+# 							userFeedbackTopic		= u'Sujet',
+# 							userMessage				= u'Message',
+# 							follow_up_user			= u'Suivi',
+# 							created_at				= u'Reçu le'
+# 						)
+
+# 	form 					= MessagesFromLandingAdmin
+
+# 	# custom field rendering in admin interface
+# 	form_widget_args = {
+# 		'userEmail'	: {'readonly': True},
+# 		'created_at': {'readonly': True },
+# 	}
 
 
-class ReferencedProjectCarrierFeedback(ModelView):
-	"""
-	view of a message in flask-admin
-	cf : https://github.com/mrjoes/flask-admin/blob/master/examples/pymongo/app.py
-	"""
-
-	### for flask-login
-	column_type_formatters = MY_DEFAULT_FORMATTERS
-
-	list_template 	= 'admin/list.html'
-	create_template = 'admin/create.html'
-	edit_template 	= 'admin/edit.html'
-
-	can_export = True
- 	can_set_page_size = True
-
-	def is_accessible(self) :
-		"""
-		make it accessible via flask-login
-		"""
-		# using custom property class
-		# return current_user.is_admin_level # instead of : return current_user.is_authenticated
-		return current_user.is_staff_level # instead of : return current_user.is_authenticated
-
-	def inaccessible_callback(self, name, **kwargs) :
-
-		# TO DO : flash if auth level not enough
-
-		return redirect(url_for('index'))
-
-
-
-	### for flask-admin
-
-	column_list 			= (
-								'partnerStructureName',
-								'partnerStructureWebsite',
-								'partnerStructureContactName',
-								'partnerStructureContactEmail',
-								'message',
-								'created_at',
-								'follow_up'
-							)
-	column_searchable_list 		= column_list
-
-	column_sortable_list	= column_list
-
-	column_labels = dict(	partnerStructureName			= 'Nom structure',
-							partnerStructureWebsite			= 'Site structure',
-							partnerStructureContactName		= 'Contact chez la structure',
-							partnerStructureContactEmail	= 'Email contact',
-							message							= 'Message',
-							created_at						= 'Reçu le',
-							follow_up						= 'Suivi'
-						)
-
-	form 					= ReferencedProjectCarrierForm
-
-	# custom field rendering in admin interface
-	form_widget_args = {
-		'created_at': {'readonly': True }
-	}
-
-
-class NotReferencedProjectCarrierFeedback(ModelView):
-	"""
-	view of a message in flask-admin
-	cf : https://github.com/mrjoes/flask-admin/blob/master/examples/pymongo/app.py
-	"""
+# class ReferencedProjectCarrierFeedback(ModelView):
+# 	"""
+# 	view of a message in flask-admin
+# 	cf : https://github.com/mrjoes/flask-admin/blob/master/examples/pymongo/app.py
+# 	"""
+
+# 	### for flask-login
+# 	column_type_formatters = MY_DEFAULT_FORMATTERS
+
+# 	list_template 	= 'admin/list.html'
+# 	create_template = 'admin/create.html'
+# 	edit_template 	= 'admin/edit.html'
+
+# 	can_export = True
+#  	can_set_page_size = True
+
+# 	def is_accessible(self) :
+# 		"""
+# 		make it accessible via flask-login
+# 		"""
+# 		# using custom property class
+# 		# return current_user.is_admin_level # instead of : return current_user.is_authenticated
+# 		return current_user.is_staff_level # instead of : return current_user.is_authenticated
+
+# 	def inaccessible_callback(self, name, **kwargs) :
+
+# 		# TO DO : flash if auth level not enough
+
+# 		return redirect(url_for('index'))
+
+
+
+# 	### for flask-admin
+
+# 	column_list 			= (
+# 								'partnerStructureName',
+# 								'partnerStructureWebsite',
+# 								'partnerStructureContactName',
+# 								'partnerStructureContactEmail',
+# 								'message',
+# 								'created_at',
+# 								'follow_up'
+# 							)
+# 	column_searchable_list 		= column_list
+
+# 	column_sortable_list	= column_list
+
+# 	column_labels = dict(	partnerStructureName			= 'Nom structure',
+# 							partnerStructureWebsite			= 'Site structure',
+# 							partnerStructureContactName		= 'Contact chez la structure',
+# 							partnerStructureContactEmail	= 'Email contact',
+# 							message							= 'Message',
+# 							created_at						= 'Reçu le',
+# 							follow_up						= 'Suivi'
+# 						)
+
+# 	form 					= ReferencedProjectCarrierForm
+
+# 	# custom field rendering in admin interface
+# 	form_widget_args = {
+# 		'created_at': {'readonly': True }
+# 	}
+
+
+# class NotReferencedProjectCarrierFeedback(ModelView):
+# 	"""
+# 	view of a message in flask-admin
+# 	cf : https://github.com/mrjoes/flask-admin/blob/master/examples/pymongo/app.py
+# 	"""
 
-	### for flask-login
-	column_type_formatters = MY_DEFAULT_FORMATTERS
-
-	list_template 	= 'admin/list.html'
-	create_template = 'admin/create.html'
-	edit_template 	= 'admin/edit.html'
-
-	can_export = True
- 	can_set_page_size = True
-
-	def is_accessible(self) :
-		"""
-		make it accessible via flask-login
-		"""
-		# using custom property class
-		# return current_user.is_admin_level # instead of : return current_user.is_authenticated
-		return current_user.is_staff_level # instead of : return current_user.is_authenticated
-
-	def inaccessible_callback(self, name, **kwargs) :
-
-		# TO DO : flash if auth level not enough
-
-		return redirect(url_for('index'))
-
-
-
-	### for flask-admin
-
-	column_list 			= (
-								'projectName',
-								'projectStructureName',
-								'projectContactName',
-								'projectContactEmail',
-								'projectAddress',
-								'projectActionArea',
-								'projectActionAreaLocalDetails',
-								'projectCategories',
-								'projectCategoriesOther',
-								'projectAudiences',
-								'projectAudiencesOther',
-								'projectStartYear',
-								'projectStage',
-								'projectDescription',
-								'projectInnovation',
-								'projectFundingAndPartners',
-								'projectRewards',
-								'projectWebsite',
-								'projectAttachment'
-							)
-	column_searchable_list 		= column_list
-
-	column_sortable_list	= column_list
-
-	column_labels = dict()
-
-	form 					= NotReferencedProjectCarrierForm
-
-	# custom field rendering in admin interface
-	form_widget_args = {
-		'created_at': {'readonly': True }
-	}
-
-
-class StructuresFeedback(ModelView):
-	"""
-	view of a message in flask-admin
-	cf : https://github.com/mrjoes/flask-admin/blob/master/examples/pymongo/app.py
-	"""
-
-	### for flask-login
-	column_type_formatters = MY_DEFAULT_FORMATTERS
-
-	list_template 	= 'admin/list.html'
-	create_template = 'admin/create.html'
-	edit_template 	= 'admin/edit.html'
-
-	can_export = True
- 	can_set_page_size = True
-
-	def is_accessible(self) :
-		"""
-		make it accessible via flask-login
-		"""
-		# using custom property class
-		# return current_user.is_admin_level # instead of : return current_user.is_authenticated
-		return current_user.is_staff_level # instead of : return current_user.is_authenticated
-
-	def inaccessible_callback(self, name, **kwargs) :
-
-		# TO DO : flash if auth level not enough
-
-		return redirect(url_for('index'))
-
-
-
-	### for flask-admin
-
-	column_list 			= (
-								'structureName',
-								'structureWebsite',
-								'structureContactName',
-								'structureContactRole',
-								'structureContactEmail',
-								'structureInterests',
-								'structureReasonToJoin',
-								'structureListHow',
-								'structureListHowOther',
-								'structureProjectsToShareCount',
-								'structureProjectsToShareInfos',
-								'structureProjectsToShareFormat',
-								'structureProjectsToShareWebsite',
-								'structureProjectsToShareAttachment'
-							)
-	column_searchable_list 		= column_list
-
-	column_sortable_list	= column_list
-
-	column_labels = dict()
-
-	form 					= NotReferencedProjectCarrierForm
-
-	# custom field rendering in admin interface
-	form_widget_args = {
-		'created_at': {'readonly': True }
-	}
+# 	### for flask-login
+# 	column_type_formatters = MY_DEFAULT_FORMATTERS
+
+# 	list_template 	= 'admin/list.html'
+# 	create_template = 'admin/create.html'
+# 	edit_template 	= 'admin/edit.html'
+
+# 	can_export = True
+#  	can_set_page_size = True
+
+# 	def is_accessible(self) :
+# 		"""
+# 		make it accessible via flask-login
+# 		"""
+# 		# using custom property class
+# 		# return current_user.is_admin_level # instead of : return current_user.is_authenticated
+# 		return current_user.is_staff_level # instead of : return current_user.is_authenticated
+
+# 	def inaccessible_callback(self, name, **kwargs) :
+
+# 		# TO DO : flash if auth level not enough
+
+# 		return redirect(url_for('index'))
+
+
+
+# 	### for flask-admin
+
+# 	column_list 			= (
+# 								'projectName',
+# 								'projectStructureName',
+# 								'projectContactName',
+# 								'projectContactEmail',
+# 								'projectAddress',
+# 								'projectActionArea',
+# 								'projectActionAreaLocalDetails',
+# 								'projectCategories',
+# 								'projectCategoriesOther',
+# 								'projectAudiences',
+# 								'projectAudiencesOther',
+# 								'projectStartYear',
+# 								'projectStage',
+# 								'projectDescription',
+# 								'projectInnovation',
+# 								'projectFundingAndPartners',
+# 								'projectRewards',
+# 								'projectWebsite',
+# 								'projectAttachment'
+# 							)
+# 	column_searchable_list 		= column_list
+
+# 	column_sortable_list	= column_list
+
+# 	column_labels = dict()
+
+# 	form 					= NotReferencedProjectCarrierForm
+
+# 	# custom field rendering in admin interface
+# 	form_widget_args = {
+# 		'created_at': {'readonly': True }
+# 	}
+
+
+# class StructuresFeedback(ModelView):
+# 	"""
+# 	view of a message in flask-admin
+# 	cf : https://github.com/mrjoes/flask-admin/blob/master/examples/pymongo/app.py
+# 	"""
+
+# 	### for flask-login
+# 	column_type_formatters = MY_DEFAULT_FORMATTERS
+
+# 	list_template 	= 'admin/list.html'
+# 	create_template = 'admin/create.html'
+# 	edit_template 	= 'admin/edit.html'
+
+# 	can_export = True
+#  	can_set_page_size = True
+
+# 	def is_accessible(self) :
+# 		"""
+# 		make it accessible via flask-login
+# 		"""
+# 		# using custom property class
+# 		# return current_user.is_admin_level # instead of : return current_user.is_authenticated
+# 		return current_user.is_staff_level # instead of : return current_user.is_authenticated
+
+# 	def inaccessible_callback(self, name, **kwargs) :
+
+# 		# TO DO : flash if auth level not enough
+
+# 		return redirect(url_for('index'))
+
+
+
+# 	### for flask-admin
+
+# 	column_list 			= (
+# 								'structureName',
+# 								'structureWebsite',
+# 								'structureContactName',
+# 								'structureContactRole',
+# 								'structureContactEmail',
+# 								'structureInterests',
+# 								'structureReasonToJoin',
+# 								'structureListHow',
+# 								'structureListHowOther',
+# 								'structureProjectsToShareCount',
+# 								'structureProjectsToShareInfos',
+# 								'structureProjectsToShareFormat',
+# 								'structureProjectsToShareWebsite',
+# 								'structureProjectsToShareAttachment'
+# 							)
+# 	column_searchable_list 		= column_list
+
+# 	column_sortable_list	= column_list
+
+# 	column_labels = dict()
+
+# 	form 					= NotReferencedProjectCarrierForm
+
+# 	# custom field rendering in admin interface
+# 	form_widget_args = {
+# 		'created_at': {'readonly': True }
+# 	}
 
 
 
@@ -1039,9 +1132,9 @@ def download_file(file_ext, file_name):
 	send file from server
 	"""
 
-	log_cis.debug("file_name : %s ", 	file_name)
-	log_cis.debug("file_ext : %s ", 	file_ext)
-	log_cis.info("file_ext in AUTHORIZED_FILETYPES_LIST: %s", (file_ext in AUTHORIZED_FILETYPES_LIST) )
+	log_app.debug("file_name : %s ", 	file_name)
+	log_app.debug("file_ext : %s ", 	file_ext)
+	log_app.info("file_ext in AUTHORIZED_FILETYPES_LIST: %s", (file_ext in AUTHORIZED_FILETYPES_LIST) )
 
 
 	if file_ext in AUTHORIZED_FILETYPES_LIST :
@@ -1061,12 +1154,12 @@ def download_file(file_ext, file_name):
 							)
 		except :
 
-			log_cis.error("downloading this file is not working: %s.%s ", file_name, file_ext )
+			log_app.error("downloading this file is not working: %s.%s ", file_name, file_ext )
 
 			return redirect(url_for('home'))
 
 	else :
 
-		log_cis.error("downloading this file is not authorized: %s.%s ", file_name, file_ext )
+		log_app.error("downloading this file is not authorized: %s.%s ", file_name, file_ext )
 
 		return redirect(url_for('home'))

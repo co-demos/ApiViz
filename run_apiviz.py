@@ -18,8 +18,8 @@ debug = True
 
 @click.command()
 @click.option('--mode', default="default", 	nargs=1,	help="The <mode> you need to run the app : default, testing, production" )
-@click.option('--host', default="None", 	nargs=1,	help="The <host> name you want the app to run on : <IP_NUMBER> " )
-@click.option('--port', default="None", 	nargs=1,	help="The <port> number you want the app to run on : <PORT_NUMBER>")
+@click.option('--host', default="None", 		nargs=1,	help="The <host> name you want the app to run on : <IP_NUMBER> " )
+@click.option('--port', default="None", 		nargs=1,	help="The <port> number you want the app to run on : <PORT_NUMBER>")
 def app_runner(mode, host, port) :
 	"""
 	app_runner
@@ -73,7 +73,7 @@ if __name__ == '__main__':
 	- 
 
 	in command line just type : 
-	"python run_cis_front.py"
+	"python run_apiviz.py"
 
 	"""
 

@@ -3,7 +3,7 @@
 # import os
 # import json
 
-from .. import os, inspect, log_cis, pformat, json, json_util
+from .. import os, inspect, log_app, pformat, json, json_util
 
 cwd = os.getcwd()
 
@@ -21,11 +21,11 @@ def normalization_as_json( var_name, norm_dict, filepath=json_folderpath ) :
 	"""
 
 	# locals_function = locals()
-	# log_cis.info("... normalization_as_json / locals_function : %s", locals_function )
+	# log_app.info("... normalization_as_json / locals_function : %s", locals_function )
 	# intro_var		= [ k for k,v in locals_function.iteritems() ]
-	# log_cis.info("... normalization_as_json / intro_var : %s", intro_var )
+	# log_app.info("... normalization_as_json / intro_var : %s", intro_var )
 
-	log_cis.info("... normalization_as_json / file : %s.js", var_name )
+	log_app.info("... normalization_as_json / file : %s.js", var_name )
 
 	full_filepath = filepath + var_name + '.js'
 	json_file = open(full_filepath, "w")

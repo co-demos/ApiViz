@@ -81,12 +81,12 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 ### _PRODUCTION_ : update code and deploy
 
 > 
-	cd /<your_app_folder>/<username>/app_cis/cis
+	cd /<your_app_folder>/<username>/app_apiviz
 	git pull origin master
 	cd app/frontend
 	npm ci
 	npm run build
-	sudo systemctl restart cis_front
+	sudo systemctl restart apiviz
 
 
 #### Creating the first admin account
@@ -98,7 +98,7 @@ mongo
 # => mongo shell prompts
 
 # Use cis-front database
-use cis_front
+use apiviz
 
 # list users
 db.users.find()

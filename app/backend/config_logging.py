@@ -30,28 +30,28 @@ handler = colorlog.StreamHandler()
 handler.setFormatter(formatter)
 
 ### create logger
-log_cis = colorlog.getLogger("log_cis")
-log_cis.addHandler(handler)
+log_app = colorlog.getLogger("log_app")
+log_app.addHandler(handler)
 
 ### set logging level
 # level = logging.getLevelName('DEBUG')
-# log_cis.setLevel(level)
-log_cis.setLevel(logging.DEBUG)
+# log_app.setLevel(level)
+log_app.setLevel(logging.DEBUG)
 
 log_file_I = logging.handlers.RotatingFileHandler('app/logs/info_logs.log')
 log_file_I.setFormatter(formatter)
 log_file_I.setLevel(logging.INFO)
-log_cis.addHandler(log_file_I)
+log_app.addHandler(log_file_I)
 
 log_file_W = logging.handlers.RotatingFileHandler('app/logs/warning_logs.log')
 log_file_W.setFormatter(formatter)
 log_file_W.setLevel(logging.INFO)
-log_cis.addHandler(log_file_W)
+log_app.addHandler(log_file_W)
 
 # fileHandler = logging.FileHandler("{0}/{1}.log".format(logPath, fileName))
 # fileHandler.setFormatter(logFormatter)
-# log_cis.addHandler(fileHandler)
+# log_app.addHandler(fileHandler)
 
 # consoleHandler = logging.StreamHandler()
 # consoleHandler.setFormatter(logFormatter)
-# log_cis.addHandler(consoleHandler)
+# log_app.addHandler(consoleHandler)

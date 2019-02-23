@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 
 from . 	import *
-from .. import app, log_cis, pformat, datetime
+from .. import app, log_app, pformat, datetime
 
 from ..settings.app_choices import * 
 
-log_cis.info(">>> reading _forms.form_user.py ")
+log_app.info(">>> reading _forms.form_user.py ")
 
 class MultiCheckboxField(SelectMultipleField):
 	

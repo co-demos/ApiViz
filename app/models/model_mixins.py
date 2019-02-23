@@ -5,7 +5,7 @@ mixin classes to inject into several models later
 
 from . 	import FORM_FIELDS_TO_IGNORE, VALUES_TO_CAPITALIZE, time, datetime
 
-from .. import log_cis, pformat
+from .. import log_app, pformat
 
 
 class ModelMixin :
@@ -22,7 +22,7 @@ class ModelMixin :
 				do not save password here : 
 				password needs to be hashed and should be initialized at __init__
 				"""
-				# log_cis.debug("f_field.name : %s / f_field.data: %s ", f_field.name, f_field.data)
+				# log_app.debug("f_field.name : %s / f_field.data: %s ", f_field.name, f_field.data)
 				self.__dict__[ f_field.name ] = f_field.data
 
 
@@ -31,7 +31,7 @@ class ModelMixin :
 		populate class from dict (as from a pymongo query)
 		"""
 		for k,v in dict_input.iteritems() :
-			# log_cis.debug("k : %s / v : %s ", k, v )
+			# log_app.debug("k : %s / v : %s ", k, v )
 			if k in VALUES_TO_CAPITALIZE :
 				v = v.capitalize()
 			self.__dict__[ k ] = v
@@ -44,7 +44,7 @@ class ModelMixin :
 		
 		# convert object to dict
 		obj_as_dict = self.__dict__
-		# log_cis.debug("obj_as_dict : \n %s", pformat(obj_as_dict))
+		# log_app.debug("obj_as_dict : \n %s", pformat(obj_as_dict))
 
 		# save it to collection
 		coll.insert( obj_as_dict )

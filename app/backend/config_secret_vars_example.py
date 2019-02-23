@@ -6,7 +6,7 @@ stores main secret keys and app passwords
 """
 
 """ APP SECRET KEY """
-SECRET_KEY			= "app_very_secret_key"
+SECRET_KEY					= "app_very_secret_key"
 WTF_CSRF_SECRET_KEY = "a_super_wtf_secret_key"
 WTF_CSRF_ADMIN_KEY	= "a_mega_super_key_for_admin_views" 
 
@@ -14,10 +14,10 @@ WTF_CSRF_ADMIN_KEY	= "a_mega_super_key_for_admin_views"
 JWT_SECRET_KEY		= "a_key_shared_with_front_and_openscraper_and_solidata"
 
 """ HOST """
-DOMAIN_ROOT			= "localhost" 
-DOMAIN_PORT			= "8100"
-SERVER_NAME			= "localhost:8100"  ### if True need to set SESSION_COOKIE_DOMAIN + cf : https://stackoverflow.com/questions/47666210/cookies-not-saved-in-the-browser 
-DOMAIN_NAME			= "http://localhost:8100"
+DOMAIN_ROOT				= "localhost" 
+DOMAIN_PORT				= "8100"
+SERVER_NAME				= "localhost:8100"  ### if True need to set SESSION_COOKIE_DOMAIN + cf : https://stackoverflow.com/questions/47666210/cookies-not-saved-in-the-browser 
+DOMAIN_NAME				= "http://localhost:8100"
 SERVER_NAME_TEST	= "True" 
 
 
@@ -26,7 +26,7 @@ SERVER_NAME_TEST	= "True"
 
 
 """ MONGODB """
-MONGO_URI				= 'mongodb://localhost:27017/cis_front'
+MONGO_URI					= 'mongodb://localhost:27017/apiviz'
 
 """ MAILING """
 VALIDITY_CONFIRM	= "7"

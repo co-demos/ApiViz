@@ -7,7 +7,7 @@ from werkzeug.security 	import check_password_hash
 
 from . 	import FORM_FIELDS_TO_IGNORE, ModelMixin, time, datetime
 
-from .. import log_cis, pformat
+from .. import log_app, pformat
 
 from ..settings.app_choices import * 
 
@@ -20,7 +20,7 @@ class AnonymousUser(AnonymousUserMixin):
 
 	def __init__(self):
 
-		log_cis.debug("creating AnonymousUser")
+		log_app.debug("creating AnonymousUser")
 
 		self.userName 		= 'Guest'
 		self.userAuthLevel	= 'visitor'
@@ -68,12 +68,12 @@ class User( UserMixin, ModelMixin ):
 
 						):
 		"""
-		datamodel for a user in CIS_front
+		datamodel for a user in APIVIZ
 		- includes a UserMixin from flask-login
 		- take care of keeping same field names than in forms
 		"""
 
-		log_cis.debug("creating User / userOID = %s", userOID)
+		log_app.debug("creating User / userOID = %s", userOID)
 
 		# session and auth variables
 
@@ -208,9 +208,9 @@ class User( UserMixin, ModelMixin ):
 
 # 					):
 # 	"""
-# 	UserPreferences for a user in CIS_front
+# 	UserPreferences for a user in APIVIZ
 # 	- includes a UserMixin from flask-login
 # 	- take care of keeping same field names than in forms
 # 	"""
 
-# 	log_cis.debug("creating UserPreferences")
+# 	log_app.debug("creating UserPreferences")
