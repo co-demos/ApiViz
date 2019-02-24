@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
 	"""
 
-	# set environment variable to set config later in backend.config_env.py
+	# set environment variable to set config later in config_app.config_env.py
 
 	print "= "*25
 	print "= = = WSGI / RERUN FLASK APP = = ="

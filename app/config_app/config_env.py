@@ -170,10 +170,10 @@ class TestingConfig(DevelopmentConfig, Config):
 
 ### config dict to reroute to correct objects
 config = {
-	"development"	: "%sapp.backend.config_env.DevelopmentConfig"    %(repath_env_vars),
-	"testing"			: "%sapp.backend.config_env.TestingConfig"        %(repath_env_vars),
-	"production"	: "app.backend.config_env.ProductionConfig",     #%(repath_env_vars),    	
-	"default"			: "app.backend.config_env.DevelopmentConfig"      ### 'default' for local 
+	"development"	: "%sapp.config_app.config_env.DevelopmentConfig"    %(repath_env_vars),
+	"testing"			: "%sapp.config_app.config_env.TestingConfig"        %(repath_env_vars),
+	"production"	: "app.config_app.config_env.ProductionConfig",     #%(repath_env_vars),    	
+	"default"			: "app.config_app.config_env.DevelopmentConfig"      ### 'default' for local 
 }
 
 

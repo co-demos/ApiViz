@@ -82,4 +82,13 @@ default_global_config = [
     "is_default"  : True
 	},
 
+	{ 
+    "field"       : "app_code",
+		"content"     : "source code",
+    "url"         : "https://github.com/co-demos/ApiViz",
+		"version"     : "0.1",
+    "help"        : "Choose the repo for the source code of your ApiViz instance",
+    "is_default"  : True
+	},
+  
 ]

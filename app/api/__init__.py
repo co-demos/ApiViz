@@ -43,19 +43,19 @@ log_app.debug(">>> MongoDB / mongoColls.keys() : \n %s", pformat( mongoColls.key
 ### CREATE DEFAULT GLOBAL CONFIG IF COLLECTION IS EMPTY
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - ###
 
-from app.backend.config_app_global import default_global_config
-# from app.backend.config_app_routes import default_global_routes
-# from app.backend.config_app_data import default_global_data
+from app.config_app.config_app_global import default_global_config
+# from app.config_app.config_app_routes import default_global_routes
+# from app.config_app.config_app_data import default_global_data
 
 existing_app_config = list( mongo_config_global.find({}) )
 log_app.debug(">>> existing_app_config : \n%s \n", pformat(existing_app_config))
 
 for config_app_item in default_global_config : 
 	print ("- - - "*10 )
-	log_app.debug(">>> config_item : \n%s", pformat(config_app_item)) 
+	# log_app.debug(">>> config_item : \n%s", pformat(config_app_item)) 
 
 	current_app_config_item = mongo_config_global.find_one({"field" : config_app_item["field"]})
-	log_app.debug(">>> current_app_config_item : \n%s", pformat(current_app_config_item))
+	# log_app.debug(">>> current_app_config_item : \n%s", pformat(current_app_config_item))
 	
 	if current_app_config_item == None : 
 		log_app.debug(">>> current_app_config_item is None --> add it...")

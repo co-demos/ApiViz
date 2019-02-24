@@ -7,7 +7,9 @@
 		<a 	id="logo_home"
 			class="navbar-item" 
 			href="/">
-			<img id="navbar-logo" src='{{url_for ("static", filename="logos/CIS/CIS_logo.png" ) }}' alt="Logo CIS">
+			<img 	id="navbar-logo" 
+						src='{{ app_config.app_logo.url }}' 
+						alt="Logo Apiviz">
 		</a>
 
 		{# burger #}		

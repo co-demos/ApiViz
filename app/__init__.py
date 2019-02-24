@@ -45,7 +45,7 @@ import inspect
 # ### SET LOGGER 
 # ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
-from backend.config_logging import log_app
+from config_app.config_logging import log_app
 log_app.debug('>>> TESTING LOGGER')
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
@@ -130,7 +130,7 @@ def before_request():
 ### set environment and app variables
 log_app.debug(">>> configuring app's env vars...\n")
 
-from .backend.config_env import * 
+from .config_app.config_env import * 
 
 configure_app(app)
 
