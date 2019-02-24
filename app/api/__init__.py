@@ -52,7 +52,11 @@ def setupDefaultConfig(collection, defaultList, uniqueField="field") :
 	""" 
 	main function to set up config collections
 	"""
-  	
+  
+	### delete all previous default items in collection
+	collection.delete_many({"is_default" : True })
+	
+	### set up 
 	for config_app_item in defaultList : 
 		
 		# print ("- - - "*10 )

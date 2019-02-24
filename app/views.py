@@ -128,34 +128,43 @@ def checkJWT(token, url):
 	pass
 
 
-@app.route('/backend/api/config/<string:collection>', methods=['GET','POST'])
-@app.route('/backend/api/config', methods=['GET','POST'], defaults={'collection': 'global'})
-def config_global(collection):
+@app.route('/backend/api/config/<string:collection>/<string:doc_id>', methods=['GET','POST'])
+@app.route('/backend/api/config/<string:collection>', methods=['GET'], defaults={"doc_id" : None})
+@app.route('/backend/api/config', methods=['GET'], defaults={'collection': 'global', "doc_id" : None})
+def config_global(collection, doc_id=None):
 	"""
 	choices : global | endpoints | styles | routes
+	variables : <collection> and <doc_id>
 	"""
 
 	log_app.debug("config app route")
 	log_app.debug("config app route / collection : %s", collection )
+	log_app.debug("config app route / doc_id : %s", doc_id )
 
 	### target right config collection 
 	if collection in ["global" , "endpoints" , "styles" , "routes" ] : 
 		mongoColl = mongoConfigColls[collection] ### imported from . (and from there from .api.__init__ )
 	else : 
 		log_app.warning("error : -%s- is not a valid config collection (redirect)", collection)
-		# return redirect( url_for("config_global") )
-		# return redirect( url_for("config_global") )
 		return redirect( "/error/400" )
 
+	### build query if any 
+	query = {}
+	if doc_id : 
+		query = {"_id" : ObjectId(doc_id)}
+
+	### TO DO 
 	if request.method == 'POST':
 		return "hello config master / GLOBAL ... praise be"
 
 	if request.method == 'GET':
 
-		app_config_dict = getDocuments(mongoColl)
+		app_config_dict = getDocuments(mongoColl, query=query)
 
 		return jsonify( {
-				"msg" 				: "hello config master / GLOBAL ... praise be",
+				"msg" 				: "this is the results from your query on the '%s' config collection" % collection,
+				"query"				: query,
+				"method"			: request.method,
 				"app_config" 	: app_config_dict
 			})
 

@@ -130,6 +130,7 @@ def before_request():
 ### set environment and app variables
 log_app.debug(">>> configuring app's env vars...\n")
 
+from .config_app import app_metas
 from .config_app.config_env import * 
 
 configure_app(app)
