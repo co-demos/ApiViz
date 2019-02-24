@@ -62,13 +62,13 @@ def DocOidToString(data):
 	return obj
 
 
-def getDocuments(collection, query={}, no_oid=True, toDictField=True, Field="field") : 
+def getDocuments(collection, query={}, oid_to_id=True, toDictField=True, Field="field") : 
 	
 	### query collection and transform as list
 	results = list(collection.find(query) ) 
 
 	### ObjectId to string
-	if no_oid : 
+	if oid_to_id : 
 		results = [ DocOidToString(i) for i in results ]
 	
 	### list to dict
@@ -77,6 +77,9 @@ def getDocuments(collection, query={}, no_oid=True, toDictField=True, Field="fie
 
 	return results
 
+def checkJWT(token, url):
+	### TO DO 
+	pass
 
 
 @app.route('/backend/api/global/', methods=['GET','POST'], defaults={'path': ''})
@@ -89,15 +92,6 @@ def config_global(path):
 		return "hello config master / GLOBAL ... praise be"
 
 	if request.method == 'GET':
-		# app_config = list(mongo_config_global.find({}))
-		# log_app.debug(">>> app_config : \n%s", pformat(app_config))
-		
-		# ### ObjectId to string
-		# app_config_clean = [ DocOidToString(i) for i in app_config ]
-		# log_app.debug(">>> app_config_clean : \n%s", pformat(app_config_clean))
-		
-		# ### list to dict
-		# app_config_dict = { i["field"] : i for i in app_config_clean }
 
 		app_config_dict = getDocuments(mongo_config_global)
 		return jsonify( {
@@ -202,47 +196,60 @@ def error500(error):
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
 @app.route('/', methods=['GET'])
-def home():
+@app.route('/home/<string:lang>', methods=['GET'])
+@app.route('/home', methods=['GET'], defaults={"lang":"en"})
+def home(lang="fr"):
 
 	log_app.debug("entering new home page")
 
 	app_config = getDocuments(mongo_config_global)
 	log_app.debug("app_config :/n%s", pformat(app_config))
 
+	if lang == "fr" : 
+		template = "new-home.html"
+	else : 
+		template = "new-home-english.html"
+
 	return render_template(
-		"new-home.html",
+		template,
 		config_name		= config_name, # prod, testing, default...
 		app_config 		= app_config,
 		app_metas			= app_metas,
-		language			= "fr",
+		language			= lang,
 	)
 
 
-@app.route('/en', methods=['GET'])
-def home_english():
+@app.route('/tools/<string:lang>', methods=['GET'])
+@app.route('/tools', methods=['GET'], defaults={"lang":"en"})
+def Tools(lang="en"):
 
-	log_app.debug("entering new home page in English")
+	log_app.debug("entering tools page")
+	app_config = getDocuments(mongo_config_global)
 
-	form 			= FeedbackForm()
+	if lang == "fr" : 
+		template = "les-outils.html"
+	else : 
+		template = "les-outils-english.html"
 
 	return render_template(
-		"new-home-english.html",
+		template,
 		config_name		= config_name, # prod, testing, default...
-		app_metas			= app_metas,
-		language			= "en",
-		form					= form
+		app_metas			= app_metas, 
+		app_config 		= app_config,
+		language			= lang
 	)
-
 
 @app.route('/app/', methods=['GET','POST'],defaults={'path': ''})
 @app.route('/app/<path:path>', methods=['GET','POST'])
 def spa(path):
 
 	log_app.debug("entering SPA page")
+	app_config = getDocuments(mongo_config_global)
 
 	return render_template(
 		"spa.html",
 		config_name		= config_name, # prod, testing, default...
+		app_config 		= app_config,
 		app_metas			= app_metas,
 		language			= "fr"
 	)

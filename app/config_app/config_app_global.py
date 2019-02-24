@@ -3,7 +3,7 @@ default_global_config = [
 	{ 
     "field"       : "app_logo",
 		"content"     : "apiviz default logo",
-		"url"		    	: "/static/logos/app_default/logo_apiviz_15.png",
+		"url"		    	: "https://github.com/co-demos/ApiViz/blob/j_cleanviews/app/static/logos/app_default/logo_apiviz_15.png?raw=true",
 		"version"     : "0.1",
     "help"        : "The official default logo for your ApiViz instance",
     "is_default"  : True
@@ -27,11 +27,7 @@ default_global_config = [
 
 	{ 
     "field"       : "app_keywords",
-		"content"     : """dataviz,data visualisation,data visualization,SIG,
-        commons,digital commons,API,
-        opensource,open source,open data,opendata,MIT licence,github,
-        JS,javascript,python,flask,HTML,CSS,JSON,bulma,Vue.js,
-        Etalab,co-demos, codemos""",
+		"content"     : """dataviz,data visualisation,data visualization,SIG,commons,digital commons,API,opensource,open source,open data,opendata,MIT licence,github,sJS,javascript,python,flask,HTML,CSS,JSON,bulma,Vue.js,sEtalab,co-demos, codemos""",
 		"version"     : "0.1",
     "help"        : "Choose a set of keywords for your ApiViz instance",
     "is_default"  : True

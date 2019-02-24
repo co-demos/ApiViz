@@ -4,7 +4,7 @@
 		<div class="columns">
 
 			<div class="column is-4 is-offset-2">
-				{# <h2 class="has-text-primary"> Le Carrefour des innovations sociales </h2> #}
+				<h2 class="has-text-primary"> {{ app_config.app_title.content}} </h2>
 				
 				<ul>
 					<li>
@@ -16,6 +16,9 @@
 					</li>
 					<li>
 						<a href="/app/admin">Admin</a>
+					</li>
+					<li>
+						<a href="/tools/{{language}}">Tools</a>
 					</li>
 			</div>
 
@@ -29,14 +32,24 @@
 				{# contact us #}
 				{# <h2 class="has-text-primary"><a href="/contact">Contactez-nous</a></h2> #}
 
-				{# social networks #}
-				{# <h2 class="has-text-primary">Suivez-nous</h2>
+			 	{# social networks #}
+				<h2 class="has-text-primary">Suivez-nous</h2>
 
 				<div class="content is-medium">
-					
-					<a 	id="btn_cis_facebook"
+
+					<a
 						class="button is-primary" 
-						href="https://www.facebook.com/TouteslesInnoSo/" >
+						href="https://www.github.com/co-demos/" >
+						<span class="icon">
+							<i class="fab fa-lg fa-github"></i>
+						</span>
+					</a>
+					
+					&nbsp;&nbsp;&nbsp;
+
+					<a
+						class="button is-primary" 
+						href="https://www.facebook.com/co-demos/" >
 						<span class="icon">
 							<i class="fab fa-lg fa-facebook"></i>
 						</span>
@@ -44,15 +57,15 @@
 					
 					&nbsp;&nbsp;&nbsp;
 
-					<a 	id="btn_cis_twitter"
+					<a
 						class="button is-primary" 
-						href="https://twitter.com/touteslesinnoso" >
+						href="https://twitter.com/co-demos" >
 						<span class="icon ">
 							<i class="fab fa-lg fa-twitter"></i>
 						</span>
 					</a>
 					
-				</div> #}
+				</div>
 
 			</div>
 

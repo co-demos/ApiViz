@@ -6,15 +6,15 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 		<title>
-			{# Carrefour des Innovations Sociales #}
-			{# {{ app_metas.keywords }} #}
-			APIVIZ
+			{{ app_config.app_title.content }}
+			{# APIVIZ #}
 		</title>
 		
 		{# CUSTOM APP META DATA #}
-		<meta name="keywords" 		content="{{ app_metas.keywords }}">
+		<meta name="keywords" 		content="{{ app_config.app_keywords.content }}">
+		<meta name="description" 	content="{{ app_config.app_description.content }}">
+
 		<meta name="author"				content="{{ app_metas.authors }}">
-		{# <meta name="description" 	content="{{ app_metas.description }}"> #}
 		
 		<meta name="config_name" 	content="{{ config_name }}">
 
@@ -47,7 +47,8 @@
 				aria-label="main navigation">
 			
 			{% if language == "en" %}
-				{% include "navbars/navbar-main-english.html" %}
+				{# {% include "navbars/navbar-main-english.html" %} #}
+				{% include "navbars/navbar-main.html" %}
 			{% else %}
 				{% include "navbars/navbar-main.html" %}
 			{% endif %}
