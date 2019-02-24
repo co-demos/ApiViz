@@ -137,9 +137,9 @@ configure_app(app)
 if config_name == "default" or config_name == "production" or config_name == "testing"  :
 	log_app.info('>>> config_name : %s \n', config_name )
 	log_app.info(	">>> ENVIRONMENT VARIABLES / to understand what the fuck is goin on ... : \n %s \n", 
-					pformat({ k : v for k,v in  os.environ.iteritems() }) )
+		pformat({ k : v for k,v in  os.environ.iteritems() }) )
 	log_app.info(	">>> APP.CONFIG / to understand what the fucking fuck is goin on ... : \n %s \n", 
-					pformat({ k : v for k,v in  app.config.iteritems() }) )
+		pformat({ k : v for k,v in  app.config.iteritems() }) )
 print
 
 
@@ -208,45 +208,6 @@ from forms import * # LoginForm, UserRegisterForm, UserUpdateForm, UserHistoryAl
 # db classes and functions
 from api import *
 
-# create fields in user documents if fields doesn't exit yet
-# mongo_users.update_many({'verified_as_partner'	: {"$exists" : False}}, {"$set": {'verified_as_partner'	: 'no'}})
-# mongo_users.update_many({'created_at'			: {"$exists" : False}}, {"$set": {'created_at'			: datetime.datetime.now() }})
-# mongo_users.update_many({'last_modified_by'		: {"$exists" : False}}, {"$set": {'last_modified_by'	: "system" }})
-# mongo_users.update_many({'login_last_at'		: {"$exists" : False}}, {"$set": {'login_last_at'		: datetime.datetime.now() }})
-# mongo_users.update_many({'logins_total'			: {"$exists" : False}}, {"$set": {'logins_total'		: 1 }})
-# mongo_users.update_many({'follow_up_user'		: {"$exists" : False}}, {"$set": {'follow_up_user'		: "- suivi des échanges avec l'utilisateur -" }})
-
-# mongo_users.update_many({'follow_up_user'		: {"$exists" : False}}, {"$set": {'follow_up_user'		: "- suivi des échanges avec l'utilisateur -" }})
-# mongo_users.update_many({'userNewsletter'		: {"$exists" : False}}, {"$set": {'userNewsletter'		: True }})
-
-# for user in mongo_users.find({}):
-# 	# mod_doc = modify_doc(doc)
-# 	user['userName']	= user['userName'].capitalize()
-# 	user['userSurname'] = user['userSurname'].capitalize()
-# 	mongo_users.save(user)
-
-
-# create fields in feedback documents if fields doesn't exit yet
-# note : files created are ignored by .gitignore
-# mongo_feedbacks.update_many({'created_at'			: {"$exists" : False}}, {"$set": {'created_at'			: datetime.datetime.today() }})
-# mongo_feedbacks.update_many({'follow_up_feedback'	: {"$exists" : False}}, {"$set": {'follow_up_feedback'	: "- suivi du message de l'utilisateur -" }})
-
-# for user in mongo_feedbacks.find({}):
-# 	# mod_doc = modify_doc(doc)
-# 	user['userName']	= user['userName'].capitalize()
-# 	user['userSurname'] = user['userSurname'].capitalize()
-# 	mongo_feedbacks.save(user)
-
-### TEMPORARY FUNCTIONS FOR CLEANING WHILE DEVELOPPING
-### WARNING : COMMENT THIS BEFORE PUSHING TO PROD
-# mongo_users.update_many({}, {"$set": { "last_modified_by": "" } } )
-# mongo_users.update_many({}, {"$unset": { "userCreatedAt":1 } } )
-# mongo_users.update_many({}, {"$unset": { "userLastModifiedAt":1 } } )
-
-
-# backup all collections when restart in ./_backups_collections
-cwd = os.getcwd()
-log_app.debug('>>> BACKUP MONGO COLLECITONS : cwd : %s', cwd )
 
 reboot_datetime = datetime.datetime.now().strftime("%Y-%m-%d-h%H-m%M-s%S")
 # backup_mongo_collection(mongo_users,	 cwd + "/app/_backups_collections/backup_coll_users-"+reboot_datetime +".json")

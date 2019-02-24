@@ -9,11 +9,12 @@ sys.setdefaultencoding('utf-8')
 
 ### import all from app.__init__
 from . 	import *
-from	flask 	import 	jsonify, flash, render_template, \
+from		flask 	import 	jsonify, flash, render_template, \
 									url_for, make_response, request, redirect, \
 									send_file
 
 # from 	werkzeug.security 	import 	generate_password_hash, check_password_hash
+from werkzeug.exceptions import BadRequest
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### AUTH - TOKEN
@@ -46,6 +47,52 @@ def token_required(f):
 	return decorated
 """
 
+
+### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
+### ERRORS HANDLERS
+### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
+
+@app.errorhandler(403)
+@app.errorhandler(404)
+@app.errorhandler(500)
+@app.route("/error/<int:err_code>", defaults={ "error": BadRequest })
+def errorHandler(error, err_code=400):
+	
+	if err_code == 404 : #  | error.code == 404 : 
+		error_code 	= 404
+		template 		= "errors/404.html" 
+
+	elif err_code == 403 : # | error.code == 403 : 
+		error_code 	= 403
+		template 		= "errors/403.html" 
+
+	elif err_code == 500 : # | error.code == 500 : 
+		error_code 	= 500
+		template 		= "errors/500.html" 
+
+	else : 
+		error_code 	= 400
+		template 		= "errors/400.html" 
+
+	app_config = getDocuments(mongo_config_global)
+
+	return render_template( 
+		template,
+		config_name			= config_name, # prod or default...
+		site_section		= "error",
+		error_code			= str(error_code),
+		app_metas				= app_metas,
+		app_config 			= app_config,
+		language				= "fr" ,
+
+		languages_dict	= app_languages_dict ,
+		# error_msg				= u"accès interdit",
+		# user_infos			= current_user.get_public_infos
+	), error_code
+
+
+
+
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### CONFIG ROUTES - BACKEND API
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
@@ -60,7 +107,6 @@ def DocOidToString(data):
 			obj[key] = data[key]
 	# log_app.debug("obj : %s", obj) 
 	return obj
-
 
 def getDocuments(collection, query={}, oid_to_id=True, toDictField=True, Field="field") : 
 	
@@ -82,18 +128,32 @@ def checkJWT(token, url):
 	pass
 
 
-@app.route('/backend/api/global/', methods=['GET','POST'], defaults={'path': ''})
-@app.route('/backend/api/global/<path:path>', methods=['GET','POST'])
-def config_global(path):
+@app.route('/backend/api/config/<string:collection>', methods=['GET','POST'])
+@app.route('/backend/api/config', methods=['GET','POST'], defaults={'collection': 'global'})
+def config_global(collection):
+	"""
+	choices : global | endpoints | styles | routes
+	"""
 
 	log_app.debug("config app route")
+	log_app.debug("config app route / collection : %s", collection )
+
+	### target right config collection 
+	if collection in ["global" , "endpoints" , "styles" , "routes" ] : 
+		mongoColl = mongoConfigColls[collection] ### imported from . (and from there from .api.__init__ )
+	else : 
+		log_app.warning("error : -%s- is not a valid config collection (redirect)", collection)
+		# return redirect( url_for("config_global") )
+		# return redirect( url_for("config_global") )
+		return redirect( "/error/400" )
 
 	if request.method == 'POST':
 		return "hello config master / GLOBAL ... praise be"
 
 	if request.method == 'GET':
 
-		app_config_dict = getDocuments(mongo_config_global)
+		app_config_dict = getDocuments(mongoColl)
+
 		return jsonify( {
 				"msg" 				: "hello config master / GLOBAL ... praise be",
 				"app_config" 	: app_config_dict
@@ -102,96 +162,7 @@ def config_global(path):
 
 
 
-@app.route('/backend/api/routes/', methods=['GET', 'POST'])
-@app.route('/backend/api/routes/<string:route_id>', methods=['GET','POST'])
-def config_routes(route_id=""):
-  
-	log_app.debug("config routes for contents ")
-
-	if request.method == 'GET':
-  		pass
-
-	if request.method == 'POST':
-  		pass
-
-	return "hello config master / CONTENTS... praise be"
-
-
-@app.route('/backend/api/data/', methods=['GET', 'POST'])
-@app.route('/backend/api/data/<string:data_endpoint_id>', methods=['GET','POST'])
-def config_data(data_endpoint_id=""):
-
-	log_app.debug("config data endpoints / data_endpoint_id : %s", data_endpoint_id)
-
-	if request.method == 'GET':
-		pass
-
-	if request.method == 'POST':
-		pass
-
-	return "hello config master / DATA... praise be"
-
-
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-### ERRORS HANDLERS
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-
-
-@app.errorhandler(403)
-def error403(error):
-
-	log_app.error( "error - 403 : %s", error )
-
-	return render_template( "errors/403.html",
-
-							config_name			= config_name, # prod or default...
-							app_metas				= app_metas,
-							language				= "fr" ,
-							languages_dict	= app_languages_dict ,
-
-							site_section		= "403",
-							error_msg				= u"accès interdit",
-							user_infos			= current_user.get_public_infos
-						),403
-
-
-@app.errorhandler(404)
-def error404(error):
-
-	log_app.error( "error - 404 : %s", error )
-
-	return render_template( "errors/404.html",
-
-							config_name			= config_name, # prod or default...
-							app_metas				= app_metas,
-							language				= "fr" ,
-							languages_dict	= app_languages_dict,
-
-							site_section		= "404",
-							error_msg				= u"la page demandée n'existe pas",
-							user_infos			= current_user.get_public_infos
-						),404
-
-@app.errorhandler(500)
-def error500(error):
-
-	log_app.error( "error - 500 : %s", error )
-
-	return render_template( "errors/500.html",
-
-							config_name			= config_name, # prod or default...
-							app_metas				= app_metas,
-							language				= "fr" ,
-							languages_dict	= app_languages_dict ,
-
-							site_section		= "500",
-							error_msg				= u"erreur serveur",
-							user_infos			= current_user.get_public_infos
-						),500
-
-
-
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
+### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### CLIENT ROUTES
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
