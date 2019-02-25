@@ -108,18 +108,21 @@ def DocOidToString(data):
 	# log_app.debug("obj : %s", obj) 
 	return obj
 
-def getDocuments(collection, query={}, oid_to_id=True, toDictField=True, Field="field") : 
+def getDocuments(collection, query={}, oid_to_id=True, as_list=False, field="field") : 
 	
 	### query collection and transform as list
 	results = list(collection.find(query) ) 
+	# log_app.debug("config app route / results - 1 : \n%s", pformat(results) )
 
 	### ObjectId to string
 	if oid_to_id : 
 		results = [ DocOidToString(i) for i in results ]
-	
+		# log_app.debug("config app route / results - 2 : \n%s", pformat(results) )
+
 	### list to dict
-	if toDictField : 
-		results = { i[Field] : i for i in results }
+	if as_list == False : 
+		results = { i[field] : i for i in results }
+		# log_app.debug("config app route / results - 3 : \n%s", pformat(results) )
 
 	return results
 
@@ -135,6 +138,8 @@ def config_global(collection, doc_id=None):
 	"""
 	choices : global | endpoints | styles | routes
 	variables : <collection> and <doc_id>
+	arguments : as_list (bool), field (str)
+	example : http://localhost:8100/backend/api/config?as_list=true
 	"""
 
 	log_app.debug("config app route")
@@ -148,6 +153,11 @@ def config_global(collection, doc_id=None):
 		log_app.warning("error : -%s- is not a valid config collection (redirect)", collection)
 		return redirect( "/error/400" )
 
+	### get request args if any 
+	as_list = request.args.get('as_list', default=False, 		type=bool)
+	field 	= request.args.get('field', 	default="field", 	type=str)
+	log_app.debug("config app route / as_list : %s", as_list )
+
 	### build query if any 
 	query = {}
 	if doc_id : 
@@ -159,7 +169,7 @@ def config_global(collection, doc_id=None):
 
 	if request.method == 'GET':
 
-		app_config_dict = getDocuments(mongoColl, query=query)
+		app_config_dict = getDocuments(mongoColl, query=query, as_list=as_list, field=field)
 
 		return jsonify( {
 				"msg" 				: "this is the results from your query on the '%s' config collection" % collection,
