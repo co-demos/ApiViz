@@ -126,20 +126,21 @@ def getDocuments(collection, query={}, oid_to_id=True, as_list=False, field="fie
 
 	return results
 
-def checkJWT(token, url):
+def checkJWT(token, url_check="http://localhost:4100/api/auth/tokens/confirm_access"):
 	### TO DO 
-	pass
+	return True
 
 
-@app.route('/backend/api/config/<string:collection>/<string:doc_id>', methods=['GET','POST'])
+@app.route('/backend/api/config/<string:collection>/<string:doc_id>', methods=['GET','POST','DELETE'])
 @app.route('/backend/api/config/<string:collection>', methods=['GET'], defaults={"doc_id" : None})
 @app.route('/backend/api/config', methods=['GET'], defaults={'collection': 'global', "doc_id" : None})
 def config_global(collection, doc_id=None):
 	"""
-	choices : global | endpoints | styles | routes
+	Main route to GET and POST/PUT/DELETE
+	choices 	: global | endpoints | styles | routes
 	variables : <collection> and <doc_id>
 	arguments : as_list (bool), field (str)
-	example : http://localhost:8100/backend/api/config?as_list=true
+	example 	: http://localhost:8100/backend/api/config?as_list=true
 	"""
 
 	log_app.debug("config app route")
@@ -156,6 +157,7 @@ def config_global(collection, doc_id=None):
 	### get request args if any 
 	as_list = request.args.get('as_list', default=False, 		type=bool)
 	field 	= request.args.get('field', 	default="field", 	type=str)
+	token 	= request.args.get('token', 	default=None, 		type=str)
 	log_app.debug("config app route / as_list : %s", as_list )
 
 	### build query if any 
@@ -163,20 +165,40 @@ def config_global(collection, doc_id=None):
 	if doc_id : 
 		query = {"_id" : ObjectId(doc_id)}
 
+	### check if token allows user to POST
+	if token :
+  		is_authorized = checkJWT(token)
+
 	### TO DO 
 	if request.method == 'POST':
-		return "hello config master / GLOBAL ... praise be"
+		if is_authorized : 
+			return "hello config master / POST ... praise be"
+		else : 
+			return "noooope"
 
-	if request.method == 'GET':
+	elif request.method == 'DELETE':
+		if is_authorized : 
+			return "hello config master / DELETE ... praise be"
+		else : 
+			return "noooope"
+
+
+	elif request.method == 'GET':
 
 		app_config_dict = getDocuments(mongoColl, query=query, as_list=as_list, field=field)
 
 		return jsonify( {
 				"msg" 				: "this is the results from your query on the '%s' config collection" % collection,
 				"query"				: query,
-				"method"			: request.method,
+				"request"			: {
+					"url" 				: request.url,
+					"args" 				: request.args, 
+					"method"			: request.method,
+					"collection"	: collection,
+					"doc_id"			: doc_id,
+				},
 				"app_config" 	: app_config_dict
-			})
+		} )
 
 
 
