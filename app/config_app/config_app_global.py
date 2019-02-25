@@ -75,6 +75,7 @@ default_global_config = [
 		"content"     : u"", 
 		"app_version" : version,
     "help"        : u"Choose a token for indexing your ApiViz instance",
+    "activated"  	: False,
     "is_default"  : True
 	},
 
@@ -84,7 +85,8 @@ default_global_config = [
     "url"         : "https://github.com/co-demos/ApiViz",
 		"app_version" : version,
     "help"        : u"Choose the repo for the source code of your ApiViz instance",
-    "is_default"  : True
+    "in_footer"  	: True,
+    "is_default"  : True,
 	},
 
 	### SOCIAL NETWORKS
@@ -93,6 +95,7 @@ default_global_config = [
     "url"         : "https://twitter.com/co-demos",
 		"app_version" : version,
     "help"        : u"Choose the twitter account for your ApiViz instance",
+    "in_footer"  	: True,
     "is_default"  : True
 	},
 
@@ -101,6 +104,7 @@ default_global_config = [
     "url"         : "https://www.facebook.com/co-demos/",
 		"app_version" : version,
     "help"        : u"Choose the facebook account for your ApiViz instance",
+    "in_footer"  	: True,
     "is_default"  : True
 	},
 
@@ -109,6 +113,7 @@ default_global_config = [
     "url"         : "https://www.github.com/co-demos/",
 		"app_version" : version,
     "help"        : u"Choose the github account for your ApiViz instance",
+    "in_footer"  	: True,
     "is_default"  : True
 	},
 
@@ -118,6 +123,7 @@ default_global_config = [
     "url"         : "",
 		"app_version" : version,
     "help"        : u"Choose the token for the analytics (ex. mix panel) of your ApiViz instance",
+    "activated"  	: False,
     "is_default"  : True
 	},
 
@@ -126,6 +132,7 @@ default_global_config = [
     "url"         : "",
 		"app_version" : version,
     "help"        : u"Choose the token for the support (ex. crisp) of your ApiViz instance",
+    "activated"  	: False,
     "is_default"  : True
 	},
 
