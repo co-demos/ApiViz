@@ -4,6 +4,7 @@ from . import version
 
 default_global_config = [
 
+	### LOGO
 	{ "field"       : "app_logo",
 		"content"     : u"apiviz default logo",
 		"url"		    	: "https://github.com/co-demos/ApiViz/blob/j_cleanviews/app/static/logos/app_default/logo_apiviz_15.png?raw=true",
@@ -12,6 +13,7 @@ default_global_config = [
     "is_default"  : True
 	},
 
+	### METAS
 	{ "field"       : "app_title",
 		"content"     : u"ApiViz",
 		"app_version" : version,
@@ -33,6 +35,7 @@ default_global_config = [
     "is_default"  : True
 	},
 
+	### GLOBAL STYLES 
 	{ "field"       : "app_colors",
 		"content"     : {
 			"primary" 	  : "purple",	
@@ -67,6 +70,7 @@ default_global_config = [
     "is_default"  : True
 	},
 
+	### SEO / INDEXING
 	{ "field"       : "app_indexing",
 		"content"     : u"", 
 		"app_version" : version,
@@ -74,6 +78,7 @@ default_global_config = [
     "is_default"  : True
 	},
 
+	### REPO GITHUB
 	{ "field"       : "app_code",
 		"content"     : u"source code",
     "url"         : "https://github.com/co-demos/ApiViz",
@@ -81,7 +86,33 @@ default_global_config = [
     "help"        : u"Choose the repo for the source code of your ApiViz instance",
     "is_default"  : True
 	},
-  
+
+	### SOCIAL NETWORKS
+	{ "field"       : "app_twitter",
+		"content"     : u"twitter",
+    "url"         : "https://twitter.com/co-demos",
+		"app_version" : version,
+    "help"        : u"Choose the twitter account for your ApiViz instance",
+    "is_default"  : True
+	},
+
+	{ "field"       : "app_facebook",
+		"content"     : u"facebook",
+    "url"         : "https://www.facebook.com/co-demos/",
+		"app_version" : version,
+    "help"        : u"Choose the facebook account for your ApiViz instance",
+    "is_default"  : True
+	},
+
+	{ "field"       : "app_github",
+		"content"     : u"github",
+    "url"         : "https://www.github.com/co-demos/",
+		"app_version" : version,
+    "help"        : u"Choose the github account for your ApiViz instance",
+    "is_default"  : True
+	},
+
+	### ANALYTICS
 	{ "field"       : "app_analytics",
 		"content"     : u"your_id_or_token",
     "url"         : "",

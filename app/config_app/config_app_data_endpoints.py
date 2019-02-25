@@ -5,7 +5,6 @@ from . import version
 default_data_endpoints_config = [
 
 	### USER MANAGEMENT
-
 	{ "field"    	  	: "app_data_API_user_auth",
 		"data_type" 		: "user",
 		"content"   	  : u"apiviz default API endpoint for user authentication",
@@ -58,7 +57,6 @@ default_data_endpoints_config = [
 	},
 
 	### DATA ENDPOINTS
-
 	{ "field"     	  : "app_data_API_list",
 		"data_type" 		: "data",
 		"content"   	  : u"apiviz default API endpoint for list results",
