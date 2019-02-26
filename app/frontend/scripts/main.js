@@ -80,6 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
         el: document.querySelector('#vue-content'),
         router,
         store,
+        mounted: function () {
+          store.dispatch('getConfig');
+        },
         render: h => h( Vue.component('router-view') )
     })
 

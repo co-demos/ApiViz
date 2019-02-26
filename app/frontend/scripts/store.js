@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
+import { apiConfig } from './config/api.js';
 import {csvParse} from 'd3-dsv';
 import {searchProjects, getSpiders} from './cisProjectSearchAPI.js';
 
@@ -70,8 +72,8 @@ export const storeGenerator = new Vuex.Store({
             isLoggedin: false,
             isVerified: false
         },
-        jwt:{
-        },
+        jwt:undefined,
+        config:{},
         geolocByProjectId: new Map(),
         spiders: undefined,
 
@@ -153,6 +155,10 @@ export const storeGenerator = new Vuex.Store({
         },
         addGeolocs(state, {geolocByProjectId}){
             state.geolocByProjectId = new Map([...state.geolocByProjectId, ...geolocByProjectId])
+        },
+        setConfig (state, {configType,configResult}) {
+            console.log('configType',configType, state.config );
+            state.config[configType] = (configResult && configResult.data && configResult.data.app_config) ? configResult.data.app_config : ''
         }
     },
     actions: {
@@ -264,6 +270,20 @@ export const storeGenerator = new Vuex.Store({
 
                 commit('addGeolocs', {geolocByProjectId})
             });
+        },
+        getConfig({commit}) {
+          axios
+            .get(apiConfig.rootURL+'/config/global')
+            .then(response => commit('setConfig', {configType:'global',configResult:response}) )
+          axios
+            .get(apiConfig.rootURL+'/config/styles')
+            .then(response => commit('setConfig', {configType:'styles',configResult:response}) )
+          axios
+            .get(apiConfig.rootURL+'/config/routes?as_list=true')
+            .then(response => commit('setConfig', {configType:'routes',configResult:response}) )
+          axios
+            .get(apiConfig.rootURL+'/config/endpoints')
+            .then(response => commit('setConfig', {configType:'endpoints',configResult:response}) )
         }
     }
 })
