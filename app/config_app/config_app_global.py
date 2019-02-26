@@ -4,10 +4,29 @@ from . import version
 
 default_global_config = [
 
+	### HOME
+	{ "field"       : "app_home",
+		"content"     : u"apiviz default homepage",
+		"url"		    	: "/",
+		"template_url": "/static/spa.html",
+		"app_version" : version,
+    "help"        : u"The default homepage for your ApiViz instance",
+    "is_default"  : True
+	},
+
+	### LANGUAGES
+	{ "field"       : "app_languages",
+		"languages"		: ["en", "fr"],
+		"default_lan"	: "en",
+		"app_version" : version,
+    "help"        : u"The default homepage for your ApiViz instance",
+    "is_default"  : True
+	},
+
 	### LOGO
 	{ "field"       : "app_logo",
 		"content"     : u"apiviz default logo",
-		"url"		    	: "https://github.com/co-demos/ApiViz/blob/j_cleanviews/app/static/logos/app_default/logo_apiviz_15.png?raw=true",
+		"url"		    	: "https://github.com/co-demos/ApiViz/blob/develop/app/static/logos/app_default/logo_apiviz_15.png?raw=true",
 		"app_version" : version,
     "help"        : u"The official default logo for your ApiViz instance",
     "is_default"  : True
@@ -22,7 +41,7 @@ default_global_config = [
 	},
 
 	{ "field"       : "app_description",
-		"content"     : u"from API to a reactive website in seconds",
+		"content"     : u"from API data to a reactive website in seconds",
 		"app_version" : version,
     "help"        : u"Choose a description for your ApiViz instance",
     "is_default"  : True
@@ -32,6 +51,27 @@ default_global_config = [
 		"content"     : u"""dataviz,data visualisation,data visualization,SIG,commons,digital commons,API,opensource,open source,open data,opendata,MIT licence,github,sJS,javascript,python,flask,HTML,CSS,JSON,bulma,Vue.js,sEtalab,co-demos, codemos""",
 		"app_version" : version,
     "help"        : u"Choose a set of keywords for your ApiViz instance",
+    "is_default"  : True
+	},
+
+	### GLOBAL CONTENTS / TEXTS
+	{ "field"       : "app_welcome",
+		"content"     : {
+			"en" 	: u"Welcome to ApiViz",
+			"fr"	: u"Bienvenue sur ApiViz",
+		},
+		"app_version" : version,
+    "help"        : u"Choose a welcoming phrase for your ApiViz instance",
+    "is_default"  : True
+	},
+
+	{ "field"       : "app_pitch",
+		"content"     : {
+			"en" 	: u"from API data to a reactive website in seconds",
+			"fr"	: u"transformer les données d'une API en un site réactif en quelques secondes",
+		},
+		"app_version" : version,
+    "help"        : u"Choose a pitch/catchphrase for your ApiViz instance",
     "is_default"  : True
 	},
 
