@@ -1,15 +1,15 @@
 
 ### doc here : cf : https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-16-04#create-a-systemd-unit-file 
 ### < create systems unit file >
-### sudo vim /etc/systemd/system/cis_front.service
+### sudo vim /etc/systemd/system/apiviz.service
 ### < copy config into it, and then >
 ### < start project >
-### sudo systemctl start cis_front
-### sudo systemctl enable cis_front
+### sudo systemctl start apiviz
+### sudo systemctl enable apiviz
 
 
 [Unit]
-Description=Gunicorn instance to serve cis_front
+Description=Gunicorn instance to serve apiviz
 After=network.target
 
 [Service]
@@ -17,7 +17,7 @@ User=jpy
 Group=www-data
 WorkingDirectory=/home/jpy/app_cis/cis
 Environment="PATH=/home/jpy/app_cis/venv/bin"
-ExecStart=/home/jpy/app_cis/venv/bin/gunicorn --workers 3 --bind unix:cis_front.sock -m 007 wsgi:app
+ExecStart=/home/jpy/app_cis/venv/bin/gunicorn --workers 3 --bind unix:apiviz.sock -m 007 wsgi:app
 
 [Install]
 WantedBy=multi-user.target

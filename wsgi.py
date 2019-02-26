@@ -10,7 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 os.environ['FLASK_CONFIGURATION'] = "production"
 
-from app import app, log_cis
+from app import app, log_app
 
 
 if __name__ == '__main__':
@@ -25,11 +25,11 @@ if __name__ == '__main__':
 
 	"""
 
-	# set environment variable to set config later in backend.config_env.py
+	# set environment variable to set config later in config_app.config_env.py
 
 	print "= "*25
 	print "= = = WSGI / RERUN FLASK APP = = ="
-	log_cis.info
+	log_app.info
 	print "= "*25
 
 	# simple flask runner
