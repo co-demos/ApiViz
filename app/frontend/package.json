@@ -1,5 +1,5 @@
 {
-  "name": "cis-front",
+  "name": "apiviz",
   "version": "1.0.0",
   "description": "",
   "main": "scripts/main.js",
@@ -38,6 +38,7 @@
     "watchify": "^3.11.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bulma-carousel": "^3.0.0",
     "bulma-extensions": "^4.1.0",
     "d3-dsv": "^1.0.7",
