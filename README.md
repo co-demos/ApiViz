@@ -49,7 +49,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 	sudo pip install -r requirements.txt
 	```
 
-1. **optional** : _if you encounter problems installing the requirements try to install the 'cryptography' library following those steps : _
+1. **optional** : _if you encounter problems installing the requirements try to install the 'cryptography' library following those steps :_
 
 	```sh
 	# install crypto
