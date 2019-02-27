@@ -157,7 +157,6 @@ export const storeGenerator = new Vuex.Store({
             state.geolocByProjectId = new Map([...state.geolocByProjectId, ...geolocByProjectId])
         },
         setConfig (state, {configType,configResult}) {
-            console.log('configType',configType, state.config );
             state.config[configType] = (configResult && configResult.data && configResult.data.app_config) ? configResult.data.app_config : ''
         }
     },
