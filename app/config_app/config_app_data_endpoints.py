@@ -70,8 +70,8 @@ default_data_endpoints_config = [
 		"root_url"			: "http://localhost:4100/api/usr/infos/list",
 		"args_options"	: [
 			{ "arg" : "token", 		"optional" : False, "in" : ["url","header"], 	"default" : "", "type" : "str" },
-			{	"arg" : "page_n", 	"optional" : True, "in" : ["url"], 					"default" : 1, 	"type": "int" }, 
-			{	"arg" : "per_page", "optional" : True, "in" : ["url"], 					"default" : 50, "type": "int" }, 
+			{	"arg" : "page_n", 	"optional" : True, 	"in" : ["url"], 					"default" : 1, 	"type": "int" }, 
+			{	"arg" : "per_page", "optional" : True, 	"in" : ["url"], 					"default" : 50, "type": "int" }, 
 		],
 		"app_version"   : version,
 		"method"				: "GET",
@@ -86,7 +86,7 @@ default_data_endpoints_config = [
 		"root_url"			: "http://localhost:4100/api/usr/infos/get_one/",
 		"args_options"	: [
 			{ "arg" : "token", 		"optional" : False, "in" : ["url","header"], 	"default" : "", "type" : "str" },
-			{ "arg" : "doc_id", 	"optional" : True, "in" : ["url"], 					"default" : "", "type" : "str"}
+			{ "arg" : "doc_id", 	"optional" : True, 	"in" : ["url"], 					"default" : "", "type" : "str"}
 		],
 		"app_version"   : version,
 		"method"				: "GET",
@@ -101,7 +101,7 @@ default_data_endpoints_config = [
 		"root_url"			: "http://localhost:4100/api/auth/edit/",
 		"args_options"	: [
 			{ "arg" : "token", 		"optional" : False, "in" : ["url","header"], 	"default" : "", "type" : "str" },
-			{ "arg" : "doc_id", 	"optional" : True, "in" : ["url"], 					"default" : "", "type" : "str"}
+			{ "arg" : "doc_id", 	"optional" : True, 	"in" : ["url"], 					"default" : "", "type" : "str"}
 		],
 		"app_version"   : version,
 		"method"				: "PUT",
@@ -117,7 +117,7 @@ default_data_endpoints_config = [
 		"root_url"			: "http://localhost:4100/api/auth/edit/",
 		"args_options"	: [
 			{ "arg" : "token", 		"optional" : False, "in" : ["url","header"], 	"default" : "", "type" : "str" },
-			{ "arg" : "doc_id", 	"optional" : True, "in" : ["url"], 					"default" : "", "type" : "str"}
+			{ "arg" : "doc_id", 	"optional" : True, 	"in" : ["url"], 					"default" : "", "type" : "str"}
 		],
 		"app_version"   : version,
 		"method"				: "DELETE",

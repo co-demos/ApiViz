@@ -4,16 +4,6 @@ from . import version
 
 default_global_config = [
 
-	### HOME
-	{ "field"       : "app_home",
-		"content"     : u"apiviz default homepage",
-		"url"		    	: "/",
-		"template_url": "/static/spa.html",
-		"app_version" : version,
-    "help"        : u"The default homepage for your ApiViz instance",
-    "is_default"  : True
-	},
-
 	### LANGUAGES
 	{ "field"       : "app_languages",
 		"languages"		: ["en", "fr"],
@@ -85,7 +75,7 @@ default_global_config = [
 			"error" 	  	: "red",	
 		},
 		"app_version" : version,
-    "help"        : u"Choose a set of colors for your ApiViz instance",
+    "help"        : u"Choose a set of colors (an hexa for example) for your ApiViz instance",
     "is_default"  : True
 	},
 
@@ -103,19 +93,12 @@ default_global_config = [
 	},
 
 	{ "field"       : "app_typo",
-		"content"     : u"Roboto",
+		"content"     : {
+			"primary" : u"Roboto"
+		},
 		"url"		    	: "",
 		"app_version" : version,
     "help"        : u"Choose a typo for your ApiViz instance",
-    "is_default"  : True
-	},
-
-	### SEO / INDEXING
-	{ "field"       : "app_indexing",
-		"content"     : u"", 
-		"app_version" : version,
-    "help"        : u"Choose a token for indexing your ApiViz instance",
-    "activated"  	: False,
     "is_default"  : True
 	},
 
@@ -128,32 +111,13 @@ default_global_config = [
     "in_footer"  	: True,
     "is_default"  : True,
 	},
-
-	### SOCIAL NETWORKS
-	{ "field"       : "app_twitter",
-		"content"     : u"twitter",
-    "url"         : "https://twitter.com/co-demos",
+	
+	### SEO / INDEXING
+	{ "field"       : "app_indexing",
+		"content"     : u"", 
 		"app_version" : version,
-    "help"        : u"Choose the twitter account for your ApiViz instance",
-    "in_footer"  	: True,
-    "is_default"  : True
-	},
-
-	{ "field"       : "app_facebook",
-		"content"     : u"facebook",
-    "url"         : "https://www.facebook.com/co-demos/",
-		"app_version" : version,
-    "help"        : u"Choose the facebook account for your ApiViz instance",
-    "in_footer"  	: True,
-    "is_default"  : True
-	},
-
-	{ "field"       : "app_github",
-		"content"     : u"github",
-    "url"         : "https://www.github.com/co-demos/",
-		"app_version" : version,
-    "help"        : u"Choose the github account for your ApiViz instance",
-    "in_footer"  	: True,
+    "help"        : u"Choose a token for indexing your ApiViz instance",
+    "activated"  	: False,
     "is_default"  : True
 	},
 
@@ -167,6 +131,7 @@ default_global_config = [
     "is_default"  : True
 	},
 
+	### SUPPORT 
 	{ "field"       : "app_support",
 		"content"     : u"your_id_or_token",
     "url"         : "",

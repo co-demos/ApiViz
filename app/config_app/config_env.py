@@ -115,6 +115,7 @@ class Config(object):
 	MONGO_COLL_CONFIG_DATA_ENDPOINTS	= "config_data_endpoints"
 	MONGO_COLL_CONFIG_DATA_STYLES			= "config_data_styles"
 	MONGO_COLL_CONFIG_ROUTES					= "config_routes"
+	MONGO_COLL_CONFIG_SOCIALS					= "config_socials"
 	# MONGO_COLL_USERS							= "users"
 	# MONGO_COLL_FEEDBACKS					= "feedbacks"
 	# MONGO_COLL_JOIN_MESSAGE_REFERENCED_PROJECT_CARRIER 			= "join_message_referenced_project_carrier"

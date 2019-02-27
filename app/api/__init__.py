@@ -17,6 +17,7 @@ with app.app_context():
 	mongo_config_data_endpoints	= mongo.db[ app.config["MONGO_COLL_CONFIG_DATA_ENDPOINTS"] ]
 	mongo_config_data_styles		= mongo.db[ app.config["MONGO_COLL_CONFIG_DATA_STYLES"] ]
 	mongo_config_routes					= mongo.db[ app.config["MONGO_COLL_CONFIG_ROUTES"] ]
+	mongo_config_socials				= mongo.db[ app.config["MONGO_COLL_CONFIG_SOCIALS"] ]
 	# mongo_feedbacks	= mongo.db[ app.config["MONGO_COLL_FEEDBACKS"] ]
 	# mongo_join_message_referenced_project_carrier = mongo.db[ app.config["MONGO_COLL_JOIN_MESSAGE_REFERENCED_PROJECT_CARRIER"] ]
 	# mongo_join_message_not_referenced_project_carrier = mongo.db[ app.config["MONGO_COLL_JOIN_MESSAGE_NOT_REFERENCED_PROJECT_CARRIER"] ]
@@ -28,6 +29,7 @@ with app.app_context():
 		app.config["MONGO_COLL_CONFIG_DATA_ENDPOINTS"]	: mongo_config_data_endpoints,
 		app.config["MONGO_COLL_CONFIG_DATA_STYLES"]			: mongo_config_data_styles,
 		app.config["MONGO_COLL_CONFIG_ROUTES"]					: mongo_config_routes,
+		app.config["MONGO_COLL_CONFIG_SOCIALS"]					: mongo_config_socials,
 		# app.config["MONGO_COLL_USERS"]								: mongo_users,
 		# app.config["MONGO_COLL_FEEDBACKS"]						: mongo_feedbacks,
 	}
@@ -37,6 +39,7 @@ mongoConfigColls ={
 	"endpoints" : mongo_config_data_endpoints,
 	"styles" 		: mongo_config_data_styles,
 	"routes" 		: mongo_config_routes,
+	"socials" 	: mongo_config_socials,
 }
 
 log_app.debug(">>> MongoDB / mongoColls.keys() : \n %s", pformat( mongoColls.keys() ) )
@@ -79,6 +82,7 @@ from app.config_app.config_app_global 				import default_global_config
 from app.config_app.config_app_data_endpoints import default_data_endpoints_config
 from app.config_app.config_app_data_styles 		import default_data_styles_config
 from app.config_app.config_app_routes 				import default_routes_config
+from app.config_app.config_app_socials 				import default_socials_config
 
 ### retrieve default config for every collection
 existing_app_config 						= list( mongo_config_global.find({}) )
@@ -93,11 +97,15 @@ log_app.debug(">>> existing_data_styles_config : \n%s \n", pformat(existing_data
 existing_routes_config 					= list( mongo_config_routes.find({}) )
 log_app.debug(">>> existing_routes_config : \n%s \n", pformat(existing_routes_config))
 
+existing_socials_config 				= list( mongo_config_socials.find({}) )
+log_app.debug(">>> existing_socials_config : \n%s \n", pformat(existing_socials_config))
+
 ### setup every collection with default
 setupDefaultConfig( mongo_config_global, 					default_global_config )
 setupDefaultConfig( mongo_config_data_endpoints, 	default_data_endpoints_config )
 setupDefaultConfig( mongo_config_data_styles, 		default_data_styles_config )
 setupDefaultConfig( mongo_config_routes, 					default_routes_config )
+setupDefaultConfig( mongo_config_socials, 				default_socials_config )
 
 
 

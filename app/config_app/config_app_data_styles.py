@@ -4,6 +4,8 @@ from . import version
 
 default_data_styles_config = [
 
+	### TO DO --> ADD OPTIONS FOR EACH VIEW 
+
 	### - - - - - - - - - - - - - - - ###
 	### FILTERS
 	### - - - - - - - - - - - - - - - ###
