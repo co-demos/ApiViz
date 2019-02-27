@@ -36,11 +36,10 @@ try :
 
 	os.environ["JWT_SECRET_KEY"]			= JWT_SECRET_KEY
 
-	os.environ["DOMAIN_NAME"]					= DOMAIN_NAME
-	os.environ["DOMAIN_ROOT"]					= DOMAIN_ROOT
-	os.environ["DOMAIN_PORT"]					= DOMAIN_PORT
-
-	os.environ["SERVER_NAME"]					= SERVER_NAME
+	# os.environ["DOMAIN_ROOT"]					= DOMAIN_ROOT
+	# os.environ["DOMAIN_PORT"]					= DOMAIN_PORT
+	# os.environ["SERVER_NAME"]					= SERVER_NAME
+	# os.environ["DOMAIN_NAME"]					= DOMAIN_NAME
 	os.environ["SERVER_NAME_TEST"]		= SERVER_NAME_TEST
 
 	try : 

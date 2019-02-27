@@ -17,10 +17,11 @@ debug = True
 
 
 @click.command()
-@click.option('--mode', default="default", 	nargs=1,	help="The <mode> you need to run the app : default, testing, production" )
-@click.option('--host', default="None", 		nargs=1,	help="The <host> name you want the app to run on : <IP_NUMBER> " )
-@click.option('--port', default="None", 		nargs=1,	help="The <port> number you want the app to run on : <PORT_NUMBER>")
-def app_runner(mode, host, port) :
+@click.option('--mode', 	default="default", 		nargs=1,	help="The <mode> you need to run the app : default, testing, production" )
+@click.option('--host', 	default="localhost", 	nargs=1,	help="The <host> name you want the app to run on : <IP_NUMBER> " )
+@click.option('--port', 	default="8100", 			nargs=1,	help="The <port> number you want the app to run on : <PORT_NUMBER>")
+@click.option('--https', 	default="false", 			nargs=1,	help="The <https> mode you want the app to run on : true | false")
+def app_runner(mode, host, port, https) :
 	"""
 	app_runner
 
@@ -33,9 +34,15 @@ def app_runner(mode, host, port) :
 
 	### WARNING : CLIck will treat every input as string as defaults values are string too
 	print "\n=== CUSTOM CONFIG FROM CLI ===\n"
-	print "=== mode : ", mode
-	print "=== host : ", host
-	print "=== port : ", port
+	print "=== mode 	: ", mode
+	print "=== host 	: ", host
+	print "=== port 	: ", port
+	print "=== https 	: ", https
+
+	if https == "true" : 
+		http_mode = "https"
+	else : 
+		http_mode = "http"
 
 	### apply / overwrites host configuration
 	if mode != "default" : 
@@ -44,25 +51,17 @@ def app_runner(mode, host, port) :
 		config_name = os.getenv('FLASK_CONFIGURATION', 'default') ### 'default' for local dev
 		print "=== config_name : ", config_name
 
+	### SET UP ENV VARS FROM CLI 
+	os.environ["DOMAIN_ROOT"]	= host
+	os.environ["DOMAIN_PORT"]	= port
+	os.environ["SERVER_NAME"]	= host + ":" + port
+	os.environ["DOMAIN_NAME"]	= http_mode + "://" + host + ":" + port
+
 	### create app by importing app.__init__
 	from app import app
 
-	### apply / overwrites host configuration
-	# app_host = app.config["DOMAIN_ROOT"]
-	if host == "None" : 
-		app_host 	= app.config["DOMAIN_ROOT"]
-	else : 
-		app_host 	= host
-
-	### apply / overwrites port configuration
-	# app_port = int(app.config["DOMAIN_PORT"])
-	if port == "None" : 
-		app_port 	= int(app.config["DOMAIN_PORT"])
-	else : 
-		app_port 	= port
-
 	### simple flask runner
-	app.run( debug=debug, host=app_host, port=app_port, threaded=True )
+	app.run( debug=debug, host=host, port=port, threaded=True )
 
 
 
@@ -78,13 +77,3 @@ if __name__ == '__main__':
 	"""
 
 	app_runner()
-
-	# print "= "*50
-	# print "= = = RERUN FLASK APP = = ="
-	# print "= "*50
-
-	# app_port = int(app.config["DOMAIN_PORT"])
-	# app_host = app.config["DOMAIN_ROOT"]
-
-	# # simple flask runner
-	# app.run( debug=debug, host=app_host, port=app_port, threaded=True )

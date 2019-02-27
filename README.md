@@ -49,30 +49,47 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 	sudo pip install -r requirements.txt
 	```
 
-1. __if you encounter problems installing the requirements try to install the 'cryptography' library following those steps : [install crypto]__
+1. **optional** : _if you encounter problems installing the requirements try to install the 'cryptography' library following those steps : _
 
 	```sh
+	# install crypto
 	pip install cryptography --global-option=build_ext --global-option="-L/usr/local/opt/openssl/lib" --global-option="-I/usr/local/opt/openssl/include"
 	```
 
-1. **update the `app/config_app/config_secret_vars_example.py` file** with your mongoDB URI (if you're not using default mongoDB connection)
+1. **optional** : _update the `app/config_app/config_secret_vars_example.py` file with your mongoDB URI (if you're not using default mongoDB connection_
+	>
 
-1. **got to your `/cis` folder and run :**
+1. **Go to your app folder and run :**
 
 	```sh
-	python run_apiviz.py --mode=testing
+	python run_apiviz.py
 	````
+1. **optional** : you can also use some variables in the command line : 
+	```sh
+	# get the list of available CLI options
+	python run_apiviz.py --help
+
+	# for example : run with a custom port number in testing mode
+	pythom run_apiviz.py --port=8200 --mode=testing
+	```
 
 1. **Install Node.js and npm**
+	>
+
 1. **Build the front-end**
 	
 	```sh
 	cd app/frontend
 	npm install
+
+	# build the bundle.js
 	npm run build
+
+	# you can also build and watch the bundle.js
+	npm run watch
 	```
 
-1. (**if you encounter problems while building try this**)
+1. **optional** : _if you encounter problems while building try this_
 	
 	```sh
 	rm -rf app/frontend/node_modules
