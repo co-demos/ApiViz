@@ -67,10 +67,9 @@ export const storeGenerator = new Vuex.Store({
     strict: true,
     state: {
         user: {
-            userName: '',
-            userSurname: '',
-            isLoggedin: false,
-            isVerified: false
+            infos: undefined,
+            role: undefined,
+            isLoggedin: false
         },
         jwt:undefined,
         config:{},
@@ -158,6 +157,16 @@ export const storeGenerator = new Vuex.Store({
         },
         setConfig (state, {configType,configResult}) {
             state.config[configType] = (configResult && configResult.data && configResult.data.app_config) ? configResult.data.app_config : ''
+        },
+        setTokens (state, {tokens}) {
+            state.jwt = (tokens && tokens.access_token && tokens.refresh_token) ? tokens : undefined
+        },
+        setInfos (state, {infos}) {
+            state.user.infos = (infos && infos.email) ? infos : undefined
+            state.user.isLoggedin = (infos && infos.email) ? true : false
+        },
+        setRole (state, {role}) {
+            state.user.role = (typeof role === 'string') ? role : undefined
         }
     },
     actions: {
@@ -283,6 +292,21 @@ export const storeGenerator = new Vuex.Store({
           axios
             .get(apiConfig.rootURL+'/config/endpoints')
             .then(response => commit('setConfig', {configType:'endpoints',configResult:response}) )
+        },
+        saveLoginInfos({commit}, {APIresponse}){
+          let r = APIresponse
+          let tokens = (r && r.data && r.data.tokens) ? r.data.tokens : undefined
+          let infos = (r && r.data && r.data.data && r.data.data.infos) ? r.data.data.infos : undefined
+          let role = (r && r.data && r.data.data && r.data.data.auth && r.data.data.auth.role) ? r.data.data.auth.role : undefined
+
+          commit('setTokens', {tokens})
+          commit('setInfos', {infos})
+          commit('setRole', {role})
+        },
+        logout({commit}){
+          commit('setTokens', {})
+          commit('setInfos', {})
+          commit('setRole', {})
         }
     }
 })
