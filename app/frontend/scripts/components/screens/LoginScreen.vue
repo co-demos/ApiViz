@@ -8,76 +8,53 @@
 
         		<div class="container has-text-centered">
 
-        			<div class="column is-4 is-offset-4">
+        			<div class="column is-4 is-offset-4" v-if="!user.isLoggedin">
 
 
-        				<!-- {% include "elements/flash-messages.html"%} -->
-
-
-        				<!-- {# <h3 class="title has-text-grey">Login</h3> #} -->
         				<p class="subtitle has-text-grey">Vous avez déjà un compte ?</p>
         				<h3 class="title has-text-grey">Se connecter</h3>
 
-        				<!-- {# <p class="subtitle has-text-grey">Vous connecter à l'espace pro</p> #} -->
-
         				<div class="box">
-
-
-                <FormLogin/>
-
-
+                    <FormLogin/>
         				</div>
 
-
         				<p class="has-text-grey">
-        					<a href="/register">créer un compte</a> &nbsp;·&nbsp;
-        					<a href="/forgot-password" disabled>password oublié ?</a> &nbsp;·&nbsp;
-        					<a href="/help" disabled>besoin d'aide ?</a>
+        					<a href="/app/register">créer un compte</a> &nbsp;·&nbsp;
+        					<a href="/app/forgot-password" disabled>password oublié ?</a> &nbsp;·&nbsp;
         				</p>
-
 
 
         				<br>
 
 
-
-        				<!-- {# <div class="is-divider" data-content="pas encore de compte ?"></div> #} -->
         				<p class="subtitle has-text-grey">Pas encore de compte ?</p>
-
         				<h3 class="title has-text-grey">Enregistrez-vous</h3>
 
         				<div class="box">
-
         					<div class="content is-size-7">
         						<p>
-        							Profitez d’un compte sur la plateforme,
-        							découvrez les fonctionnalités régulièrement enrichies et
+        							Profitez d’un compte sur la plateforme, et
         							participez à l’amélioration du site.
         						</p>
         					</div>
         					<a 	id="btn_register"
         						class="button is-primary is-large is-outlined is-fullwidth tooltip is-tooltip-right is-tooltip-multiline"
-        						data-tooltip="Le site est-il agréable à utiliser ? Vous avez des idées pour améliorer le moteur de recherche ? Certains boutons ne fonctionnent pas ?
-        										Faites-nous part de vos retours et suggestions"
+        						data-tooltip="Le site est-il agréable à utiliser ? Vous avez des idées pour améliorer le moteur de recherche ? Certains boutons ne fonctionnent pas ?"
         						href="/register" >
-        						<strong>Devenez beta-testeur</strong>
+        						<strong>S'inscrire</strong>
         					</a>
-        					<!-- {# <br> #} -->
-        					<!-- {# <div class="content is-size-7"> #}
-        						{# <p>
-        							Profitez d’un compte sur la plateforme,
-        							découvrez les fonctionnalités régulièrement enrichies et
-        							participez à l’amélioration du site.
-        						</p> #}
-        						{# <p>
-        							Le site est-il agréable à utiliser ? Vous avez des idées pour améliorer le moteur de recherche ? Certains boutons ne fonctionnent pas ?
-        						</p> #}
-        						{# <p>
-        							Faites-nous part de vos retours et suggestions
-        						</p> #}
-        					{# </div> #} -->
-        				</div>
+                </div>
+
         			</div>
+
+              <div class="column is-4 is-offset-4" v-if="user.isLoggedin">
+                <p class="subtitle has-text-grey">Bonjour {{user.infos.email}}</p>
+
+                <div class="box">
+                    <FormLogin/>
+                </div>
+
+              </div>
         		</div>
         	</div>
         </section>
