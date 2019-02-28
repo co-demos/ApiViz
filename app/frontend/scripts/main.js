@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router'
+import VeeValidate from 'vee-validate'
 
+Vue.use(VeeValidate);
 Vue.use(VueRouter)
 
 const SOURCE_FILTER_NAME = 'source_';

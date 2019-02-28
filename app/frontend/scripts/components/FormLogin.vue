@@ -1,20 +1,14 @@
 <template>
     <div>
 
-      <!-- {# -->
-      <!-- <figure class="avatar">
-      	<img src="https://placehold.it/128x128">
-      </figure> -->
-      <!-- #} -->
+      <form v-on:submit.prevent="sendLoginForm" name="form" v-if="!user.isLoggedin">
+        <span>{{ this.customformError }}</span>
 
-      <form action="" method="POST" name="form">
-
-      	<!-- {{ form.hidden_tag() }} -->
-      	<!-- {# {{ form.csrf_token }} #} -->
 
       	<div class="field">
       		<div class="control has-icons-left">
-            <input type="email" name="userEmail" value="">
+            <input v-validate="'required|email'" name="userEmail" type="email" v-model="userEmail">
+            <span>{{ errors.first('userEmail') }}</span>
       			<span class="icon is-small is-left">
       				<i class="fas fa-envelope"></i>
       			</span>
@@ -23,66 +17,75 @@
 
       	<div class="field">
       		<div class="control has-icons-left">
-      			<input type="password" name="userPassword" value="">
+            <input v-validate="'required'" name="userPassword" type="password" v-model="userPassword">
+            <span>{{ errors.first('userPassword') }}</span>
       			<span class="icon is-small is-left">
       				<i class="fas fa-key"></i>
       			</span>
       		</div>
       	</div>
 
-
       	<div class="field">
           <input type="checkbox" name="userRememberMe" value="">
           <label for="checkbox">remember me</label>
-      		<!-- {{ form.userRememberMe }}
-      		{{ form.userRememberMe.label }} -->
       	</div>
 
 
-      	<button class="button is-block is-primary is-large is-fullwidth" type="submit">
+      	<button class="button is-block is-primary is-large is-fullwidth" type="submit" v-model="userRememberMe">
       		Se connecter
       	</button>
 
-
-      	<!-- {# <div class="field ">
-      		<div class="control is-large has-text-centered is-fullwidth">
-      			<label 	for="postLogin"
-      					class="button is-block is-primary is-large">
-      				<span>
-      					s'enregistrer
-      				</span>
-      			</label>
-      			<input 	id="postLogin"
-      					class="is-hidden"
-      					type="submit"
-      				>
-      			</input>
-      		</div>
-      	</div>
-      	#} -->
-
       </form>
+
+      <button class="button is-block is-primary is-large is-fullwidth" type="submit" v-if="user.isLoggedin" @click="sendLogout">
+        Se deconnecter
+      </button>
+
     </div>
 </template>
 
 <script>
 import {mapState} from 'vuex'
+import axios from 'axios';
+import { apiConfig } from '../config/api.js';
+
 
 export default {
-    props: [
-        'logo', 'brand'
-    ],
-
+    data: function () {
+      return {
+        userEmail: '',
+        userPassword: '',
+        userRememberMe: true,
+        customformError: ''
+      }
+    },
     computed: mapState({
         user: 'user'
     }),
-
     methods: {
-        goBack(e){
-            e.preventDefault()
-            this.$router.back()
-        }
+        sendLoginForm(e){
+          this.customformError = ''
+          e.preventDefault()
+          axios
+            .post(apiConfig.toktokURL+'/auth/login/',
+            {
+              email:this.userEmail,
+              pwd:this.userPassword
+            })
+            .catch( (error) => {
+              console.log(error)
+              this.userPassword = ''
+              this.customformError = 'Login failed'
+            })
+            .then(response => this.$store.dispatch('saveLoginInfos',{APIresponse:response}) )
+          this.userPassword = ''
+        },
+        sendLogout(e){
+          e.preventDefault()
+          this.userEmail = ''
+          this.userPassword = ''
+          this.$store.dispatch('logout')
+        },
     }
-
 }
 </script>
