@@ -160,6 +160,10 @@ def config_global(collection, doc_id=None):
 	token 	= request.args.get('token', 	default=None, 		type=str)
 	log_app.debug("config app route / as_list : %s", as_list )
 
+	### filter out field arg to unique identifiers fields in documents
+	if field not in ['_id', 'field'] : 
+		field = 'field'
+		
 	### build query if any 
 	query = {}
 	if doc_id : 
