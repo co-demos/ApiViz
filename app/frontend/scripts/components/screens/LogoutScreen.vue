@@ -14,7 +14,7 @@
                 <p class="subtitle has-text-grey">avec succes</p>
         				<p class="has-text-grey">
 
-                  <button class="button is-block is-primary is-large is-fullwidth" type="submit" href="/app/login">Se re-connecter</button>
+                  <router-link class="button is-block is-primary is-large is-fullwidth" type="submit" :to="{ name: 'login'}">Se re-connecter</router-link>
 
                 </p>
 

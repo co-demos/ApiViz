@@ -19,13 +19,11 @@
         				</div>
 
         				<p class="has-text-grey">
-        					<a href="/app/register">créer un compte</a> &nbsp;·&nbsp;
-        					<a href="/app/forgot-password" disabled>password oublié ?</a> &nbsp;·&nbsp;
+                  <router-link :to="{ name: 'register'}">créer un compte</router-link>&nbsp;&nbsp;
+        					<router-link :to="{ name: 'forgot-password'}">password oublié ?</router-link>&nbsp;&nbsp;
         				</p>
 
-
         				<br>
-
 
         				<p class="subtitle has-text-grey">Pas encore de compte ?</p>
         				<h3 class="title has-text-grey">Enregistrez-vous</h3>
@@ -37,12 +35,9 @@
         							participez à l’amélioration du site.
         						</p>
         					</div>
-        					<a 	id="btn_register"
-        						class="button is-primary is-large is-outlined is-fullwidth tooltip is-tooltip-right is-tooltip-multiline"
-        						data-tooltip="Le site est-il agréable à utiliser ? Vous avez des idées pour améliorer le moteur de recherche ? Certains boutons ne fonctionnent pas ?"
-        						href="/register" >
-        						<strong>S'inscrire</strong>
-        					</a>
+                  <router-link id="btn_register" class="button is-primary is-large is-outlined is-fullwidth tooltip is-tooltip-right is-tooltip-multiline" :to="{ name: 'register'}">
+                    <strong> S'inscrire </strong>
+                  </router-link>
                 </div>
 
         			</div>
