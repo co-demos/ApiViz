@@ -7,6 +7,7 @@ import { BRAND_DATA } from '../config/brand.js';
 export const userRoutesGenerator = function(store){
   return [
       {
+          name: 'login',
           path: '/app/login',
           component: LoginScreen,
           props(route){
@@ -20,6 +21,7 @@ export const userRoutesGenerator = function(store){
           }
       },
       {
+          name: 'register',
           path: '/app/register',
           component: RegisterScreen,
           props(route){
@@ -33,6 +35,7 @@ export const userRoutesGenerator = function(store){
           }
       },
       {
+          name: 'logout',
           path: '/app/logout',
           component: LogoutScreen,
           props(route){
