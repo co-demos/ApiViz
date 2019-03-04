@@ -84,6 +84,7 @@ export default {
           this.userEmail = ''
           this.userPassword = ''
           this.$store.dispatch('logout')
+          this.$router.push('logout')
         },
     }
 }
