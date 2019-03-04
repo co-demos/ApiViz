@@ -74,7 +74,6 @@ export default {
             })
             .catch( (error) => {
               console.log(error)
-              this.userPassword = ''
               this.customformError = 'Login failed'
             })
             .then(response => this.$store.dispatch('saveLoginInfos',{APIresponse:response}) )
