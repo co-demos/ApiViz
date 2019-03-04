@@ -1,4 +1,5 @@
 import LoginScreen from '../components/screens/LoginScreen.vue'
+import LogoutScreen from '../components/screens/LogoutScreen.vue'
 import RegisterScreen from '../components/screens/RegisterScreen.vue'
 
 import { BRAND_DATA } from '../config/brand.js';
@@ -30,21 +31,20 @@ export const userRoutesGenerator = function(store){
               console.info('beforeEnter /register')
               next()
           }
+      },
+      {
+          path: '/app/logout',
+          component: LogoutScreen,
+          props(route){
+              return {
+                  ...BRAND_DATA
+              }
+          },
+          beforeEnter(to, from, next){
+              console.info('beforeEnter /logout')
+              next()
+          }
       }
-      // ,
-      // {
-      //     path: '/app/logout',
-      //     component: LoginScreen,
-      //     props(route){
-      //         return {
-      //             ...BRAND_DATA
-      //         }
-      //     },
-      //     beforeEnter(to, from, next){
-      //         console.info('beforeEnter /logout')
-      //         next()
-      //     }
-      // },
       // {
       //     path: '/app/preferences/user_infos',
       //     component: LoginScreen,
