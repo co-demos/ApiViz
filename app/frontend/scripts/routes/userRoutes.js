@@ -1,7 +1,6 @@
 import LoginScreen from '../components/screens/LoginScreen.vue'
 import LogoutScreen from '../components/screens/LogoutScreen.vue'
 import RegisterScreen from '../components/screens/RegisterScreen.vue'
-import RegisterConfirmEmailScreen from '../components/screens/RegisterConfirmEmailScreen.vue'
 
 import axios from 'axios';
 import { apiConfig } from '../config/api.js';
