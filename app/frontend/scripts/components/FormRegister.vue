@@ -130,7 +130,7 @@ export default {
             }else{
               // if the form looks good, we send it to the backend
               axios
-                .post(apiConfig.toktokURL+'/usr/register/',
+                .post(apiConfig.toktokURL+'/usr/register',
                 {
                   name: this.userName,
                   surname: this.userSurname,
@@ -149,7 +149,7 @@ export default {
                 {
                   // in case we catch something, let's display it for easier debug
                   try {
-                    let msg = (error.response.data && error.response.data.msg) ? ' - ' + error.response.data.msg : ''
+                    let msg = (error.response && error.response.data && error.response.data.msg) ? ' - ' + error.response.data.msg : ''
                     switch (error.response.status) {
                       case 401:
                         this.customformError = 'Register failed' + msg

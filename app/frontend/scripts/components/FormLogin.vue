@@ -67,7 +67,7 @@ export default {
           this.customformError = ''
           e.preventDefault()
           axios
-            .post(apiConfig.toktokURL+'/auth/login/',
+            .post(apiConfig.toktokURL+'/auth/login',
             {
               email:this.userEmail,
               pwd:this.userPassword
