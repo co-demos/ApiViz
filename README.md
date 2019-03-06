@@ -176,7 +176,9 @@ Then, you can login with your admin user which can change settings of other user
 
 #### Contacts - maintainance :
 
-- [Julien Paris](<mailto:codemos.infos@gmail.com>) (aka [JPy](https://twitter.com/jparis_py) on Twitter)
+- [Julien Paris](<mailto:codemos.infos@gmail.com>) (aka [JPy](https://github.com/JulienParis) on Github)
+- [Guillaume Lancrenon](<mailto:codemos.infos@gmail.com>) (aka [Guillim](https://github.com/guillim) on Github)
+
 
 -------
 
@@ -194,16 +196,4 @@ Then, you can login with your admin user which can change settings of other user
 
 ![alt text](./screenshots/cis-front-register.png "register")
 
--------
-
-<h4 align=center><br>home for connected user </h4>
-
-![alt text](./screenshots/cis-front-user-index.png "index")
-
-
--------
-
-<h4 align=center><br>search engine for connected user</h4>
-
-![alt text](./screenshots/cis-front-user-search.png "search")
 
