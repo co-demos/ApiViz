@@ -66,7 +66,8 @@ const store = storeGenerator
 
 import { searchRoutesGenerator } from './routes/searchRoutes.js';
 import { userRoutesGenerator } from './routes/userRoutes.js';
-const routes = [...searchRoutesGenerator(store),...userRoutesGenerator(store)]
+import { dynamicRoutesGenerator } from './routes/dynamicRoutes.js';
+const routes = [...searchRoutesGenerator(store),...userRoutesGenerator(store),...dynamicRoutesGenerator(store)]
 
 const router = new VueRouter({
     mode: 'history',

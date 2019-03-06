@@ -307,6 +307,12 @@ export const storeGenerator = new Vuex.Store({
           commit('setTokens', {})
           commit('setInfos', {})
           commit('setRole', {})
+        },
+        getRouteConfig({commit}) {
+          return axios
+            .get(apiConfig.rootURL+'/config/routes?as_list=true')
+            .then(response => { return response })
+            .catch( err => { console.log('err in getRouteConfig',err); })
         }
     }
 })
