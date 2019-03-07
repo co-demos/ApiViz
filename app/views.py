@@ -137,7 +137,7 @@ def checkJWT(token, url_check="http://localhost:4100/api/auth/tokens/confirm_acc
 def config_global(collection, doc_id=None):
 	"""
 	Main route to GET and POST/PUT/DELETE
-	choices 	: global | endpoints | styles | routes
+	choices 	: global | endpoints | styles | routes | socials
 	variables : <collection> and <doc_id>
 	arguments : as_list (bool), field (str)
 	example 	: http://localhost:8100/backend/api/config?as_list=true
@@ -148,7 +148,7 @@ def config_global(collection, doc_id=None):
 	log_app.debug("config app route / doc_id : %s", doc_id )
 
 	### target right config collection 
-	if collection in ["global" , "endpoints" , "styles" , "routes" ] : 
+	if collection in ["global" , "endpoints" , "styles" , "routes", "socials" ] : 
 		mongoColl = mongoConfigColls[collection] ### imported from . (and from there from .api.__init__ )
 	else : 
 		log_app.warning("error : -%s- is not a valid config collection (redirect)", collection)

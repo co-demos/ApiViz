@@ -52,6 +52,8 @@ default_routes_config = [
 			"dynamic_template"	: 'DynamicMap',
 			"has_navbar"				: True,
 			"has_footer"				: True,
+			"deactivate_btn"		: False,
+			"is_visible"				: True,
 				"is_default"				: True
 		},
 		{ "field"							: "carto-sonum-liste",
@@ -71,6 +73,8 @@ default_routes_config = [
 			"dynamic_template"	: 'DynamicList',
 			"has_navbar"				: True,
 			"has_footer"				: True,
+			"deactivate_btn"		: False,
+			"is_visible"				: True,
 				"is_default"				: True
 		},
 		{ "field"							: "carto-sonum-detail",
@@ -90,6 +94,8 @@ default_routes_config = [
 			"dynamic_template"	: 'DynamicDetail',
 			"has_navbar"				: True,
 			"has_footer"				: True,
+			"deactivate_btn"		: False,
+			"is_visible"				: True,
 				"is_default"				: True
 		},
 
@@ -97,7 +103,7 @@ default_routes_config = [
 		{ "field"							: "xp-sonum-carte",
 			"route_title"				: u"Rechercher",
 			"route_description"	: u"Page de recherche d'Apiviz",
-			"is_project_homepage": True,
+			"is_project_homepage": False,
 			"in_main_navbar"		: True,
 			"in_footer"					: False,
 			"urls"		    			: ["/xp-sonum/carte"],
@@ -111,12 +117,14 @@ default_routes_config = [
 			"dynamic_template"	: 'DynamicMap',
 			"has_navbar"				: True,
 			"has_footer"				: True,
+			"deactivate_btn"		: False,
+			"is_visible"				: True,
 				"is_default"				: True
 		},
 		{ "field"							: "xp-sonum-liste",
 			"route_title"				: u"Rechercher",
 			"route_description"	: u"Page de recherche d'Apiviz",
-			"is_project_homepage": False,
+			"is_project_homepage": True,
 			"in_main_navbar"		: False,
 			"in_footer"					: False,
 			"urls"		    			: ["/xp-sonum/liste"],
@@ -130,6 +138,8 @@ default_routes_config = [
 			"dynamic_template"	: 'DynamicList',
 			"has_navbar"				: True,
 			"has_footer"				: True,
+			"deactivate_btn"		: False,
+			"is_visible"				: True,
 				"is_default"				: True
 		},
 		{ "field"							: "xp-sonum-detail",
@@ -149,6 +159,8 @@ default_routes_config = [
 			"dynamic_template"	: 'DynamicDetail',
 			"has_navbar"				: True,
 			"has_footer"				: True,
+			"deactivate_btn"		: False,
+			"is_visible"				: True,
 				"is_default"				: True
 		},
 
