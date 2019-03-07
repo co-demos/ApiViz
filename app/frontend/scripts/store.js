@@ -156,7 +156,7 @@ export const storeGenerator = new Vuex.Store({
             state.geolocByProjectId = new Map([...state.geolocByProjectId, ...geolocByProjectId])
         },
         setConfig (state, {configType,configResult}) {
-            state.config[configType] = (configResult && configResult.data && configResult.data.app_config) ? configResult.data.app_config : ''
+            state.config[configType] = configResult
         },
         setTokens (state, {tokens}) {
             state.jwt = (tokens && tokens.access_token && tokens.refresh_token) ? tokens : undefined
@@ -279,19 +279,20 @@ export const storeGenerator = new Vuex.Store({
                 commit('addGeolocs', {geolocByProjectId})
             });
         },
-        getConfig({commit}) {
-          axios
-            .get(apiConfig.rootURL+'/config/global')
-            .then(response => commit('setConfig', {configType:'global',configResult:response}) )
-          axios
-            .get(apiConfig.rootURL+'/config/styles')
-            .then(response => commit('setConfig', {configType:'styles',configResult:response}) )
-          axios
-            .get(apiConfig.rootURL+'/config/routes?as_list=true')
-            .then(response => commit('setConfig', {configType:'routes',configResult:response}) )
-          axios
-            .get(apiConfig.rootURL+'/config/endpoints')
-            .then(response => commit('setConfig', {configType:'endpoints',configResult:response}) )
+        getConfigAll({dispatch}) {
+          dispatch('getConfigType',{configType:'global',configTypeEndpoint:'global'})
+          dispatch('getConfigType',{configType:'styles',configTypeEndpoint:'styles'})
+          dispatch('getConfigType',{configType:'routes',configTypeEndpoint:'routes?as_list=true'})
+          dispatch('getConfigType',{configType:'endpoints',configTypeEndpoint:'endpoints'})
+        },
+        getConfigType({commit},{configType,configTypeEndpoint}) {
+          return axios
+            .get(apiConfig.rootURL+'/config/'+configTypeEndpoint)
+            .then(response => {
+              let app_config = (response && response.data && response.data.app_config) ? response.data.app_config : undefined
+              commit('setConfig', {configType:configType,configResult:app_config}); return app_config
+            })
+            .catch( err => console.log('there was an error trying to fetch some configuration file',err) )
         },
         saveLoginInfos({commit}, {APIresponse}){
           let r = APIresponse
@@ -308,11 +309,16 @@ export const storeGenerator = new Vuex.Store({
           commit('setInfos', {})
           commit('setRole', {})
         },
-        getRouteConfig({commit}) {
-          return axios
-            .get(apiConfig.rootURL+'/config/routes?as_list=true')
-            .then(response => { return response })
-            .catch( err => { console.log('err in getRouteConfig',err); })
-        }
+        getCurrentRouteConfig({dispatch},{currentRoute}) {
+          return dispatch('getConfigType',{configType:'routes',configTypeEndpoint:'routes?as_list=true'})
+          .then( response => {
+              try {
+                return response.find(function(r) {
+                    return r.urls.indexOf(currentRoute) !== -1;
+                });
+              } catch (e) { return undefined }
+          })
+          .catch( err => {console.log('error trying to getCurrentRouteConfig',err); return undefined} )
+        },
     }
 })

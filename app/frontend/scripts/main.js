@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         router,
         store,
         mounted: function () {
-          store.dispatch('getConfig');
+          store.dispatch('getConfigAll');
         },
         render: h => h( Vue.component('router-view') )
     })
