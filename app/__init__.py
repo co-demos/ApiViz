@@ -6,9 +6,8 @@ front app du Carrefour des Innovations Sociales :
 -------------------------------------------------
 version : 0.1
 -------------------------------------------------
-- framework back 	: flask
-- landing page 		: pure html + Bulma
-- logged pages 		: Vue.js ?
+- framework back : flask
+- pages : Vue.js
 
 """
 
@@ -61,16 +60,6 @@ except:
 
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-### SCHEDULER IMPORT  
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-
-### no need for now 
-# from flask_apscheduler import APScheduler
-# from flask_apscheduler.auth import HTTPBasicAuth
-
-
-
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### MONGO DB IMPORTS 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
@@ -118,17 +107,6 @@ if config_name == "default" or config_name == "production" or config_name == "te
 	log_app.info(	">>> APP.CONFIG / to understand what the fucking fuck is goin on ... : \n %s \n", 
 		pformat({ k : v for k,v in  app.config.iteritems() }) )
 print
-
-
-
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-### CSRF 
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-
-# deprecated --> messing with form.validate_on_submit()
-# csrf = CSRFProtect(app)
-# csrf.init_app(app)
-
 
 
 

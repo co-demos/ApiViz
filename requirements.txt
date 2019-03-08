@@ -3,6 +3,7 @@ colorlog==4.0.2
 Flask==1.0.2
 Flask-PyMongo==2.2.0
 Flask-WTF==0.14.2
+gunicorn==19.9.0
 itsdangerous==1.1.0
 Jinja2==2.10
 MarkupSafe==1.1.1
