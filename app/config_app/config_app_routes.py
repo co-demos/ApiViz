@@ -13,6 +13,7 @@ default_routes_config = [
 	{ "field"							: "app-fr-home",
 		"route_title"				: u"Home",
 		"route_description"	: u"apiviz default home page",
+		"is_global_app_homepage" : True,
 		"is_project_homepage": True,
 		"in_main_navbar"		: False,
 		"in_footer"					: False,
