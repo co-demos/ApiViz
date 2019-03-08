@@ -30,16 +30,9 @@ import	json
 from 	pprint import pprint, pformat
 from	bson import json_util
 from	bson.objectid import ObjectId
-from	bson.json_util import dumps
-import	itertools
-import	unidecode
 import	re
 from	functools import wraps
-# from   threading import Thread
-import	urllib2
-import	uuid
 
-import inspect
 
 # ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 # ### SET LOGGER 
@@ -66,21 +59,6 @@ except:
 
 
 
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-### FLASK-ADMIN IMPORT 
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-# from	flask_admin 	import Admin, AdminIndexView
-# from 	flask_admin.model import typefmt
-# from 	flask_admin.model.widgets import XEditableWidget
-
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-### CRYPTO IMPORT 
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-
-import  bcrypt
-import	jwt
-
-
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### SCHEDULER IMPORT  
@@ -97,9 +75,7 @@ import	jwt
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
 from	flask_pymongo import PyMongo ### flask_pymongo instead of flask.ext.pymongo
-# import 	pymongo
-# from 	pymongo import MongoClient
-# from 	pymongo import UpdateOne
+
 
 
 
@@ -146,19 +122,6 @@ print
 
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-### LOGIN MANAGER 
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-
-# from  	flask_login import 	LoginManager, login_user, logout_user, login_required, \
-# 							current_user
-
-# ### create login manager
-# login_manager 						= LoginManager()
-# login_manager.init_app(app)
-# login_manager.login_view 	= 'login'
-
-
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### CSRF 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
@@ -166,18 +129,6 @@ print
 # csrf = CSRFProtect(app)
 # csrf.init_app(app)
 
-
-
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-### EMAILING IMPORTS 
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-
-### TO DO : password forgotten 
-
-from	flask_mail import Mail, Message
-
-### set flask-email after config
-mail 	= Mail(app)
 
 
 
@@ -221,37 +172,6 @@ reboot_datetime = datetime.datetime.now().strftime("%Y-%m-%d-h%H-m%M-s%S")
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
 from . import views
-
-
-
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-### CREATE ADMIN MANAGER VIEWS 
-### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-# cf : https://github.com/flask-admin/flask-admin/blob/master/examples/pymongo/app.py
-
-
-# admin = Admin(	app, 
-# 				index_view=views.MyAdminIndexView(), 
-# 				name='back office',
-# 				# template_mode="bootstrap2"
-# 				)
-
-# # Add views in admin interface
-# admin.add_view( views.UserViewAdmin( mongo_users, 		'Users' ) )
-# admin.add_view( views.FeedbackAdmin( mongo_feedbacks, 	'Feedbacks' ) )
-# admin.add_view( 
-# 	views.ReferencedProjectCarrierFeedback(
-# 		mongo_join_message_referenced_project_carrier, 
-# 		u"Porteurs de projets référencés"
-# 	) 
-# )
-# admin.add_view( 
-# 	views.NotReferencedProjectCarrierFeedback(
-# 		mongo_join_message_not_referenced_project_carrier,
-# 		u"Porteurs de projets non-référencés"
-# 	)
-# )
-# admin.add_view( views.StructuresFeedback( mongo_join_message_structures, u"Structures" ) )
 
 
 
