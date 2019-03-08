@@ -150,7 +150,7 @@ default_data_endpoints_config = [
 		{ "field"     	  : "sonum_carto_data_API_filters",
 			"data_type" 		: "data",
 			"endpoint_type" : "filters",
-			"dataset-uri"		: "sonum-carto",
+			"dataset_uri"		: "sonum-carto",
 			"content"   	  : u"apiviz default API endpoint for navbar filters",
 			"root_url"			: "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc68328ed724cebd7fbf",
 			"args_options" 	: [
@@ -168,7 +168,7 @@ default_data_endpoints_config = [
 		{ "field"     	  : "sonum_carto_data_API_list",
 			"data_type" 		: "data",
 			"endpoint_type" : "list",
-			"dataset-uri"		: "sonum-carto",
+			"dataset_uri"		: "sonum-carto",
 			"content"   	  : u"apiviz default API endpoint for list results",
 			"root_url"			: "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc68328ed724cebd7fbf",
 			"args_options" 	: [
@@ -188,7 +188,7 @@ default_data_endpoints_config = [
 		{ "field"     	  : "sonum_carto_data_API_detail",
 			"data_type" 		: "data",
 			"endpoint_type" : "detail",
-			"dataset-uri"		: "sonum-carto",
+			"dataset_uri"		: "sonum-carto",
 			"content"   	  : u"apiviz default API endpoint for detailled results",
 			"root_url"			: "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc68328ed724cebd7fbf",
 			"args_options" 	: [
@@ -205,7 +205,7 @@ default_data_endpoints_config = [
 		# { "field"     	  : "sonum_carto_data_API_stats",
 		# 	"data_type" 		: "data",
 		# "endpoint_type" : "filters",
-		# 	"dataset-uri"		: "sonum-carto",
+		# 	"dataset_uri"		: "sonum-carto",
 		# 	"content"   	  : u"apiviz default API endpoint for stats results",
 		# 	"root_url"			: "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc68328ed724cebd7fbf",
 		# 	"args_options" 	: [
@@ -224,7 +224,7 @@ default_data_endpoints_config = [
 		{ "field"     	  : "sonum_carto_data_API_map",
 			"data_type" 		: "data",
 			"endpoint_type" : "map",
-			"dataset-uri"		: "sonum-carto",
+			"dataset_uri"		: "sonum-carto",
 			"content"   	  : u"apiviz default API endpoint for map results",
 			"root_url"			: "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc68328ed724cebd7fbf",
 			"args_options" 	: [
@@ -251,7 +251,7 @@ default_data_endpoints_config = [
 		{ "field"     	  : "sonum_xp_data_API_filters",
 			"data_type" 		: "data",
 			"endpoint_type" : "filters",
-			"dataset-uri"		: "sonum-xp",
+			"dataset_uri"		: "sonum-xp",
 			"content"   	  : u"apiviz default API endpoint for navbar filters",
 			"root_url"			: "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc7d328ed724cebd7fc0",
 			"args_options" 	: [
@@ -269,7 +269,7 @@ default_data_endpoints_config = [
 		{ "field"     	  : "sonum_xp_data_API_list",
 			"data_type" 		: "data",
 			"endpoint_type" : "list",
-			"dataset-uri"		: "sonum-xp",
+			"dataset_uri"		: "sonum-xp",
 			"content"   	  : u"apiviz default API endpoint for list results",
 			"root_url"			: "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc7d328ed724cebd7fc0",
 			"args_options" 	: [
@@ -289,7 +289,7 @@ default_data_endpoints_config = [
 		{ "field"     	  : "sonum_xp_data_API_detail",
 			"data_type" 		: "data",
 			"endpoint_type" : "detail",
-			"dataset-uri"		: "sonum-xp",
+			"dataset_uri"		: "sonum-xp",
 			"content"   	  : u"apiviz default API endpoint for detailled results",
 			"root_url"			: "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc7d328ed724cebd7fc0",
 			"args_options" 	: [
@@ -306,7 +306,7 @@ default_data_endpoints_config = [
 		# { "field"     	  : "sonum_carto_data_API_stats",
 		# 	"data_type" 		: "data",
 		# 	"endpoint_type" : "stat",
-		# 	"dataset-uri"		: "sonum-carto",
+		# 	"dataset_uri"		: "sonum-carto",
 		# 	"content"   	  : u"apiviz default API endpoint for stats results",
 		# 	"root_url"			: "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc7d328ed724cebd7fc0",
 		# 	"args_options" 	: [
@@ -325,7 +325,7 @@ default_data_endpoints_config = [
 		{ "field"     	  : "sonum_xp_data_API_map",
 			"data_type" 		: "data",
 			"endpoint_type" : "map",
-			"dataset-uri"		: "sonum-xp",
+			"dataset_uri"		: "sonum-xp",
 			"content"   	  : u"apiviz default API endpoint for map results",
 			"root_url"			: "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc7d328ed724cebd7fc0",
 			"args_options" 	: [
