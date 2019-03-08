@@ -10,7 +10,7 @@ default_routes_config = [
 	### PAGES HOME
 	### - - - - - - - - - - - - - - - - - ###
 
-	{ "field"							: "app-fr-home",
+	{ "field"							: "app_home_fr",
 		"route_title"				: u"Home",
 		"route_description"	: u"apiviz default home page",
 		"is_global_app_homepage" : True,
@@ -36,7 +36,7 @@ default_routes_config = [
 	### - - - - - - - - - - - - - - - - - ###
 
 	### DATASETS CARTO SONUM
-		{ "field"							: "carto-sonum-carte",
+		{ "field"							: "sonum_carto_carte",
 			"route_title"				: u"Rechercher",
 			"route_description"	: u"Page de recherche d'Apiviz",
 			"is_project_homepage": True,
@@ -49,7 +49,7 @@ default_routes_config = [
 				"app_version"  			: version,
 			"comment"						: u"Main search route in french",
 			"is_dynamic"				: True,
-			"dataset_uri"				: "sonum-carto",
+			"dataset_uri"				: "sonum_carto",
 			"dynamic_template"	: 'DynamicMap',
 			"has_navbar"				: True,
 			"has_footer"				: True,
@@ -57,7 +57,7 @@ default_routes_config = [
 			"is_visible"				: True,
 				"is_default"				: True
 		},
-		{ "field"							: "carto-sonum-liste",
+		{ "field"							: "sonum_carto_liste",
 			"route_title"				: u"Rechercher",
 			"route_description"	: u"Page de recherche d'Apiviz",
 			"is_project_homepage": False,
@@ -70,7 +70,7 @@ default_routes_config = [
 				"app_version"  			: version,
 			"comment"						: u"Main search route in french",
 			"is_dynamic"				: True,
-			"dataset_uri"				: "sonum-carto",
+			"dataset_uri"				: "sonum_carto",
 			"dynamic_template"	: 'DynamicList',
 			"has_navbar"				: True,
 			"has_footer"				: True,
@@ -78,7 +78,7 @@ default_routes_config = [
 			"is_visible"				: True,
 				"is_default"				: True
 		},
-		{ "field"							: "carto-sonum-detail",
+		{ "field"							: "sonum_carto_detail",
 			"route_title"				: u"Rechercher",
 			"route_description"	: u"Page de recherche d'Apiviz",
 			"is_project_homepage": False,
@@ -91,7 +91,7 @@ default_routes_config = [
 				"app_version"  			: version,
 			"comment"						: u"Main search route in french",
 			"is_dynamic"				: True,
-			"dataset_uri"				: "sonum-carto",
+			"dataset_uri"				: "sonum_carto",
 			"dynamic_template"	: 'DynamicDetail',
 			"has_navbar"				: True,
 			"has_footer"				: True,
@@ -101,7 +101,7 @@ default_routes_config = [
 		},
 
 	### DATASETS XP SONUM
-		{ "field"							: "xp-sonum-carte",
+		{ "field"							: "sonum_xp_carte",
 			"route_title"				: u"Rechercher",
 			"route_description"	: u"Page de recherche d'Apiviz",
 			"is_project_homepage": False,
@@ -114,7 +114,7 @@ default_routes_config = [
 				"app_version"  			: version,
 			"comment"						: u"Main search route in french",
 			"is_dynamic"				: True,
-			"dataset_uri"				: "sonum-xp",
+			"dataset_uri"				: "sonum_xp",
 			"dynamic_template"	: 'DynamicMap',
 			"has_navbar"				: True,
 			"has_footer"				: True,
@@ -122,7 +122,7 @@ default_routes_config = [
 			"is_visible"				: True,
 				"is_default"				: True
 		},
-		{ "field"							: "xp-sonum-liste",
+		{ "field"							: "sonum_xp_liste",
 			"route_title"				: u"Rechercher",
 			"route_description"	: u"Page de recherche d'Apiviz",
 			"is_project_homepage": True,
@@ -135,7 +135,7 @@ default_routes_config = [
 				"app_version"  			: version,
 			"comment"						: u"Main search route in french",
 			"is_dynamic"				: True,
-			"dataset_uri"				: "sonum-xp",
+			"dataset_uri"				: "sonum_xp",
 			"dynamic_template"	: 'DynamicList',
 			"has_navbar"				: True,
 			"has_footer"				: True,
@@ -143,7 +143,7 @@ default_routes_config = [
 			"is_visible"				: True,
 				"is_default"				: True
 		},
-		{ "field"							: "xp-sonum-detail",
+		{ "field"							: "sonum_xp_detail",
 			"route_title"				: u"Rechercher",
 			"route_description"	: u"Page de recherche d'Apiviz",
 			"is_project_homepage": False,
@@ -156,7 +156,7 @@ default_routes_config = [
 				"app_version"  			: version,
 			"comment"						: u"Main search route in french",
 			"is_dynamic"				: True,
-			"dataset_uri"				: "sonum-xp",
+			"dataset_uri"				: "sonum_xp",
 			"dynamic_template"	: 'DynamicDetail',
 			"has_navbar"				: True,
 			"has_footer"				: True,
@@ -171,7 +171,7 @@ default_routes_config = [
 	### - - - - - - - - - - - - - - - - - ###
 
 	### PAGES TOOLS
-	{ "field"							: "app-outils",
+	{ "field"							: "app_outils",
 		"route_title"				: u"Outils",
 		"route_description"	: u"Nos outils",
 		"is_project_homepage": False,
