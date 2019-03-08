@@ -146,11 +146,9 @@ from 	utils		import *
 # models :
 from 	models 	import *
 
-# set Anonymous user class
-# login_manager.anonymous_user = AnonymousUser
 
 # forms classes :
-from forms import * # LoginForm, UserRegisterForm, UserUpdateForm, UserHistoryAloesForm, RequestCabForm
+# from forms import * # LoginForm, UserRegisterForm, UserUpdateForm, UserHistoryAloesForm, RequestCabForm
 
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
