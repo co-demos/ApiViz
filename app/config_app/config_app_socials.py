@@ -11,6 +11,7 @@ default_socials_config = [
 		"app_version" : version,
     "help"        : u"Choose the twitter account for your ApiViz instance",
     "in_footer"  	: True,
+		"tooltip"    : [{"locale" : "fr", "text" : "notre page Twitter" }],
     "is_default"  : True
 	},
 
@@ -20,6 +21,7 @@ default_socials_config = [
 		"app_version" : version,
     "help"        : u"Choose the facebook account for your ApiViz instance",
     "in_footer"  	: True,
+		"tooltip"    : [{"locale" : "fr", "text" : "notre page sur Facebook" }],
     "is_default"  : True
 	},
 
@@ -29,6 +31,7 @@ default_socials_config = [
 		"app_version" : version,
     "help"        : u"Choose the github account for your ApiViz instance",
     "in_footer"  	: True,
+		"tooltip"    : [{"locale" : "fr", "text" : "notre page Github" }],
     "is_default"  : True
 	},
 

@@ -64,10 +64,10 @@ default_routes_config = [
 
 			"ui_options"        : {
 
-				"card_img_main" : { "field" : "",             "default" : "img_card",  "is_visible" : True  },
-				"card_img_top"  : { "field" : "",             "default" : None,        "is_visible" : False },
-				"card_color"    : { "value" : "",             "default" : "white", },
-				"text_color"    : { "value" : "black",        "default" : "black", },
+				"card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
+				"card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
+				"card_color"    : { "value" : "", "default" : "white", },
+				"text_color"    : { "value" : "", "default" : "black", },
 
 				"link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
 				"link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -79,21 +79,21 @@ default_routes_config = [
 				"block_data_links" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_1",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : []
 				},
 
 				"block_data_infos" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_2",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : []
 				},
 
 				"block_share" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_3",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : []
 				},
 
@@ -133,10 +133,10 @@ default_routes_config = [
 
 			"ui_options"				: {
 
-				"card_img_main" : { "field" : "",      "default" : "img_card",  "is_visible" : True  },
-				"card_img_top"  : { "field" : "",      "default" : None,        "is_visible" : False },
-				"card_color"    : { "value" : "",      "default" : "white", },
-				"text_color"    : { "value" : "black", "default" : "black", },
+				"card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
+				"card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
+				"card_color"    : { "value" : "", "default" : "white", },
+				"text_color"    : { "value" : "", "default" : "black", },
 
 				"link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
 				"link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -148,21 +148,21 @@ default_routes_config = [
 				"block_data_links" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_1",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : []
 				},
 
 				"block_data_infos" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_2",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : []
 				},
 
 				"block_share" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_3",
-					"title_block" : { "text" : "Partagez ce lieu", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "Partagez ce lieu", "is_visible" : False}],
 					"links"       : []
 				},
 
@@ -204,15 +204,13 @@ default_routes_config = [
 				"other_contents"  : [
 					{ "field"       : "services",        
 						"is_visible"  : True, 
-						"locale"      : "fr",
 						"position"    : "block_right_bottom_1", 
-						"title_block" : { "text" : "Services proposés", "is_visible" : False } 
+						"title_block" : [{ "locale" : "fr", "text" : "Services proposés", "is_visible" : False }],
 					},
 					{ "field"       : "infos_pratiques", 
 						"is_visible"  : True, 
-						"locale"      : "fr",
 						"position"    : "block_right_bottom_1", 
-						"title_block" : { "text" : "Informations pratiques", "is_visible" : False } 
+						"title_block" : [{ "locale" : "fr", "text" : "Informations pratiques", "is_visible" : False }],
 					},
 				],
 
@@ -220,10 +218,10 @@ default_routes_config = [
 
 			"ui_options"				: {
 
-				"card_img_main"  : { "field" : "",      "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
-				"card_img_top"   : { "field" : "",      "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
-				"card_color"     : { "value" : "white", "default" : "white", },
-				"text_color"     : { "value" : "black", "default" : "black", },
+				"card_img_main"  : { "field" : "", "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
+				"card_img_top"   : { "field" : "", "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
+				"card_color"     : { "value" : "", "default" : "white", },
+				"text_color"     : { "value" : "", "default" : "black", },
 				
 				"link_to_detail"   : { "is_visible" : False, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
 				"link_to_next"     : { "is_visible" : True,  "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -236,7 +234,7 @@ default_routes_config = [
 				"block_data_links" : {
 					"is_visible"  : True,
 					"position"    : "block_left_middle_2",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : [
 						{ "field" : "website", 
 						  "is_visible" : True, 
@@ -258,7 +256,7 @@ default_routes_config = [
 				"block_share" : {
 					"is_visible"  : True,
 					"position"    : "block_left_bottom_2",
-					"title_block" : { "text" : "Partagez ce lieu", "is_visible" : True},
+					"title_block" : [{ "locale" : "fr", "text" : "Partagez ce lieu", "is_visible" : True}],
 					"links"       : [
 						{ "link_type" : "share_page", 
 						  "is_visible" : True, 
@@ -322,10 +320,10 @@ default_routes_config = [
 
 			"ui_options"        : {
 
-				"card_img_main" : { "field" : "",             "default" : "img_card",  "is_visible" : True  },
-				"card_img_top"  : { "field" : "",             "default" : None,        "is_visible" : False },
-				"card_color"    : { "value" : "",             "default" : "white", },
-				"text_color"    : { "value" : "black",        "default" : "black", },
+				"card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
+				"card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
+				"card_color"    : { "value" : "", "default" : "white", },
+				"text_color"    : { "value" : "", "default" : "black", },
 
 				"link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
 				"link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -337,21 +335,21 @@ default_routes_config = [
 				"block_data_links" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_1",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : []
 				},
 
 				"block_data_infos" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_2",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : []
 				},
 
 				"block_share" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_3",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : []
 				},
 
@@ -392,10 +390,10 @@ default_routes_config = [
 
 			"ui_options"				: {
 
-				"card_img_main" : { "field" : "",      "default" : "img_card",  "is_visible" : True  },
-				"card_img_top"  : { "field" : "",      "default" : None,        "is_visible" : False },
-				"card_color"    : { "value" : "",      "default" : "white", },
-				"text_color"    : { "value" : "black", "default" : "black", },
+				"card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
+				"card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
+				"card_color"    : { "value" : "", "default" : "white", },
+				"text_color"    : { "value" : "", "default" : "black", },
 
 				"link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
 				"link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -407,21 +405,21 @@ default_routes_config = [
 				"block_data_links" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_1",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : []
 				},
 
 				"block_data_infos" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_2",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : []
 				},
 
 				"block_share" : {
 					"is_visible"  : False,
 					"position"    : "block_bottom_3",
-					"title_block" : { "text" : "Partagez ce lieu", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "Partagez ce lieu", "is_visible" : False}],
 					"links"       : []
 				},
 
@@ -452,7 +450,6 @@ default_routes_config = [
 			"dynamic_template"	: 'DynamicDetail',
 			"endpoint_type" 		: "detail",
 
-			
 			"contents_options"  : {
 				
 				"title"          : [{ "field" : "title",             "default" : "title",    "position" : "block_left_top_1",     "is_visible" : True,  "trim" : 0, "locale" : "fr" }],
@@ -465,15 +462,13 @@ default_routes_config = [
 				"other_contents"  : [
 					{ "field"       : "services",        
 						"is_visible"  : True, 
-						"locale"      : "fr",
 						"position"    : "block_right_bottom_1", 
-						"title_block" : { "text" : "Services proposés", "is_visible" : False } 
+						"title_block" : [{ "locale" : "fr", "text" : "Services proposés", "is_visible" : False }],
 					},
 					{ "field"       : "infos_pratiques", 
 						"is_visible"  : True, 
-						"locale"      : "fr",
 						"position"    : "block_right_bottom_1", 
-						"title_block" : { "text" : "Informations pratiques", "is_visible" : False } 
+						"title_block" : [{ "locale" : "fr", "text" : "Informations pratiques", "is_visible" : False }],
 					},
 				],
 
@@ -481,10 +476,10 @@ default_routes_config = [
 
 			"ui_options"				: {
 
-				"card_img_main"  : { "field" : "",      "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
-				"card_img_top"   : { "field" : "",      "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
-				"card_color"     : { "value" : "white", "default" : "white", },
-				"text_color"     : { "value" : "black", "default" : "black", },
+				"card_img_main"  : { "field" : "", "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
+				"card_img_top"   : { "field" : "", "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
+				"card_color"     : { "value" : "", "default" : "white", },
+				"text_color"     : { "value" : "", "default" : "black", },
 				
 				"link_to_detail"   : { "is_visible" : False, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
 				"link_to_next"     : { "is_visible" : True,  "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -497,7 +492,7 @@ default_routes_config = [
 				"block_data_links" : {
 					"is_visible"  : True,
 					"position"    : "block_left_middle_2",
-					"title_block" : { "text" : "", "is_visible" : False},
+					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
 					"links"       : [
 						{ "field" : "website", 
 						  "is_visible" : True, 
@@ -519,7 +514,7 @@ default_routes_config = [
 				"block_share" : {
 					"is_visible"  : True,
 					"position"    : "block_left_bottom_2",
-					"title_block" : { "text" : "Partagez ce lieu", "is_visible" : True},
+					"title_block" : [{ "locale" : "fr", "text" : "Partagez ce lieu", "is_visible" : True}],
 					"links"       : [
 						{ "link_type" : "share_page", 
 						  "is_visible" : True, 
