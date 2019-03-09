@@ -29,7 +29,6 @@ default_global_config = [
 			"is_default"     : True
 		},
 
-
 	### FOOTER
 		{ "field"       : "app_footer",
 			"languages"		: ["fr"],
