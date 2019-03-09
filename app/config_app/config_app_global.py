@@ -7,11 +7,28 @@ default_global_config = [
 	### LANGUAGES
 		{ "field"       : "app_languages",
 			"languages"		: ["en", "fr"],
-			"default_lan"	: "en",
+			"default_lan"	: "fr",
 			"app_version" : version,
 			"help"        : u"The default homepage for your ApiViz instance",
 			"is_default"  : True
 		},
+
+	### BANNER
+		{ "field"       : "app_banner",
+			"languages"		: ["fr"],
+			"default_lan"	: "fr",
+			"app_version" : version,
+			"help"        : u"The default banner for your ApiViz instance (between navbar and filter)",
+			"template_url"      : "/static/spa.html",
+			"is_dynamic"        : False,
+			"dynamic_template"  : 'DynamicBanner',
+			"is_visible"          : False,
+			"is_dismisible"       : True,
+			"is_disapearing"      : False,
+			"disapearing_timeout" : 5, ## in seconds
+			"is_default"     : True
+		},
+
 
 	### FOOTER
 		{ "field"       : "app_footer",
