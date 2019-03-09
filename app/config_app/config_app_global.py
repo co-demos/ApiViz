@@ -193,6 +193,37 @@ default_global_config = [
 			"is_default"  : True
 		},
 
+	### DEFAULT IMAGES FOR DATASETS SEARCH
+		{ "field"       : "app_default_search_images_sets",
+			"app_version" : version,
+			"help"        : u"The default images sets for the cards for each dataset",
+
+			"images_sets" : [
+				{ 
+					"dataset_uri" : "sonum_carto",
+					"images_set"  : [
+						{ "dft_text" : "img_1", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_2", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_3", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_4", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_5", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+					]
+				},
+				{	
+					"dataset_uri" : "sonum_xp",
+					"images_set"  : [
+						{ "dft_text" : "img_1", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_2", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_3", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_4", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_5", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+					]
+				}
+			],
+
+			"is_default"  : True
+		},
+
 	### METAS
 		{ "field"       : "app_title",
 			"content"     : u"ApiViz",
@@ -238,12 +269,23 @@ default_global_config = [
 
 	### GLOBAL STYLES 
 		{ "field"       : "app_colors",
-			"content"     : {
-				"primary" 	  : "purple",	
-				"secondary"   : "purple",	
-				"info" 		  	: "blue",	
-				"warning"   	: "orange",	
-				"error" 	  	: "red",	
+			"content"     : { 					### AS HEXA
+
+				### DEFAULTS
+				"default_background_app"    : "#fafafa",
+				"default_background_navbar" : "#ffffff",
+
+				### SIMILI - BULMA
+				"primary" 	  : "#513085",	
+				"secondary"   : "#a174ac",	
+				"info" 		  	: "#40529d",	
+				"warning"   	: "#f3bd80",	
+				"error" 	  	: "#d24745",	
+				### EXTRA COLORS
+				"dark_blue"   : "#40529d",
+				"light_pink"  : "#e89db1",
+				"light_blue"  : "#a3b1d7",
+				"deep_blue"   : "#21295e",
 			},
 			"app_version" : version,
 			"help"        : u"Choose a set of colors (an hexa for example) for your ApiViz instance",
@@ -252,11 +294,22 @@ default_global_config = [
 
 		{ "field"       : "app_typo_colors",
 			"content"     : {
-				"primary" 	  : "purple",	
-				"secondary"   : "purple",	
-				"info" 		  	: "blue",	
-				"warning"   	: "orange",	
-				"error" 	  	: "red",	
+				
+				"default_dark"       : "#000000",
+				"default_light_dark" : "#3D3A39",
+				"default_invert"     : "#ffffff",
+
+				### SIMILI - BULMA
+				"primary" 	  : "#513085",	
+				"secondary"   : "#a174ac",	
+				"info" 		  	: "#40529d",	
+				"warning"   	: "#f3bd80",	
+				"error" 	  	: "#d24745",	
+				### EXTRA COLORS
+				"dark_blue"   : "#40529d",
+				"light_pink"  : "#e89db1",
+				"light_blue"  : "#a3b1d7",
+				"deep_blue"   : "#21295e",
 			},
 			"app_version" : version,
 			"help"        : u"Choose a set of colors for your typo for your ApiViz instance",
@@ -265,7 +318,8 @@ default_global_config = [
 
 		{ "field"       : "app_typo",
 			"content"     : {
-				"primary" : u"Roboto"
+				"titles" : u"BonvenoCF-Light",
+				"textes" : u"NEXA SANS",
 			},
 			"url"		    	: "",
 			"app_version" : version,
