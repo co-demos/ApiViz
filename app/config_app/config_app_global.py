@@ -220,7 +220,7 @@ default_global_config = [
 	### LOGO
 		{ "field"       : "app_logo",
 			"content"     : u"apiviz default logo in navbar",
-			"url"		    	: "https://github.com/co-demos/carto-sonum/blob/master/logos/logo%2Bmarianne_typo%20sombre%404x.png?raw=true",
+			"url"        	: "https://github.com/co-demos/carto-sonum/blob/master/logos/logo%2Bmarianne_typo%20sombre%404x.png?raw=true",
 			"app_version" : version,
 			"help"        : u"The official default logo for your ApiViz instance",
 			"is_default"  : True
@@ -305,11 +305,11 @@ default_global_config = [
 				"default_background_navbar" : "#ffffff",
 
 				### SIMILI - BULMA
-				"primary" 	  : "#513085",	
+				"primary"     : "#513085",	
 				"secondary"   : "#a174ac",	
-				"info" 		  	: "#40529d",	
-				"warning"   	: "#f3bd80",	
-				"error" 	  	: "#d24745",	
+				"info"        : "#40529d",	
+				"warning"     : "#f3bd80",	
+				"error"       : "#d24745",	
 				### EXTRA COLORS
 				"dark_blue"   : "#40529d",
 				"light_pink"  : "#e89db1",
@@ -329,11 +329,11 @@ default_global_config = [
 				"default_invert"     : "#ffffff",
 
 				### SIMILI - BULMA
-				"primary" 	  : "#513085",	
+				"primary"     : "#513085",	
 				"secondary"   : "#a174ac",	
-				"info" 		  	: "#40529d",	
-				"warning"   	: "#f3bd80",	
-				"error" 	  	: "#d24745",	
+				"info"        : "#40529d",	
+				"warning"     : "#f3bd80",	
+				"error"       : "#d24745",	
 				### EXTRA COLORS
 				"dark_blue"   : "#40529d",
 				"light_pink"  : "#e89db1",
@@ -350,7 +350,7 @@ default_global_config = [
 				"titles" : u"BonvenoCF-Light",
 				"textes" : u"NEXA SANS",
 			},
-			"url"		    	: "",
+			"url"         : "",
 			"app_version" : version,
 			"help"        : u"Choose a typo for your ApiViz instance",
 			"is_default"  : True
@@ -362,7 +362,7 @@ default_global_config = [
 			"app_version" : version,
 			"help"        : u"Choose the repo for the source code of your ApiViz instance",
 			"content"     : [{ "locale" : "fr", "text" : "Code source"}],
-			"in_navbar"  	: False,
+			"in_navbar"   : False,
 			"in_footer"  	: True,
 			"is_default"  : True,
 		},
