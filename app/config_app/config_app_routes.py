@@ -11,10 +11,13 @@ default_routes_config = [
   ### - - - - - - - - - - - - - - - - - ###
 
   { "field"             : "app_home_fr",
-    "route_title"       : u"Home",
-    "route_description"  : u"apiviz default home page",
     "is_global_app_homepage" : True,
-    "is_project_homepage" : True,
+    "route_title"       : u"Home",
+    "route_description" : u"apiviz default home page",
+    "banner" : {
+      "activated"  : False,
+      "banner_uri" : "default"
+    },
     "in_main_navbar"    : False,
     "in_footer"         : False,
     "link_in_logo"      : True,
@@ -38,9 +41,14 @@ default_routes_config = [
   ### DATASETS CARTO SONUM
     ## PAGE - map
     { "field"             : "sonum_carto_carte",
+      "is_global_app_homepage" : False,
       "route_title"       : u"Rechercher",
       "route_description" : u"Page de recherche d'Apiviz",
-      "is_project_homepage" : True,
+      "banner" : {
+        "activated"  : True,
+        "banner_uri" : "banner_sonum_carto"
+      },
+      "is_dataset_homepage" : True,
       "in_main_navbar"    : True,
       "in_footer"         : False,
       "urls"              : ["/carto-sonum/carte"],
@@ -107,9 +115,14 @@ default_routes_config = [
     },
     ## PAGE - list
     { "field"             : "sonum_carto_liste",
-      "route_title"        : u"Rechercher",
-      "route_description"  : u"Page de recherche d'Apiviz",
-      "is_project_homepage" : False,
+      "is_global_app_homepage" : False,
+      "route_title"       : u"Rechercher",
+      "route_description" : u"Page de recherche d'Apiviz",
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : "banner_sonum_carto"
+      },
+      "is_dataset_homepage" : False,
       "in_main_navbar"    : False,
       "in_footer"         : False,
       "urls"              : ["/carto-sonum/liste"],
@@ -176,9 +189,14 @@ default_routes_config = [
     },
     ## PAGE - detail
     { "field"             : "sonum_carto_detail",
+      "is_global_app_homepage" : False,
       "route_title"        : u"Rechercher",
       "route_description"  : u"Page de recherche d'Apiviz",
-      "is_project_homepage" : False,
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : "banner_sonum_carto"
+      },
+      "is_dataset_homepage" : False,
       "in_main_navbar"    : False,
       "in_footer"         : False,
       "urls"              : ["/carto-sonum/detail"],
@@ -258,25 +276,25 @@ default_routes_config = [
          "position"    : "block_left_bottom_2",
          "title_block" : [{ "locale" : "fr", "text" : "Partagez ce lieu", "is_visible" : True}],
          "links"       : [
-           { "link_type" : "share_page", 
+           {
              "is_visible" : True, 
              "link_type"  : "icon", 
-             "icon_class" : "", 
-             "link_text"  : [{"locale" : "fr", "text" : "website" }],
+             "icon_class" : "fas fa-link", 
+             "link_text"  : [{"locale" : "fr", "text" : "lien" }],
              "tooltip"    : [{"locale" : "fr", "text" : "partager cette page (copier le lien)" }] 
            },
-           { "link_type" : "facebook",   
+          {
              "is_visible" : True, 
              "link_type"  : "icon", 
              "icon_class" : "fab fa-facebook-f", 
-             "link_text"  : [{"locale" : "fr", "text" : "website" }],
+             "link_text"  : [{"locale" : "fr", "text" : "facebook" }],
              "tooltip"    : [{"locale" : "fr", "text" : "partager sur facebook" }] 
            },
-           { "link_type" : "twitter",    
+           {
              "is_visible" : True, 
              "link_type"  : "icon", 
              "icon_class" : "fab fa-twitter", 
-             "link_text"  : [{"locale" : "fr", "text" : "website" }],
+             "link_text"  : [{"locale" : "fr", "text" : "twitter" }],
              "tooltip"    : [{"locale" : "fr", "text" : "partager sur twitter" }] 
            },
          ]
@@ -294,9 +312,14 @@ default_routes_config = [
   ### DATASETS XP SONUM
     ## PAGE - map
     { "field"             : "sonum_xp_carte",
+      "is_global_app_homepage" : False,
       "route_title"        : u"Rechercher",
       "route_description"  : u"Page de recherche d'Apiviz",
-      "is_project_homepage" : False,
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : "banner_sonum_xp"
+      },
+      "is_dataset_homepage" : False,
       "in_main_navbar"    : True,
       "in_footer"         : False,
       "urls"              : ["/xp-sonum/carte"],
@@ -363,9 +386,14 @@ default_routes_config = [
     },
     ## PAGE - list
     { "field"             : "sonum_xp_liste",
+      "is_global_app_homepage" : False,
       "route_title"        : u"Rechercher",
       "route_description"  : u"Page de recherche d'Apiviz",
-      "is_project_homepage" : True,
+      "banner" : {
+        "activated"  : True,
+        "banner_uri" : "banner_sonum_xp"
+      },
+      "is_dataset_homepage" : True,
       "in_main_navbar"    : False,
       "in_footer"         : False,
       "urls"              : ["/xp-sonum/liste"],
@@ -434,14 +462,19 @@ default_routes_config = [
     },
     ## PAGE - detail
     { "field"             : "sonum_xp_detail",
-      "route_title"        : u"Rechercher",
-      "route_description"  : u"Page de recherche d'Apiviz",
-      "is_project_homepage" : False,
+      "is_global_app_homepage" : False,
+      "route_title"       : u"Rechercher",
+      "route_description" : u"Page de recherche d'Apiviz",
+      "is_dataset_homepage" : False,
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : "banner_sonum_xp"
+      },
       "in_main_navbar"    : False,
       "in_footer"         : False,
       "urls"              : ["/xp-sonum/detail"],
       "template_url"      : "/static/spa.html",
-      "help"             : u"you can specify a remote template (f.e. a github url)",
+      "help"              : u"you can specify a remote template (f.e. a github url)",
       "languages"         : ["fr"],
         "app_version"        : version,
       "comment"           : u"Main search route in french",
@@ -516,28 +549,28 @@ default_routes_config = [
          "position"    : "block_left_bottom_2",
          "title_block" : [{ "locale" : "fr", "text" : "Partagez ce lieu", "is_visible" : True}],
          "links"       : [
-           { "link_type" : "share_page", 
-             "is_visible" : True, 
-             "link_type"  : "icon", 
-             "icon_class" : "", 
-             "link_text"  : [{"locale" : "fr", "text" : "website" }],
-             "tooltip"    : [{"locale" : "fr", "text" : "partager cette page (copier le lien)" }] 
-           },
-           { "link_type" : "facebook",   
-             "is_visible" : True, 
-             "link_type"  : "icon", 
-             "icon_class" : "fab fa-facebook-f", 
-             "link_text"  : [{"locale" : "fr", "text" : "website" }],
-             "tooltip"    : [{"locale" : "fr", "text" : "partager sur facebook" }] 
-           },
-           { "link_type" : "twitter",    
-             "is_visible" : True, 
-             "link_type"  : "icon", 
-             "icon_class" : "fab fa-twitter", 
-             "link_text"  : [{"locale" : "fr", "text" : "website" }],
-             "tooltip"    : [{"locale" : "fr", "text" : "partager sur twitter" }] 
-           },
-         ]
+            {
+              "is_visible" : True, 
+              "link_type"  : "icon", 
+              "icon_class" : "fas fa-link", 
+              "link_text"  : [{"locale" : "fr", "text" : "lien" }],
+              "tooltip"    : [{"locale" : "fr", "text" : "partager cette page (copier le lien)" }] 
+            },
+            {
+              "is_visible" : True, 
+              "link_type"  : "icon", 
+              "icon_class" : "fab fa-facebook-f", 
+              "link_text"  : [{"locale" : "fr", "text" : "facebook" }],
+              "tooltip"    : [{"locale" : "fr", "text" : "partager sur facebook" }] 
+            },
+            {
+              "is_visible" : True, 
+              "link_type"  : "icon", 
+              "icon_class" : "fab fa-twitter", 
+              "link_text"  : [{"locale" : "fr", "text" : "twitter" }],
+              "tooltip"    : [{"locale" : "fr", "text" : "partager sur twitter" }] 
+            },
+          ]
         },
 
       },
@@ -556,9 +589,14 @@ default_routes_config = [
 
   ### PAGE : QUI SOMMES-NOUS
   { "field"             : "app_who_fr",
+    "is_global_app_homepage" : False,
     "route_title"        : u"Home",
     "route_description"  : u"Qui sommes-nous",
-    "is_project_homepage" : False,
+    "banner" : {
+      "activated"  : False,
+      "banner_uri" : "default"
+    },
+    "is_dataset_homepage" : False,
     "in_main_navbar"    : True,
     "in_footer"         : False,
     "link_in_logo"      : False,
@@ -577,9 +615,14 @@ default_routes_config = [
 
   ### PAGES : TOOLS
   { "field"             : "app_outils",
+    "is_global_app_homepage" : False,
     "route_title"        : u"Outils",
     "route_description"  : u"Nos outils",
-    "is_project_homepage" : False,
+    "banner" : {
+      "activated"  : False,
+      "banner_uri" : "default"
+    },
+    "is_dataset_homepage" : False,
     "in_main_navbar"    : False,
     "in_footer"         : True,
     "urls"              : ["/nos-outils"],

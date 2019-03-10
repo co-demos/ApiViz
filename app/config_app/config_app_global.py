@@ -13,21 +13,6 @@ default_global_config = [
       "is_default"  : True
     },
 
-  ### BANNER
-    { "field"       : "app_banner",
-      "locale"      : "fr",
-      "app_version" : version,
-      "help"        : u"The default banner for your ApiViz instance (between navbar and filter)",
-      "template_url"     : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/banner-homepage.html?raw=true",
-      "is_dynamic"       : False,
-      "dynamic_template" : 'DynamicBanner',
-      "is_visible"          : False,
-      "is_dismisible"       : True,
-      "is_disapearing"      : False,
-      "disapearing_timeout" : 5, ## in seconds
-      "is_default"     : True
-    },
-
   ### FOOTER
     { "field"       : "app_footer",
       "app_version" : version,
@@ -95,6 +80,7 @@ default_global_config = [
 
             { "is_visible" : True, 
               "link_to"    : "https://www.agencedunumerique.gouv.fr/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "L'Agence du numérique" }],
@@ -102,6 +88,7 @@ default_global_config = [
             },
             { "is_visible" : True, 
               "link_to"    : "https://www.francethd.fr/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "Mission France Très Haut Débit" }],
@@ -109,6 +96,7 @@ default_global_config = [
             },
             { "is_visible" : True, 
               "link_to"    : "https://www.lafrenchtech.com/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "Mission French Tech" }],
@@ -125,6 +113,7 @@ default_global_config = [
 
             { "is_visible" : True, 
               "link_to"    : "https://societenumerique.gouv.fr/en-savoir-plus/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "En savoir plus" }],
@@ -132,6 +121,7 @@ default_global_config = [
             },
             { "is_visible" : True, 
               "link_to"    : "https://societenumerique.gouv.fr/presse/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "Presse" }],
@@ -139,6 +129,7 @@ default_global_config = [
             },
             { "is_visible" : True, 
               "link_to"    : "/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "kit d'intervention rapide" }],
@@ -146,6 +137,7 @@ default_global_config = [
             },
             { "is_visible" : True, 
               "link_to"    : "/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "plateforme des territoires" }],
@@ -153,6 +145,7 @@ default_global_config = [
             },
             { "is_visible" : True, 
               "link_to"    : "https://societenumerique.gouv.fr/mentions-legales/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "mentions légales" }],
@@ -160,10 +153,27 @@ default_global_config = [
             },
             { "is_visible" : True, 
               "link_to"    : "https://societenumerique.gouv.fr/accessibilite/",
+              "link_to_type" : "external",
               "link_type"  : "text",
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "accessibilité" }],
               "tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
+            },
+            { "is_visible" : True, 
+              "link_to"    : "/login",
+              "link_to_type" : "internal",
+              "link_type"  : "text",
+              "icon_class" : "", 
+              "link_text"  : [{"locale" : "fr", "text" : "admin" }],
+              "tooltip"    : [{"locale" : "fr", "text" : "se connecter au back-office" }] 
+            },
+            { "is_visible" : False, 
+              "link_to"    : "/register",
+              "link_to_type" : "internal",
+              "link_type"  : "text",
+              "icon_class" : "", 
+              "link_text"  : [{"locale" : "fr", "text" : "register" }],
+              "tooltip"    : [{"locale" : "fr", "text" : "se créer un compte" }] 
             },
           ]
         },
@@ -176,6 +186,7 @@ default_global_config = [
 
             { "is_visible" : True, 
               "link_to"    : "https://www.gouvernement.fr/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "gouvernement.fr" }],
@@ -183,6 +194,7 @@ default_global_config = [
             },
             { "is_visible" : True, 
               "link_to"    : "https://www.service-public.fr/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "service-public.fr" }],
@@ -190,6 +202,7 @@ default_global_config = [
             },
             { "is_visible" : True, 
               "link_to"    : "https://www.legifrance.fr/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "legifrance.fr" }],
@@ -197,6 +210,7 @@ default_global_config = [
             },
             { "is_visible" : True, 
               "link_to"    : "https://www.elysee.fr",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "elysee.fr" }],
@@ -204,6 +218,7 @@ default_global_config = [
             },
             { "is_visible" : True, 
               "link_to"    : "https://www.data.gouv.fr/",
+              "link_to_type" : "external",
               "link_type"  : "text", 
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "data.gouv.fr" }],
@@ -226,36 +241,12 @@ default_global_config = [
       "is_default"  : True
     },
 
-  ### DEFAULT IMAGES FOR DATASETS SEARCH
-    { "field"       : "app_default_search_images_sets",
+  ### FAVICON
+    { "field"       : "app_favicon",
+      "content"     : u"apiviz default favicon in browser",
+      "url"          : "/",
       "app_version" : version,
-      "help"        : u"The default images sets for the cards for each dataset",
-
-      "images_sets" : [
-        { 
-          "dataset_uri" : "sonum_carto",
-          "images_set"  : [
-            { "dft_text" : "img_1", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgA.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-            { "dft_text" : "img_2", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgB.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-            { "dft_text" : "img_3", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgC.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-            { "dft_text" : "img_4", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgD.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-            { "dft_text" : "img_5", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgE.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-            { "dft_text" : "img_6", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgF.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-          ]
-        },
-        {
-          "dataset_uri" : "sonum_xp",
-          "images_set"  : [
-            { "dft_text" : "img_1", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgA.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-            { "dft_text" : "img_2", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgB.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-            { "dft_text" : "img_3", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgC.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-            { "dft_text" : "img_4", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgD.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-            { "dft_text" : "img_5", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgE.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-            { "dft_text" : "img_6", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgF.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
-          ]
-        }
-      ],
-
+      "help"        : u"The default favicon for your ApiViz instance",
       "is_default"  : True
     },
 
@@ -293,68 +284,6 @@ default_global_config = [
       "app_version" : version,
       "help"        : u"Choose a pitch/catchphrase for your ApiViz instance",
       "content"     : [{ "locale" : "fr", "text" : ""}],
-      "is_default"  : True
-    },
-
-  ### GLOBAL STYLES 
-    { "field"       : "app_colors",
-      
-      ### COLOR INPUTS AS HEXA
-      "content"     : {
-
-        ### DEFAULTS
-        "default_background_app"    : "#fafafa",
-        "default_background_navbar" : "#ffffff",
-
-        ### SIMILI - BULMA
-        "primary"     : "#513085",  
-        "secondary"   : "#a174ac",  
-        "info"        : "#40529d",  
-        "warning"     : "#f3bd80",  
-        "error"       : "#d24745",  
-        ### EXTRA COLORS
-        "dark_blue"   : "#40529d",
-        "light_pink"  : "#e89db1",
-        "light_blue"  : "#a3b1d7",
-        "deep_blue"   : "#21295e",
-      },
-      "app_version" : version,
-      "help"        : u"Choose a set of colors (an hexa for example) for your ApiViz instance",
-      "is_default"  : True
-    },
-
-    { "field"       : "app_typo_colors",
-      "content"     : {
-        
-        "default_dark"       : "#000000",
-        "default_light_dark" : "#3D3A39",
-        "default_invert"     : "#ffffff",
-
-        ### SIMILI - BULMA
-        "primary"     : "#513085",  
-        "secondary"   : "#a174ac",  
-        "info"        : "#40529d",  
-        "warning"     : "#f3bd80",  
-        "error"       : "#d24745",  
-        ### EXTRA COLORS
-        "dark_blue"   : "#40529d",
-        "light_pink"  : "#e89db1",
-        "light_blue"  : "#a3b1d7",
-        "deep_blue"   : "#21295e",
-      },
-      "app_version" : version,
-      "help"        : u"Choose a set of colors for your typo for your ApiViz instance",
-      "is_default"  : True
-    },
-
-    { "field"       : "app_typo",
-      "content"     : {
-        "titles" : u"BonvenoCF-Light",
-        "textes" : u"NEXA SANS",
-      },
-      "url"         : "",
-      "app_version" : version,
-      "help"        : u"Choose a typo for your ApiViz instance",
       "is_default"  : True
     },
 
