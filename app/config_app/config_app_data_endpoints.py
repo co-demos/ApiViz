@@ -9,7 +9,7 @@ default_data_endpoints_config = [
   ### - - - - - - - - - - - - - - - ###
 
     ### CONFIRM JWT
-    { "field"          : "app_data_API_user_auth",
+    { "field"         : "app_data_API_user_auth",
       "data_type"     : "user",
       "content"       : u"apiviz default API endpoint for user authentication (confirm acces)",
       "root_url"      : "http://localhost:4100/api/auth/tokens/confirm_access",
@@ -23,7 +23,7 @@ default_data_endpoints_config = [
     },
 
     ### NEW ACCESS JWT
-    { "field"          : "app_data_API_user_new_access_token",
+    { "field"         : "app_data_API_user_new_access_token",
       "data_type"     : "user",
       "content"       : u"apiviz default API endpoint for user authentication (new acces token) : needs a valid refresh token as token ",
       "root_url"      : "http://localhost:4100/api/auth/tokens/new_access_token",
@@ -37,7 +37,7 @@ default_data_endpoints_config = [
     },
 
     ### REGISTER
-    { "field"          : "app_data_API_user_register",
+    { "field"         : "app_data_API_user_register",
       "data_type"     : "user",
       "content"       : u"apiviz default API endpoint for registering a new user",
       "root_url"      : "http://localhost:4100/api/usr/register/",
@@ -51,7 +51,7 @@ default_data_endpoints_config = [
     },
 
     ### LOGIN
-    { "field"          : "app_data_API_user_login",
+    { "field"         : "app_data_API_user_login",
       "data_type"     : "user",
       "content"       : u"apiviz default API endpoint for login",
       "root_url"      : "http://localhost:4100/api/auth/login/",
@@ -65,7 +65,7 @@ default_data_endpoints_config = [
     },
 
     ### USER LIST
-    { "field"          : "app_data_API_user_list",
+    { "field"         : "app_data_API_user_list",
       "data_type"     : "user",
       "content"       : u"apiviz default API endpoint for users list",
       "root_url"      : "http://localhost:4100/api/usr/infos/list",
@@ -81,7 +81,7 @@ default_data_endpoints_config = [
     },
 
     ### USER INFOS
-    { "field"          : "app_data_API_user_infos",
+    { "field"         : "app_data_API_user_infos",
       "data_type"     : "user",
       "content"       : u"apiviz default API endpoint for user infos",
       "root_url"      : "http://localhost:4100/api/usr/infos/get_one/",
@@ -96,7 +96,7 @@ default_data_endpoints_config = [
     },
 
     ### USER EDIT
-    { "field"          : "app_data_API_user_edit",
+    { "field"         : "app_data_API_user_edit",
       "data_type"     : "user",
       "content"       : u"apiviz default API endpoint for editing an user",
       "root_url"      : "http://localhost:4100/api/auth/edit/",
@@ -112,7 +112,7 @@ default_data_endpoints_config = [
     },
 
     ### USER DELETE
-    { "field"          : "app_data_API_user_delete",
+    { "field"         : "app_data_API_user_delete",
       "data_type"     : "user",
       "content"       : u"apiviz default API endpoint for deleting an user",
       "root_url"      : "http://localhost:4100/api/auth/edit/",
@@ -127,7 +127,7 @@ default_data_endpoints_config = [
     },
 
     ### USER FORGOT PWD
-    { "field"          : "app_data_API_forgot_pwd",
+    { "field"         : "app_data_API_forgot_pwd",
       "data_type"     : "user",
       "content"       : u"apiviz default API endpoint for changing password",
       "root_url"      : "http://localhost:4100/api/auth/password/password_forgotten",
