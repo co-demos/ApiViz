@@ -15,6 +15,7 @@ with app.app_context():
   # mongo_users      = mongo.db[ app.config["MONGO_COLL_USERS"] ]
   mongo_config_global         = mongo.db[ app.config["MONGO_COLL_CONFIG_GLOBAL"] ]
   mongo_config_footer         = mongo.db[ app.config["MONGO_COLL_CONFIG_FOOTER"] ]
+  mongo_config_navbar         = mongo.db[ app.config["MONGO_COLL_CONFIG_NAVBAR"] ]
   mongo_config_data_endpoints = mongo.db[ app.config["MONGO_COLL_CONFIG_DATA_ENDPOINTS"] ]
   mongo_config_app_styles     = mongo.db[ app.config["MONGO_COLL_CONFIG_APP_STYLES"] ]
   mongo_config_routes         = mongo.db[ app.config["MONGO_COLL_CONFIG_ROUTES"] ]
@@ -28,6 +29,7 @@ with app.app_context():
     # "users"  : mongo_users,
     app.config["MONGO_COLL_CONFIG_GLOBAL"]          : mongo_config_global,
     app.config["MONGO_COLL_CONFIG_FOOTER"]          : mongo_config_footer,
+    app.config["MONGO_COLL_CONFIG_NAVBAR"]          : mongo_config_navbar,
     app.config["MONGO_COLL_CONFIG_DATA_ENDPOINTS"]  : mongo_config_data_endpoints,
     app.config["MONGO_COLL_CONFIG_APP_STYLES"]      : mongo_config_app_styles,
     app.config["MONGO_COLL_CONFIG_ROUTES"]          : mongo_config_routes,
@@ -39,6 +41,7 @@ with app.app_context():
 mongoConfigColls ={
   "global"    : mongo_config_global,
   "footer"    : mongo_config_footer,
+  "navbar"    : mongo_config_navbar,
   "endpoints" : mongo_config_data_endpoints,
   "styles"    : mongo_config_app_styles,
   "routes"    : mongo_config_routes,
@@ -83,6 +86,7 @@ def setupDefaultConfig(collection, defaultList, uniqueField="field") :
 
 from app.config_app.config_app_global         import default_global_config
 from app.config_app.config_app_footer         import default_app_footer
+from app.config_app.config_app_navbar         import default_app_navbar
 from app.config_app.config_app_data_endpoints import default_data_endpoints_config
 from app.config_app.config_app_styles         import default_app_styles_config
 from app.config_app.config_app_routes         import default_routes_config
@@ -94,6 +98,9 @@ log_app.debug(">>> existing_app_config : \n%s \n", pformat(existing_app_config))
 
 existing_app_footer_config      = list( mongo_config_footer.find({}) )
 log_app.debug(">>> existing_app_config : \n%s \n", pformat(existing_app_footer_config))
+
+existing_app_navbar_config      = list( mongo_config_navbar.find({}) )
+log_app.debug(">>> existing_app_config : \n%s \n", pformat(existing_app_navbar_config))
 
 existing_data_endpoints_config   = list( mongo_config_data_endpoints.find({}) )
 log_app.debug(">>> existing_data_endpoints_config : \n%s \n", pformat(existing_data_endpoints_config))
@@ -110,6 +117,7 @@ log_app.debug(">>> existing_socials_config : \n%s \n", pformat(existing_socials_
 ### setup every collection with default
 setupDefaultConfig( mongo_config_global,           default_global_config )
 setupDefaultConfig( mongo_config_footer,           default_app_footer )
+setupDefaultConfig( mongo_config_navbar,           default_app_navbar )
 setupDefaultConfig( mongo_config_data_endpoints,   default_data_endpoints_config )
 setupDefaultConfig( mongo_config_app_styles,       default_app_styles_config )
 setupDefaultConfig( mongo_config_routes,           default_routes_config )

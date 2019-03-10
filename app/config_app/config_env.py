@@ -81,6 +81,7 @@ class Config(object):
 	MONGO_URI										= os.getenv("MONGODB_URI")
 	MONGO_COLL_CONFIG_GLOBAL					= "config_global"
 	MONGO_COLL_CONFIG_FOOTER					= "config_footer"
+	MONGO_COLL_CONFIG_NAVBAR					= "config_navbar"
 	MONGO_COLL_CONFIG_APP_STYLES			= "config_app_styles"
 	MONGO_COLL_CONFIG_DATA_ENDPOINTS	= "config_data_endpoints"
 	MONGO_COLL_CONFIG_ROUTES					= "config_routes"

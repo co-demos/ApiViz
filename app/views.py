@@ -148,7 +148,7 @@ def config_global(collection, doc_id=None):
 	log_app.debug("config app route / doc_id : %s", doc_id )
 
 	### target right config collection 
-	if collection in ["global" , "footer", "endpoints" , "styles" , "routes", "socials" ] : 
+	if collection in ["global" , "footer", "navbar", "endpoints" , "styles" , "routes", "socials" ] : 
 		mongoColl = mongoConfigColls[collection] ### imported from . (and from there from .api.__init__ )
 	else : 
 		log_app.warning("error : -%s- is not a valid config collection (redirect)", collection)

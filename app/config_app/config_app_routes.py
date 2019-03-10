@@ -14,11 +14,22 @@ default_routes_config = [
     "is_global_app_homepage" : True,
     "route_title"       : u"Home",
     "route_description" : u"apiviz default home page",
+    "route_activated"   : True,
     "banner" : {
       "activated"  : False,
       "banner_uri" : "default"
     },
+
     "in_main_navbar"    : False,
+    "navbar_btn_options" : {
+      "is_visible" : True,
+      "only_in_navbar_for_d_thisataset" : True,
+      "link_type"  : "button",
+      "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+    },
+
     "in_footer"         : False,
     "link_in_logo"      : True,
     "urls"              : ["/"],
@@ -44,12 +55,23 @@ default_routes_config = [
       "is_global_app_homepage" : False,
       "route_title"       : u"Rechercher",
       "route_description" : u"Page de recherche d'Apiviz",
+      "route_activated"   : True,
       "banner" : {
         "activated"  : True,
         "banner_uri" : "banner_sonum_carto"
       },
       "is_dataset_homepage" : True,
+
       "in_main_navbar"    : True,
+      "navbar_btn_options" : {
+        "is_visible" : True,
+        "position"   : "middle_right",
+        "link_type"  : "button",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },      
+
       "in_footer"         : False,
       "urls"              : ["/carto-sonum/carte"],
       "template_url"      : "/static/spa.html",
@@ -74,8 +96,8 @@ default_routes_config = [
 
         "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
         "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
-        "card_color"    : { "value" : "", "default" : "white", },
-        "text_color"    : { "value" : "", "default" : "black", },
+        "card_color"    : { "value" : None, "default" : "white", },
+        "text_color"    : { "value" : None, "default" : "black", },
 
         "link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -118,12 +140,24 @@ default_routes_config = [
       "is_global_app_homepage" : False,
       "route_title"       : u"Rechercher",
       "route_description" : u"Page de recherche d'Apiviz",
+      "route_activated"   : True,
       "banner" : {
         "activated"  : False,
         "banner_uri" : "banner_sonum_carto"
       },
       "is_dataset_homepage" : False,
+
       "in_main_navbar"    : False,
+      "navbar_btn_options" : {
+        "only_in_navbar_for_this_dataset" : True,
+        "is_visible" : True,
+        "position"   : "middle_right",
+        "link_type"  : "button",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },
+
       "in_footer"         : False,
       "urls"              : ["/carto-sonum/liste"],
       "template_url"      : "/static/spa.html",
@@ -148,8 +182,8 @@ default_routes_config = [
 
         "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
         "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
-        "card_color"    : { "value" : "", "default" : "white", },
-        "text_color"    : { "value" : "", "default" : "black", },
+        "card_color"    : { "value" : None, "default" : "white", },
+        "text_color"    : { "value" : None, "default" : "black", },
 
         "link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -192,12 +226,24 @@ default_routes_config = [
       "is_global_app_homepage" : False,
       "route_title"        : u"Rechercher",
       "route_description"  : u"Page de recherche d'Apiviz",
+      "route_activated"    : True,
       "banner" : {
         "activated"  : False,
         "banner_uri" : "banner_sonum_carto"
       },
       "is_dataset_homepage" : False,
+
       "in_main_navbar"    : False,
+      "navbar_btn_options" : {
+        "only_in_navbar_for_this_dataset" : True,
+        "is_visible" : True,
+        "position"   : "middle_right",
+        "link_type"  : "button",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },
+
       "in_footer"         : False,
       "urls"              : ["/carto-sonum/detail"],
       "template_url"      : "/static/spa.html",
@@ -238,8 +284,8 @@ default_routes_config = [
 
         "card_img_main"  : { "field" : "", "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
         "card_img_top"   : { "field" : "", "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
-        "card_color"     : { "value" : "", "default" : "white", },
-        "text_color"     : { "value" : "", "default" : "black", },
+        "card_color"     : { "value" : None, "default" : "white", },
+        "text_color"     : { "value" : None, "default" : "black", },
         
         "link_to_detail"   : { "is_visible" : False, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True,  "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -315,21 +361,33 @@ default_routes_config = [
       "is_global_app_homepage" : False,
       "route_title"        : u"Rechercher",
       "route_description"  : u"Page de recherche d'Apiviz",
+      "route_activated"    : True,
       "banner" : {
         "activated"  : False,
         "banner_uri" : "banner_sonum_xp"
       },
       "is_dataset_homepage" : False,
+
       "in_main_navbar"    : True,
+      "navbar_btn_options" : {
+        "only_in_navbar_for_this_dataset" : True,
+        "is_visible" : True,
+        "position"   : "middle_right",
+        "link_type"  : "button",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher une expérience" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },
+
       "in_footer"         : False,
       "urls"              : ["/xp-sonum/carte"],
       "template_url"      : "/static/spa.html",
-      "help"             : u"you can specify a remote template (f.e. a github url)",
+      "help"              : u"you can specify a remote template (f.e. a github url)",
       "languages"         : ["fr"],
         "app_version"        : version,
       "comment"           : u"Main search route in french",
       "is_dynamic"        : True,
-      "dataset_uri"        : "sonum_xp",
+      "dataset_uri"       : "sonum_xp",
       "dynamic_template"  : 'DynamicMap',
       "endpoint_type"     : "map",
 
@@ -345,8 +403,8 @@ default_routes_config = [
 
         "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
         "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
-        "card_color"    : { "value" : "", "default" : "white", },
-        "text_color"    : { "value" : "", "default" : "black", },
+        "card_color"    : { "value" : None, "default" : "white", },
+        "text_color"    : { "value" : None, "default" : "black", },
 
         "link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -389,21 +447,33 @@ default_routes_config = [
       "is_global_app_homepage" : False,
       "route_title"        : u"Rechercher",
       "route_description"  : u"Page de recherche d'Apiviz",
+      "route_activated"    : True,
       "banner" : {
         "activated"  : True,
         "banner_uri" : "banner_sonum_xp"
       },
       "is_dataset_homepage" : True,
+
       "in_main_navbar"    : False,
+      "navbar_btn_options" : {
+        "only_in_navbar_for_this_dataset" : True,
+        "is_visible" : True,
+        "position"   : "middle_right",
+        "link_type"  : "button",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher une expérience" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },
+
       "in_footer"         : False,
       "urls"              : ["/xp-sonum/liste"],
       "template_url"      : "/static/spa.html",
-      "help"             : u"you can specify a remote template (f.e. a github url)",
+      "help"              : u"you can specify a remote template (f.e. a github url)",
       "languages"         : ["fr"],
         "app_version"        : version,
       "comment"           : u"Main search route in french",
       "is_dynamic"        : True,
-      "dataset_uri"        : "sonum_xp",
+      "dataset_uri"       : "sonum_xp",
       "dynamic_template"  : 'DynamicList',
       "endpoint_type"     : "list",
 
@@ -420,8 +490,8 @@ default_routes_config = [
 
         "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
         "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
-        "card_color"    : { "value" : "", "default" : "white", },
-        "text_color"    : { "value" : "", "default" : "black", },
+        "card_color"    : { "value" : None, "default" : "white", },
+        "text_color"    : { "value" : None, "default" : "black", },
 
         "link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -453,7 +523,6 @@ default_routes_config = [
 
       },
 
-
       "has_navbar"        : True,
       "has_footer"        : True,
       "deactivate_btn"    : False,
@@ -461,16 +530,28 @@ default_routes_config = [
         "is_default"        : True
     },
     ## PAGE - detail
-    { "field"             : "sonum_xp_detail",
+    { "field"               : "sonum_xp_detail",
       "is_global_app_homepage" : False,
-      "route_title"       : u"Rechercher",
-      "route_description" : u"Page de recherche d'Apiviz",
+      "route_title"         : u"Rechercher",
+      "route_description"   : u"Page de recherche d'Apiviz",
+      "route_activated"     : True,
       "is_dataset_homepage" : False,
       "banner" : {
         "activated"  : False,
         "banner_uri" : "banner_sonum_xp"
       },
+
       "in_main_navbar"    : False,
+      "navbar_btn_options" : {
+        "only_in_navbar_for_this_dataset" : True,
+        "is_visible" : True,
+        "position"   : "middle_right",
+        "link_type"  : "button",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher une expérience" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },
+
       "in_footer"         : False,
       "urls"              : ["/xp-sonum/detail"],
       "template_url"      : "/static/spa.html",
@@ -479,7 +560,7 @@ default_routes_config = [
         "app_version"        : version,
       "comment"           : u"Main search route in french",
       "is_dynamic"        : True,
-      "dataset_uri"        : "sonum_xp",
+      "dataset_uri"       : "sonum_xp",
       "dynamic_template"  : 'DynamicDetail',
       "endpoint_type"     : "detail",
 
@@ -511,8 +592,8 @@ default_routes_config = [
 
         "card_img_main"  : { "field" : "", "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
         "card_img_top"   : { "field" : "", "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
-        "card_color"     : { "value" : "", "default" : "white", },
-        "text_color"     : { "value" : "", "default" : "black", },
+        "card_color"     : { "value" : None, "default" : "white", },
+        "text_color"     : { "value" : None, "default" : "black", },
         
         "link_to_detail"   : { "is_visible" : False, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True,  "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
@@ -592,17 +673,28 @@ default_routes_config = [
     "is_global_app_homepage" : False,
     "route_title"        : u"Home",
     "route_description"  : u"Qui sommes-nous",
+    "route_activated"    : True,
     "banner" : {
       "activated"  : False,
       "banner_uri" : "default"
     },
     "is_dataset_homepage" : False,
+
     "in_main_navbar"    : True,
+    "navbar_btn_options" : {
+      "is_visible" : True,
+      "position"   : "middle_right",
+      "link_type"  : "button",
+      "icon_class" : "",
+      "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+      "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+    },    
+
     "in_footer"         : False,
     "link_in_logo"      : False,
     "urls"              : ["/qui-sommes-nous"],
     "template_url"      : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/qui-sommes-nous.html?raw=true",
-    "help"             : u"you can specify a remote template (f.e. a github url)",
+    "help"              : u"you can specify a remote template (f.e. a github url)",
     "languages"         : ["fr"],
       "app_version"        : version,
     "comment"           : u"A custom page for your ApiViz app",
@@ -614,20 +706,31 @@ default_routes_config = [
   },
 
   ### PAGES : TOOLS
-  { "field"             : "app_outils",
+  { "field"              : "app_outils",
     "is_global_app_homepage" : False,
     "route_title"        : u"Outils",
     "route_description"  : u"Nos outils",
+    "route_activated"    : True,
     "banner" : {
       "activated"  : False,
       "banner_uri" : "default"
     },
     "is_dataset_homepage" : False,
+
     "in_main_navbar"    : False,
+    "navbar_btn_options" : {
+      "is_visible" : True,
+      "position"   : "middle_right",
+      "link_type"  : "button",
+      "icon_class" : "",
+      "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+      "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+    },    
+
     "in_footer"         : True,
     "urls"              : ["/nos-outils"],
     "template_url"      : "/static/les-outils.html",
-    "help"             : u"you can specify a remote template (f.e. a github url)",
+    "help"              : u"you can specify a remote template (f.e. a github url)",
     "languages"         : ["fr"],
       "app_version"        : version,
     "comment"           : u"Main tools route in french",
