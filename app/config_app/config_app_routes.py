@@ -22,12 +22,11 @@ default_routes_config = [
 
     "in_main_navbar"    : False,
     "navbar_btn_options" : {
-      "is_visible" : True,
-      "only_in_navbar_for_d_thisataset" : True,
-      "link_type"  : "button",
+      "position"   : "middle_left",
+      "link_type"  : "link",
       "icon_class" : "",
-        "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
-        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+      "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
     },
 
     "in_footer"         : False,
@@ -64,9 +63,9 @@ default_routes_config = [
 
       "in_main_navbar"    : True,
       "navbar_btn_options" : {
-        "is_visible" : True,
+        "only_in_navbar_for_this_dataset" : False,
         "position"   : "middle_right",
-        "link_type"  : "button",
+        "link_type"  : "link",
         "icon_class" : "",
         "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
         "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
@@ -150,9 +149,8 @@ default_routes_config = [
       "in_main_navbar"    : False,
       "navbar_btn_options" : {
         "only_in_navbar_for_this_dataset" : True,
-        "is_visible" : True,
         "position"   : "middle_right",
-        "link_type"  : "button",
+        "link_type"  : "link",
         "icon_class" : "",
         "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
         "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
@@ -236,9 +234,8 @@ default_routes_config = [
       "in_main_navbar"    : False,
       "navbar_btn_options" : {
         "only_in_navbar_for_this_dataset" : True,
-        "is_visible" : True,
         "position"   : "middle_right",
-        "link_type"  : "button",
+        "link_type"  : "link",
         "icon_class" : "",
         "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
         "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
@@ -368,12 +365,11 @@ default_routes_config = [
       },
       "is_dataset_homepage" : False,
 
-      "in_main_navbar"    : True,
+      "in_main_navbar"    : False,
       "navbar_btn_options" : {
         "only_in_navbar_for_this_dataset" : True,
-        "is_visible" : True,
         "position"   : "middle_right",
-        "link_type"  : "button",
+        "link_type"  : "link",
         "icon_class" : "",
         "link_text"  : [{"locale" : "fr", "text" : "Recherher une expérience" }],
         "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
@@ -454,12 +450,11 @@ default_routes_config = [
       },
       "is_dataset_homepage" : True,
 
-      "in_main_navbar"    : False,
+      "in_main_navbar"    : True,
       "navbar_btn_options" : {
-        "only_in_navbar_for_this_dataset" : True,
-        "is_visible" : True,
+        "only_in_navbar_for_this_dataset" : False,
         "position"   : "middle_right",
-        "link_type"  : "button",
+        "link_type"  : "link",
         "icon_class" : "",
         "link_text"  : [{"locale" : "fr", "text" : "Recherher une expérience" }],
         "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
@@ -544,9 +539,8 @@ default_routes_config = [
       "in_main_navbar"    : False,
       "navbar_btn_options" : {
         "only_in_navbar_for_this_dataset" : True,
-        "is_visible" : True,
         "position"   : "middle_right",
-        "link_type"  : "button",
+        "link_type"  : "link",
         "icon_class" : "",
         "link_text"  : [{"locale" : "fr", "text" : "Recherher une expérience" }],
         "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
@@ -682,7 +676,6 @@ default_routes_config = [
 
     "in_main_navbar"    : True,
     "navbar_btn_options" : {
-      "is_visible" : True,
       "position"   : "middle_right",
       "link_type"  : "button",
       "icon_class" : "",
@@ -719,7 +712,6 @@ default_routes_config = [
 
     "in_main_navbar"    : False,
     "navbar_btn_options" : {
-      "is_visible" : True,
       "position"   : "middle_right",
       "link_type"  : "button",
       "icon_class" : "",
