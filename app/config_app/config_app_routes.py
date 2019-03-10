@@ -7,7 +7,7 @@ from . import version
 default_routes_config = [
 
 	### - - - - - - - - - - - - - - - - - ###
-	### PAGES HOME
+	### PAGES : HOME --> NEED AT LEAST ONE ROUTE AS 'is_global_app_homepage = True' / TO BE ADDED VIA BACK OFFICE BY ADMIN USER 
 	### - - - - - - - - - - - - - - - - - ###
 
 	{ "field"							: "app_home_fr",
@@ -25,14 +25,14 @@ default_routes_config = [
 			"app_version"  			: version,
     "comment"						: u"Main home route in french",
 		"is_dynamic"				: False,
-		"dynamic_template"	: 'DynamicStatic',
+		"dynamic_template"	: None,
 		"has_navbar"				: True,
 		"has_footer"				: True,
     	"is_default"				: True
 	},
 
 	### - - - - - - - - - - - - - - - - - ###
-	### PAGES DATASETS
+	### PAGES : DATASETS --> TO BE ADDED VIA BACK OFFICE BY ADMIN USER 
 	### - - - - - - - - - - - - - - - - - ###
 
 	### DATASETS CARTO SONUM
@@ -554,21 +554,42 @@ default_routes_config = [
 	### CUSTOM ROUTES-PAGES --> TO BE ADDED VIA BACK OFFICE BY ADMIN USER 
 	### - - - - - - - - - - - - - - - - - ###
 
-	### PAGES TOOLS
+	### PAGE : QUI SOMMES-NOUS
+	{ "field"							: "app_who_fr",
+		"route_title"				: u"Home",
+		"route_description"	: u"Qui sommes-nous",
+		"is_project_homepage" : False,
+		"in_main_navbar"		: True,
+		"in_footer"					: False,
+		"link_in_logo"			: False,
+		"urls"		    			: ["/qui-sommes-nous"],
+		"template_url"			: "https://github.com/co-demos/carto-sonum/blob/master/pages-html/qui-sommes-nous.html?raw=true",
+		"help"							: u"you can specify a remote template (f.e. a github url)",
+		"languages"					: ["fr"],
+			"app_version"  			: version,
+    "comment"						: u"A custom page for your ApiViz app",
+		"is_dynamic"				: True,
+		"dynamic_template"	: 'DynamicStatic',
+		"has_navbar"				: True,
+		"has_footer"				: True,
+    	"is_default"				: True
+	},
+
+	### PAGES : TOOLS
 	{ "field"							: "app_outils",
 		"route_title"				: u"Outils",
 		"route_description"	: u"Nos outils",
 		"is_project_homepage" : False,
 		"in_main_navbar"		: False,
 		"in_footer"					: True,
-		"urls"		    			: ["/tools"],
+		"urls"		    			: ["/nos-outils"],
 		"template_url"			: "/static/les-outils.html",
 		"help"							: u"you can specify a remote template (f.e. a github url)",
 		"languages"					: ["fr"],
 			"app_version"  			: version,
     "comment"						: u"Main tools route in french",
 		"is_dynamic"				: False,
-		"dynamic_template"	: 'DynamicStatic',
+		"dynamic_template"	: None,
 		"has_navbar"				: True,
 		"has_footer"				: True,
     	"is_default"				: True

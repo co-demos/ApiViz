@@ -19,7 +19,7 @@ default_global_config = [
 			"default_lan"	: "fr",
 			"app_version" : version,
 			"help"        : u"The default banner for your ApiViz instance (between navbar and filter)",
-			"template_url"      : "/static/spa.html",
+			"template_url"      : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/banner-homepage.html?raw=true",
 			"is_dynamic"        : False,
 			"dynamic_template"  : 'DynamicBanner',
 			"is_visible"          : False,
@@ -36,31 +36,31 @@ default_global_config = [
 			"app_version" : version,
 			"help"        : u"The default footer for your ApiViz instance",
 
-			"template_url"      : "/static/spa.html",
-			"is_dynamic"        : False,
+			"template_url"      : None,
+			"is_dynamic"        : True,
 			"dynamic_template"  : 'DynamicFooter',
 
 			"contents_options" : {
 
 				"static_texts_left"  : [
-					{ "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
-						"position"    : "block_top_left", 
+					{ 
 						"is_visible"  : False, 
-						"locale"      : "fr" 
+						"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
+						"position"    : "block_top_left", 
 					}
 				],
 				"static_texts_middle" : [
-					{ "title_block" : [{ "locale" : "fr", "text" : "Sites publics", "is_visible" : False}],
-						"position"    : "block_top_middle", 
+					{ 
 						"is_visible"  : False, 
-						"locale"      : "fr" 
+						"title_block" : [{ "locale" : "fr", "text" : "Sites publics", "is_visible" : False}],
+						"position"    : "block_top_middle", 
 					}
 				],
 				"static_texts_right" : [
-					{ "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
-						"position"    : "block_top_right", 
+					{ 
 						"is_visible"  : False, 
-						"locale"      : "fr" 
+						"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
+						"position"    : "block_top_right", 
 					}
 				],
 
@@ -72,9 +72,10 @@ default_global_config = [
 					"text_color" : { "value" : "", "default" : "white", },
 
 					"footer_logos" : [
-						{ "src_image" : "", 
-						  "link_to" : "/" , 
-							"position" : "block_top_left" 
+						{ "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/logos/bloc-web-le-maire-darmanin.png?raw=true", 
+						  "has_link"  : False,
+							"link_to"   : "/" , 
+							"position"  : "block_top_left" 
 						}
 					],
 
@@ -89,52 +90,54 @@ default_global_config = [
 					"links"       : []
 				},
 
-				"block_links_middle" : {
+				"block_links_center_left" : {
 					"is_visible"  : True,
-					"position"    : "block_top_right",
-					"title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
+					"position"    : "block_top_center_left",
+					"title_block" : [{ "locale" : "fr", "text" : "L'Agence du numérique", "is_visible" : False}],
 					"links"       : [
 
 						{ "is_visible" : True, 
-							"link_to"    : "/",
+							"link_to"    : "https://www.agencedunumerique.gouv.fr/",
 							"link_type"  : "text", 
 							"icon_class" : "", 
-							"link_text"  : [{"locale" : "fr", "text" : "gouvernement.fr" }],
+							"link_text"  : [{"locale" : "fr", "text" : "L'Agence du numérique" }],
 							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
 						},
 						{ "is_visible" : True, 
-							"link_to"    : "/",
+							"link_to"    : "https://www.francethd.fr/",
 							"link_type"  : "text", 
 							"icon_class" : "", 
-							"link_text"  : [{"locale" : "fr", "text" : "service-public.fr" }],
+							"link_text"  : [{"locale" : "fr", "text" : "Mission France Très Haut Débit" }],
 							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
 						},
 						{ "is_visible" : True, 
-							"link_to"    : "/",
+							"link_to"    : "https://www.lafrenchtech.com/",
 							"link_type"  : "text", 
 							"icon_class" : "", 
-							"link_text"  : [{"locale" : "fr", "text" : "legifrance.fr" }],
+							"link_text"  : [{"locale" : "fr", "text" : "Mission French Tech" }],
+							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
+						},
+					]
+				},
+
+				"block_links_center_right" : {
+					"is_visible"  : True,
+					"position"    : "block_top_center_left",
+					"title_block" : [{ "locale" : "fr", "text" : "Société numérique", "is_visible" : False}],
+					"links"       : [
+
+						{ "is_visible" : True, 
+							"link_to"    : "https://societenumerique.gouv.fr/en-savoir-plus/",
+							"link_type"  : "text", 
+							"icon_class" : "", 
+							"link_text"  : [{"locale" : "fr", "text" : "En savoir plus" }],
 							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
 						},
 						{ "is_visible" : True, 
-							"link_to"    : "/",
+							"link_to"    : "https://societenumerique.gouv.fr/presse/",
 							"link_type"  : "text", 
 							"icon_class" : "", 
-							"link_text"  : [{"locale" : "fr", "text" : "data.gouv.fr" }],
-							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
-						},
-						{ "is_visible" : True, 
-							"link_to"    : "/",
-							"link_type"  : "text", 
-							"icon_class" : "", 
-							"link_text"  : [{"locale" : "fr", "text" : "elysee.fr" }],
-							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
-						},
-						{ "is_visible" : True, 
-							"link_to"    : "/",
-							"link_type"  : "text", 
-							"icon_class" : "", 
-							"link_text"  : [{"locale" : "fr", "text" : "société numérique" }],
+							"link_text"  : [{"locale" : "fr", "text" : "Presse" }],
 							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
 						},
 						{ "is_visible" : True, 
@@ -151,31 +154,64 @@ default_global_config = [
 							"link_text"  : [{"locale" : "fr", "text" : "plateforme des territoires" }],
 							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
 						},
-
+						{ "is_visible" : True, 
+							"link_to"    : "https://societenumerique.gouv.fr/mentions-legales/",
+							"link_type"  : "text", 
+							"icon_class" : "", 
+							"link_text"  : [{"locale" : "fr", "text" : "mentions légales" }],
+							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
+						},
+						{ "is_visible" : True, 
+							"link_to"    : "https://societenumerique.gouv.fr/accessibilite/",
+							"link_type"  : "text",
+							"icon_class" : "", 
+							"link_text"  : [{"locale" : "fr", "text" : "accessibilité" }],
+							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
+						},
 					]
 				},
 
 				"block_links_right" : {
 					"is_visible"  : True,
 					"position"    : "block_top_right",
-					"title_block" : [{ "locale" : "fr", "text" : "accessibilité", "is_visible" : False}],
+					"title_block" : [{ "locale" : "fr", "text" : "Les sites publics", "is_visible" : False}],
 					"links"       : [
 
 						{ "is_visible" : True, 
-							"link_to"    : "/",
-							"link_type"  : "text",
+							"link_to"    : "https://www.gouvernement.fr/",
+							"link_type"  : "text", 
 							"icon_class" : "", 
-							"link_text"  : [{"locale" : "fr", "text" : "accessibilité" }],
+							"link_text"  : [{"locale" : "fr", "text" : "gouvernement.fr" }],
+							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
+						},
+						{ "is_visible" : True, 
+							"link_to"    : "https://www.service-public.fr/",
+							"link_type"  : "text", 
+							"icon_class" : "", 
+							"link_text"  : [{"locale" : "fr", "text" : "service-public.fr" }],
+							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
+						},
+						{ "is_visible" : True, 
+							"link_to"    : "https://www.legifrance.fr/",
+							"link_type"  : "text", 
+							"icon_class" : "", 
+							"link_text"  : [{"locale" : "fr", "text" : "legifrance.fr" }],
 							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
 						},
 						{ "is_visible" : True, 
 							"link_to"    : "/",
 							"link_type"  : "text", 
 							"icon_class" : "", 
-							"link_text"  : [{"locale" : "fr", "text" : "mentions légales" }],
+							"link_text"  : [{"locale" : "fr", "text" : "elysee.fr" }],
 							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
 						},
-
+						{ "is_visible" : True, 
+							"link_to"    : "https://www.data.gouv.fr/",
+							"link_type"  : "text", 
+							"icon_class" : "", 
+							"link_text"  : [{"locale" : "fr", "text" : "data.gouv.fr" }],
+							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
+						},
 					]
 				},
 
@@ -186,8 +222,8 @@ default_global_config = [
 
 	### LOGO
 		{ "field"       : "app_logo",
-			"content"     : u"apiviz default logo",
-			"url"		    	: "https://github.com/co-demos/ApiViz/blob/develop/app/static/logos/app_default/logo_apiviz_15.png?raw=true",
+			"content"     : u"apiviz default logo in navbar",
+			"url"		    	: "https://github.com/co-demos/carto-sonum/blob/master/logos/logo%2Bmarianne_typo%20sombre%404x.png?raw=true",
 			"app_version" : version,
 			"help"        : u"The official default logo for your ApiViz instance",
 			"is_default"  : True
@@ -202,21 +238,23 @@ default_global_config = [
 				{ 
 					"dataset_uri" : "sonum_carto",
 					"images_set"  : [
-						{ "dft_text" : "img_1", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
-						{ "dft_text" : "img_2", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
-						{ "dft_text" : "img_3", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
-						{ "dft_text" : "img_4", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
-						{ "dft_text" : "img_5", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_1", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgA.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_2", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgB.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_3", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgC.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_4", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgD.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_5", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgE.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_6", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgF.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
 					]
 				},
 				{	
 					"dataset_uri" : "sonum_xp",
 					"images_set"  : [
-						{ "dft_text" : "img_1", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
-						{ "dft_text" : "img_2", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
-						{ "dft_text" : "img_3", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
-						{ "dft_text" : "img_4", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
-						{ "dft_text" : "img_5", "src_image" : "/", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_1", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgA.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_2", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgB.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_3", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgC.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_4", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgD.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_5", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgE.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
+						{ "dft_text" : "img_6", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgF.png?raw=true", "credits" : "Laurie Balsan", "licence" : "" },
 					]
 				}
 			],
@@ -333,6 +371,7 @@ default_global_config = [
 			"url"         : "https://github.com/co-demos/ApiViz",
 			"app_version" : version,
 			"help"        : u"Choose the repo for the source code of your ApiViz instance",
+			"in_navbar"  	: False,
 			"in_footer"  	: True,
 			"is_default"  : True,
 		},
