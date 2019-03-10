@@ -6,8 +6,8 @@ default_global_config = [
 
 	### LANGUAGES
 		{ "field"       : "app_languages",
-			"languages"		: ["en", "fr"],
-			"default_lan"	: "fr",
+			"languages"		: ["fr"],
+			"locale"	    : "fr",
 			"app_version" : version,
 			"help"        : u"The default homepage for your ApiViz instance",
 			"is_default"  : True
@@ -15,13 +15,12 @@ default_global_config = [
 
 	### BANNER
 		{ "field"       : "app_banner",
-			"languages"		: ["fr"],
-			"default_lan"	: "fr",
+			"locale"	    : "fr",
 			"app_version" : version,
 			"help"        : u"The default banner for your ApiViz instance (between navbar and filter)",
-			"template_url"      : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/banner-homepage.html?raw=true",
-			"is_dynamic"        : False,
-			"dynamic_template"  : 'DynamicBanner',
+			"template_url"     : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/banner-homepage.html?raw=true",
+			"is_dynamic"       : False,
+			"dynamic_template" : 'DynamicBanner',
 			"is_visible"          : False,
 			"is_dismisible"       : True,
 			"is_disapearing"      : False,
@@ -31,8 +30,6 @@ default_global_config = [
 
 	### FOOTER
 		{ "field"       : "app_footer",
-			"languages"		: ["fr"],
-			"default_lan"	: "fr",
 			"app_version" : version,
 			"help"        : u"The default footer for your ApiViz instance",
 
@@ -199,7 +196,7 @@ default_global_config = [
 							"tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
 						},
 						{ "is_visible" : True, 
-							"link_to"    : "/",
+							"link_to"    : "https://www.elysee.fr",
 							"link_type"  : "text", 
 							"icon_class" : "", 
 							"link_text"  : [{"locale" : "fr", "text" : "elysee.fr" }],
@@ -264,44 +261,38 @@ default_global_config = [
 
 	### METAS
 		{ "field"       : "app_title",
-			"content"     : u"ApiViz",
 			"app_version" : version,
 			"help"        : u"Choose a title for your ApiViz instance",
+			"content"     : u"ApiViz",
 			"is_default"  : True
 		},
 
 		{ "field"       : "app_description",
-			"content"     : u"from API data to a reactive website in seconds",
 			"app_version" : version,
 			"help"        : u"Choose a description for your ApiViz instance",
+			"content"     : [{ "locale" : "fr", "text" : ""}],
 			"is_default"  : True
 		},
 
 		{ "field"       : "app_keywords",
-			"content"     : u"""dataviz,data visualisation,data visualization,SIG,commons,digital commons,API,opensource,open source,open data,opendata,MIT licence,github,sJS,javascript,python,flask,HTML,CSS,JSON,bulma,Vue.js,sEtalab,co-demos, codemos""",
 			"app_version" : version,
 			"help"        : u"Choose a set of keywords for your ApiViz instance",
+			"content"     : u"""dataviz,data visualisation,data visualization,SIG,commons,digital commons,API,opensource,open source,open data,opendata,MIT licence,github,sJS,javascript,python,flask,HTML,CSS,JSON,bulma,Vue.js,sEtalab,co-demos, codemos""",
 			"is_default"  : True
 		},
 
 	### GLOBAL CONTENTS / TEXTS
 		{ "field"       : "app_welcome",
-			"content"     : {
-				"en" 	: u"Welcome to ApiViz",
-				"fr"	: u"Bienvenue sur ApiViz",
-			},
 			"app_version" : version,
 			"help"        : u"Choose a welcoming phrase for your ApiViz instance",
+			"content"     : [{ "locale" : "fr", "text" : "Bienvenue"}],
 			"is_default"  : True
 		},
 
 		{ "field"       : "app_pitch",
-			"content"     : {
-				"en" 	: u"from API data to a reactive website in seconds",
-				"fr"	: u"transformer les données d'une API en un site réactif en quelques secondes",
-			},
 			"app_version" : version,
 			"help"        : u"Choose a pitch/catchphrase for your ApiViz instance",
+			"content"     : [{ "locale" : "fr", "text" : ""}],
 			"is_default"  : True
 		},
 
@@ -367,10 +358,10 @@ default_global_config = [
 
 	### REPO GITHUB
 		{ "field"       : "app_code",
-			"content"     : u"source code",
 			"url"         : "https://github.com/co-demos/ApiViz",
 			"app_version" : version,
 			"help"        : u"Choose the repo for the source code of your ApiViz instance",
+			"content"     : [{ "locale" : "fr", "text" : "Code source"}],
 			"in_navbar"  	: False,
 			"in_footer"  	: True,
 			"is_default"  : True,
@@ -378,29 +369,29 @@ default_global_config = [
 	
 	### SEO / INDEXING
 		{ "field"       : "app_indexing",
-			"content"     : u"", 
 			"app_version" : version,
 			"help"        : u"Choose a token for indexing your ApiViz instance",
+			"content"     : u"", 
 			"activated"  	: False,
 			"is_default"  : True
 		},
 
 	### ANALYTICS
 		{ "field"       : "app_analytics",
-			"content"     : u"your_id_or_token",
-			"url"         : "",
 			"app_version" : version,
 			"help"        : u"Choose the token for the analytics (ex. mix panel) of your ApiViz instance",
+			"content"     : u"your_id_or_token",
+			"url"         : "",
 			"activated"  	: False,
 			"is_default"  : True
 		},
 
 	### SUPPORT 
 		{ "field"       : "app_support",
-			"content"     : u"your_id_or_token",
-			"url"         : "",
 			"app_version" : version,
 			"help"        : u"Choose the token for the support (ex. crisp) of your ApiViz instance",
+			"content"     : u"your_id_or_token",
+			"url"         : "",
 			"activated"  	: False,
 			"is_default"  : True
 		},
