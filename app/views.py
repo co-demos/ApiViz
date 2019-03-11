@@ -135,74 +135,74 @@ def checkJWT(token, url_check="http://localhost:4100/api/auth/tokens/confirm_acc
 @app.route('/backend/api/config/<string:collection>', methods=['GET'], defaults={"doc_id" : None})
 @app.route('/backend/api/config', methods=['GET'], defaults={'collection': 'global', "doc_id" : None})
 def config_global(collection, doc_id=None):
-  """
-  Main route to GET and POST/PUT/DELETE
-  choices 	: global | endpoints | styles | routes | socials
-  variables : <collection> and <doc_id>
-  arguments : as_list (bool), field (str)
-  example 	: http://localhost:8100/backend/api/config?as_list=true
-  """
+	"""
+	Main route to GET and POST/PUT/DELETE
+	choices 	: global | endpoints | styles | routes | socials
+	variables : <collection> and <doc_id>
+	arguments : as_list (bool), field (str)
+	example 	: http://localhost:8100/backend/api/config?as_list=true
+	"""
 
-  log_app.debug("config app route")
-  log_app.debug("config app route / collection : %s", collection )
-  log_app.debug("config app route / doc_id : %s", doc_id )
+	log_app.debug("config app route")
+	log_app.debug("config app route / collection : %s", collection )
+	log_app.debug("config app route / doc_id : %s", doc_id )
 
-  ### target right config collection 
-  if collection in ["global" , "endpoints" , "styles" , "routes", "socials" ] : 
-    mongoColl = mongoConfigColls[collection] ### imported from . (and from there from .api.__init__ )
-  else : 
-    log_app.warning("error : -%s- is not a valid config collection (redirect)", collection)
-    return redirect( "/error/400" )
+	### target right config collection 
+	if collection in ["global" , "footer", "navbar", "endpoints" , "styles" , "routes", "socials" ] : 
+		mongoColl = mongoConfigColls[collection] ### imported from . (and from there from .api.__init__ )
+	else : 
+		log_app.warning("error : -%s- is not a valid config collection (redirect)", collection)
+		return redirect( "/error/400" )
 
-  ### get request args if any 
-  as_list = request.args.get('as_list', default=False, 		type=bool)
-  field 	= request.args.get('field', 	default="field", 	type=str)
-  token 	= request.args.get('token', 	default=None, 		type=str)
-  log_app.debug("config app route / as_list : %s", as_list )
+	### get request args if any 
+	as_list = request.args.get('as_list', default=False, 		type=bool)
+	field 	= request.args.get('field', 	default="field", 	type=str)
+	token 	= request.args.get('token', 	default=None, 		type=str)
+	log_app.debug("config app route / as_list : %s", as_list )
 
-  ### filter out field arg to unique identifiers fields in documents
-  if field not in ['_id', 'field'] : 
-    field = 'field'
-    
-  ### build query if any 
-  query = {}
-  if doc_id : 
-    query = {"_id" : ObjectId(doc_id)}
+	### filter out field arg to unique identifiers fields in documents
+	if field not in ['_id', 'field'] : 
+		field = 'field'
+		
+	### build query if any 
+	query = {}
+	if doc_id : 
+		query = {"_id" : ObjectId(doc_id)}
 
-  ### check if token allows user to POST
-  if token :
-      is_authorized = checkJWT(token)
+	### check if token allows user to POST
+	if token :
+  		is_authorized = checkJWT(token)
 
-  ### TO DO 
-  if request.method == 'POST':
-    if is_authorized : 
-      return "hello config master / POST ... praise be"
-    else : 
-      return "noooope"
+	### TO DO 
+	if request.method == 'POST':
+		if is_authorized : 
+			return "hello config master / POST ... praise be"
+		else : 
+			return "noooope"
 
-  elif request.method == 'DELETE':
-    if is_authorized : 
-      return "hello config master / DELETE ... praise be"
-    else : 
-      return "noooope"
+	elif request.method == 'DELETE':
+		if is_authorized : 
+			return "hello config master / DELETE ... praise be"
+		else : 
+			return "noooope"
 
 
-  elif request.method == 'GET':
+	elif request.method == 'GET':
 
-    app_config_dict = getDocuments(mongoColl, query=query, as_list=as_list, field=field)
+		app_config_dict = getDocuments(mongoColl, query=query, as_list=as_list, field=field)
 
-    return jsonify( {
-        "msg" 				: "this is the results from your query on the '%s' config collection" % collection,
-        "query"				: query,
-        "request"			: {
-          "url" 				: request.url,
-          "args" 				: request.args, 
-          "method"			: request.method,
-          "collection"	: collection,
-          "doc_id"			: doc_id,
-        },
-        "app_config" 	: app_config_dict
-    } )
+		return jsonify( {
+				"msg" 				: "this is the results from your query on the '%s' config collection" % collection,
+				"query"				: query,
+				"request"			: {
+					"url" 				: request.url,
+					"args" 				: request.args, 
+					"method"			: request.method,
+					"collection"	: collection,
+					"doc_id"			: doc_id,
+				},
+				"app_config" 	: app_config_dict
+		} )
 
 
 
