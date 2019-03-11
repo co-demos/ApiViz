@@ -13,7 +13,7 @@ default_app_footer = [
       "is_dynamic"        : True,
       "dynamic_template"  : 'DynamicFooter',
 
-      "contents_options" : {
+      "contents_fields" : {
 
         "static_texts_left"  : [
           { 

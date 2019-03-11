@@ -83,21 +83,41 @@ default_routes_config = [
       "dynamic_template"  : 'DynamicMap',
       "endpoint_type"     : "map",
 
-      "contents_options"  : {
+      "contents_fields"  : [
+        { "field" : "title",        
+          "is_visible" : True, 
+          "position" : "block_title",    
+          "trim" : 50, 
+          "locale" : "fr" 
+        },
+        { "field" : "adresse",      
+          "is_visible" : True, 
+          "position" : "block_address",    
+          "trim" : 20, 
+          "locale" : "fr" 
+        },
+        { "field" : "présentation", 
+          "is_visible" : True, 
+          "position" : "block_abstract", 
+          "trim" : 50, 
+          "locale" : "fr" 
+        },
+        { "field" : "étiquettes",   
+          "is_visible" : True, 
+          "position" : "block_tags", 
+          "trim" : 50, 
+          "locale" : "fr" 
+        },
+      ],
 
-        "title"         : [{ "field" : "title",        "default" : "title",     "position" : "block_top_1",    "is_visible" : True, "trim" : 50, "locale" : "fr" }],
-        "address"       : [{ "field" : "adresse",      "default" : "address",   "position" : "block_top_2",    "is_visible" : True, "trim" : 20, "locale" : "fr" }],
-        "abstract"      : [{ "field" : "présentation", "default" : "abstract",  "position" : "block_middle_1", "is_visible" : True, "trim" : 50, "locale" : "fr" }],
-        "tags_1"        : [{ "field" : "étiquettes",   "default" : "tags",      "position" : "block_bottom_1", "is_visible" : True, "trim" : 50, "locale" : "fr"  }],
+      "images_fields"        : {
+        "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
+        "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
       },
 
       "ui_options"        : {
-
-        "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
-        "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
         "card_color"    : { "value" : None, "default" : "white", },
         "text_color"    : { "value" : None, "default" : "black", },
-
         "link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
         "link_to_previous" : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document précédent" }] },
@@ -105,7 +125,7 @@ default_routes_config = [
 
       "links_options"  : {
 
-        "block_data_links" : {
+        "block_contents_links" : {
          "is_visible"  : False,
          "position"    : "block_bottom_1",
          "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
@@ -168,21 +188,41 @@ default_routes_config = [
       "dynamic_template"  : 'DynamicList',
       "endpoint_type"     : "list",
 
-      "contents_options"  : {
+      "contents_fields"  : [
 
-        "title"         : [{ "field" : "title",        "default" : "title",    "position" : "block_top_1",    "is_visible" : True, "trim" : 50, "locale" : "fr" }],
-        "address"       : [{ "field" : "adresse",      "default" : "address",  "position" : "block_top_2",    "is_visible" : True, "trim" : 20, "locale" : "fr" }],
-        "abstract"      : [{ "field" : "présentation", "default" : "abstract", "position" : "block_middle_1", "is_visible" : True, "trim" : 50, "locale" : "fr"}],
-        "tags_1"        : [{ "field" : "étiquettes",   "default" : "tags",     "position" : "block_bottom_1", "is_visible" : True, "trim" : 50, "locale" : "fr"  }],
-      },
+        { "field" : "title",        
+          "is_visible" : True, 
+          "position" : "block_title",    
+          "trim" : 50, 
+          "locale" : "fr" 
+        },
+        { "field" : "adresse",      
+          "is_visible" : True, 
+          "position" : "block_address",    
+          "trim" : 20, 
+          "locale" : "fr" 
+        },
+        { "field" : "présentation", 
+          "is_visible" : True, 
+          "position" : "block_abstract", 
+          "trim" : 50, 
+          "locale" : "fr"
+        },
+        { "field" : "étiquettes",   
+          "is_visible" : True, 
+          "position" : "block_tags", 
+          "trim" : 50, 
+          "locale" : "fr"
+         },
+      ],
 
-      "ui_options"        : {
-
+      "images_fields"        : {
         "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
         "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
+      },
+      "ui_options" : {
         "card_color"    : { "value" : None, "default" : "white", },
         "text_color"    : { "value" : None, "default" : "black", },
-
         "link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
         "link_to_previous" : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document précédent" }] },
@@ -190,7 +230,7 @@ default_routes_config = [
 
       "links_options"  : {
 
-        "block_data_links" : {
+        "block_contents_links" : {
          "is_visible"  : False,
          "position"    : "block_bottom_1",
          "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
@@ -253,16 +293,40 @@ default_routes_config = [
       "dynamic_template"  : 'DynamicDetail',
       "endpoint_type"     : "detail",
       
-      "contents_options"  : {
+      "contents_fields"  : [
         
-        "title"          : [{ "field" : "title",             "default" : "title",    "position" : "block_left_top_1",     "is_visible" : True,  "trim" : 0, "locale" : "fr" }],
-        "address"        : [{ "field" : "adresse",           "default" : "address",  "position" : "block_left_top_2",     "is_visible" : True,  "trim" : 0, "locale" : "fr" }],
-        "abstract"       : [{ "field" : "présentation",      "default" : "abstract", "position" : "block_left_middle_1",  "is_visible" : True,  "trim" : 0, "locale" : "fr" }],
-        "full_text"      : [{ "field" : "détails structure", "default" : "abstract", "position" : "block_left_middle_1",  "is_visible" : False, "trim" : 0, "locale" : "fr" }],
-        "tags_1"         : [{ "field" : "étiquettes",        "default" : "tags",     "position" : "block_right_bottom_1", "is_visible" : True,  "trim" : 0, "locale" : "fr" }],
+        { "field" : "title",             
+          "is_visible" : True,  
+          "position" : "block_title",     
+          "trim" : 0, 
+          "locale" : "fr" 
+        },
+        { "field" : "adresse",           
+          "is_visible" : True,  
+          "position" : "block_address",     
+          "trim" : 0, 
+          "locale" : "fr" 
+        },
+        { "field" : "présentation",      
+          "is_visible" : True,  
+          "position" : "block_abstract",  
+          "trim" : 0, 
+          "locale" : "fr" 
+        },
+        { "field" : "détails structure", 
+          "is_visible" : False, 
+          "position" : "block_details",  
+          "trim" : 0, 
+          "locale" : "fr" 
+        },
+        { "field" : "étiquettes",        
+          "is_visible" : True,  
+          "position" : "block_tags", 
+          "trim" : 0, 
+          "locale" : "fr" 
+        },
 
         # optional text contents
-        "other_contents"  : [
          { "field"       : "services",        
            "is_visible"  : True, 
            "position"    : "block_right_bottom_1", 
@@ -273,26 +337,24 @@ default_routes_config = [
            "position"    : "block_right_bottom_1", 
            "title_block" : [{ "locale" : "fr", "text" : "Informations pratiques", "is_visible" : False }],
          },
-        ],
 
-      },
+      ],
 
-      "ui_options"        : {
-
+      "images_fields"     : {
         "card_img_main"  : { "field" : "", "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
         "card_img_top"   : { "field" : "", "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
+      },
+      "ui_options"        : {        
         "card_color"     : { "value" : None, "default" : "white", },
         "text_color"     : { "value" : None, "default" : "black", },
-        
         "link_to_detail"   : { "is_visible" : False, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True,  "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
         "link_to_previous" : { "is_visible" : True,  "tooltip" : [{"locale" : "fr", "text" : "voir le document précédent" }] },
-
       },
 
       "links_options"  : {
 
-        "block_data_links" : {
+        "block_contents_links" : {
          "is_visible"  : True,
          "position"    : "block_left_middle_2",
          "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
@@ -387,21 +449,41 @@ default_routes_config = [
       "dynamic_template"  : 'DynamicMap',
       "endpoint_type"     : "map",
 
-      "contents_options"  : {
+      "contents_fields"  : [
+        { "field" : "title",        
+          "is_visible" : True, 
+          "position" : "block_title",    
+          "trim" : 50, 
+          "locale" : "fr" 
+        },
+        { "field" : "adresse",      
+          "is_visible" : True, 
+          "position" : "block_address",    
+          "trim" : 20, 
+          "locale" : "fr" 
+        },
+        { "field" : "présentation", 
+          "is_visible" : True, 
+          "position" : "block_abstract", 
+          "trim" : 50, 
+          "locale" : "fr" 
+        },
+        { "field" : "étiquettes",   
+          "is_visible" : True, 
+          "position" : "block_tags", 
+          "trim" : 50, 
+          "locale" : "fr" 
+        },
+      ],
 
-        "title"         : [{ "field" : "title",        "default" : "title",     "position" : "block_top_1",    "is_visible" : True, "trim" : 50, "locale" : "fr" }],
-        "address"       : [{ "field" : "adresse",      "default" : "address",   "position" : "block_top_2",    "is_visible" : True, "trim" : 20, "locale" : "fr" }],
-        "abstract"      : [{ "field" : "présentation", "default" : "abstract",  "position" : "block_middle_1", "is_visible" : True, "trim" : 50, "locale" : "fr" }],
-        "tags_1"        : [{ "field" : "étiquettes",   "default" : "tags",      "position" : "block_bottom_1", "is_visible" : True, "trim" : 50, "locale" : "fr"  }],
+      "images_fields"        : {
+        "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
+        "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
       },
 
       "ui_options"        : {
-
-        "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
-        "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
         "card_color"    : { "value" : None, "default" : "white", },
         "text_color"    : { "value" : None, "default" : "black", },
-
         "link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
         "link_to_previous" : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document précédent" }] },
@@ -409,7 +491,7 @@ default_routes_config = [
 
       "links_options"  : {
 
-        "block_data_links" : {
+        "block_contents_links" : {
          "is_visible"  : False,
          "position"    : "block_bottom_1",
          "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
@@ -473,21 +555,41 @@ default_routes_config = [
       "endpoint_type"     : "list",
 
 
-      "contents_options"  : {
+      "contents_fields"  : [
 
-        "title"         : [{ "field" : "title",        "default" : "title",    "position" : "block_top_1",    "is_visible" : True, "trim" : 50, "locale" : "fr" }],
-        "address"       : [{ "field" : "adresse",      "default" : "address",  "position" : "block_top_2",    "is_visible" : True, "trim" : 20, "locale" : "fr" }],
-        "abstract"      : [{ "field" : "présentation", "default" : "abstract", "position" : "block_middle_1", "is_visible" : True, "trim" : 50, "locale" : "fr"}],
-        "tags_1"        : [{ "field" : "étiquettes",   "default" : "tags",     "position" : "block_bottom_1", "is_visible" : True, "trim" : 50, "locale" : "fr"  }],
-      },
+        { "field" : "title",        
+          "is_visible" : True, 
+          "position" : "block_title",    
+          "trim" : 50, 
+          "locale" : "fr" 
+        },
+        { "field" : "adresse",      
+          "is_visible" : True, 
+          "position" : "block_address",    
+          "trim" : 20, 
+          "locale" : "fr" 
+        },
+        { "field" : "présentation", 
+          "is_visible" : True, 
+          "position" : "block_abstract", 
+          "trim" : 50, 
+          "locale" : "fr"
+        },
+        { "field" : "étiquettes",   
+          "is_visible" : True, 
+          "position" : "block_tags", 
+          "trim" : 50, 
+          "locale" : "fr" 
+         },
+      ],
 
-      "ui_options"        : {
-
+      "images_fields"        : {
         "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
         "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
+      },
+      "ui_options" : {
         "card_color"    : { "value" : None, "default" : "white", },
         "text_color"    : { "value" : None, "default" : "black", },
-
         "link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
         "link_to_previous" : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document précédent" }] },
@@ -495,7 +597,7 @@ default_routes_config = [
 
       "links_options"  : {
 
-        "block_data_links" : {
+        "block_contents_links" : {
          "is_visible"  : False,
          "position"    : "block_bottom_1",
          "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
@@ -558,16 +660,40 @@ default_routes_config = [
       "dynamic_template"  : 'DynamicDetail',
       "endpoint_type"     : "detail",
 
-      "contents_options"  : {
+      "contents_fields"  : [
         
-        "title"          : [{ "field" : "title",             "default" : "title",    "position" : "block_left_top_1",     "is_visible" : True,  "trim" : 0, "locale" : "fr" }],
-        "address"        : [{ "field" : "adresse",           "default" : "address",  "position" : "block_left_top_2",     "is_visible" : True,  "trim" : 0, "locale" : "fr" }],
-        "abstract"       : [{ "field" : "présentation",      "default" : "abstract", "position" : "block_left_middle_1",  "is_visible" : True,  "trim" : 0, "locale" : "fr" }],
-        "full_text"      : [{ "field" : "détails structure", "default" : "abstract", "position" : "block_left_middle_1",  "is_visible" : False, "trim" : 0, "locale" : "fr" }],
-        "tags_1"         : [{ "field" : "étiquettes",        "default" : "tags",     "position" : "block_right_bottom_1", "is_visible" : True,  "trim" : 0, "locale" : "fr" }],
+        { "field" : "title",             
+          "is_visible" : True,  
+          "position" : "block_title",     
+          "trim" : 0, 
+          "locale" : "fr" 
+        },
+        { "field" : "adresse",           
+          "is_visible" : True,  
+          "position" : "block_address",     
+          "trim" : 0, 
+          "locale" : "fr" 
+        },
+        { "field" : "présentation",      
+          "is_visible" : True,  
+          "position" : "block_abstract",  
+          "trim" : 0, 
+          "locale" : "fr" 
+        },
+        { "field" : "détails structure", 
+          "is_visible" : False, 
+          "position" : "block_details",  
+          "trim" : 0, 
+          "locale" : "fr" 
+        },
+        { "field" : "étiquettes",        
+          "is_visible" : True,  
+          "position" : "block_tags", 
+          "trim" : 0, 
+          "locale" : "fr" 
+        },
 
         # optional text contents
-        "other_contents"  : [
          { "field"       : "services",        
            "is_visible"  : True, 
            "position"    : "block_right_bottom_1", 
@@ -578,26 +704,24 @@ default_routes_config = [
            "position"    : "block_right_bottom_1", 
            "title_block" : [{ "locale" : "fr", "text" : "Informations pratiques", "is_visible" : False }],
          },
-        ],
 
-      },
+      ],
 
-      "ui_options"        : {
-
+      "images_fields"     : {
         "card_img_main"  : { "field" : "", "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
         "card_img_top"   : { "field" : "", "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
+      },
+      "ui_options"        : {        
         "card_color"     : { "value" : None, "default" : "white", },
         "text_color"     : { "value" : None, "default" : "black", },
-        
         "link_to_detail"   : { "is_visible" : False, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
         "link_to_next"     : { "is_visible" : True,  "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
         "link_to_previous" : { "is_visible" : True,  "tooltip" : [{"locale" : "fr", "text" : "voir le document précédent" }] },
-
       },
 
       "links_options"  : {
 
-        "block_data_links" : {
+        "block_contents_links" : {
          "is_visible"  : True,
          "position"    : "block_left_middle_2",
          "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
