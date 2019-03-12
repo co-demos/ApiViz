@@ -1,8 +1,8 @@
 <template>
     <div>
-        <NavBar :logo="logo" :brand="brand"/>
 
-        <main v-if="project">
+
+        <main v-if="projectFormatted">
             <div class="container">
 
                 <a class="back" @click="goBack">
@@ -16,21 +16,21 @@
 
                     <div class="column is-5 is-offset-1">
                         <div class="description">
-                            <h1 class="title is-3">{{project.title}}</h1>
-                            <p v-if="project.address">
+                            <h1 class="title is-3">{{projectFormatted.title}}</h1>
+                            <p v-if="projectFormatted.address">
                                 <span class="icon">
                                     <img class="image is-16x16" src="/static/icons/icon_pin.svg">
                                 </span>
-                                {{project.address}}
+                                {{projectFormatted.address}}
                             </p>
-                            <p>{{project.description}}</p>
+                            <p>{{projectFormatted.description}}</p>
 
-                            <div v-if="project.projectPartners">
+                            <div v-if="projectFormatted.projectPartners">
                                 <h2 class="title is-4">Structure</h2>
-                                <p>{{project.projectPartners}}</p>
+                                <p>{{projectFormatted.projectPartners}}</p>
                             </div>
 
-                            <a v-if="project.website" :href="project.website" target="_blank">Voir le site du projet</a>
+                            <a v-if="projectFormatted.website" :href="projectFormatted.website" target="_blank">Voir le site du projet</a>
                         </div>
                     </div>
 
@@ -39,32 +39,32 @@
                             <div class="columns">
                                 <div class="column is-8">
                                     <div>
-                                        Projet ajouté par 
+                                        Projet ajouté par
                                         <a :href="spider.page_url" target="_blank">
                                             {{spider.name}}
                                         </a>
                                     </div>
-                                    <div v-if="project.pageAtSourcer">
-                                        <a :href="project.pageAtSourcer" class="link-at-sourcer" target="_blank">
+                                    <div v-if="projectFormatted.pageAtSourcer">
+                                        <a :href="projectFormatted.pageAtSourcer" class="link-at-sourcer" target="_blank">
                                             <img src="/static/icons/icon_link.svg">
                                             Voir ce projet sur le site
                                         </a>
                                     </div>
                                 </div>
                                 <div class="column is-4 no-left-padding is-vertical-centered">
-                                    <a :href="project.pageAtSourcer" target="_blank">
+                                    <a :href="projectFormatted.pageAtSourcer" target="_blank">
                                         <img class="logo" v-if="spider.logo_url" :src="spider.logo_url">
                                     </a>
                                 </div>
                             </div>
                         </div>
 
-                        <a :href="project.pageAtSourcer" target="_blank">
-                            <img class="illustration" :src="project.image"/>
+                        <a :href="projectFormatted.pageAtSourcer" target="_blank">
+                            <img class="illustration" :src="projectFormatted.image"/>
                         </a>
-                        <div v-if="Array.isArray(project.tags) && project.tags.length >= 1" class="content">
+                        <div v-if="Array.isArray(projectFormatted.tags) && projectFormatted.tags.length >= 1" class="content">
                             <h2 class="title is-5">Catégories</h2>
-                            <span v-for="tag in project.tags" class="tag" :key="tag">
+                            <span v-for="tag in projectFormatted.tags" class="tag" :key="tag">
                                 {{tag}}
                             </span>
                         </div>
@@ -74,31 +74,65 @@
             </div>
         </main>
 
-        <NotFoundError v-if="!project"/>
-        
-        <Footer/>
+        <NotFoundError v-if="!projectFormatted"/>
+
     </div>
 </template>
+
+
+<script>
+export default {
+    computed: {
+      ...mapState({
+          user: 'user'
+      })
+    },
+}
+</script>
+
 
 <script>
 import {mapState} from 'vuex'
 
-import NavBar from '../NavBar.vue';
-import NotFoundError from '../NotFoundError.vue';
-import Footer from '../Footer.vue';
+import NotFoundError from './NotFoundError.vue';
+
+import {getProjectById} from '../utils.js';
 
 export default {
+    name: 'DynamicDetail',
     components: {
-        NavBar, NotFoundError, Footer
+      NotFoundError,
     },
     props: [
-        'logo', 'brand'
+        'routeConfig','logo', 'brand'
     ],
-    
-    computed: mapState({
+
+    computed: {
+      ...mapState({
         project: 'displayedProject',
         spider({spiders}){ return spiders && this.project && spiders[this.project.spiderId] }
-    }),
+      }),
+      ...mapState({
+          user: 'user'
+      }),
+      projectFormatted(){
+        if (!this.project) {
+          return {
+            tags: [],
+            image: '',
+            logo_url: '',
+            title: '',
+            address: '',
+            description: '',
+            projectPartners: '',
+            website: '',
+            pageAtSourcer: ''
+          }
+        } else {
+          return this.$store.getters.getProjectConfigUniform(this.project)
+        }
+      },
+    },
 
     mounted(){
         // hack to scroll top because vue-router scrollBehavior thing doesn't seem to work on Firefox on Linux at least
@@ -110,6 +144,12 @@ export default {
                 window.scrollTo(0, 0)
             }
         }, 100);
+
+        getProjectById(this.$route.query.id,this.$store.state.search.endpoint.root_url)
+        .then(project => {
+            this.$store.commit('setDisplayedProject', {project})
+        })
+        .catch(err => console.error('project route error', err))
     },
 
     methods: {
@@ -124,8 +164,8 @@ export default {
 
 
 <style lang="scss" scoped>
-@import '../../../styles/cis-colors.scss';
-@import '../../../styles/cis-misc.scss';
+@import '../../styles/cis-colors.scss';
+@import '../../styles/cis-misc.scss';
 
 main{
     background-color: $cis-grey-background;
@@ -171,12 +211,12 @@ a.back{
     p{
         margin-bottom: 1em;
     }
-    
+
     a{
         color: $cis-primary;
         border-bottom: 1px solid $cis-primary;
     }
-} 
+}
 
 
 .added {

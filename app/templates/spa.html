@@ -6,16 +6,16 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 		<title>Carrefour des Innovations Sociales</title>
-		
+
 		{# CUSTOM APP META DATA #}
 		<meta name="keywords" 		content="{{ app_metas.keywords }}">
 		<meta name="author"			content="{{ app_metas.authors }}">
 		<meta name="description" 	content="{{ app_metas.description }}">
-		
+
 		<meta name="config_name" 	content="{{ config_name }}">
 
 		<meta name="user_token" 	content="test_token">
-		
+
 		{# GOOGLE INDEXING / cf : https://support.google.com/webmasters/answer/6259634?hl=en #}
 		<meta name="google-site-verification" content="vSnFdoQsEBUIOqbQWr3h1SRXb1mu0ttVN0fo4H25XNk" />
 
@@ -28,7 +28,7 @@
 				mixpanel.init("efeeb2cdf388e67727ed68fcdeea898f");
 			</script>
 		{% endif %}
-		
+
 		<link rel="stylesheet" href="{{ url_for('static', filename='build/bundle.css') }}">
 
 
@@ -40,7 +40,7 @@
 		<script defer src="{{ url_for('static', filename='json/NORMALIZATION_TAGS_SOURCES_CIS_DICT.js') }}"></script>
 		<script defer src="{{ url_for('static', filename='json/NOMENCLATURE_CIS_DICT.js') }}"></script>
 
-		
+
 		<!-- CUSTOM MIXPANEL CALLS  -->
 
 		{% if config_name == "production" %}
@@ -49,30 +49,30 @@
 			// https://blog.toky.co/mixpanels-basic-tutorial-guide-to-start-custom-event-tracking-on-your-website/
 			console.log("sending data to Mix Panel")
 			mixpanel.track("page_view");
-			
+
 			{% if user_infos %}
 
 			mixpanel.identify("{{ user_infos.userOID }}");
 
 			mixpanel.people.set({
 				"$id"	: "{{ user_infos.userOID }}",		// only special properties need the $
-				"$email": "{{ user_infos.userEmail }}",		// 
-				
+				"$email": "{{ user_infos.userEmail }}",		//
+
 				//"$created": "2011-03-16 16:53:54",
 				//"$last_login": new Date(),         // properties can be dates...
 				//"credits": 150,                    // ...or numbers
 			});
 
 			{% endif %}
-		</script> 
+		</script>
 
 		<script src="{{ url_for('static', filename='js/cis-mixpanel-metrics.js') }}"></script>
-		
+
 		{% endif %}
-		
+
 		{# HACK CACHING : https://stackoverflow.com/questions/32414/how-can-i-force-clients-to-refresh-javascript-files #}
-		<script defer src="/static/build/bundle.js?7"></script>
-	
+		<script defer src="/static/build/bundle.js?200"></script>
+
 	</head>
 
 

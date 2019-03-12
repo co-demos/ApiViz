@@ -12,7 +12,7 @@ export const userRoutesGenerator = function(store){
   return [
       {
           name: 'login',
-          path: '/app/login',
+          path: '/login',
           component: LoginScreen,
           props(route){
               return {
@@ -26,7 +26,7 @@ export const userRoutesGenerator = function(store){
       },
       {
           name: 'register',
-          path: '/app/register',
+          path: '/register',
           component: RegisterScreen,
           props(route){
               return {
@@ -40,7 +40,7 @@ export const userRoutesGenerator = function(store){
       },
       {
           name: 'registerConfirmEmail',
-          path: '/app/registerconfirmemail',
+          path: '/registerconfirmemail',
           props(e){
               return {
                   ...BRAND_DATA
@@ -67,7 +67,7 @@ export const userRoutesGenerator = function(store){
       },
       {
           name: 'logout',
-          path: '/app/logout',
+          path: '/logout',
           component: LogoutScreen,
           props(route){
               return {
@@ -80,7 +80,7 @@ export const userRoutesGenerator = function(store){
           }
       }
       // {
-      //     path: '/app/preferences/user_infos',
+      //     path: '/preferences/user_infos',
       //     component: LoginScreen,
       //     props(route){
       //         return {
@@ -93,7 +93,7 @@ export const userRoutesGenerator = function(store){
       //     }
       // },
       // {
-      //     path: '/app/preferences/user_password',
+      //     path: '/preferences/user_password',
       //     component: LoginScreen,
       //     props(route){
       //         return {

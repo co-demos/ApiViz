@@ -6,11 +6,11 @@
 
         <div class="container" v-if="!pending">
             <CISSearchResultsCountAndTabs :view="VIEW_LIST"/>
-            
+
             <div class="columns" v-if="total > 0" >
                 <div class="column is-3" v-for="(projectColumn, i) in projectColumns" :key="i">
                     <div class="columns is-multiline">
-                        <CISProjectCard v-for="project in projectColumn" :key="project.id" :project="project"/>
+                        <ProjectCard v-for="project in projectColumn" :key="project.id" :project="project"/>
                     </div>
                 </div>
             </div>
@@ -31,19 +31,11 @@
 
 <script>
 import {mapState} from 'vuex'
-import CISProjectCard from './CISProjectCard.vue'
+import ProjectCard from './ProjectCard.vue'
 
 import CISSearchResultsCountAndTabs from './CISSearchResultsCountAndTabs.vue'
 
 import {VIEW_LIST} from '../constants.js'
-
-const COLUMN_COUNT = 4;
-
-const DEFAULT_SHOW_COUNT = 50;
-const MORE_PROJECTS_ON_SCROLL_COUNT = 20;
-
-const SCROLL_BEFORE_BOTTOM_TRIGGER = 500;
-
 
 let scrollListener;
 
@@ -51,34 +43,35 @@ export default {
     name: 'SearchResultsList',
 
     components: {
-        CISProjectCard, 
+        ProjectCard,
         CISSearchResultsCountAndTabs
     },
 
     data(){
         return {
             VIEW_LIST,
-            showCount: DEFAULT_SHOW_COUNT,
+            showCount: undefined
         }
     },
 
     watch: {
         projects(prev, next){
-            this.showCount = DEFAULT_SHOW_COUNT;
+            this.showCount = this.$store.getters.getSearchConfigDefaultShowCount;
         }
     },
 
     computed: {
         projectColumns(){
             const {projects} = this.$store.state.search.answer.result;
+            const getSearchConfigColumnCount = this.$store.getters.getSearchConfigColumnCount
 
-            if(projects){
-                const columnsData = Array(COLUMN_COUNT).fill().map(() => []);
-                
+            if(projects && getSearchConfigColumnCount){
+                const columnsData = Array(getSearchConfigColumnCount).fill().map(() => []);
+
                 projects.slice(0, this.showCount).forEach((p, i) => {
-                    columnsData[i%COLUMN_COUNT].push(p);
+                    columnsData[i%getSearchConfigColumnCount].push(p);
                 })
-                
+
                 return columnsData
             }
         },
@@ -90,7 +83,7 @@ export default {
                 const selectedFilters = search.question && search.question.selectedFilters;
                 if(!selectedFilters)
                     return false;
-                
+
                 return [...selectedFilters.values()].some(selectedFilterValues => selectedFilterValues.size >= 1)
             }
         })
@@ -103,17 +96,24 @@ export default {
     },
 
     mounted(){
-        scrollListener = () => {
-            if (
-                window.innerHeight + window.scrollY >= (document.body.offsetHeight - SCROLL_BEFORE_BOTTOM_TRIGGER)
-            ) {
-                if(this.$store.state.search.answer.result && this.showCount < this.$store.state.search.answer.result.projects.length){
-                    this.showCount = this.showCount + MORE_PROJECTS_ON_SCROLL_COUNT
-                }
-            }
-        }
+          this.$store.dispatch('setSearchConfigDisplay');
 
-        window.addEventListener('scroll', scrollListener, {passive: true})
+          this.showCount = this.$store.getters.getSearchConfigDefaultShowCount
+
+          scrollListener = () => {
+              const getSearchConfigScrollBeforeBottomTrigger = this.$store.getters.getSearchConfigScrollBeforeBottomTrigger
+              const getSearchConfigMoreProjectOnScrollCount = this.$store.getters.getSearchConfigMoreProjectOnScrollCount
+
+              if (getSearchConfigMoreProjectOnScrollCount && getSearchConfigScrollBeforeBottomTrigger &&
+                  window.innerHeight + window.scrollY >= (document.body.offsetHeight - getSearchConfigScrollBeforeBottomTrigger)
+              ) {
+                  if(this.$store.state.search.answer.result && this.showCount < this.$store.state.search.answer.result.projects.length){
+                      this.showCount = this.showCount + getSearchConfigMoreProjectOnScrollCount
+                  }
+              }
+          }
+
+          window.addEventListener('scroll', scrollListener, {passive: true})
     },
 
     beforeDestroy(){
@@ -121,7 +121,7 @@ export default {
 
         scrollListener = undefined;
     }
-    
+
 }
 </script>
 

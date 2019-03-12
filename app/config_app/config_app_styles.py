@@ -4,9 +4,9 @@ from . import version
 
 default_app_styles_config = [
 
-  ### GLOBAL STYLES 
+  ### GLOBAL STYLES
     { "field"       : "app_colors",
-      
+
       ### COLOR INPUTS AS HEXA
       "content"     : {
 
@@ -15,11 +15,11 @@ default_app_styles_config = [
         "default_background_navbar" : "#ffffff",
 
         ### SIMILI - BULMA
-        "primary"     : "#513085",  
-        "secondary"   : "#a174ac",  
-        "info"        : "#40529d",  
-        "warning"     : "#f3bd80",  
-        "error"       : "#d24745",  
+        "primary"     : "#513085",
+        "secondary"   : "#a174ac",
+        "info"        : "#40529d",
+        "warning"     : "#f3bd80",
+        "error"       : "#d24745",
         ### EXTRA COLORS
         "dark_blue"   : "#40529d",
         "light_pink"  : "#e89db1",
@@ -33,17 +33,17 @@ default_app_styles_config = [
 
     { "field"       : "app_typo_colors",
       "content"     : {
-        
+
         "default_dark"       : "#000000",
         "default_light_dark" : "#3D3A39",
         "default_invert"     : "#ffffff",
 
         ### SIMILI - BULMA
-        "primary"     : "#513085",  
-        "secondary"   : "#a174ac",  
-        "info"        : "#40529d",  
-        "warning"     : "#f3bd80",  
-        "error"       : "#d24745",  
+        "primary"     : "#513085",
+        "secondary"   : "#a174ac",
+        "info"        : "#40529d",
+        "warning"     : "#f3bd80",
+        "error"       : "#d24745",
         ### EXTRA COLORS
         "dark_blue"   : "#40529d",
         "light_pink"  : "#e89db1",
@@ -72,7 +72,7 @@ default_app_styles_config = [
       "app_version" : version,
       "help"        : u"The dataset banners for your ApiViz instance (between navbar and filter)",
       "banners_set" : [
-        { 
+        {
           "banner_uri"       : "default",
           "template_url"     : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/banner-homepage.html?raw=true",
           "is_dynamic"       : False,
@@ -82,8 +82,8 @@ default_app_styles_config = [
           "is_disapearing"      : False,
           "disapearing_timeout" : 5, ## in seconds
         },
-        { 
-          "banner_uri"       : "banner_sonum_carto",
+        {
+          "banner_uri"       : "banner-sonum-carto",
           "template_url"     : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/banner-homepage.html?raw=true",
           "is_dynamic"       : False,
           "dynamic_template" : 'DynamicBanner',
@@ -92,8 +92,8 @@ default_app_styles_config = [
           "is_disapearing"      : False,
           "disapearing_timeout" : 5, ## in seconds
         },
-        { 
-          "banner_uri"       : "banner_sonum_xp",
+        {
+          "banner_uri"       : "banner-sonum-xp",
           "template_url"     : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/banner-homepage.html?raw=true",
           "is_dynamic"       : False,
           "dynamic_template" : 'DynamicBanner',
@@ -112,8 +112,8 @@ default_app_styles_config = [
       "help"        : u"The default images sets for the cards for each dataset",
 
       "images_sets" : [
-        { 
-          "dataset_uri" : "sonum_carto",
+        {
+          "dataset_uri" : "sonum-carto",
           "images_set"  : [
             { "dft_text" : "img_1", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgA.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
             { "dft_text" : "img_2", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgB.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
@@ -124,7 +124,7 @@ default_app_styles_config = [
           ]
         },
         {
-          "dataset_uri" : "sonum_xp",
+          "dataset_uri" : "sonum-xp",
           "images_set"  : [
             { "dft_text" : "img_1", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgA.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
             { "dft_text" : "img_2", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgB.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },

@@ -2,12 +2,12 @@
 
 from . import version
 
-### ROUTES / PAGES 
+### ROUTES / PAGES
 
 default_routes_config = [
 
   ### - - - - - - - - - - - - - - - - - ###
-  ### PAGES : HOME --> NEED AT LEAST ONE ROUTE AS 'is_global_app_homepage = True' / TO BE ADDED VIA BACK OFFICE BY ADMIN USER 
+  ### PAGES : HOME --> NEED AT LEAST ONE ROUTE AS 'is_global_app_homepage = True' / TO BE ADDED VIA BACK OFFICE BY ADMIN USER
   ### - - - - - - - - - - - - - - - - - ###
 
   { "field"             : "app_home_fr",
@@ -45,7 +45,7 @@ default_routes_config = [
   },
 
   ### - - - - - - - - - - - - - - - - - ###
-  ### PAGES : DATASETS --> TO BE ADDED VIA BACK OFFICE BY ADMIN USER 
+  ### PAGES : DATASETS --> TO BE ADDED VIA BACK OFFICE BY ADMIN USER
   ### - - - - - - - - - - - - - - - - - ###
 
   ### DATASETS CARTO SONUM
@@ -57,7 +57,7 @@ default_routes_config = [
       "route_activated"   : True,
       "banner" : {
         "activated"  : True,
-        "banner_uri" : "banner_sonum_carto"
+        "banner_uri" : "banner-sonum-carto"
       },
       "is_dataset_homepage" : True,
 
@@ -69,44 +69,44 @@ default_routes_config = [
         "icon_class" : "",
         "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
         "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
-      },      
+      },
 
       "in_footer"         : False,
-      "urls"              : ["/carto-sonum/carte"],
+      "urls"              : ["/sonum-carto/carte"],
       "template_url"      : "/static/spa.html",
       "help"             : u"you can specify a remote template (f.e. a github url)",
       "languages"         : ["fr"],
         "app_version"        : version,
       "comment"           : u"Main search route in french",
       "is_dynamic"        : True,
-      "dataset_uri"        : "sonum_carto",
+      "dataset_uri"        : "sonum-carto",
       "dynamic_template"  : 'DynamicMap',
       "endpoint_type"     : "map",
 
       "contents_fields"  : [
-        { "field" : "title",        
-          "is_visible" : True, 
-          "position" : "block_title",    
-          "trim" : 50, 
-          "locale" : "fr" 
+        { "field" : "title",
+          "is_visible" : True,
+          "position" : "block_title",
+          "trim" : 50,
+          "locale" : "fr"
         },
-        { "field" : "adresse",      
-          "is_visible" : True, 
-          "position" : "block_address",    
-          "trim" : 20, 
-          "locale" : "fr" 
+        { "field" : "adresse",
+          "is_visible" : True,
+          "position" : "block_address",
+          "trim" : 20,
+          "locale" : "fr"
         },
-        { "field" : "présentation", 
-          "is_visible" : True, 
-          "position" : "block_abstract", 
-          "trim" : 50, 
-          "locale" : "fr" 
+        { "field" : "présentation",
+          "is_visible" : True,
+          "position" : "block_abstract",
+          "trim" : 50,
+          "locale" : "fr"
         },
-        { "field" : "étiquettes",   
-          "is_visible" : True, 
-          "position" : "block_tags", 
-          "trim" : 50, 
-          "locale" : "fr" 
+        { "field" : "étiquettes",
+          "is_visible" : True,
+          "position" : "block_tags",
+          "trim" : 50,
+          "locale" : "fr"
         },
       ],
 
@@ -162,7 +162,7 @@ default_routes_config = [
       "route_activated"   : True,
       "banner" : {
         "activated"  : False,
-        "banner_uri" : "banner_sonum_carto"
+        "banner_uri" : "banner-sonum-carto"
       },
       "is_dataset_homepage" : False,
 
@@ -177,43 +177,56 @@ default_routes_config = [
       },
 
       "in_footer"         : False,
-      "urls"              : ["/carto-sonum/liste"],
+      "urls"              : ["/sonum-carto/liste"],
       "template_url"      : "/static/spa.html",
       "help"             : u"you can specify a remote template (f.e. a github url)",
       "languages"         : ["fr"],
         "app_version"        : version,
       "comment"           : u"Main search route in french",
       "is_dynamic"        : True,
-      "dataset_uri"        : "sonum_carto",
+      "dataset_uri"        : "sonum-carto",
       "dynamic_template"  : 'DynamicList',
       "endpoint_type"     : "list",
 
       "contents_fields"  : [
 
-        { "field" : "title",        
-          "is_visible" : True, 
-          "position" : "block_title",    
-          "trim" : 50, 
-          "locale" : "fr" 
-        },
-        { "field" : "adresse",      
-          "is_visible" : True, 
-          "position" : "block_address",    
-          "trim" : 20, 
-          "locale" : "fr" 
-        },
-        { "field" : "présentation", 
-          "is_visible" : True, 
-          "position" : "block_abstract", 
-          "trim" : 50, 
+        { "field" : "sd_id",
+          "is_visible" : True,
+          "position" : "block_id",
+          "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "étiquettes",   
-          "is_visible" : True, 
-          "position" : "block_tags", 
-          "trim" : 50, 
+        { "field" : "address",
+          "is_visible" : True,
+          "position" : "block_address",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "ville structure",
+          "is_visible" : True,
+          "position" : "block_title",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "",
+          "is_visible" : True,
+          "position" : "block_image",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "description structure",
+          "is_visible" : True,
+          "position" : "block_abstract",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "",
+          "is_visible" : True,
+          "position" : "block_tags",
+          "trim" : 50,
           "locale" : "fr"
          },
+
       ],
 
       "images_fields"        : {
@@ -267,7 +280,7 @@ default_routes_config = [
       "route_activated"    : True,
       "banner" : {
         "activated"  : False,
-        "banner_uri" : "banner_sonum_carto"
+        "banner_uri" : "banner-sonum-carto"
       },
       "is_dataset_homepage" : False,
 
@@ -282,59 +295,59 @@ default_routes_config = [
       },
 
       "in_footer"         : False,
-      "urls"              : ["/carto-sonum/detail"],
+      "urls"              : ["/sonum-carto/detail"],
       "template_url"      : "/static/spa.html",
       "help"              : u"you can specify a remote template (f.e. a github url)",
       "languages"         : ["fr"],
         "app_version"        : version,
       "comment"           : u"Main search route in french",
       "is_dynamic"        : True,
-      "dataset_uri"        : "sonum_carto",
+      "dataset_uri"        : "sonum-carto",
       "dynamic_template"  : 'DynamicDetail',
       "endpoint_type"     : "detail",
-      
+
       "contents_fields"  : [
-        
-        { "field" : "title",             
-          "is_visible" : True,  
-          "position" : "block_title",     
-          "trim" : 0, 
-          "locale" : "fr" 
+
+        { "field" : "intitulé structure",
+          "is_visible" : True,
+          "position" : "block_title",
+          "trim" : 0,
+          "locale" : "fr"
         },
-        { "field" : "adresse",           
-          "is_visible" : True,  
-          "position" : "block_address",     
-          "trim" : 0, 
-          "locale" : "fr" 
+        { "field" : "adresse structure",
+          "is_visible" : True,
+          "position" : "block_address",
+          "trim" : 0,
+          "locale" : "fr"
         },
-        { "field" : "présentation",      
-          "is_visible" : True,  
-          "position" : "block_abstract",  
-          "trim" : 0, 
-          "locale" : "fr" 
+        { "field" : "description structure",
+          "is_visible" : True,
+          "position" : "block_abstract",
+          "trim" : 0,
+          "locale" : "fr"
         },
-        { "field" : "détails structure", 
-          "is_visible" : False, 
-          "position" : "block_details",  
-          "trim" : 0, 
-          "locale" : "fr" 
+        { "field" : "source",
+          "is_visible" : False,
+          "position" : "block_details",
+          "trim" : 0,
+          "locale" : "fr"
         },
-        { "field" : "étiquettes",        
-          "is_visible" : True,  
-          "position" : "block_tags", 
-          "trim" : 0, 
-          "locale" : "fr" 
+        { "field" : "services",
+          "is_visible" : True,
+          "position" : "block_tags",
+          "trim" : 0,
+          "locale" : "fr"
         },
 
         # optional text contents
-         { "field"       : "services",        
-           "is_visible"  : True, 
-           "position"    : "block_right_bottom_1", 
+         { "field"       : "services",
+           "is_visible"  : True,
+           "position"    : "block_right_bottom_1",
            "title_block" : [{ "locale" : "fr", "text" : "Services proposés", "is_visible" : False }],
          },
-         { "field"       : "infos_pratiques", 
-           "is_visible"  : True, 
-           "position"    : "block_right_bottom_1", 
+         { "field"       : "infos_pratiques",
+           "is_visible"  : True,
+           "position"    : "block_right_bottom_1",
            "title_block" : [{ "locale" : "fr", "text" : "Informations pratiques", "is_visible" : False }],
          },
 
@@ -344,7 +357,7 @@ default_routes_config = [
         "card_img_main"  : { "field" : "", "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
         "card_img_top"   : { "field" : "", "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
       },
-      "ui_options"        : {        
+      "ui_options"        : {
         "card_color"     : { "value" : None, "default" : "white", },
         "text_color"     : { "value" : None, "default" : "black", },
         "link_to_detail"   : { "is_visible" : False, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
@@ -359,19 +372,19 @@ default_routes_config = [
          "position"    : "block_left_middle_2",
          "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
          "links"       : [
-           { "field" : "website", 
-             "is_visible" : True, 
-             "link_type"  : "text", 
-             "icon_class" : "", 
+           { "field" : "website",
+             "is_visible" : True,
+             "link_type"  : "text",
+             "icon_class" : "",
              "link_text"  : [{"locale" : "fr", "text" : "website" }],
-             "tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
+             "tooltip"    : [{"locale" : "fr", "text" : "voir le site" }]
            },
-           { "field" : "contact", 
-             "is_visible" : True, 
-             "link_type"  : "text", 
-             "icon_class" : "", 
+           { "field" : "contact",
+             "is_visible" : True,
+             "link_type"  : "text",
+             "icon_class" : "",
              "link_text"  : [{"locale" : "fr", "text" : "contact" }],
-             "tooltip"    : [{"locale" : "fr", "text" : "contacter la structure" }] 
+             "tooltip"    : [{"locale" : "fr", "text" : "contacter la structure" }]
            },
          ]
         },
@@ -382,25 +395,25 @@ default_routes_config = [
          "title_block" : [{ "locale" : "fr", "text" : "Partagez ce lieu", "is_visible" : True}],
          "links"       : [
            {
-             "is_visible" : True, 
-             "link_type"  : "icon", 
-             "icon_class" : "fas fa-link", 
+             "is_visible" : True,
+             "link_type"  : "icon",
+             "icon_class" : "fas fa-link",
              "link_text"  : [{"locale" : "fr", "text" : "lien" }],
-             "tooltip"    : [{"locale" : "fr", "text" : "partager cette page (copier le lien)" }] 
+             "tooltip"    : [{"locale" : "fr", "text" : "partager cette page (copier le lien)" }]
            },
           {
-             "is_visible" : True, 
-             "link_type"  : "icon", 
-             "icon_class" : "fab fa-facebook-f", 
+             "is_visible" : True,
+             "link_type"  : "icon",
+             "icon_class" : "fab fa-facebook-f",
              "link_text"  : [{"locale" : "fr", "text" : "facebook" }],
-             "tooltip"    : [{"locale" : "fr", "text" : "partager sur facebook" }] 
+             "tooltip"    : [{"locale" : "fr", "text" : "partager sur facebook" }]
            },
            {
-             "is_visible" : True, 
-             "link_type"  : "icon", 
-             "icon_class" : "fab fa-twitter", 
+             "is_visible" : True,
+             "link_type"  : "icon",
+             "icon_class" : "fab fa-twitter",
              "link_text"  : [{"locale" : "fr", "text" : "twitter" }],
-             "tooltip"    : [{"locale" : "fr", "text" : "partager sur twitter" }] 
+             "tooltip"    : [{"locale" : "fr", "text" : "partager sur twitter" }]
            },
          ]
         },
@@ -423,7 +436,7 @@ default_routes_config = [
       "route_activated"    : True,
       "banner" : {
         "activated"  : False,
-        "banner_uri" : "banner_sonum_xp"
+        "banner_uri" : "banner-sonum-xp"
       },
       "is_dataset_homepage" : False,
 
@@ -438,41 +451,41 @@ default_routes_config = [
       },
 
       "in_footer"         : False,
-      "urls"              : ["/xp-sonum/carte"],
+      "urls"              : ["/sonum-xp/carte"],
       "template_url"      : "/static/spa.html",
       "help"              : u"you can specify a remote template (f.e. a github url)",
       "languages"         : ["fr"],
         "app_version"        : version,
       "comment"           : u"Main search route in french",
       "is_dynamic"        : True,
-      "dataset_uri"       : "sonum_xp",
+      "dataset_uri"       : "sonum-xp",
       "dynamic_template"  : 'DynamicMap',
       "endpoint_type"     : "map",
 
       "contents_fields"  : [
-        { "field" : "title",        
-          "is_visible" : True, 
-          "position" : "block_title",    
-          "trim" : 50, 
-          "locale" : "fr" 
+        { "field" : "title",
+          "is_visible" : True,
+          "position" : "block_title",
+          "trim" : 50,
+          "locale" : "fr"
         },
-        { "field" : "adresse",      
-          "is_visible" : True, 
-          "position" : "block_address",    
-          "trim" : 20, 
-          "locale" : "fr" 
+        { "field" : "adresse",
+          "is_visible" : True,
+          "position" : "block_address",
+          "trim" : 20,
+          "locale" : "fr"
         },
-        { "field" : "présentation", 
-          "is_visible" : True, 
-          "position" : "block_abstract", 
-          "trim" : 50, 
-          "locale" : "fr" 
+        { "field" : "présentation",
+          "is_visible" : True,
+          "position" : "block_abstract",
+          "trim" : 50,
+          "locale" : "fr"
         },
-        { "field" : "étiquettes",   
-          "is_visible" : True, 
-          "position" : "block_tags", 
-          "trim" : 50, 
-          "locale" : "fr" 
+        { "field" : "étiquettes",
+          "is_visible" : True,
+          "position" : "block_tags",
+          "trim" : 50,
+          "locale" : "fr"
         },
       ],
 
@@ -528,7 +541,7 @@ default_routes_config = [
       "route_activated"    : True,
       "banner" : {
         "activated"  : True,
-        "banner_uri" : "banner_sonum_xp"
+        "banner_uri" : "banner-sonum-xp"
       },
       "is_dataset_homepage" : True,
 
@@ -543,43 +556,43 @@ default_routes_config = [
       },
 
       "in_footer"         : False,
-      "urls"              : ["/xp-sonum/liste"],
+      "urls"              : ["/sonum-xp/liste"],
       "template_url"      : "/static/spa.html",
       "help"              : u"you can specify a remote template (f.e. a github url)",
       "languages"         : ["fr"],
         "app_version"        : version,
       "comment"           : u"Main search route in french",
       "is_dynamic"        : True,
-      "dataset_uri"       : "sonum_xp",
+      "dataset_uri"       : "sonum-xp",
       "dynamic_template"  : 'DynamicList',
       "endpoint_type"     : "list",
 
 
       "contents_fields"  : [
 
-        { "field" : "title",        
-          "is_visible" : True, 
-          "position" : "block_title",    
-          "trim" : 50, 
-          "locale" : "fr" 
-        },
-        { "field" : "adresse",      
-          "is_visible" : True, 
-          "position" : "block_address",    
-          "trim" : 20, 
-          "locale" : "fr" 
-        },
-        { "field" : "présentation", 
-          "is_visible" : True, 
-          "position" : "block_abstract", 
-          "trim" : 50, 
+        { "field" : "title",
+          "is_visible" : True,
+          "position" : "block_title",
+          "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "étiquettes",   
-          "is_visible" : True, 
-          "position" : "block_tags", 
-          "trim" : 50, 
-          "locale" : "fr" 
+        { "field" : "adresse",
+          "is_visible" : True,
+          "position" : "block_address",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "présentation",
+          "is_visible" : True,
+          "position" : "block_abstract",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "étiquettes",
+          "is_visible" : True,
+          "position" : "block_tags",
+          "trim" : 50,
+          "locale" : "fr"
          },
       ],
 
@@ -635,7 +648,7 @@ default_routes_config = [
       "is_dataset_homepage" : False,
       "banner" : {
         "activated"  : False,
-        "banner_uri" : "banner_sonum_xp"
+        "banner_uri" : "banner-sonum-xp"
       },
 
       "in_main_navbar"    : False,
@@ -649,59 +662,59 @@ default_routes_config = [
       },
 
       "in_footer"         : False,
-      "urls"              : ["/xp-sonum/detail"],
+      "urls"              : ["/sonum-xp/detail"],
       "template_url"      : "/static/spa.html",
       "help"              : u"you can specify a remote template (f.e. a github url)",
       "languages"         : ["fr"],
         "app_version"        : version,
       "comment"           : u"Main search route in french",
       "is_dynamic"        : True,
-      "dataset_uri"       : "sonum_xp",
+      "dataset_uri"       : "sonum-xp",
       "dynamic_template"  : 'DynamicDetail',
       "endpoint_type"     : "detail",
 
       "contents_fields"  : [
-        
-        { "field" : "title",             
-          "is_visible" : True,  
-          "position" : "block_title",     
-          "trim" : 0, 
-          "locale" : "fr" 
+
+        { "field" : "title",
+          "is_visible" : True,
+          "position" : "block_title",
+          "trim" : 0,
+          "locale" : "fr"
         },
-        { "field" : "adresse",           
-          "is_visible" : True,  
-          "position" : "block_address",     
-          "trim" : 0, 
-          "locale" : "fr" 
+        { "field" : "adresse",
+          "is_visible" : True,
+          "position" : "block_address",
+          "trim" : 0,
+          "locale" : "fr"
         },
-        { "field" : "présentation",      
-          "is_visible" : True,  
-          "position" : "block_abstract",  
-          "trim" : 0, 
-          "locale" : "fr" 
+        { "field" : "présentation",
+          "is_visible" : True,
+          "position" : "block_abstract",
+          "trim" : 0,
+          "locale" : "fr"
         },
-        { "field" : "détails structure", 
-          "is_visible" : False, 
-          "position" : "block_details",  
-          "trim" : 0, 
-          "locale" : "fr" 
+        { "field" : "détails structure",
+          "is_visible" : False,
+          "position" : "block_details",
+          "trim" : 0,
+          "locale" : "fr"
         },
-        { "field" : "étiquettes",        
-          "is_visible" : True,  
-          "position" : "block_tags", 
-          "trim" : 0, 
-          "locale" : "fr" 
+        { "field" : "étiquettes",
+          "is_visible" : True,
+          "position" : "block_tags",
+          "trim" : 0,
+          "locale" : "fr"
         },
 
         # optional text contents
-         { "field"       : "services",        
-           "is_visible"  : True, 
-           "position"    : "block_right_bottom_1", 
+         { "field"       : "services",
+           "is_visible"  : True,
+           "position"    : "block_right_bottom_1",
            "title_block" : [{ "locale" : "fr", "text" : "Services proposés", "is_visible" : False }],
          },
-         { "field"       : "infos_pratiques", 
-           "is_visible"  : True, 
-           "position"    : "block_right_bottom_1", 
+         { "field"       : "infos_pratiques",
+           "is_visible"  : True,
+           "position"    : "block_right_bottom_1",
            "title_block" : [{ "locale" : "fr", "text" : "Informations pratiques", "is_visible" : False }],
          },
 
@@ -711,7 +724,7 @@ default_routes_config = [
         "card_img_main"  : { "field" : "", "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
         "card_img_top"   : { "field" : "", "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
       },
-      "ui_options"        : {        
+      "ui_options"        : {
         "card_color"     : { "value" : None, "default" : "white", },
         "text_color"     : { "value" : None, "default" : "black", },
         "link_to_detail"   : { "is_visible" : False, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
@@ -726,19 +739,19 @@ default_routes_config = [
          "position"    : "block_left_middle_2",
          "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
          "links"       : [
-           { "field" : "website", 
-             "is_visible" : True, 
-             "link_type"  : "text", 
-             "icon_class" : "", 
+           { "field" : "website",
+             "is_visible" : True,
+             "link_type"  : "text",
+             "icon_class" : "",
              "link_text"  : [{"locale" : "fr", "text" : "website" }],
-             "tooltip"    : [{"locale" : "fr", "text" : "voir le site" }] 
+             "tooltip"    : [{"locale" : "fr", "text" : "voir le site" }]
            },
-           { "field" : "contact", 
-             "is_visible" : True, 
-             "link_type"  : "text", 
-             "icon_class" : "", 
+           { "field" : "contact",
+             "is_visible" : True,
+             "link_type"  : "text",
+             "icon_class" : "",
              "link_text"  : [{"locale" : "fr", "text" : "contact" }],
-             "tooltip"    : [{"locale" : "fr", "text" : "contacter la structure" }] 
+             "tooltip"    : [{"locale" : "fr", "text" : "contacter la structure" }]
            },
          ]
         },
@@ -749,25 +762,25 @@ default_routes_config = [
          "title_block" : [{ "locale" : "fr", "text" : "Partagez ce lieu", "is_visible" : True}],
          "links"       : [
             {
-              "is_visible" : True, 
-              "link_type"  : "icon", 
-              "icon_class" : "fas fa-link", 
+              "is_visible" : True,
+              "link_type"  : "icon",
+              "icon_class" : "fas fa-link",
               "link_text"  : [{"locale" : "fr", "text" : "lien" }],
-              "tooltip"    : [{"locale" : "fr", "text" : "partager cette page (copier le lien)" }] 
+              "tooltip"    : [{"locale" : "fr", "text" : "partager cette page (copier le lien)" }]
             },
             {
-              "is_visible" : True, 
-              "link_type"  : "icon", 
-              "icon_class" : "fab fa-facebook-f", 
+              "is_visible" : True,
+              "link_type"  : "icon",
+              "icon_class" : "fab fa-facebook-f",
               "link_text"  : [{"locale" : "fr", "text" : "facebook" }],
-              "tooltip"    : [{"locale" : "fr", "text" : "partager sur facebook" }] 
+              "tooltip"    : [{"locale" : "fr", "text" : "partager sur facebook" }]
             },
             {
-              "is_visible" : True, 
-              "link_type"  : "icon", 
-              "icon_class" : "fab fa-twitter", 
+              "is_visible" : True,
+              "link_type"  : "icon",
+              "icon_class" : "fab fa-twitter",
               "link_text"  : [{"locale" : "fr", "text" : "twitter" }],
-              "tooltip"    : [{"locale" : "fr", "text" : "partager sur twitter" }] 
+              "tooltip"    : [{"locale" : "fr", "text" : "partager sur twitter" }]
             },
           ]
         },
@@ -783,7 +796,7 @@ default_routes_config = [
 
 
   ### - - - - - - - - - - - - - - - - - ###
-  ### CUSTOM ROUTES-PAGES --> TO BE ADDED VIA BACK OFFICE BY ADMIN USER 
+  ### CUSTOM ROUTES-PAGES --> TO BE ADDED VIA BACK OFFICE BY ADMIN USER
   ### - - - - - - - - - - - - - - - - - ###
 
   ### PAGE : QUI SOMMES-NOUS
@@ -805,7 +818,7 @@ default_routes_config = [
       "icon_class" : "",
       "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
       "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
-    },    
+    },
 
     "in_footer"         : False,
     "link_in_logo"      : False,
@@ -841,7 +854,7 @@ default_routes_config = [
       "icon_class" : "",
       "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
       "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
-    },    
+    },
 
     "in_footer"         : True,
     "urls"              : ["/nos-outils"],
