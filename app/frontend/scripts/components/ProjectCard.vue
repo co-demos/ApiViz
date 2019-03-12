@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/cis-misc.scss';
+@import '../../styles/apiviz-misc.scss';
 
 .card-image {
     min-height: 100px;
@@ -78,7 +78,7 @@ export default {
 
 .proj-card {
 	border-radius: 3px ;
-	box-shadow : $cis-discrete-shadow;
+	box-shadow : $apiviz-discrete-shadow;
 }
 
 .proj-card-img {

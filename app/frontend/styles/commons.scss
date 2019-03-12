@@ -1,10 +1,10 @@
 @import './rem.scss';
-@import './cis-colors.scss';
-@import './cis-spacing.scss';
-@import './cis-misc.scss';
+@import './apiviz-colors.scss';
+@import './apiviz-spacing.scss';
+@import './apiviz-misc.scss';
 
 html {
-	font-size: $cis-base-font-size; // base for rem
+	font-size: $apiviz-base-font-size; // base for rem
 	scroll-behavior: smooth;
 }
 
@@ -16,8 +16,50 @@ fieldset{
 	border: 0;
 }
 
+h1{
+	color : $apiviz-primary
+}
+
+h1.secondary {
+	color : $apiviz-primary
+}
+
+h3{
+	width: initial;
+	padding: 1em 0;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	color: $apiviz-secondary;
+
+	.counter{
+			font-size: rem(60px);
+			margin-right: 0.2em;
+			font-weight: bold;
+	}
+
+	.text{
+			max-width: 6em;
+			line-height: 1.2;
+	}
+}
+
 main{
-    margin-top: $cis-navbar-height;
+    margin-top: $apiviz-navbar-height;
+}
+
+.image-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	img{
+			width: rem(36px);
+	}
 }
 
 button, .button{
@@ -25,9 +67,13 @@ button, .button{
 	height: rem(45px)
 }
 
+.is-vertical-centered {
+  display: flex;
+  align-items: center;
+}
 
 p a.colored {
-	color: $cis-primary;
+	color: $apiviz-primary;
 	text-decoration: underline;
 }
 
@@ -36,8 +82,8 @@ p a.colored {
 	flex-direction: row;
 	justify-content: flex-start;
 	
-	padding-top: $cis-spacing_4;
-	margin-bottom: $cis-spacing_3;
+	padding-top: $apiviz-spacing_4;
+	margin-bottom: $apiviz-spacing_3;
 
 	li{
 		padding: 0 2em;
@@ -47,7 +93,7 @@ p a.colored {
 		}
 
 		&:not(:last-child){
-			border-right: 1px solid $cis-grey-light;
+			border-right: 1px solid $apiviz-grey-light;
 		}
 		
 		a{
@@ -60,7 +106,7 @@ p a.colored {
 .cis-tabs li.selected a{
 	font-weight: bold;
 	padding-bottom: 0.3em;
-	border-bottom: 1px solid $cis-primary;
+	border-bottom: 1px solid $apiviz-primary;
 }
 
 

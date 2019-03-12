@@ -1,6 +1,6 @@
 @import './rem.scss';
-@import './cis-colors.scss';
-@import './cis-misc.scss';
+@import './apiviz-colors.scss';
+@import './apiviz-misc.scss';
 
 html[lang="fr"] nav #navbar-main .navbar-item [lang="fr"],
 html[lang="en"] nav #navbar-main .navbar-item [lang="en"]{
@@ -8,7 +8,7 @@ html[lang="en"] nav #navbar-main .navbar-item [lang="en"]{
 }
 
 nav{
-	font-size: $cis-navbar-font-size;
+	font-size: $apiviz-navbar-font-size;
 }
 
 #navbar-main .navbar-item.selected a{
@@ -20,19 +20,19 @@ nav{
 	padding-right: 1em;
 
 	a{
-		color: $cis-text-color;
+		color: $apiviz-text-color;
 	}
 }
 
 
 #navbar-top {
-	height: $cis-navbar-height;
+	height: $apiviz-navbar-height;
 	z-index:10;
 }
 
 
 .skip-navbar {
-	padding-top: $cis-navbar-height;
+	padding-top: $apiviz-navbar-height;
 }
 
 .skip-navbar-search {
@@ -41,7 +41,7 @@ nav{
 
 .navbar {
 	border-bottom: 1px solid;
-	border-bottom-color: $cis-grey-light;
+	border-bottom-color: $apiviz-grey-light;
 }
 
 #navbar-logo {

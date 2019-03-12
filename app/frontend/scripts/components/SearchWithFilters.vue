@@ -96,15 +96,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/cis-colors.scss';
-@import '../../styles/cis-misc.scss';
+@import '../../styles/apiviz-colors.scss';
+@import '../../styles/apiviz-misc.scss';
 @import '../../styles/rem.scss';
 
 .search-bar {
-    top: $cis-navbar-height;
-    height: $cis-search-bar-height;
+    top: $apiviz-navbar-height;
+    height: $apiviz-search-bar-height;
 
-    font-size: $cis-navbar-font-size;
+    font-size: $apiviz-navbar-font-size;
     
     .search{
         flex: 1;

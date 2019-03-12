@@ -59,7 +59,7 @@ export default {
 
 <style lang="scss" scoped>
 
-@import '../../styles/cis-colors.scss';
+@import '../../styles/apiviz-colors.scss';
 
 .count-and-tabs{
     display: flex;
@@ -79,7 +79,7 @@ export default {
         background-color: transparent;
 
         &.open{
-            background-color: $cis-grey-background;
+            background-color: $apiviz-grey-background;
             
             top: -1rem;
             padding-top: 1rem;
@@ -97,7 +97,7 @@ export default {
             align-items: center;
 
             .nb{
-                color: $cis-primary;
+                color: $apiviz-primary;
                 font-size: 1.3em;
                 font-weight: bold;
                 margin-right: 0.5em;

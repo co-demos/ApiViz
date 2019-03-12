@@ -1,10 +1,10 @@
-@import './cis-colors.scss';
+@import './apiviz-colors.scss';
 
 main#le-collectif{
     background-color: white;
 
     section#collectif{
-        margin-bottom: $cis-spacing_4;
+        margin-bottom: $apiviz-spacing_4;
         
         .présentation{
             display: flex; 
@@ -22,7 +22,7 @@ main#le-collectif{
             }
         
             & > :first-child li{
-                color: $cis-primary;
+                color: $apiviz-primary;
                 font-weight: bold;
 
                 &::before{
@@ -32,12 +32,12 @@ main#le-collectif{
                 }
 
                 a{
-                    color: $cis-primary;
+                    color: $apiviz-primary;
                     font-weight: normal;
             
                     white-space: nowrap;
             
-                    border-bottom: 1px solid $cis-primary;
+                    border-bottom: 1px solid $apiviz-primary;
                 }
             }
         
@@ -88,14 +88,14 @@ main#le-collectif{
         .button{
             height: unset;
             padding: 1em 2em;
-            color: $cis-primary;
+            color: $apiviz-primary;
     
-            border: 1px solid $cis-primary;
+            border: 1px solid $apiviz-primary;
         }
     
         .rejoindre{
-            background-color: $cis-primary;
-            color: $cis-primary-invert;
+            background-color: $apiviz-primary;
+            color: $apiviz-primary-invert;
             padding: 2em;
 
             h2{
@@ -107,7 +107,7 @@ main#le-collectif{
 
     section#equipe-op{
         
-        margin-bottom: $cis-spacing_4;
+        margin-bottom: $apiviz-spacing_4;
         
         .equipe li{
             width: 17em;

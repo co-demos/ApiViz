@@ -255,8 +255,29 @@ def Tools(lang="en"):
     language			= lang
   )
 
-@app.route('/', methods=['GET','POST'],defaults={'path': ''})
-@app.route('/<path:path>', methods=['GET','POST'])
+
+@app.route('/sonum-banner-carto/<string:lang>', methods=['GET'])
+@app.route('/sonum-banner-carto', methods=['GET'], defaults={"lang":"fr"})
+def Banner(lang="fr"):
+
+  log_app.debug("entering test banner-carto page")
+  app_config = getDocuments(mongo_config_global)
+
+  if lang == "fr" : 
+    template = "sonum-banner-carto.html"
+  else : 
+    template = "sonum-banner-carto.html"
+
+  return render_template(
+    template,
+    config_name		= config_name, # prod, testing, default...
+    app_metas			= app_metas, 
+    app_config 		= app_config,
+    language			= lang
+  )
+
+@app.route('/app/', methods=['GET','POST'],defaults={'path': ''})
+@app.route('/app/<path:path>', methods=['GET','POST'])
 def spa(path):
 
   log_app.debug("entering SPA page")

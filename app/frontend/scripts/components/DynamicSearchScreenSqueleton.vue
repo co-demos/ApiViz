@@ -24,9 +24,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../styles/cis-misc.scss';
+@import '../../styles/apiviz-misc.scss';
 
 main{
-    margin-top: $cis-navbar-height + $cis-search-bar-height;
+    margin-top: $apiviz-navbar-height + $apiviz-search-bar-height;
 }
 </style>

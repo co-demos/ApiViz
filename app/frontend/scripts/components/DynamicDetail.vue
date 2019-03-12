@@ -164,19 +164,19 @@ export default {
 
 
 <style lang="scss" scoped>
-@import '../../styles/cis-colors.scss';
-@import '../../styles/cis-misc.scss';
+@import '../../../styles/apiviz-colors.scss';
+@import '../../../styles/apiviz-misc.scss';
 
 main{
-    background-color: $cis-grey-background;
-    margin-top: $cis-navbar-height;
+    background-color: $apiviz-grey-background;
+    margin-top: $apiviz-navbar-height;
 }
 
 a.back{
     padding: 1em 0;
     display: block;
 
-    color: $cis-text-color;
+    color: $apiviz-text-color;
 
     img{
         height: 1.5em;
@@ -213,8 +213,8 @@ a.back{
     }
 
     a{
-        color: $cis-primary;
-        border-bottom: 1px solid $cis-primary;
+        color: $apiviz-primary;
+        border-bottom: 1px solid $apiviz-primary;
     }
 }
 
@@ -250,7 +250,7 @@ a.back{
     }
 
     a{
-        color: $cis-primary;
+        color: $apiviz-primary;
         font-weight: bold;
     }
 }

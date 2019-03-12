@@ -1,10 +1,10 @@
-@import './cis-colors.scss';
+@import './apiviz-colors.scss';
 
 
 .join-us{
 
     section > .colored {
-        color: $cis-primary;
+        color: $apiviz-primary;
         text-decoration: underline;
     }
 
@@ -20,7 +20,7 @@
 
     section > form{
         width: 100%;
-        background-color: $cis-grey-background;
+        background-color: $apiviz-grey-background;
     }
     .project-carrier-expand form > *{
         display: block;
@@ -55,7 +55,7 @@
             }
         
             &.selected{
-                border-color: $cis-primary;
+                border-color: $apiviz-primary;
             }
 
             img{
@@ -64,19 +64,19 @@
                 transform: translateY(-50%);
                 width: 5em;
         
-                background: $cis-grey-background;
+                background: $apiviz-grey-background;
                 border-radius: 50%;
             }
         
             h2{
-                color: $cis-primary;
+                color: $apiviz-primary;
             }
         }
     }
 
     .structure-expand {
         .why{
-            color: $cis-primary;
+            color: $apiviz-primary;
             font-weight: bold;
         }
 
@@ -91,10 +91,10 @@
     }
 
     .join-walkthrough{
-        background-color: $cis-grey-background;
+        background-color: $apiviz-grey-background;
 
         h2{
-            color: $cis-primary;
+            color: $apiviz-primary;
         }
     }
 

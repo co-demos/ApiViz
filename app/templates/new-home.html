@@ -4,6 +4,8 @@
 
 {# SEARCH INPUT #}
 <main id="home">
+
+    <br>
     <section id="top" class="hero">
         <div class="background columns is-centered">
             <div class="column is-8">
@@ -11,9 +13,9 @@
 
                 <form action="/recherche" method="GET" class="columns">
                     <div class="column is-10">
-                        <div class="image-container"><img src="/static/icons/icon_search_violet.svg"></div>
-                        <input
-                            type="search"
+                        {# <div class="image-container"><img src="/static/icons/icon_search_violet.svg"></div> #}
+                        <input 
+                            type="search" 
                             name="text"
                             class="input"
                             placeholder="search">
@@ -35,7 +37,7 @@
             </div>
         </div>
     </section>
-
+    <br>
 </main>
 
 <script>

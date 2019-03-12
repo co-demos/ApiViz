@@ -1,20 +1,20 @@
 @import './rem.scss';
-@import './cis-colors.scss';
-@import './cis-misc.scss';
+@import './apiviz-colors.scss';
+@import './apiviz-misc.scss';
 
 $INTER_SECTION_SPACING: 3em;
 
 main#home{
 
     section h2{
-        color: $cis-primary;
+        color: $apiviz-primary;
         text-align: center;
     }
 
     & > section.full-width h1,
     & > section.full-width h2{
         text-align: center;
-        color: $cis-primary-invert;
+        color: $apiviz-primary-invert;
         padding: 1em 0;
         max-width: 60%;
     }
@@ -24,7 +24,7 @@ main#home{
         margin-bottom: $INTER_SECTION_SPACING;
 
         .background{
-            // this image should be of color $cis-primary
+            // this image should be of color $apiviz-primary
             background-image: url(/static/illustrations/HP_section_1.png);
             background-size: cover;
             background-color: transparent;
@@ -33,12 +33,12 @@ main#home{
             flex-direction: column;
             align-items: center;
     
-            color: $cis-primary-invert;
+            color: $apiviz-primary-invert;
     
             padding: 5em 0;
 
             h1{
-                color: $cis-primary-invert;
+                color: $apiviz-primary-invert;
                 text-align: center;
                 margin-bottom: 1em
             }
@@ -46,7 +46,7 @@ main#home{
 
 
         form{
-            background-color: $cis-primary-invert;
+            background-color: $apiviz-primary-invert;
             border-radius: 2px;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 
@@ -61,7 +61,7 @@ main#home{
 
                 & > *{
                     border: 0;
-                    border-bottom: 2px solid $cis-primary;
+                    border-bottom: 2px solid $apiviz-primary;
                     height: rem(50px);
                 }
                 
@@ -88,7 +88,7 @@ main#home{
         
                     &:focus{
                         border: 0;
-                        border-bottom: 2px solid $cis-primary;
+                        border-bottom: 2px solid $apiviz-primary;
                 
                         box-shadow: none;
                     }
@@ -102,8 +102,8 @@ main#home{
                 justify-content: center;
                 
                 button{
-                    color: $cis-primary-invert;
-                    background-color: $cis-primary;
+                    color: $apiviz-primary-invert;
+                    background-color: $apiviz-primary;
         
                     font-size: rem(18px);
                     height: rem(50px);
@@ -122,7 +122,7 @@ main#home{
             align-items: center;
             justify-content: center;
 
-            color: $cis-secundary;
+            color: $apiviz-secondary;
 
             .counter{
                 font-size: rem(60px);
@@ -157,11 +157,11 @@ main#home{
 
         h1{
             text-align: center;
-            color: $cis-primary;
+            color: $apiviz-primary;
         }
 
         h2{
-            color: $cis-primary;
+            color: $apiviz-primary;
             text-align: left;
 
             a{
@@ -172,11 +172,11 @@ main#home{
     
         .rejoindre{
             align-items: center;
-            color: $cis-primary;
+            color: $apiviz-primary;
 
             a{
-                color: $cis-primary-invert;
-                background-color: $cis-primary;
+                color: $apiviz-primary-invert;
+                background-color: $apiviz-primary;
                 margin-top: 1em;
             }
         }
@@ -193,7 +193,7 @@ main#home{
     
         h1{
             text-align: center;
-            color: $cis-primary;
+            color: $apiviz-primary;
         }
 
         p{
@@ -204,7 +204,7 @@ main#home{
         }
     
         h3{
-            color: $cis-primary;
+            color: $apiviz-primary;
             text-align: center;
             margin-bottom: 1em;
         }
@@ -227,8 +227,8 @@ main#home{
         a.button{
             margin-bottom: 1.5em;
             
-            color: $cis-primary;
-            border-color: $cis-primary;
+            color: $apiviz-primary;
+            border-color: $apiviz-primary;
         }
     } 
 
@@ -245,7 +245,7 @@ main#home{
 
         h1{
             text-align: center;
-            color: $cis-primary;
+            color: $apiviz-primary;
         }
     
         ul li img{
@@ -310,10 +310,10 @@ main#home{
                         line-height: 1.2em;
                         background-color: white;
                         padding: 1em;
-                        box-shadow: $cis-discrete-shadow;
+                        box-shadow: $apiviz-discrete-shadow;
 
                         h1{
-                            color: $cis-primary;
+                            color: $apiviz-primary;
                             font-weight: bold;
                             margin-bottom: 1em;
                         }
@@ -327,7 +327,7 @@ main#home{
 
     section#contacter{
         width: 100%;
-        background-color: $cis-primary;
+        background-color: $apiviz-primary;
 
         color: white !important;
 

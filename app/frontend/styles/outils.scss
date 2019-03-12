@@ -1,10 +1,10 @@
-@import './cis-colors.scss';
-@import './cis-spacing.scss';
+@import './apiviz-colors.scss';
+@import './apiviz-spacing.scss';
 
 main#outils{
 
     section#open-source{
-        margin-bottom: $cis-spacing_3;
+        margin-bottom: $apiviz-spacing_3;
     
         h1,
         p{
@@ -19,9 +19,9 @@ main#outils{
         padding: 0;
         border: 0;
 
-	    margin-bottom: $cis-spacing_4;
+	    margin-bottom: $apiviz-spacing_4;
 
-        background-color: $cis-grey-background;
+        background-color: $apiviz-grey-background;
 
         & > *{
             width: 80%;
@@ -46,7 +46,7 @@ main#outils{
                     width: 80%;
                 }
                 strong{
-                    color: $cis-primary;
+                    color: $apiviz-primary;
                     font-weight: bold;
                 }
             }
@@ -58,7 +58,7 @@ main#outils{
         display: flex;
 
 
-	    margin: $cis-spacing_4 inherit;
+	    margin: $apiviz-spacing_4 inherit;
 
         & > *{
             flex: 1;
@@ -84,13 +84,13 @@ main#outils{
         }
     
         h1{
-            color: $cis-primary;
+            color: $apiviz-primary;
         }
         h2{
             
         }
         h3{
-            color: $cis-primary;
+            color: $apiviz-primary;
         }
     
         ul{
@@ -112,14 +112,14 @@ main#outils{
         }
     
         a.test{
-            color: $cis-primary-invert;
-            background-color: $cis-primary;
-            border: 1px solid $cis-primary;
+            color: $apiviz-primary-invert;
+            background-color: $apiviz-primary;
+            border: 1px solid $apiviz-primary;
         }
         a.github{
-            color: $cis-primary;
-            background-color: $cis-primary-invert;
-            border: 1px solid $cis-primary;
+            color: $apiviz-primary;
+            background-color: $apiviz-primary-invert;
+            border: 1px solid $apiviz-primary;
         }
     }
 }
