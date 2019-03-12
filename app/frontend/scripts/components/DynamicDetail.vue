@@ -164,8 +164,8 @@ export default {
 
 
 <style lang="scss" scoped>
-@import '../../../styles/apiviz-colors.scss';
-@import '../../../styles/apiviz-misc.scss';
+@import '../../styles/apiviz-colors.scss';
+@import '../../styles/apiviz-misc.scss';
 
 main{
     background-color: $apiviz-grey-background;
