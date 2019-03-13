@@ -135,7 +135,9 @@
     </main>
 
     <NotFoundError v-if="isError"/>
-
+    
+    <br>
+    
   </div>
 </template>
 

@@ -22,15 +22,18 @@
           <span class="icon">
             <img class="image is-16x16" src="/static/icons/icon_pin.svg">
           </span>
-          <span class="subtitle is-6">
+          <span class="subtitle is-6 is-capitalized">
             <!-- {{ matchProjectWithConfig('block_address')}} -->
-            {{ projectAddress() }}
+            <!-- {{ projectAddress() }} -  -->
+            <!-- {{ matchProjectWithConfig('block_city')}} -->
+            {{ projectCity() }}
+
             <!-- {{ noAddress() }} -->
           </span>
         </div>
 
         <!-- BLOCK TITLE -->
-        <p class="title is-5">
+        <p class="title is-5 has-text-weight-bold has-text-black-ter">
           <router-link :to="`/${dataset_uri}/detail?id=${matchProjectWithConfig('block_id')}`">
             {{ matchProjectWithConfig('block_title')}}
           </router-link>
@@ -45,7 +48,7 @@
 
         <!-- BLOCK SOURCE -->
         <div class="content">
-          <p class="subtitle is-6">
+          <p class="subtitle is-6 is-italic has-text-grey">
             {{ this.$store.getters.defaultText({txt:'source'})}} {{ matchProjectWithConfig('block_src')}}
           </p>
         </div>
@@ -75,7 +78,7 @@ export default {
   components: {},
 
   props: [
-    'project',
+    'item',
     'contentFields'
     ],
   // beforeCreate: function () {
@@ -86,8 +89,8 @@ export default {
   // },
   beforeMount: function () {
     console.log("\n - - ProjectCard / beforeMount ... ")
-    console.log(" - - ProjectCard / this.contentFields : \n ", this.contentFields)
-    console.log(" - - ProjectCard / this.project : \n ", this.project)
+    // console.log(" - - ProjectCard / this.contentFields : \n ", this.contentFields)
+    console.log(" - - ProjectCard / this.item : \n ", this.item)
     // console.log(" - - ProjectCard / this.$store.state.config.global.app_basic_dict : \n ", this.$store.state.config.global.app_basic_dict)
 
   },
@@ -98,7 +101,7 @@ export default {
 
   computed: {
     // summary(){
-    //   const {description = '(projet sans résumé)'} = this.project
+    //   const {description = '(projet sans résumé)'} = this.item
     //   const tail = description.length > MAX_SUMMARY_LENGTH ? '...' : '';
     //   return description.slice(0, MAX_SUMMARY_LENGTH) + tail
     // },
@@ -106,8 +109,8 @@ export default {
       return this.$store.state.search.dataset_uri
     },
     projectInfos(){
-      return this.$store.getters.getProjectConfigUniform(this.project)
-      // return this.project
+      return this.$store.getters.getProjectConfigUniform(this.item)
+      // return this.item
     },
     noAbstractText() {
       return this.$store.getters.defaultText({txt:'no_abstract'})
@@ -123,7 +126,7 @@ export default {
     matchProjectWithConfig(fieldBlock) {
       const contentField = this.contentFields.find(f=> f.position == fieldBlock)
       const field = contentField.field
-      return this.project[field]
+      return this.item[field]
     },
     projectId() {
       return this.matchProjectWithConfig('block_id')
@@ -144,6 +147,12 @@ export default {
       console.log('fullAddress : ', fullAddress)
       let address = ( fullAddress || fullAddress !== 'None' ) ?  fullAddress : this.noAddress
       return address
+    },
+    projectCity() {
+      let cityItem = this.matchProjectWithConfig('block_city')
+      console.log('cityItem : ', cityItem)
+      let city = ( cityItem || cityItem !== 'None' ) ?  cityItem : this.noAddress
+      return city
     },
   },
 

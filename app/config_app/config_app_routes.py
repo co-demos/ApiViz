@@ -204,6 +204,12 @@ default_routes_config = [
         },
         { "field" : "ville structure",
           "is_visible" : True,
+          "position" : "block_city",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "intitulé structure",
+          "is_visible" : True,
           "position" : "block_title",
           "trim" : 20,
           "locale" : "fr"

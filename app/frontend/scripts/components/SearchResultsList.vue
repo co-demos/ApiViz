@@ -8,12 +8,12 @@
       <CISSearchResultsCountAndTabs :view="VIEW_LIST"/>
 
       <div class="columns" v-if="total > 0" >
-        <div class="column is-3" v-for="(projectColumn, i) in projectColumns" :key="i">
+        <div class="column is-3" v-for="(itemsColumn, i) in projectColumns" :key="i">
           <div class="columns is-multiline">
             <ProjectCard 
-              v-for="project in projectColumn" 
-              :key="project.id" 
-              :project="project"
+              v-for="item in itemsColumn" 
+              :key="item.id" 
+              :item="item"
               :contentFields="projectContentsFields"
               />
           </div>
