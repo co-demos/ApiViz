@@ -83,9 +83,9 @@ export default {
         state.user.role = (typeof role === 'string') ? role : undefined
     },
     setSearchParam(state,{type,result}){
-        console.log("\n== setSearchParam / state.search : ", state.search)
-        console.log("== setSearchParam / type : ", type)
-        console.log("== setSearchParam / result : ", result)
+        // console.log("\n== setSearchParam / state.search : ", state.search)
+        // console.log("== setSearchParam / type : ", type)
+        // console.log("== setSearchParam / result : ", result)
         state.search[type] = result
     }
 }

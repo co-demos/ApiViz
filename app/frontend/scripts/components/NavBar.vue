@@ -8,7 +8,9 @@
                 :brand="brand"
             />
 
-            {{ currentRouteConfig.field }}
+            currentRouteConfig : {{ currentRouteConfig.field }} -
+            localRouteConfig : {{ localRouteConfig }}
+            
             <NavBarContent 
                 :NavbarLinks="navbarConfig.links_options"
                 :user="user"
@@ -33,6 +35,7 @@ export default {
         'logo', 
         
         'currentRouteConfig',
+        'localRouteConfig',
 
         'brand', 
         'user'

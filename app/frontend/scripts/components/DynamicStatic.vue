@@ -62,7 +62,10 @@ export default {
     }
   }
   axios.get(template_url, head)
-    .then( (response) => { console.log(response); this.rawHtml = (response && response.data) ? response.data : '<br><br>there is an Error <br><br>'} )
+    .then( (response) => { 
+      // console.log(response); 
+      this.rawHtml = (response && response.data) ? response.data : '<br><br>there is an Error <br><br>'} 
+    )
     .catch( (err) => {this.rawHtml = '<br><br>there is an <strong> Error </strong><br><br>'} )
   },
   methods: {

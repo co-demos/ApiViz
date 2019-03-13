@@ -8,6 +8,7 @@
             :logo="this.globalConfig.app_logo"
             :brand="this.globalConfig.app_title.content"
             :currentRouteConfig="this.routeConfig"
+            :localRouteConfig="localRouteConfig.field"
         ></NavBar>
             <!-- :logo="logo" 
             :brand="brand"  -->
@@ -17,29 +18,29 @@
 
         <!-- <component 
             :is="this.dynamic_template" 
-            :routeConfig="this.routeConfig"
+            :routeConfig="this.localRouteConfig"
         ></component> -->
 
         <!-- REMOTE STATICS -->
         <DynamicStatic 
-            v-if="this.routeConfig.dynamic_template == 'DynamicStatic' "
-            :routeConfig="this.routeConfig"
-        ></DynamicStatic>
+            v-if="localRouteConfig.dynamic_template == 'DynamicStatic' "
+            :routeConfig="localRouteConfig"
+        ></DynamicStatic> -->
 
         <!-- DATA VISUALISATION -->
         <DynamicList 
-            v-if="this.routeConfig.dynamic_template == 'DynamicList' "
-            :routeConfig="this.routeConfig"
+            v-if="localRouteConfig.dynamic_template == 'DynamicList' "
+            :routeConfig="localRouteConfig"
         ></DynamicList>
 
         <DynamicMap 
-            v-if="this.routeConfig.dynamic_template == 'DynamicMap' "
-            :routeConfig="this.routeConfig"
+            v-if="localRouteConfig.dynamic_template == 'DynamicMap' "
+            :routeConfig="localRouteConfig"
         ></DynamicMap>
 
         <DynamicDetail 
-            v-if="this.routeConfig.dynamic_template == 'DynamicDetail' "
-            :routeConfig="this.routeConfig"
+            v-if="localRouteConfig.dynamic_template == 'DynamicDetail' "
+            :routeConfig="localRouteConfig"
         ></DynamicDetail>
 
 
@@ -49,6 +50,7 @@
           <br><br>
           <!-- navbarConfig : <br><code> {{ this.navbarConfig }} </code> <br><br>> -->
           <!-- globalConfig : <br><code> {{ this.globalConfig }} </code> <br><br> -->
+          localRouteConfig.field : <code> {{ localRouteConfig.field }} </code> <br><br>
           <!-- routeConfig.field : <code>{{ this.routeConfig.field }} </code> <br><br> -->
           <!-- footerConfig : <br><code> {{ this.footerConfig }} </code> <br><br> -->
         </div>
@@ -79,34 +81,10 @@ export default {
       NavBar, Footer, DynamicStatic, DynamicList, DynamicMap, DynamicDetail
     },
 
-    props: [
-      'logo', 
-      'brand'
-    ],
-
-    data: () => {
-      return   {
-      }
-    },
-
-
-    watch: {
-      
-      // watch the route path
-      '$route.fullPath': function (newPath, oldPath) {
-        console.log('\n- - DynamicScreen / watch $route.fullPath : ', this.$route.fullPath);
-        console.log('- - DynamicScreen / (before) state : ', this.$store.state);
-
-        // find new route config corresponding to requested path
-        this.$store.dispatch('setSearchEndpointConfig', { path : this.$route.fullPath})
-        // this.$store.dispatch('setSearchEndpoint')
-        console.log('- - DynamicScreen / (after) state : ', this.$store.state);
-
-      },
-
-      // watch the routeConfig
-    },
-
+    // props: [
+    //   'logo', 
+    //   'brand'
+    // ],
 
     beforeCreate: function () {
       console.log("\n - - DynamicScreen / beforeCreate ... ")
@@ -119,10 +97,13 @@ export default {
       // console.log(" - - state.config : \n ", this.$store.state.config)
       console.log(" - - DynamicScreen / this.routeConfig : \n ", this.routeConfig)
       
+      // set local data
+      this.localRouteConfig = this.routeConfig
+
       if( this.routeConfig.dynamic_templates !== 'DynamicStatic' ) {
-        // console.log(" - - DynamicScreen / not DynamicStatic ... ")
+        console.log(" - - DynamicScreen / not DynamicStatic ... ")
         let path = this.$router.currentRoute.path
-        // console.log(" - - DynamicScreen / path : ", path )
+        console.log(" - - DynamicScreen / path : ", path )
         this.$store.dispatch('setSearchEndpointConfig', { path : path })
         // this.$store.dispatch('setSearchEndpoint')
       }
@@ -131,7 +112,43 @@ export default {
 
     mounted: function () {
       console.log("\n - - DynamicScreen / mounted ... ")
+      // here we check what kind of dynamic route we have to provide
+      if(!this.routeConfig) {           
+        this.$router.push({name:'error'})        
+      }
     },
+
+    data: () => {
+      return   {
+        localRouteConfig : "...",
+      }
+    },
+
+    watch: {
+      
+      // watch the route path
+      '$route.fullPath': function (newPath, oldPath) {
+        console.log('\n- - DynamicScreen / watch $route.fullPath : ', this.$route.fullPath);
+        console.log('- - DynamicScreen / (before) state : ', this.$store.state);
+
+        // find new route config corresponding to requested path
+        this.$store.dispatch('setSearchEndpointConfig', { path : this.$route.fullPath})
+        // this.$store.dispatch('setSearchEndpoint')
+        console.log('- - DynamicScreen / (after) state : ', this.$store.state);
+        this.localRouteConfig = this.$store.state.search.currentRouteConfig
+
+      },
+
+      // watch the localRouteConfig
+      localRouteConf: function (newConf, oldConf) {
+        console.log('\n- - DynamicScreen / watch localRouteConf...');
+        console.log('- - DynamicScreen / newConf : ', newConf);
+        console.log('- - DynamicScreen / oldConf : ', oldConf);
+
+      }
+    },
+
+
 
     computed: {
       ...mapState({
@@ -158,7 +175,7 @@ export default {
 
       routeConfig(){     
         let routeConf =  this.$store.getters.getCurrentRouteConfig(this.$router.currentRoute.path)
-        console.log(" - - routeConf : ", routeConf)
+        // console.log(" - - routeConf : ", routeConf)
         return routeConf
       },
 
@@ -175,12 +192,7 @@ export default {
     
     },
 
-    mounted(){
-      // here we check what kind of dynamic route we have to provide
-      if(!this.routeConfig) {           
-        this.$router.push({name:'error'})        
-      }
-    },
+
 
     methods: {
       goBack(e){

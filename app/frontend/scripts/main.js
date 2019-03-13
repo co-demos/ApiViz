@@ -13,6 +13,7 @@ const INITIAL_FILTER_DESCRIPTIONS = CHOICES_FILTERS_TAGS.filter(c => c.name !== 
 import store from './store/store.js';
 import routerGenerator from './routes/main.js'
 
+// because of this call 'beforeEnter' in dynamicRoutesGenerator is triggered first
 const router = routerGenerator(store)
 
 const unsync = sync(store, router)

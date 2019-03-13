@@ -20,22 +20,22 @@ export const dynamicRoutesGenerator = function(store){
       //   console.log("\n... dynamicRoutesGenerator / beforeEach ... ")
       //   console.log("... dynamicRoutesGenerator / to : ", to)
       // },
+
       beforeEnter(to, from, next){
         console.log("\n... dynamicRoutesGenerator / beforeEnter ... ")
         console.log("... store.state.config :  \n ", store.state.config)
-
         if ( typeof store.state.config.global === 'undefined' ) {
-          
           store.dispatch('getConfigAll')
           .then(() => {
               console.log("... dynamicRoutesGenerator / after getConfigAll ... "),
               next()
           })
           .catch(() => {console.log( 'error...'); next('error')})
-        
         } else { next() }
       }
+      
     },
+
     {
       path: '*',
       name: 'error',

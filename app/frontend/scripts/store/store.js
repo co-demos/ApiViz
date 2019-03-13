@@ -40,7 +40,7 @@ const storeGenerator = new Vuex.Store({
         filterDescriptions: INITIAL_FILTER_DESCRIPTIONS,
         
         // the current route to watch
-        currentRouteConfig : undefined,
+        // currentRouteConfig : undefined,
 
         // global config for ApiViz instance 
         config: {},
