@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
         el: document.querySelector('#vue-content'),
         router,
         store,
-        mounted: function () {
-          store.dispatch('getConfigAll');
-        },
+        // mounted: function () {
+        //   console.log("document.addEventListener / beforeCreate ... ")
+        //   store.dispatch('getConfigAll');
+        // },
         render: h => h( Vue.component('router-view') )
     })
 

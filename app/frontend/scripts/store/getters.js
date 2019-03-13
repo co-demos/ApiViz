@@ -2,42 +2,121 @@ const getSearchConfigColumnCount = state => state.search.config.display.columnCo
 const getSearchConfigDefaultShowCount = state => state.search.config.display.defaultShowCount;
 const getSearchConfigMoreProjectOnScrollCount = state => state.search.config.display.moreProjectOnScrollCount;
 const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.display.scrollBeforeBottomTrigger;
+
+// - - - - - - - - - - - - - - - //
+// GLOBAL APP CONFIG GETTERS
+// - - - - - - - - - - - - - - - //
+const getGlobalConfig = state => {
+  // console.log("state.config : \n", state.config )
+  if (!state.config
+    || !state.config.global
+    ) {
+      console.log('getGlobalConfig - some condition not respected');       return undefined;
+  }
+  return state.config.global
+}
+const getStylesConfig = state => {
+  // console.log("state.config : \n", state.config )
+  if (!state.config
+    || !state.config.styles
+    ) {
+      console.log('getStylesConfig - some condition not respected');       return undefined;
+  }
+  return state.config.styles
+}
+const getSocialsConfig = state => {
+  // console.log("state.config : \n", state.config )
+  if (!state.config
+    || !state.config.socials
+    ) {
+      console.log('getSocialsConfig - some condition not respected');       return undefined;
+  }
+  return state.config.socials
+}
+
+const getNavbarConfig = state => {
+  // console.log("state.config : \n", state.config )
+  if (!state.config
+    || !state.config.navbar
+    ) {
+      console.log('getNavbarConfig - some condition not respected');       return undefined;
+  }
+  return state.config.navbar
+}
+const getFooterConfig = state => {
+  // console.log("state.config : \n", state.config )
+  if (!state.config
+    || !state.config.footer
+    ) {
+      console.log('getFooterConfig - some condition not respected');       return undefined;
+  }
+  return state.config.footer
+}
+
+
+// - - - - - - - - - - - - - - - //
+// ROUTE CONFIG GETTERS
+// - - - - - - - - - - - - - - - //
 const getCurrentRouteConfig = (state) => (currentRoute) => {
+  // console.log('\n ++ getCurrentRouteConfig / currentRoute : \n', currentRoute)
+  // console.log(' ++ getCurrentRouteConfig / state.config.routes : \n', state.config.routes)
   try {
     return state.config.routes.find(function(r) {
-        return r.urls.indexOf(currentRoute) !== -1;
+      return r.urls.indexOf(currentRoute) !== -1;
     });
-  } catch (e) { console.log('err',e); return undefined }
+  } catch (e) { 
+    console.log('err',e); 
+    return undefined 
+  }
 }
+
+// - - - - - - - - - - - - - - - //
+// ITEMS CONFIG GETTERS
+// - - - - - - - - - - - - - - - //
 const getProjectConfig = (state) => (position) => {
-  try {   return state.search.currentRouteConfig.contents_fields.find(function(f) {  return f.position === position; });
-  }       catch (e) { console.log('err',e); return undefined }
+  try {   
+    return state.search.currentRouteConfig.contents_fields.find( function(f) {  return f.position === position; });
+  }       
+  catch (e) { 
+    console.log('err',e); 
+    return undefined 
+  }
 }
-const getProjectConfigUniform = (state, getters) => (project) => {
+
+const getProjectConfigUniform = (state, getters) => (itemData) => {
+  
   let res = {}
   const infoTypes = ['id','title','image','address','tags']
 
   infoTypes.forEach( function(infoType){
     let fieldObj = getters.getProjectConfig('block_'+infoType)
-    res[infoType] = (fieldObj && fieldObj.field) ? project[fieldObj.field] : undefined
+    res[infoType] = (fieldObj && fieldObj.field) ? itemData[fieldObj.field] : undefined
   })
 
   res.image = getters.getImgUrl(res)
+  res.fullItem = itemData
 
   return res
 }
+
 const getEndpointConfig = state => {
-  if (!state.config
-    || !state.config.endpoints
-    || !state.search.endpoint_type
-    || !state.search.dataset_uri) {
-      console.log('some condition not respected');       return undefined;
-  }
+  // console.log("getEndpointConfig - state.config : \n", state.config)
+  // if (!state.config
+  //   || !state.config.endpoints
+  //   || !state.search.endpoint_type
+  //   || !state.search.dataset_uri
+  //   ) {
+  //     console.log('some condition not respected');       return undefined;
+  // }
   return state.config.endpoints.find(function(r) {
     return r.endpoint_type === state.search.endpoint_type
     && r.dataset_uri === state.search.dataset_uri;
   });
 }
+
+// - - - - - - - - - - - - - - - //
+// IMAGES CONFIG GETTERS
+// - - - - - - - - - - - - - - - //
 const getImgUrl = (state, getters) => (obj) => {
   let image = obj.image
 
@@ -69,14 +148,26 @@ const getImgUrl = (state, getters) => (obj) => {
   return image
 }
 
+// - - - - - - - - - - - - - - - //
+// FINALLY EXPORT GETTERS
+// - - - - - - - - - - - - - - - //
 export default {
   getSearchConfigColumnCount,
   getSearchConfigDefaultShowCount,
   getSearchConfigMoreProjectOnScrollCount,
   getSearchConfigScrollBeforeBottomTrigger,
+
+  getGlobalConfig,
+  getStylesConfig,
+  getSocialsConfig,
+
+  getNavbarConfig,
+  getFooterConfig,
+
   getEndpointConfig,
   getCurrentRouteConfig,
   getProjectConfig,
   getProjectConfigUniform,
   getImgUrl,
+
 };

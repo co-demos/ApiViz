@@ -212,48 +212,48 @@ def config_global(collection, doc_id=None):
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
 # @app.route('/', methods=['GET'])
-@app.route('/home/<string:lang>', methods=['GET'])
-@app.route('/home', methods=['GET'], defaults={"lang":"en"})
-def home(lang="fr"):
+# @app.route('/home/<string:lang>', methods=['GET'])
+# @app.route('/home', methods=['GET'], defaults={"lang":"en"})
+# def home(lang="fr"):
 
-  log_app.debug("entering new home page")
+#   log_app.debug("entering new home page")
 
-  app_config = getDocuments(mongo_config_global)
-  log_app.debug("app_config :/n%s", pformat(app_config))
+#   app_config = getDocuments(mongo_config_global)
+#   log_app.debug("app_config :/n%s", pformat(app_config))
 
-  if lang == "fr" :
-    template = "new-home.html"
-  else :
-    template = "new-home-english.html"
+#   if lang == "fr" :
+#     template = "new-home.html"
+#   else :
+#     template = "new-home-english.html"
 
-  return render_template(
-    template,
-    config_name		= config_name, # prod, testing, default...
-    app_config 		= app_config,
-    app_metas			= app_metas,
-    language			= lang,
-  )
+#   return render_template(
+#     template,
+#     config_name		= config_name, # prod, testing, default...
+#     app_config 		= app_config,
+#     app_metas			= app_metas,
+#     language			= lang,
+#   )
 
 
-@app.route('/tools/<string:lang>', methods=['GET'])
-@app.route('/tools', methods=['GET'], defaults={"lang":"en"})
-def Tools(lang="en"):
+# @app.route('/tools/<string:lang>', methods=['GET'])
+# @app.route('/tools', methods=['GET'], defaults={"lang":"en"})
+# def Tools(lang="en"):
 
-  log_app.debug("entering tools page")
-  app_config = getDocuments(mongo_config_global)
+#   log_app.debug("entering tools page")
+#   app_config = getDocuments(mongo_config_global)
 
-  if lang == "fr" :
-    template = "les-outils.html"
-  else :
-    template = "les-outils-english.html"
+#   if lang == "fr" :
+#     template = "les-outils.html"
+#   else :
+#     template = "les-outils-english.html"
 
-  return render_template(
-    template,
-    config_name		= config_name, # prod, testing, default...
-    app_metas			= app_metas,
-    app_config 		= app_config,
-    language			= lang
-  )
+#   return render_template(
+#     template,
+#     config_name		= config_name, # prod, testing, default...
+#     app_metas			= app_metas,
+#     app_config 		= app_config,
+#     language			= lang
+#   )
 
 
 @app.route('/sonum-banner-carto/<string:lang>', methods=['GET'])
@@ -276,8 +276,8 @@ def Banner(lang="fr"):
     language			= lang
   )
 
-@app.route('/app/', methods=['GET','POST'],defaults={'path': ''})
-@app.route('/app/<path:path>', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'],defaults={'path': ''})
+@app.route('/<path:path>', methods=['GET','POST'])
 def spa(path):
 
   log_app.debug("entering SPA page")

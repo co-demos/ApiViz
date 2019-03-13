@@ -22,20 +22,30 @@ function makeEmptySelectedFilters(filterDescriptions){
 
 const storeGenerator = new Vuex.Store({
     strict: true,
+
     state: {
+        
         user: {
             infos: undefined,
             role: undefined,
             isLoggedin: false
         },
         jwt:undefined,
-        config:{},
+
         geolocByProjectId: new Map(),
         spiders: undefined,
-
+        
         displayedProject: undefined,
-
+        
         filterDescriptions: INITIAL_FILTER_DESCRIPTIONS,
+        
+        // the current route to watch
+        currentRouteConfig : undefined,
+
+        // global config for ApiViz instance 
+        config: {},
+
+        // search parameters
         search: {
             dataset_uri: undefined,
             endpoint_type: undefined,

@@ -170,76 +170,114 @@ export default {
             commit('addGeolocs', {geolocByProjectId})
         });
     },
+
+
     getConfigAll({dispatch}) {
-      dispatch('getConfigType',{type:'global',configTypeEndpoint:'global'})
-      dispatch('getConfigType',{type:'styles',configTypeEndpoint:'styles'})
-      dispatch('getConfigType',{type:'routes',configTypeEndpoint:'routes?as_list=true'})
-      dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints?as_list=true'})
+      let arr = []
+      arr.push(dispatch('getConfigType',{type:'global',configTypeEndpoint:'global'}) )
+      arr.push(dispatch('getConfigType',{type:'styles',configTypeEndpoint:'styles'}) )
+      arr.push(dispatch('getConfigType',{type:'socials',configTypeEndpoint:'socials'}) )
+      arr.push(dispatch('getConfigType',{type:'footer',configTypeEndpoint:'footer'}) )
+      arr.push(dispatch('getConfigType',{type:'navbar',configTypeEndpoint:'navbar'}) )
+      arr.push(dispatch('getConfigType',{type:'routes',configTypeEndpoint:'routes?as_list=true'}) )
+      arr.push(dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints?as_list=true'}) )
+      return Promise.all(arr)
+      // dispatch('getConfigType',{type:'global',configTypeEndpoint:'global'})
+      // dispatch('getConfigType',{type:'styles',configTypeEndpoint:'styles'})
+      // dispatch('getConfigType',{type:'socials',configTypeEndpoint:'socials'})
+      // dispatch('getConfigType',{type:'footer',configTypeEndpoint:'footer'})
+      // dispatch('getConfigType',{type:'navbar',configTypeEndpoint:'navbar'})
+      // dispatch('getConfigType',{type:'routes',configTypeEndpoint:'routes?as_list=true'})
+      // dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints?as_list=true'})
     },
+
     getConfigType({commit},{type,configTypeEndpoint}) {
       return axios
         .get(apiConfig.rootURL+'/config/'+configTypeEndpoint)
         .then(response => {
+          // console.log("type : ", type," / response : ", response)
           let app_config = (response && response.data && response.data.app_config) ? response.data.app_config : undefined
-          commit('setConfig', {type:type,result:app_config}); return app_config
+          commit('setConfig', {type:type,result:app_config}); 
+          return app_config
         })
         .catch( err => console.log('there was an error trying to fetch some configuration file',err) )
     },
+
+
+
     setSearchConfigDisplay({commit}) {
-      // here this function will probably change when this may be inherited from the configuration files
-      const defaultDisplay = {
-        columnCount : 4,
-        defaultShowCount : 50,
-        moreProjectOnScrollCount : 20,
-        scrollBeforeBottomTrigger : 500
-      }
-      commit('setSearchConfig', {type:'display',result:defaultDisplay});
+        // here this function will probably change when this may be inherited from the configuration files
+        const defaultDisplay = {
+            columnCount : 4,
+            defaultShowCount : 50,
+            moreProjectOnScrollCount : 20,
+            scrollBeforeBottomTrigger : 500
+        }
+        commit('setSearchConfig', {type:'display',result:defaultDisplay});
     },
     saveLoginInfos({commit}, {APIresponse}){
-      let r = APIresponse
-      let tokens = (r && r.data && r.data.tokens) ? r.data.tokens : undefined
-      let infos = (r && r.data && r.data.data && r.data.data.infos) ? r.data.data.infos : undefined
-      let role = (r && r.data && r.data.data && r.data.data.auth && r.data.data.auth.role) ? r.data.data.auth.role : undefined
+        let r = APIresponse
+        let tokens = (r && r.data && r.data.tokens) ? r.data.tokens : undefined
+        let infos = (r && r.data && r.data.data && r.data.data.infos) ? r.data.data.infos : undefined
+        let role = (r && r.data && r.data.data && r.data.data.auth && r.data.data.auth.role) ? r.data.data.auth.role : undefined
 
-      commit('setTokens', {tokens})
-      commit('setInfos', {infos})
-      commit('setRole', {role})
+        commit('setTokens', {tokens})
+        commit('setInfos', {infos})
+        commit('setRole', {role})
     },
     logout({commit}){
-      commit('setTokens', {})
-      commit('setInfos', {})
-      commit('setRole', {})
+        commit('setTokens', {})
+        commit('setInfos', {})
+        commit('setRole', {})
     },
-    setCurrentRouteAndEndpointConfig({dispatch}) {
-      let arr = []
-      arr.push(dispatch('getConfigType',{type:'routes',configTypeEndpoint:'routes?as_list=true'}))
-      arr.push(dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints?as_list=true'}))
-      return Promise.all(arr)
-    },
+
+
+
+    // setCurrentRouteAndEndpointConfig({dispatch}) {
+    //     let arr = []
+    //     arr.push(dispatch('getConfigType',{type:'routes',configTypeEndpoint:'routes?as_list=true'}))
+    //     arr.push(dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints?as_list=true'}))
+    //     return Promise.all(arr)
+    // },
     setSearchEndpointConfig({commit,getters,state},{path}) {
-      let config = getters.getCurrentRouteConfig(path)
-      if (!config) { console.log('here ?'); return undefined }
-      let arr = []
-      arr.push(commit('setSearchParam',{type:'currentRouteConfig',result:config}))
-      arr.push(commit('setSearchParam',{type:'dataset_uri',result:config.dataset_uri}))
-      arr.push(commit('setSearchParam',{type:'endpoint_type',result:config.endpoint_type}))
-      return Promise.all(arr)
+      let endpointConfig = getters.getCurrentRouteConfig(path)
+      console.log("\n-- setSearchEndpointConfig / endpointConfig :\n ", endpointConfig)
+      
+      // if (!endpointConfig) { console.log('here ?'); return undefined }
+      // let arr = []
+      // arr.push(commit('setSearchParam',{type:'currentRouteConfig',result:endpointConfig}))
+      // arr.push(commit('setSearchParam',{type:'dataset_uri',result:endpointConfig.dataset_uri}))
+      // arr.push(commit('setSearchParam',{type:'endpoint_type',result:endpointConfig.endpoint_type}))
+      // return Promise.all(arr)
+      commit('setSearchParam',{type:'currentRouteConfig',result:endpointConfig})
+      commit('setSearchParam',{type:'dataset_uri',result:endpointConfig.dataset_uri})
+      commit('setSearchParam',{type:'endpoint_type',result:endpointConfig.endpoint_type})
+      commit('setSearchParam',{type:'endpoint',result:endpointConfig})
+      console.log("-- setSearchEndpointConfig / state.search : \n", state.search )
     },
-    setSearchEndpoint({commit,getters,state}) {
-      let endpointConfig = getters.getEndpointConfig
-      if (!endpointConfig) { return undefined }
-      let arr = []
-      arr.push(commit('setSearchParam',{type:'endpoint',result:endpointConfig}))
-      return Promise.all(arr)
-    },
-    fetchCurrentEndpoint({commit},{type,configTypeEndpoint}) {
-      return true
-      // return axios
-      //   .get(apiConfig.rootURL+'/config/'+configTypeEndpoint)
-      //   .then(response => {
-      //     let app_config = (response && response.data && response.data.app_config) ? response.data.app_config : undefined
-      //     commit('setConfig', {type:type,result:app_config}); return app_config
-      //   })
-      //   .catch( err => console.log('there was an error trying to fetch some configuration file',err) )
-    },
+
+    // setSearchEndpoint({commit,getters,state}) {
+    //   let endpointConfig = getters.getEndpointConfig
+    //   // console.log("\n-- setSearchEndpoint / endpointConfig :\n ", endpointConfig)
+      
+    //   // if (!endpointConfig) { return undefined }
+    //   // let arr = []
+    //   // arr.push(commit('setSearchParam',{type:'endpoint',result:endpointConfig}))
+    //   // return Promise.all(arr)
+    //   commit('setSearchParam',{type:'endpoint',result:endpointConfig})
+    // },
+
+    // - - - - - - - - - - - - // 
+    // DEPRECATED
+    // - - - - - - - - - - - - // 
+    // fetchCurrentEndpoint({commit},{type,configTypeEndpoint}) {
+    //     return true
+    //     // return axios
+    //     //   .get(apiConfig.rootURL+'/config/'+configTypeEndpoint)
+    //     //   .then(response => {
+    //     //     let app_config = (response && response.data && response.data.app_config) ? response.data.app_config : undefined
+    //     //     commit('setConfig', {type:type,result:app_config}); return app_config
+    //     //   })
+    //     //   .catch( err => console.log('there was an error trying to fetch some configuration file',err) )
+    // },
 }

@@ -1,9 +1,21 @@
 <template>
     <nav class="navbar is-white is-fixed-top" role="navigation" aria-label="main navigation">
+
         <div class="container">
-            <Brand :logo="logo" :brand="brand"/>
-            <NavBarContent :user="user"/>
+            
+            <Brand 
+                :logo="logo" 
+                :brand="brand"
+            />
+
+            {{ currentRouteConfig.field }}
+            <NavBarContent 
+                :NavbarLinks="navbarConfig.links_options"
+                :user="user"
+            />
+
         </div>
+
     </nav>
 </template>
 
@@ -16,13 +28,21 @@ export default {
         Brand,
         NavBarContent
     },
-	props: ['logo', 'brand', 'user']
+    props: [
+        'navbarConfig',
+        'logo', 
+        
+        'currentRouteConfig',
+
+        'brand', 
+        'user'
+    ]
 }
 </script>
 
 <style>
 nav {
-	height: 60px;
-	z-index: 10;
+    height: 60px;
+    z-index: 10;
 }
 </style>

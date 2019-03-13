@@ -8,13 +8,16 @@ import { dynamicRoutesGenerator } from './dynamicRoutes.js';
 
 
 const routerGenerator = function(store){
+
   const routes = [
     ...userRoutesGenerator(store),
-    ...dynamicRoutesGenerator(store)]
+    ...dynamicRoutesGenerator(store)
+  ]
 
   return new VueRouter({
       mode: 'history',
       routes,
+      props:true,
       scrollBehavior (to, from, savedPosition) {
           return savedPosition ? savedPosition : { x: 0, y: 0 };
       }

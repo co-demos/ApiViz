@@ -14,11 +14,11 @@ export const userRoutesGenerator = function(store){
           name: 'login',
           path: '/login',
           component: LoginScreen,
-          props(route){
-              return {
-                  ...BRAND_DATA
-              }
-          },
+        //   props(route){
+        //       return {
+        //           ...BRAND_DATA
+        //       }
+        //   },
           beforeEnter(to, from, next){
               console.info('beforeEnter /login')
               next()
@@ -28,11 +28,11 @@ export const userRoutesGenerator = function(store){
           name: 'register',
           path: '/register',
           component: RegisterScreen,
-          props(route){
-              return {
-                  ...BRAND_DATA
-              }
-          },
+        //   props(route){
+        //       return {
+        //           ...BRAND_DATA
+        //       }
+        //   },
           beforeEnter(to, from, next){
               console.info('beforeEnter /register')
               next()
@@ -41,11 +41,11 @@ export const userRoutesGenerator = function(store){
       {
           name: 'registerConfirmEmail',
           path: '/registerconfirmemail',
-          props(e){
-              return {
-                  ...BRAND_DATA
-              }
-          },
+        //   props(e){
+        //       return {
+        //           ...BRAND_DATA
+        //       }
+        //   },
           beforeEnter(to, from, next){
               let token = (to && to.query && to.query.token) ? to.query.token : ''
               console.info('beforeEnter /registerConfirmEmail -> token=',token);
@@ -69,11 +69,11 @@ export const userRoutesGenerator = function(store){
           name: 'logout',
           path: '/logout',
           component: LogoutScreen,
-          props(route){
-              return {
-                  ...BRAND_DATA
-              }
-          },
+        //   props(route){
+        //       return {
+        //           ...BRAND_DATA
+        //       }
+        //   },
           beforeEnter(to, from, next){
               console.info('beforeEnter /logout')
               next()

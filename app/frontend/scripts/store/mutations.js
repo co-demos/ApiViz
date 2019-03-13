@@ -63,9 +63,12 @@ export default {
     addGeolocs(state, {geolocByProjectId}){
         state.geolocByProjectId = new Map([...state.geolocByProjectId, ...geolocByProjectId])
     },
+
     setConfig(state, {type,result}) {
+        // console.log("result : ", result)
         state.config[type] = result
     },
+
     setSearchConfig(state, {type,result}) {
         state.search.config[type] = result
     },
@@ -80,6 +83,9 @@ export default {
         state.user.role = (typeof role === 'string') ? role : undefined
     },
     setSearchParam(state,{type,result}){
-        return state.search[type] = result
+        console.log("\n== setSearchParam / state.search : ", state.search)
+        console.log("== setSearchParam / type : ", type)
+        console.log("== setSearchParam / result : ", result)
+        state.search[type] = result
     }
 }
