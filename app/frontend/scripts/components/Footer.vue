@@ -159,7 +159,7 @@ export default {
     },
 
     isVisible(block) {
-      console.log("block : ", block)
+      // console.log("block : ", block)
       return block.is_visible
     },
 

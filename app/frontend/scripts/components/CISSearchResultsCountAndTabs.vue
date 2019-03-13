@@ -4,7 +4,9 @@
         <div :class="['result-count-parent', open ? 'open' : undefined]">
             <div class="results-count">
                 <span class="nb">{{pending ? '?' : total}}</span> 
-                <span>projets trouvés</span>
+                <span>
+                  {{ translateBis(endpointConfigFilters, 'items_found' )}}
+                </span>
             </div>
             <slot name="project"/>
         </div>
@@ -12,7 +14,9 @@
         <div class="buttons has-addons is-right">
 
             <router-link 
-              :to="`/recherche`" 
+              v-if="typeof endpointConfigList !== 'undefined'"
+              :disabled="endpointConfigList.is_disabled" 
+              :to="endpointConfigUrlToList.urls[0]" 
               :class="['button', view === VIEW_LIST ? 'is-selected is-primary' : undefined]" 
               >
               <img :src="`/static/icons/${view === VIEW_LIST ? 'icon_list_blanc.svg': 'icon_list.svg'}`">
@@ -20,8 +24,10 @@
               <span>{{ translate(configTabs('tab_list')) }}</span>
             </router-link>
 
-            <router-link 
-              :to="`/recherche/carte`" 
+            <router-link
+              v-if="typeof endpointConfigMap !== 'undefined'"
+              :disabled="endpointConfigMap.is_disabled" 
+              :to="endpointConfigUrlToMap.urls[0]" 
               :class="['button', view === VIEW_MAP ? 'is-selected is-primary' : undefined]" 
               >
               <img :src="`/static/icons/${view === VIEW_MAP ? 'icon_map_blanc.svg': 'icon_map.svg'}`">
@@ -29,13 +35,15 @@
               <span>{{ translate(configTabs('tab_map')) }}</span>
             </router-link>
 
-            <!-- <button 
-              disabled 
-              class="button is-normal tooltip is-tooltip-danger is-tooltip-bottom"
-              data-tooltip="en construction">
+            <!-- <router-link
+              v-if="typeof endpointConfigUrlToStat !== 'undefined'"
+              :disabled="endpointConfigStat.is_disabled" 
+              :to="endpointConfigUrlToStat.urls[0]" 
+              :class="['button', view === VIEW_MAP ? 'is-selected is-primary' : undefined]" 
+              >
               <img src="/static/icons/icon_dataviz.svg">
               <span>{{ translate(configTabs('tab_stat')) }}</span>
-            </button> -->
+            </router-link> -->
 
         </div>
     </div>
@@ -63,9 +71,43 @@ export default {
 
     computed: {
       ...mapState({
-          pending: ({search}) => !!search.answer.pendingAbort,
-          total: ({search}) => search.answer.result && search.answer.result.total
+        pending: ({search}) => !!search.answer.pendingAbort,
+        total: ({search}) => search.answer.result && search.answer.result.total
       }),
+
+      // CONFIG ENDPOINTS
+      endpointConfigFilters() {
+        return this.$store.getters.getEndpointConfigFilters
+      },
+      endpointConfigList() {
+        return this.$store.getters.getEndpointConfigList
+      },
+      endpointConfigMap() {
+        return this.$store.getters.getEndpointConfigMap
+      },
+      endpointConfigDetail() {
+        return this.$store.getters.getEndpointConfigDetail
+      },
+      endpointConfigStat() {
+        let endpointStat =  this.$store.getters.getEndpointConfigStat
+        console.log("endpointStat : ", endpointStat)
+        return endpointStat
+      },
+
+      // CONFIG ROUTES
+      endpointConfigUrlToList() {
+        let routeConfig =  this.$store.getters.getRouteConfigListForDataset
+        return routeConfig
+      },
+      endpointConfigUrlToMap() {
+        let routeConfig =  this.$store.getters.getRouteConfigMapForDataset
+        return routeConfig
+      },
+      // endpointConfigUrlToStat() {
+      //   let routeConfig = this.$store.getters.getRouteConfigStatForDataset
+      //   console.log("routeConfig : ", routeConfig)
+      //   return routeConfig
+      // }
     },
 
     methods : {
@@ -75,6 +117,10 @@ export default {
       },
       translate( textsToTranslate ) {
         let listTexts = textsToTranslate.link_text
+        return this.$store.getters.getTranslation({ texts : listTexts })
+      },
+      translateBis( textsToTranslate, listField ) {
+        let listTexts = textsToTranslate[listField]
         return this.$store.getters.getTranslation({ texts : listTexts })
       }
     }

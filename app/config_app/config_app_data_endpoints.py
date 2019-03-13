@@ -148,9 +148,22 @@ default_data_endpoints_config = [
 
     ### DATA FILTERS
     { "field"         : "sonum_carto_data_API_filters",
+      "is_visible"    : True,
+      "is_disabled"   : False,
       "data_type"     : "data",
       "endpoint_type" : "filters",
       "dataset_uri"   : "sonum-carto",
+
+      "placeholder"   : [
+        {"locale" : "fr", "text" : "Tapez le nom d'un lieu" }
+      ],
+      "items_found"   : [
+        {"locale" : "fr", "text" : "lieux trouvés" }
+      ],
+      "reset"   : [
+        {"locale" : "fr", "text" : "Effacer" }
+      ],
+
       "content"       : u"apiviz default API endpoint for navbar filters",
       "root_url"      : "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc68328ed724cebd7fbf",
       "args_options"  : [
@@ -166,6 +179,8 @@ default_data_endpoints_config = [
 
     ### DATA LIST
     { "field"         : "sonum_carto_data_API_list",
+      "is_visible"    : True,
+      "is_disabled"   : False,
       "data_type"     : "data",
       "endpoint_type" : "list",
       "dataset_uri"   : "sonum-carto",
@@ -186,6 +201,8 @@ default_data_endpoints_config = [
 
     ### DATA DETAIL
     { "field"         : "sonum_carto_data_API_detail",
+      "is_visible"    : True,
+      "is_disabled"   : False,
       "data_type"     : "data",
       "endpoint_type" : "detail",
       "dataset_uri"   : "sonum-carto",
@@ -202,26 +219,30 @@ default_data_endpoints_config = [
     },
 
     ### DATA STATS
-    # { "field"         : "sonum_carto_data_API_stats",
-    #   "data_type"     : "data",
-    # "endpoint_type" : "filters",
-    #   "dataset_uri"    : "sonum-carto",
-    #   "content"       : u"apiviz default API endpoint for stats results",
-    #   "root_url"      : "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc68328ed724cebd7fbf",
-    #   "args_options"   : [
-    #     {  "arg" : "token",                 "optional" : True, "in" : ["url","header"],   "default" : "", "type": "str" },
-    #     {  "arg" : "only_counts_simple",   "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
-    #     {  "arg" : "only_tags_stats",       "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
-    #     {  "arg" : "only_spiders_stats",   "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
-    #   ],
-    #   "app_version"    : version,
-    #   "method"        : "GET",
-    #   "help"          : u"define the endpoint to get data for : a stat about the dataset",
-    #   "is_default"    : True
-    # },
+    { "field"         : "sonum_carto_data_API_stats",
+      "is_visible"    : False,
+      "is_disabled"   : False,
+      "data_type"     : "data",
+      "endpoint_type" : "stat",
+      "dataset_uri"    : "sonum-carto",
+      "content"       : u"apiviz default API endpoint for stats results",
+      "root_url"      : "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc68328ed724cebd7fbf",
+      "args_options"   : [
+        {  "arg" : "token",                 "optional" : True, "in" : ["url","header"],   "default" : "", "type": "str" },
+        {  "arg" : "only_counts_simple",   "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
+        {  "arg" : "only_tags_stats",       "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
+        {  "arg" : "only_spiders_stats",   "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
+      ],
+      "app_version"    : version,
+      "method"        : "GET",
+      "help"          : u"define the endpoint to get data for : a stat about the dataset",
+      "is_default"    : True
+    },
 
     ### DATA MAP
     { "field"         : "sonum_carto_data_API_map",
+      "is_visible"    : True,
+      "is_disabled"   : False,
       "data_type"     : "data",
       "endpoint_type" : "map",
       "dataset_uri"   : "sonum-carto",
@@ -261,9 +282,22 @@ default_data_endpoints_config = [
 
     ### DATA FILTERS
     { "field"         : "sonum_xp_data_API_filters",
+      "is_visible"    : True,
+      "is_disabled"   : False,
       "data_type"     : "data",
       "endpoint_type" : "filters",
       "dataset_uri"   : "sonum-xp",
+
+      "placeholder"   : [
+        {"locale" : "fr", "text" : "Tapez le nom d'une expérience" }
+      ],
+      "items_found"   : [
+        {"locale" : "fr", "text" : "expériences trouvées" }
+      ],
+      "reset"   : [
+        {"locale" : "fr", "text" : "Effacer" }
+      ],
+
       "content"       : u"apiviz default API endpoint for navbar filters",
       "root_url"      : "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc7d328ed724cebd7fc0",
       "args_options"  : [
@@ -279,6 +313,8 @@ default_data_endpoints_config = [
 
     ### DATA LIST
     { "field"         : "sonum_xp_data_API_list",
+      "is_visible"    : True,
+      "is_disabled"   : False,
       "data_type"     : "data",
       "endpoint_type" : "list",
       "dataset_uri"   : "sonum-xp",
@@ -299,6 +335,8 @@ default_data_endpoints_config = [
 
     ### DATA DETAIL
     { "field"         : "sonum_xp_data_API_detail",
+      "is_visible"    : True,
+      "is_disabled"   : False,
       "data_type"     : "data",
       "endpoint_type" : "detail",
       "dataset_uri"   : "sonum-xp",
@@ -315,26 +353,30 @@ default_data_endpoints_config = [
     },
 
     ### DATA STATS
-    # { "field"         : "sonum_carto_data_API_stats",
-    #   "data_type"     : "data",
-    #   "endpoint_type" : "stat",
-    #   "dataset_uri"    : "sonum-carto",
-    #   "content"       : u"apiviz default API endpoint for stats results",
-    #   "root_url"      : "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc7d328ed724cebd7fc0",
-    #   "args_options"   : [
-    #     {  "arg" : "token",                 "optional" : True, "in" : ["url","header"],   "default" : "", "type": "str" },
-    #     {  "arg" : "only_counts_simple",   "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
-    #     {  "arg" : "only_tags_stats",       "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
-    #     {  "arg" : "only_spiders_stats",   "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
-    #   ],
-    #   "app_version"    : version,
-    #   "method"        : "GET",
-    #   "help"          : u"define the endpoint to get data for : a stat about the dataset",
-    #   "is_default"    : True
-    # },
+    { "field"         : "sonum_xp_data_API_stats",
+      "is_visible"    : False,
+      "is_disabled"   : False,
+      "data_type"     : "data",
+      "endpoint_type" : "stat",
+      "dataset_uri"    : "sonum-carto",
+      "content"       : u"apiviz default API endpoint for stats results",
+      "root_url"      : "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc7d328ed724cebd7fc0",
+      "args_options"   : [
+        {  "arg" : "token",                 "optional" : True, "in" : ["url","header"],   "default" : "", "type": "str" },
+        {  "arg" : "only_counts_simple",   "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
+        {  "arg" : "only_tags_stats",       "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
+        {  "arg" : "only_spiders_stats",   "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
+      ],
+      "app_version"    : version,
+      "method"        : "GET",
+      "help"          : u"define the endpoint to get data for : a stat about the dataset",
+      "is_default"    : True
+    },
 
     ### DATA MAP
     { "field"         : "sonum_xp_data_API_map",
+      "is_visible"    : True,
+      "is_disabled"   : False,
       "data_type"     : "data",
       "endpoint_type" : "map",
       "dataset_uri"   : "sonum-xp",

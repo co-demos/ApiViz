@@ -13,10 +13,18 @@ default_global_config = [
       "is_default"  : True
     },
 
+    { "field"       : "app_basic_dict",
+      "app_version" : version,
+      "help"        : u"The default dict for your ApiViz instance",
+      "reinit_filters" : [ 
+        {"locale" : "fr", "text" : "Supprimer tous les filtrees" }
+      ],
+      "is_default"  : True
+    },
+
     { "field"       : "app_screen_tabs",
       "app_version" : version,
       "help"        : u"The default homepage for your ApiViz instance",
-      
       "tab_list"    : { 
         "link_text"  : [ {"locale" : "fr", "text" : "liste" }],
       },
@@ -26,7 +34,6 @@ default_global_config = [
       "tab_stat"    : { 
         "link_text"  : [ {"locale" : "fr", "text" : "données" }],
       },
-
       "is_default"  : True
     },
 

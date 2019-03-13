@@ -11,7 +11,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 const getTranslation = (state) => (textsData) => {
   const locale = state.locale
   const textField = 'text'
-  console.log("textsData : ", textsData)
+  // console.log("textsData : ", textsData)
   return textFromLocale( textsData.texts, locale, textField )
 }
 
@@ -81,6 +81,24 @@ const getCurrentRouteConfig = (state) => (currentRoute) => {
     return undefined 
   }
 }
+const getRouteConfigListForDataset = state => {
+  return state.config.routes.find(function(r) {
+    return r.endpoint_type === 'list'
+    && r.dataset_uri === state.search.dataset_uri;
+  });
+}
+const getRouteConfigMapForDataset = state => {
+  return state.config.routes.find(function(r) {
+    return r.endpoint_type === 'map'
+    && r.dataset_uri === state.search.dataset_uri;
+  });
+}
+const getRouteConfigStatForDataset = state => {
+  return state.config.routes.find(function(r) {
+    return r.endpoint_type === 'stat'
+    && r.dataset_uri === state.search.dataset_uri;
+  });
+}
 
 // - - - - - - - - - - - - - - - //
 // ITEMS CONFIG GETTERS
@@ -126,6 +144,41 @@ const getEndpointConfig = state => {
   });
 }
 
+const getEndpointConfigFilters = state => {
+  // console.log("getEndpointConfigFilters - state.config.endpoints : \n", state.config.endpoints)
+  return state.config.endpoints.find(function(r) {
+    return r.endpoint_type === 'filters'
+    && r.dataset_uri === state.search.dataset_uri;
+  });
+}
+const getEndpointConfigList = state => {
+  // console.log("getEndpointConfigList - state.config.endpoints : \n", state.config.endpoints)
+  return state.config.endpoints.find(function(r) {
+    return r.endpoint_type === 'list'
+    && r.dataset_uri === state.search.dataset_uri;
+  });
+}
+const getEndpointConfigMap = state => {
+  // console.log("getEndpointConfigMap - state.config.endpoints : \n", state.config.endpoints)
+  return state.config.endpoints.find(function(r) {
+    return r.endpoint_type === 'map'
+    && r.dataset_uri === state.search.dataset_uri;
+  });
+}
+const getEndpointConfigDetail = state => {
+  // console.log("getEndpointConfigDetail - state.config.endpoints : \n", state.config.endpoints)
+  return state.config.endpoints.find(function(r) {
+    return r.endpoint_type === 'detail'
+    && r.dataset_uri === state.search.dataset_uri;
+  });
+}
+const getEndpointConfigStat = state => {
+  // console.log("getEndpointConfigStat - state.config.endpoints : \n", state.config.endpoints)
+  return state.config.endpoints.find(function(r) {
+    return r.endpoint_type === 'stat'
+    && r.dataset_uri === state.search.dataset_uri;
+  });
+}
 // - - - - - - - - - - - - - - - //
 // IMAGES CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
@@ -180,6 +233,16 @@ export default {
 
   getEndpointConfig,
   getCurrentRouteConfig,
+  getRouteConfigListForDataset,
+  getRouteConfigMapForDataset,
+  getRouteConfigStatForDataset,
+
+  getEndpointConfigFilters,
+  getEndpointConfigList,
+  getEndpointConfigMap,
+  getEndpointConfigDetail,
+  getEndpointConfigStat,
+
   getProjectConfig,
   getProjectConfigUniform,
   getImgUrl,

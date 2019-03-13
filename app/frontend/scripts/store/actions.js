@@ -254,7 +254,7 @@ export default {
 	setSearchEndpointConfig({commit,getters,state},{path}) {
 
 	  let routeConfig = getters.getCurrentRouteConfig(path)
-	  console.log("\n-- setSearchEndpointConfig / endpointConfig :\n ", routeConfig)
+	  // console.log("\n-- setSearchEndpointConfig / endpointConfig :\n ", routeConfig)
 	  
 	  // if (!endpointConfig) { console.log('here ?'); return undefined }
 	  // let arr = []
@@ -268,7 +268,7 @@ export default {
     
     let endpointConfig = getters.getEndpointConfig
 		commit('setSearchParam',{type:'endpoint',result:endpointConfig})
-		console.log("-- setSearchEndpointConfig / state.search : \n", state.search )
+		// console.log("-- setSearchEndpointConfig / state.search : \n", state.search )
 	},
 
 	// setSearchEndpoint({commit,getters,state}) {

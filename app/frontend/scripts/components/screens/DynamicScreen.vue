@@ -52,7 +52,7 @@
         <!-- <div> -->
           <!-- <br><br> -->
           <!-- navbarConfig : <br><code> {{ this.navbarConfig }} </code> <br><br>> -->
-          <!-- globalConfig : <br><code> {{ this.globalConfig }} </code> <br><br> -->
+          globalConfig : <br><code> {{ this.globalConfig }} </code> <br><br>
           <!-- localRouteConfig.field : <code> {{ localRouteConfig.field }} </code> <br><br> -->
           <!-- routeConfig.field : <code>{{ this.routeConfig.field }} </code> <br><br> -->
           <!-- footerConfig : <br><code> {{ this.footerConfig }} </code> <br><br> -->
@@ -172,7 +172,7 @@ export default {
       },
       socialsConfig(){
         let socialsConf = this.$store.getters.getSocialsConfig
-        console.log(" - - socialsConf : ", socialsConf)
+        // console.log(" - - socialsConf : ", socialsConf)
         return socialsConf
       },
       navbarConfig(){    

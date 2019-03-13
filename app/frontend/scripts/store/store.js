@@ -49,24 +49,24 @@ const storeGenerator = new Vuex.Store({
 
     // search parameters
     search: {
-        dataset_uri: undefined,
-        endpoint_type: undefined,
-        endpoint: undefined,
-        question: {
-            query: new URL(location).searchParams.get('text') || '',
-            selectedFilters: makeEmptySelectedFilters(INITIAL_FILTER_DESCRIPTIONS)
-        },
-        answer: {
-            pendingAbort: undefined, // function that can be used to abort the current pending search
-            result: undefined, // search results {projects, total}
-            error: undefined // if last search ended in an error
-        },
-        config:{
-          display: {
-            columnCount : undefined,
-            defaultShowCount : undefined,
-            moreProjectOnScrollCount : undefined,
-            scrollBeforeBottomTrigger : undefined
+      dataset_uri: undefined,
+      endpoint_type: undefined,
+      endpoint: undefined,
+      question: {
+          query: new URL(location).searchParams.get('text') || '',
+          selectedFilters: makeEmptySelectedFilters(INITIAL_FILTER_DESCRIPTIONS)
+      },
+      answer: {
+          pendingAbort: undefined, // function that can be used to abort the current pending search
+          result: undefined, // search results {projects, total}
+          error: undefined // if last search ended in an error
+      },
+      config:{
+        display: {
+          columnCount : undefined,
+          defaultShowCount : undefined,
+          moreProjectOnScrollCount : undefined,
+          scrollBeforeBottomTrigger : undefined
           }
         }
       }
