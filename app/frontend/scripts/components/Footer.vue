@@ -17,7 +17,10 @@
             v-if="isVisible( footerLinks(block_pos) )"
             >
             <ul>
-              <li v-for="(link, index) in footerLinks(block_pos)['links']">
+              <li 
+                v-for="(link, index) in footerLinks(block_pos)['links']"
+                :key="index"
+              >
                 <a :href="link.link_to" target="_blank"> 
                   {{ translate(link, 'link_text') }}
                 </a>
@@ -36,7 +39,8 @@
                 <!-- {{ icon }} -->
                 <a
                   class="button is-primary" 
-                  :href="icon.url" >
+                  :href="icon.url" 
+                >
                   <span class="icon">
                     <i 
                       :class="icon.icon_class"

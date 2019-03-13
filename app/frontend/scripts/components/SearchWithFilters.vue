@@ -30,25 +30,25 @@
 
               <a class="navbar-item" v-for="choice in filter.choices" :key="choice.name">
                 <div class="field">
-                    <input 	class="is-checkradio is-default is-normal" 
-                            :id="choice.name" 
-                            type="checkbox" 
-                            :checked="selectedFilters.get(filter.name).has(choice.name)"
-                            :data-filter="filter.name"
-                            :data-choice="choice.name"
-                            @change="changeFilter"
-                            >
-                    <label :for="choice.name">
-                        {{ choice.fullname }}
-                    </label>
+                  <input 	class="is-checkradio is-default is-normal" 
+                          :id="choice.name" 
+                          type="checkbox" 
+                          :checked="selectedFilters.get(filter.name).has(choice.name)"
+                          :data-filter="filter.name"
+                          :data-choice="choice.name"
+                          @change="changeFilter"
+                          >
+                  <label :for="choice.name">
+                      {{ choice.fullname }}
+                  </label>
                 </div>
             </a>
         
             <div class="navbar-item">
               <button class="button is-text is-fullwidth has-text-primary"
-                  :data-filter="filter.name"
-                  @click="emptyOneFilter({filter: filter.name})">
-                  {{translate(endpointConfigFilters, 'reset' )}}
+                :data-filter="filter.name"
+                @click="emptyOneFilter({filter: filter.name})">
+                {{translate(endpointConfigFilters, 'reset' )}}
               </button>
             </div>
 
@@ -78,7 +78,8 @@ export default {
       },
 
       endpointConfigFilters() {
-        return this.$store.getters.getEndpointConfigFilters
+        let configFilter = this.$store.getters.getEndpointConfigFilters
+        return configFilter
       }
 
     },

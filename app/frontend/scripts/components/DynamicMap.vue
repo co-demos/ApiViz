@@ -1,5 +1,9 @@
 <template>
-  <DynamicSearchScreenSqueleton :logo="logo" :brand="brand" mainClass="list">
+  <DynamicSearchScreenSqueleton 
+    mainClass="list"
+    >
+    <!-- :logo="logo" 
+    :brand="brand"  -->
       <SearchResultsMap/>
   </DynamicSearchScreenSqueleton>
 </template>
@@ -11,18 +15,21 @@ import DynamicSearchScreenSqueleton from './DynamicSearchScreenSqueleton.vue'
 import SearchResultsMap from './SearchResultsMap.vue';
 
 export default {
-    name: 'DynamicMap',  
-    props:[
-      'routeConfig','logo', 'brand'
-    ],
-    components: {
-        DynamicSearchScreenSqueleton, SearchResultsMap
-    },
-    computed: {
-      ...mapState({
-          user: 'user'
-      })
-    },
+  name: 'DynamicMap',  
+  props:[
+    'routeConfig',
+    // 'logo', 
+    // 'brand'
+  ],
+  components: {
+      DynamicSearchScreenSqueleton, 
+      SearchResultsMap
+  },
+  computed: {
+    ...mapState({
+        user: 'user'
+    })
+  },
 }
 </script>
 <style>

@@ -73,8 +73,9 @@ default_app_styles_config = [
       "help"        : u"The dataset banners for your ApiViz instance (between navbar and filter)",
       "banners_set" : [
         {
-          "banner_uri"       : "default",
-          "template_url"     : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/banner-homepage.html?raw=true",
+          "banner_uri"       : "apiviz_default",
+          "dataset_uri"      : None,
+          "template_url"     : "https://raw.githubusercontent.com/co-demos/carto-sonum/master/pages-html/banner-sonum-dft.html",
           "is_dynamic"       : False,
           "dynamic_template" : 'DynamicBanner',
           "is_visible"          : False,
@@ -84,7 +85,8 @@ default_app_styles_config = [
         },
         {
           "banner_uri"       : "banner-sonum-carto",
-          "template_url"     : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/banner-homepage.html?raw=true",
+          "dataset_uri"      : "sonum-carto",
+          "template_url"     : "https://raw.githubusercontent.com/co-demos/carto-sonum/master/pages-html/banner-sonum-dft.html",
           "is_dynamic"       : False,
           "dynamic_template" : 'DynamicBanner',
           "is_visible"          : False,
@@ -94,7 +96,8 @@ default_app_styles_config = [
         },
         {
           "banner_uri"       : "banner-sonum-xp",
-          "template_url"     : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/banner-homepage.html?raw=true",
+          "dataset_uri"      : "sonum-xp",
+          "template_url"     : "https://raw.githubusercontent.com/co-demos/carto-sonum/master/pages-html/banner-sonum-dft.html",
           "is_dynamic"       : False,
           "dynamic_template" : 'DynamicBanner',
           "is_visible"          : False,

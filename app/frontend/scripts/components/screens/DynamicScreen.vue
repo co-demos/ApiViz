@@ -24,6 +24,15 @@
           :routeConfig="this.localRouteConfig"
         ></component> -->
 
+
+        <!-- BANNER -->
+        <DynamicBanner 
+          v-if="this.has_banner"
+          :template_url="this.getCurrentBanner.template_url"
+        ></DynamicBanner> 
+       
+
+
         <!-- REMOTE STATICS -->
         <DynamicStatic 
           v-if="localRouteConfig.dynamic_template == 'DynamicStatic' "
@@ -52,10 +61,14 @@
         <!-- <div> -->
           <!-- <br><br> -->
           <!-- navbarConfig : <br><code> {{ this.navbarConfig }} </code> <br><br>> -->
-          globalConfig : <br><code> {{ this.globalConfig }} </code> <br><br>
+          <!-- globalConfig : <br><code> {{ this.globalConfig }} </code> <br><br> -->
+          <!-- stylesConfig : <br><code> {{ this.stylesConfig }} </code> <br><br> -->
           <!-- localRouteConfig.field : <code> {{ localRouteConfig.field }} </code> <br><br> -->
           <!-- routeConfig.field : <code>{{ this.routeConfig.field }} </code> <br><br> -->
           <!-- footerConfig : <br><code> {{ this.footerConfig }} </code> <br><br> -->
+          <!-- search : <br><code> {{ this.$store.state.search }} </code> <br><br> -->
+          <!-- getCurrentBanner : <br><code> {{ this.getCurrentBanner }} </code> <br><br> -->
+
         <!-- </div> -->
 
 
@@ -75,6 +88,7 @@ import {mapState} from 'vuex'
 import NavBar from '../NavBar.vue';
 import Footer from '../Footer.vue';
 
+import DynamicBanner    from '../DynamicBanner.vue';
 import DynamicStatic    from '../DynamicStatic.vue';
 import DynamicList      from '../DynamicList.vue';
 import DynamicMap       from '../DynamicMap.vue';
@@ -82,7 +96,13 @@ import DynamicDetail    from '../DynamicDetail.vue';
 
 export default {
     components: {
-      NavBar, Footer, DynamicStatic, DynamicList, DynamicMap, DynamicDetail
+      NavBar, 
+      Footer, 
+      DynamicBanner,
+      DynamicStatic, 
+      DynamicList, 
+      DynamicMap, 
+      DynamicDetail
     },
 
     // props: [
@@ -170,6 +190,7 @@ export default {
       stylesConfig(){
         return this.$store.getters.getStylesConfig
       },
+
       socialsConfig(){
         let socialsConf = this.$store.getters.getSocialsConfig
         // console.log(" - - socialsConf : ", socialsConf)
@@ -196,7 +217,25 @@ export default {
       has_footer(){      
         return (this.routeConfig) ? this.routeConfig.has_footer : undefined 
       },
-      
+
+      has_banner(){      
+        return (this.localRouteConfig) ? this.localRouteConfig.banner.activated : false 
+      },
+      getCurrentBanner () {
+        let bannersSet = this.stylesConfig.app_banners.banners_set
+        console.log("bannersSet : ", bannersSet)
+
+        console.log("localRouteConfig : ", this.localRouteConfig )
+        const routeBannerUri = this.localRouteConfig.banner.banner_uri
+        console.log("routeBannerUri : ", routeBannerUri )
+
+        let resultSet = bannersSet.find(function(b) {
+          return b.banner_uri == routeBannerUri
+        })
+        console.log("resultSet : ", resultSet)
+        return resultSet
+      },
+
       dynamic_template(){
         return (this.routeConfig) ? this.routeConfig.dynamic_template : undefined 
       },

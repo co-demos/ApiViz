@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="hero is-light is-fullheight skip-navbar">
+    <section class="hero is-light skip-navbar">
 
       <!-- DEBUGGING -->
       <!-- <div>

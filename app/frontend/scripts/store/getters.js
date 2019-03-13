@@ -36,6 +36,7 @@ const getStylesConfig = state => {
   }
   return state.config.styles
 }
+
 const getSocialsConfig = state => {
   // console.log("state.config : \n", state.config )
   // if (!state.config

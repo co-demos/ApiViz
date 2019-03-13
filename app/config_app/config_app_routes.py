@@ -16,8 +16,8 @@ default_routes_config = [
     "route_description" : u"apiviz default home page",
     "route_activated"   : True,
     "banner" : {
-      "activated"  : False,
-      "banner_uri" : "default"
+      "activated"  : True,
+      "banner_uri" : "apiviz_default"
     },
 
     "in_main_navbar"    : False,
