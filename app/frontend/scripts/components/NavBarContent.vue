@@ -66,7 +66,7 @@ export default {
     'NavbarLinks'
   ],
   beforeMount: function () {
-    console.log("// NavbarLinks : ", this.NavbarLinks)
+    // console.log("// NavbarLinks : ", this.NavbarLinks)
   },
 
   methods : {

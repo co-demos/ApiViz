@@ -1,40 +1,66 @@
 <template>
-    <div class="column is-12">
-        <div class="card proj-card">
+  <div class="column is-12">
+    <div class="card proj-card">
+      
 
-            <router-link :to="`/${dataset_uri}/detail?id=${projectInfos.id}`" class="card-image">
-                <img class="proj-card-img" :src="projectInfos.image" :alt="'illustration du projet' + projectInfos.title" >
-            </router-link>
+      <!-- BLOCK IMAGE -->
+      <router-link 
+        :to="`/${dataset_uri}/detail?id=${matchProjectWithConfig('block_id')}`" 
+        class="card-image"
+        >
+        <img 
+          class="proj-card-img" 
+          :src="projectInfos.image" 
+          :alt="projectInfos.title" 
+        >
+      </router-link>
 
-            <div class="card-content">
-                <div class="content" v-if="projectInfos.address">
-                    <span class="icon">
-                        <img class="image is-16x16" src="/static/icons/icon_pin.svg">
-                    </span>
-                    <span class="subtitle is-6">
-                        {{projectInfos.address}}
-                    </span>
-                </div>
+      <!-- BLOCK ADDRESS -->
+      <div class="card-content">
 
-                <p class="title is-5">
-                    <router-link :to="`/${dataset_uri}/detail?id=${projectInfos.id}`">
-                        {{projectInfos.title}}
-                    </router-link>
-                </p>
-
-                <div class="content">
-                    <p class="subtitle is-6">{{projectInfos.summary}}</p>
-                </div>
-
-                <div class="content" v-if="Array.isArray(projectInfos.tags) && projectInfos.tags.length >=1">
-                    <span v-for="tag in projectInfos.tags" class="tag" :key="tag">
-                        {{tag}}
-                    </span>
-                </div>
-            </div>
-
+        <div class="content" v-if="projectInfos.address">
+          <span class="icon">
+            <img class="image is-16x16" src="/static/icons/icon_pin.svg">
+          </span>
+          <span class="subtitle is-6">
+            <!-- {{ matchProjectWithConfig('block_address')}} -->
+            {{ projectAddress() }}
+            <!-- {{ noAddress() }} -->
+          </span>
         </div>
+
+        <!-- BLOCK TITLE -->
+        <p class="title is-5">
+          <router-link :to="`/${dataset_uri}/detail?id=${matchProjectWithConfig('block_id')}`">
+            {{ matchProjectWithConfig('block_title')}}
+          </router-link>
+        </p>
+
+        <!-- BLOCK ABSTRACT -->
+        <div class="content">
+          <p class="subtitle is-6">
+            {{ projectAbstract() }}
+          </p>
+        </div>
+
+        <!-- BLOCK SOURCE -->
+        <div class="content">
+          <p class="subtitle is-6">
+            {{ this.$store.getters.defaultText({txt:'source'})}} {{ matchProjectWithConfig('block_src')}}
+          </p>
+        </div>
+
+        <!-- BLOCK TAGS -->
+        <div class="content" v-if="Array.isArray( projectInfos.tags ) && projectInfos.tags.length >=1">
+          <span v-for="tag in projectInfos.tags" class="tag" :key="tag">
+              {{ tag }}
+          </span>
+        </div>
+
+      </div>
+
     </div>
+  </div>
 </template>
 
 <script>
@@ -43,25 +69,84 @@ import { mapState } from "vuex";
 const MAX_SUMMARY_LENGTH = 120;
 
 export default {
-    components: {},
 
-    props: ["project"],
+  name: 'ProjectCard',
 
-    computed: {
-        summary(){
-            const {description = '(projet sans résumé)'} = this.project
+  components: {},
 
-            const tail = description.length > MAX_SUMMARY_LENGTH ? '...' : '';
+  props: [
+    'project',
+    'contentFields'
+    ],
+  // beforeCreate: function () {
+  //   console.log("\n - - ProjectCard / beforeCreate ... ")
+  // },
+  // created: function () {
+  //   console.log("\n - - ProjectCard / created ... ")
+  // },
+  beforeMount: function () {
+    console.log("\n - - ProjectCard / beforeMount ... ")
+    console.log(" - - ProjectCard / this.contentFields : \n ", this.contentFields)
+    console.log(" - - ProjectCard / this.project : \n ", this.project)
+    // console.log(" - - ProjectCard / this.$store.state.config.global.app_basic_dict : \n ", this.$store.state.config.global.app_basic_dict)
 
-            return description.slice(0, MAX_SUMMARY_LENGTH) + tail
-        },
-        dataset_uri(){
-          return this.$store.state.search.dataset_uri
-        },
-        projectInfos(){
-          return this.$store.getters.getProjectConfigUniform(this.project)
-        },
-    }
+  },
+  // mounted : function () {
+  //   console.log("\n - - ProjectCard / mounted ... ")
+  //   console.log("- - ProjectCard / this.routeConfig", this.routeConfig)
+  // },
+
+  computed: {
+    // summary(){
+    //   const {description = '(projet sans résumé)'} = this.project
+    //   const tail = description.length > MAX_SUMMARY_LENGTH ? '...' : '';
+    //   return description.slice(0, MAX_SUMMARY_LENGTH) + tail
+    // },
+    dataset_uri(){
+      return this.$store.state.search.dataset_uri
+    },
+    projectInfos(){
+      return this.$store.getters.getProjectConfigUniform(this.project)
+      // return this.project
+    },
+    noAbstractText() {
+      return this.$store.getters.defaultText({txt:'no_abstract'})
+    },
+    noInfos() {
+      return this.$store.getters.defaultText({txt:'no_info'})
+    },
+    noAddress() {
+      return this.$store.getters.defaultText({txt:'no_address'})
+    },
+  },
+  methods : {
+    matchProjectWithConfig(fieldBlock) {
+      const contentField = this.contentFields.find(f=> f.position == fieldBlock)
+      const field = contentField.field
+      return this.project[field]
+    },
+    projectId() {
+      return this.matchProjectWithConfig('block_id')
+    },
+    projectAbstract() {
+      let fullAbstract = this.matchProjectWithConfig('block_abstract')
+      fullAbstract = ( fullAbstract == null ) ? this.noAbstractText : fullAbstract
+      const tail = fullAbstract.length > MAX_SUMMARY_LENGTH ? '...' : '';
+      return fullAbstract.slice(0, MAX_SUMMARY_LENGTH) + tail
+    },
+    projectInfo(field) {
+      let fullInfo = this.matchProjectWithConfig(field)
+      fullInfo = ( fullInfo == null ) ? this.noInfos : fullInfo
+      return fullInfo
+    },
+    projectAddress() {
+      let fullAddress = this.matchProjectWithConfig('block_address')
+      console.log('fullAddress : ', fullAddress)
+      let address = ( fullAddress || fullAddress !== 'None' ) ?  fullAddress : this.noAddress
+      return address
+    },
+  },
+
 };
 </script>
 

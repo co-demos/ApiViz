@@ -102,6 +102,19 @@ const getRouteConfigStatForDataset = state => {
 }
 
 // - - - - - - - - - - - - - - - //
+// DEFAULT TEXTS GETTERS
+// - - - - - - - - - - - - - - - //
+const defaultText = (state) => (field) => {
+  // default texts fields are :
+  // 'reinit_filters', 'no_abstract', 'no_address'
+  // 'source', 'no_info'
+  const f = field.txt
+  const noAbstractDict = state.config.global.app_basic_dict[f]
+  let text = noAbstractDict.find(t=>t.locale == state.locale )
+  return text.text
+}
+
+// - - - - - - - - - - - - - - - //
 // ITEMS CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
 const getProjectConfig = (state) => (position) => {
@@ -115,21 +128,79 @@ const getProjectConfig = (state) => (position) => {
 }
 
 const getProjectConfigUniform = (state, getters) => (itemData) => {
-  
   let res = {}
   const infoTypes = ['id','title','image','address','tags']
-
   infoTypes.forEach( function(infoType){
     let fieldObj = getters.getProjectConfig('block_'+infoType)
     res[infoType] = (fieldObj && fieldObj.field) ? itemData[fieldObj.field] : undefined
   })
-
   res.image = getters.getImgUrl(res)
   res.fullItem = itemData
-
   return res
 }
 
+
+// - - - - - - - - - - - - - - - //
+// IMAGES CONFIG GETTERS
+// - - - - - - - - - - - - - - - //
+const getImgUrl = (state, getters) => (obj) => {
+  let image = obj.image
+
+  if(!image){
+    let images_set = undefined
+    if (state.search.dataset_uri
+      && state.config.styles
+      && state.config.styles.app_search_default_images_sets
+      && state.config.styles.app_search_default_images_sets.images_sets) {
+      let d = state.config.styles.app_search_default_images_sets.images_sets.find(function(d){
+        return d.dataset_uri === state.search.dataset_uri;
+      })
+      images_set  = (d) ? d.images_set : undefined
+    }
+
+    if (images_set && images_set.length > 0) {
+      const textureCount = images_set.length + 1
+      let id = (obj.id) ? parseInt(obj.id.substr(obj.id.length - 6), 16) % textureCount : 111111111111111111
+      let reste = id % images_set.length + 1;
+      let imageObj = images_set.find(function(i){
+        return i.dft_text === 'img_'+reste;
+      })
+      image = imageObj.src_image
+    }else {
+      let random = Math.floor(Math.random() * (7 - 1) + 1)
+      image = `/static/illustrations/textures/medium_fiche_${ (parseInt(id.substr(id.length - 6), 16)%textureCount) + 1}.png`
+    }
+  }
+  return image
+}
+
+const getImageUrl = (state) => (obj) => {
+  let image = obj.image
+
+  if(!image){
+    let d = state.config.styles.app_search_default_images_sets.images_sets.find(function(d){
+      return d.dataset_uri === state.search.dataset_uri;
+    })
+    let images_set  = (d) ? d.images_set : undefined
+
+    if (images_set && images_set.length > 0) {
+      const textureCount = images_set.length + 1
+      let id = (obj.id) ? parseInt(obj.id.substr(obj.id.length - 6), 16) % textureCount : 111111111111111111
+      let reste = id % images_set.length + 1;
+      let imageObj = images_set.find(function(i){
+        return i.dft_text === 'img_'+reste;
+      })
+      image = imageObj.src_image
+    } else {
+      let random = Math.floor(Math.random() * (7 - 1) + 1)
+      image = `/static/illustrations/textures/medium_fiche_${ (parseInt(id.substr(id.length - 6), 16)%textureCount) + 1}.png`
+    }
+  }
+  return image
+}
+// - - - - - - - - - - - - - - - //
+// BROADER CONFIG GETTERS
+// - - - - - - - - - - - - - - - //
 const getEndpointConfig = state => {
   // console.log("getEndpointConfig - state.config : \n", state.config)
   // if (!state.config
@@ -180,39 +251,7 @@ const getEndpointConfigStat = state => {
     && r.dataset_uri === state.search.dataset_uri;
   });
 }
-// - - - - - - - - - - - - - - - //
-// IMAGES CONFIG GETTERS
-// - - - - - - - - - - - - - - - //
-const getImgUrl = (state, getters) => (obj) => {
-  let image = obj.image
 
-  if(!image){
-      let images_set = undefined
-      if (state.search.dataset_uri
-        && state.config.styles
-        && state.config.styles.app_search_default_images_sets
-        && state.config.styles.app_search_default_images_sets.images_sets) {
-        let d = state.config.styles.app_search_default_images_sets.images_sets.find(function(d){
-          return d.dataset_uri === state.search.dataset_uri;
-        })
-        images_set  = (d) ? d.images_set : undefined
-      }
-
-      if (images_set && images_set.length > 0) {
-        const textureCount = images_set.length + 1
-        let id = (obj.id) ? parseInt(obj.id.substr(obj.id.length - 6), 16) % textureCount : 111111111111111111
-        let reste = id % images_set.length + 1;
-        let imageObj = images_set.find(function(i){
-          return i.dft_text === 'img_'+reste;
-        })
-        image = imageObj.src_image
-      }else {
-        let random = Math.floor(Math.random() * (7 - 1) + 1)
-        image = `/static/illustrations/textures/medium_fiche_${ (parseInt(id.substr(id.length - 6), 16)%textureCount) + 1}.png`
-      }
-  }
-  return image
-}
 
 // - - - - - - - - - - - - - - - //
 // FINALLY EXPORT GETTERS
@@ -244,8 +283,11 @@ export default {
   getEndpointConfigDetail,
   getEndpointConfigStat,
 
+  defaultText,
+
   getProjectConfig,
   getProjectConfigUniform,
   getImgUrl,
+  getImageUrl,
 
 };

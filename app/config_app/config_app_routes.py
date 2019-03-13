@@ -196,7 +196,7 @@ default_routes_config = [
           "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "address",
+        { "field" : "adresse structure",
           "is_visible" : True,
           "position" : "block_address",
           "trim" : 20,
@@ -217,6 +217,12 @@ default_routes_config = [
         { "field" : "description structure",
           "is_visible" : True,
           "position" : "block_abstract",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "source",
+          "is_visible" : True,
+          "position" : "block_src",
           "trim" : 50,
           "locale" : "fr"
         },
@@ -320,6 +326,12 @@ default_routes_config = [
           "trim" : 0,
           "locale" : "fr"
         },
+       { "field" : "code postal structure",
+          "is_visible" : True,
+          "position" : "block_cp",
+          "trim" : 0,
+          "locale" : "fr"
+        },
         { "field" : "description structure",
           "is_visible" : True,
           "position" : "block_abstract",
@@ -328,13 +340,19 @@ default_routes_config = [
         },
         { "field" : "source",
           "is_visible" : False,
-          "position" : "block_details",
+          "position" : "block_src",
           "trim" : 0,
           "locale" : "fr"
         },
         { "field" : "services",
           "is_visible" : True,
           "position" : "block_tags",
+          "trim" : 0,
+          "locale" : "fr"
+        },
+        { "field" : "website structure",
+          "is_visible" : True,
+          "position" : "block_wesite",
           "trim" : 0,
           "locale" : "fr"
         },

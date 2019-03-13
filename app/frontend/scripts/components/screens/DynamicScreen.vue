@@ -31,13 +31,12 @@
           :template_url="this.getCurrentBanner.template_url"
         ></DynamicBanner> 
        
-
-
         <!-- REMOTE STATICS -->
         <DynamicStatic 
           v-if="localRouteConfig.dynamic_template == 'DynamicStatic' "
           :routeConfig="localRouteConfig"
         ></DynamicStatic>
+
 
         <!-- DATA VISUALISATION -->
         <DynamicList 
@@ -239,7 +238,7 @@ export default {
       dynamic_template(){
         return (this.routeConfig) ? this.routeConfig.dynamic_template : undefined 
       },
-    
+
     },
 
 

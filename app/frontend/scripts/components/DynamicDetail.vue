@@ -1,92 +1,152 @@
 <template>
-    <div>
+  <div>
+
+    <main v-if="displayableItem">
+      <div class="container">
+
+        <a class="back" @click="goBack">
+          <img src="/static/icons/icon_arrow1.svg">
+          <span>
+            <!-- Retour aux résultats de recherche -->
+            {{ backToResults }}
+          </span>
+        </a>
 
 
-        <main v-if="projectFormatted">
-            <div class="container">
+        
+        <!-- DEBUGGING  -->
+        <!-- {{ displayableItem }} -->
 
-                <a class="back" @click="goBack">
-                    <img src="/static/icons/icon_arrow1.svg">
+
+        <div class="columns">
+          
+          <!-- //// COLUMN LEFT //// -->
+
+          <div class="column is-5 is-offset-1">
+            <div class="description">
+
+              <!-- BLOCK TITLE -->
+              <h1 class="title is-3">
+                <!-- {{projectFormatted.title}} -->
+                 {{ matchProjectWithConfig('block_title')}}
+              </h1>
+
+              <!-- BLOCK ADDRESS -->
+              <p 
+              >
+                <!-- v-if="projectFormatted.address" -->
+                <span class="icon">
+                    <img class="image is-16x16" src="/static/icons/icon_pin.svg">
+                </span>
+                <!-- {{projectFormatted.address}} -->
+                {{ matchProjectWithConfig('block_address')}} - 
+                {{ matchProjectWithConfig('block_cp')}}
+              </p>
+
+              <!-- BLOCK ABSTRACT -->
+              <p>
+                <!-- {{projectFormatted.description}} -->
+                {{ matchProjectWithConfig('block_abstract')}}
+              </p>
+              
+              <!-- BLOCK PARTNERS -->
+              <!-- <div v-if="projectFormatted.projectPartners">
+                  <h2 class="title is-4">Structure</h2>
+                  <p>{{projectFormatted.projectPartners}}</p>
+              </div> -->
+
+              <!-- BLOCK WEBSITE -->
+              <a 
+                v-if="matchProjectWithConfig('block_wesite')" 
+                :href="matchProjectWithConfig('block_wesite')" 
+                target="_blank">
+                {{ seeWebsite }}
+              </a>
+            
+            </div>
+          </div>
+
+
+
+          <!-- //// COLUMN RIGHT //// -->
+
+          <div class="column is-5">
+            <div class="added" v-if="spider">
+              <div class="columns">
+
+                <div class="column is-8">
+                  
+                  <!-- BLOCK SOURCE -->
+                  <div>
                     <span>
-                        Retour aux résultats de recherche
+                      <img src="/static/icons/icon_link.svg">
+                      {{ sourceData }} {{ matchProjectWithConfig('block_src')}}
                     </span>
-                </a>
-
-                <div class="columns">
-
-                    <div class="column is-5 is-offset-1">
-                        <div class="description">
-                            <h1 class="title is-3">{{projectFormatted.title}}</h1>
-                            <p v-if="projectFormatted.address">
-                                <span class="icon">
-                                    <img class="image is-16x16" src="/static/icons/icon_pin.svg">
-                                </span>
-                                {{projectFormatted.address}}
-                            </p>
-                            <p>{{projectFormatted.description}}</p>
-
-                            <div v-if="projectFormatted.projectPartners">
-                                <h2 class="title is-4">Structure</h2>
-                                <p>{{projectFormatted.projectPartners}}</p>
-                            </div>
-
-                            <a v-if="projectFormatted.website" :href="projectFormatted.website" target="_blank">Voir le site du projet</a>
-                        </div>
-                    </div>
-
-                    <div class="column is-5">
-                        <div class="added" v-if="spider">
-                            <div class="columns">
-                                <div class="column is-8">
-                                    <div>
-                                        Projet ajouté par
-                                        <a :href="spider.page_url" target="_blank">
-                                            {{spider.name}}
-                                        </a>
-                                    </div>
-                                    <div v-if="projectFormatted.pageAtSourcer">
-                                        <a :href="projectFormatted.pageAtSourcer" class="link-at-sourcer" target="_blank">
-                                            <img src="/static/icons/icon_link.svg">
-                                            Voir ce projet sur le site
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="column is-4 no-left-padding is-vertical-centered">
-                                    <a :href="projectFormatted.pageAtSourcer" target="_blank">
-                                        <img class="logo" v-if="spider.logo_url" :src="spider.logo_url">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <a :href="projectFormatted.pageAtSourcer" target="_blank">
-                            <img class="illustration" :src="projectFormatted.image"/>
-                        </a>
-                        <div v-if="Array.isArray(projectFormatted.tags) && projectFormatted.tags.length >= 1" class="content">
-                            <h2 class="title is-5">Catégories</h2>
-                            <span v-for="tag in projectFormatted.tags" class="tag" :key="tag">
-                                {{tag}}
-                            </span>
-                        </div>
-                    </div>
+                  </div>
+                  
+                  <!-- 
+                  <div v-if="projectFormatted.pageAtSourcer">
+                    <a :href="projectFormatted.pageAtSourcer" class="link-at-sourcer" target="_blank">
+                      Voir ce projet sur le site
+                    </a>
+                  </div> 
+                  -->
 
                 </div>
+
+                <!-- 
+                <div class="column is-4 no-left-padding is-vertical-centered">
+                  <a :href="projectFormatted.pageAtSourcer" target="_blank">
+                      <img class="logo" v-if="spider.logo_url" :src="spider.logo_url">
+                  </a>
+                </div> 
+                -->
+
+                </div>
+              </div>
+
+              <!-- <a :href="projectFormatted.pageAtSourcer" target="_blank">
+                <img 
+                  class="illustration" 
+                  :src="projectFormatted.image"
+                />
+              </a> -->
+
+              <!-- <div 
+                v-if="Array.isArray(projectFormatted.tags) && projectFormatted.tags.length >= 1" 
+                class="content"
+              >
+                <h2 class="title is-5">
+                  Catégories
+                </h2>
+                <span 
+                  v-for="tag in projectFormatted.tags" 
+                  class="tag" 
+                  :key="tag"
+                  >
+                  {{tag}}
+                </span>
+              </div> -->
+
             </div>
-        </main>
 
-        <NotFoundError v-if="!projectFormatted"/>
+        </div>
+      </div>
+    </main>
 
-    </div>
+    <NotFoundError v-if="isError"/>
+
+  </div>
 </template>
 
 
 <script>
 export default {
-    computed: {
-      ...mapState({
-          user: 'user'
-      })
-    },
+  computed: {
+    ...mapState({
+        user: 'user'
+    })
+  },
 }
 </script>
 
@@ -99,65 +159,135 @@ import NotFoundError from './NotFoundError.vue';
 import {getProjectById} from '../utils.js';
 
 export default {
-    name: 'DynamicDetail',
-    components: {
-      NotFoundError,
-    },
-    props: [
-        'routeConfig','logo', 'brand'
-    ],
+  name: 'DynamicDetail',
+  components: {
+    NotFoundError,
+  },
 
-    computed: {
-      ...mapState({
-        project: 'displayedProject',
-        spider({spiders}){ return spiders && this.project && spiders[this.project.spiderId] }
-      }),
-      ...mapState({
-          user: 'user'
-      }),
-      projectFormatted(){
-        if (!this.project) {
-          return {
-            tags: [],
-            image: '',
-            logo_url: '',
-            title: '',
-            address: '',
-            description: '',
-            projectPartners: '',
-            website: '',
-            pageAtSourcer: ''
-          }
-        } else {
-          return this.$store.getters.getProjectConfigUniform(this.project)
-        }
-      },
-    },
+  props: [
+    'routeConfig',
+    // 'logo', 
+    // 'brand'
+  ],
 
-    mounted(){
-        // hack to scroll top because vue-router scrollBehavior thing doesn't seem to work on Firefox on Linux at least
-        const int = setInterval(() => {
-            if(window.pageYOffset < 50){
-                clearInterval(int)
-            }
-            else{
-                window.scrollTo(0, 0)
-            }
-        }, 100);
+  beforeMount: function () {
+    console.log("\n - - DynamicDetail / beforeMount ... ")
+    console.log(" - - DynamicDetail / this.contentFields : \n ", this.contentFields)
+    console.log(" - - DynamicDetail / this.project : \n ", this.project)
+    // console.log(" - - DynamicDetail / this.$store.state.config.global.app_basic_dict : \n ", this.$store.state.config.global.app_basic_dict)
+    this.contentFields = this.routeConfig.contents_fields
 
-        getProjectById(this.$route.query.id,this.$store.state.search.endpoint.root_url)
-        .then(project => {
-            this.$store.commit('setDisplayedProject', {project})
-        })
-        .catch(err => console.error('project route error', err))
-    },
+  },
 
-    methods: {
-        goBack(e){
-            e.preventDefault()
-            this.$router.back()
-        }
+  mounted(){
+    // hack to scroll top because vue-router scrollBehavior thing doesn't seem to work on Firefox on Linux at least
+    console.log(" - - DynamicDetail / mounted... ")
+    const int = setInterval(() => {
+      if(window.pageYOffset < 50){
+        clearInterval(int)
+      }
+      else{
+        window.scrollTo(0, 0)
+      }
+    }, 100);
+
+    getProjectById(this.$route.query.id,this.$store.state.search.endpoint.root_url)
+    .then(item => {
+      // this.$store.commit('setDisplayedProject', {item})
+      console.log(" - - DynamicDetail / item : \n ", item)
+      this.displayableItem = item
+    })
+    .catch(err => this.isError = true, console.error('item route error', err))
+  },
+
+  data: () => {
+    return   {
+      displayableItem : null,
+      contentFields : null,
+      isError: false
     }
+  },
+
+  computed: {
+    // ...mapState({
+    //   project: 'displayedProject',
+    //   spider({spiders}){ return spiders && this.project && spiders[this.project.spiderId] }
+    // }),
+    ...mapState({
+        user: 'user'
+    }),
+
+    // default texts
+    backToResults() {
+      return this.$store.getters.defaultText({txt:'back_to_results'})
+    },
+    seeWebsite() {
+      return this.$store.getters.defaultText({txt:'see_website'})
+    },
+    shareLink() {
+      return this.$store.getters.defaultText({txt:'share_link'})
+    },
+    sourceData() {
+      return this.$store.getters.defaultText({txt:'source'})
+    },
+
+    // projectFormatted(){
+    //   if (!this.project) {
+    //     return {
+    //       tags: [],
+    //       image: '',
+    //       logo_url: '',
+    //       title: '',
+    //       address: '',
+    //       description: '',
+    //       projectPartners: '',
+    //       website: '',
+    //       pageAtSourcer: ''
+    //     }
+    //   } else {
+    //     // return this.$store.getters.getProjectConfigUniform(this.project)
+    //     return this.project
+    //   }
+    // },
+
+
+
+  },
+
+  methods : {
+    
+    matchProjectWithConfig(fieldBlock) {
+      const contentField = this.contentFields.find(f=> f.position == fieldBlock)
+      const field = contentField.field
+      return this.displayableItem[field]
+    },
+    projectId() {
+      return this.matchProjectWithConfig('block_id')
+    },
+    projectAbstract() {
+      let fullAbstract = this.matchProjectWithConfig('block_abstract')
+      fullAbstract = ( fullAbstract == null ) ? this.noAbstractText : fullAbstract
+      const tail = fullAbstract.length > MAX_SUMMARY_LENGTH ? '...' : '';
+      return fullAbstract.slice(0, MAX_SUMMARY_LENGTH) + tail
+    },
+    projectInfo(field) {
+      let fullInfo = this.matchProjectWithConfig(field)
+      fullInfo = ( fullInfo == null ) ? this.noInfos : fullInfo
+      return fullInfo
+    },
+    projectAddress() {
+      let fullAddress = this.matchProjectWithConfig('block_address')
+      console.log('fullAddress : ', fullAddress)
+      let address = ( fullAddress || fullAddress !== 'None' ) ?  fullAddress : this.noAddress
+      return address
+    },
+
+
+    goBack(e){
+        e.preventDefault()
+        this.$router.back()
+    }
+  },
 
 }
 </script>
@@ -168,24 +298,24 @@ export default {
 @import '../../styles/apiviz-misc.scss';
 
 main{
-    background-color: $apiviz-grey-background;
-    margin-top: $apiviz-navbar-height;
+  background-color: $apiviz-grey-background;
+  margin-top: $apiviz-navbar-height;
 }
 
 a.back{
-    padding: 1em 0;
-    display: block;
+  padding: 1em 0;
+  display: block;
 
-    color: $apiviz-text-color;
+  color: $apiviz-text-color;
 
-    img{
-        height: 1.5em;
-        transform: translateY(0.4em);
-    }
+  img{
+      height: 1.5em;
+      transform: translateY(0.4em);
+  }
 
-    span{
-        margin-left: 1em;
-    }
+  span{
+      margin-left: 1em;
+  }
 }
 
 .columns{
@@ -193,78 +323,78 @@ a.back{
 }
 
 .illustration{
-    width: 100%;
-    margin-bottom: 1em;
+  width: 100%;
+  margin-bottom: 1em;
 }
 
 .description, .added{
-    background-color: white;
-    padding: 1em;
-    margin-bottom: 1em;
+  background-color: white;
+  padding: 1em;
+  margin-bottom: 1em;
 }
 
 .description{
-    h1{
-        font-weight: bold;
-    }
+  h1{
+      font-weight: bold;
+  }
 
-    p{
-        margin-bottom: 1em;
-    }
+  p{
+      margin-bottom: 1em;
+  }
 
-    a{
-        color: $apiviz-primary;
-        border-bottom: 1px solid $apiviz-primary;
-    }
+  a{
+      color: $apiviz-primary;
+      border-bottom: 1px solid $apiviz-primary;
+  }
 }
 
 
 .added {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
 
-    .link-at-sourcer img{
-        max-height: 1.1em;
-        transform: translateY(0.2em);
-    }
+  .link-at-sourcer img{
+      max-height: 1.1em;
+      transform: translateY(0.2em);
+  }
 
-    img{
-        height:auto;
-    }
+  img{
+      height:auto;
+  }
 
-    .no-left-padding {
-        padding-left: 0em;
-    }
-    .is-vertical-centered {
-        // padding-left: 1em;
-        display: flex;
-        align-items: center;
-    }
+  .no-left-padding {
+      padding-left: 0em;
+  }
+  .is-vertical-centered {
+      // padding-left: 1em;
+      display: flex;
+      align-items: center;
+  }
 
-    .logo {
-        // max-width: 175px;
-        height: auto;
-        width:100%;
-    }
+  .logo {
+      // max-width: 175px;
+      height: auto;
+      width:100%;
+  }
 
-    a{
-        color: $apiviz-primary;
-        font-weight: bold;
-    }
+  a{
+      color: $apiviz-primary;
+      font-weight: bold;
+  }
 }
 
 .content{
-    h2{
-        font-weight: bold;
-    }
+  h2{
+      font-weight: bold;
+  }
 
-    .tag{
-        background-color: #767676;
-        color: white;
-        margin-right: 1em;
-        margin-bottom: 0.5em;
-    }
+  .tag{
+      background-color: #767676;
+      color: white;
+      margin-right: 1em;
+      margin-bottom: 0.5em;
+  }
 }
 </style>

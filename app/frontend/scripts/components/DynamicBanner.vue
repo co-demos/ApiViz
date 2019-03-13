@@ -1,7 +1,7 @@
 <style scoped>
 
 .banner-height {
-  padding-top: 90px;
+  padding-top: 110px;
   margin-top: 10px;
   margin-bottom: 30px;
   height: 160px
@@ -13,23 +13,9 @@
   <section >
     <div 
       class="container banner-height has-text-center skip-navbar"
-      
       >
-      <!-- <span v-html="rawHtml"></span> -->
-      <div class="columns is-offset-2" style="background-color:white" >
-        <div class="column is-one-third">
-            <img src="https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/illu1.png?raw=true" style="height:150px; margin-left:75px">
-        </div>
-        <div class="column is-two-thirds is-vertical-centered">
-            <h1 class="title is-2">
-                <span>DECOUVREZ <br>LES</span>
-                <span>LIEUX DE MEDIATION <br>NUMERIQUE </span>
-                <span class="icon">
-                    <i class="fas fa-arrow-down"></i>
-                </span>
-            </h1>
-        </div>
-      </div>
+      <span v-html="rawHtml"></span>
+
 
     </div>
   </section>
