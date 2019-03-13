@@ -6,15 +6,16 @@
             <Brand 
                 :logo="logo" 
                 :brand="brand"
-            />
+            ></Brand>
 
-            currentRouteConfig : {{ currentRouteConfig.field }} -
-            localRouteConfig : {{ localRouteConfig }}
-            
+            <!-- DEBUGGING -->
+            <!-- currentRouteConfig : {{ currentRouteConfig.field }} -
+            localRouteConfig : {{ localRouteConfig }} -->
+
             <NavBarContent 
-                :NavbarLinks="navbarConfig.links_options"
+                :NavbarLinks="this.navbarConfig.links_options"
                 :user="user"
-            />
+            ></NavBarContent>
 
         </div>
 
@@ -32,12 +33,13 @@ export default {
     },
     props: [
         'navbarConfig',
+        'appLocales',
         'logo', 
-        
-        'currentRouteConfig',
-        'localRouteConfig',
-
         'brand', 
+        
+        // 'currentRouteConfig',
+        // 'localRouteConfig',
+
         'user'
     ]
 }

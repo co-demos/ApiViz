@@ -2,6 +2,7 @@ import axios from 'axios';
 import { apiConfig } from '../config/api.js';
 import {csvParse} from 'd3-dsv';
 import {searchProjects, getSpiders, searchEnpointCreator} from '../utils.js';
+// import { textFromLocale } from '../utilsApiviz.js';
 
 const SOURCE_FILTER_NAME = 'source_';
 
@@ -49,6 +50,16 @@ function filterValuesToCISTags(filterValues){
 
 
 export default {
+
+  // FOR TRANSLATIONS
+  // chooseTranslation({state}, textsData ){
+  //   const locale = state.locale
+  //   const textField = 'text'
+  //   console.log("textsData : ", textsData)
+  //   return textFromLocale( textsData.texts, locale, textField )
+  // },
+
+  // FOR FILTERS
 	toggleFilter({state, commit, dispatch}, {filter, value}){
 		const selectedFilters = state.search.question.selectedFilters
 		const selectedValues = selectedFilters.get(filter)
@@ -74,6 +85,7 @@ export default {
 		dispatch('search')
 	},
 
+  // FOR SEARCH
 	searchedTextChanged({commit, dispatch}, {searchedText}){
 		commit('setSearchedText', {searchedText})
 		dispatch('search')
@@ -171,7 +183,7 @@ export default {
 		});
 	},
 
-
+  // FOR CONFIGs
 	getConfigAll({dispatch}) {
 	  let arr = []
 	  arr.push(dispatch('getConfigType',{type:'global',configTypeEndpoint:'global'}) )

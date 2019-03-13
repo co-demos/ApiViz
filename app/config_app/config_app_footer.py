@@ -12,24 +12,32 @@ default_app_footer = [
       "template_url"      : None,
       "is_dynamic"        : True,
       "dynamic_template"  : 'DynamicFooter',
+      "active_columns"    : ['block_left', 'block_center_left', 'block_center_right','block_right'],
 
       "contents_fields" : {
 
-        "static_texts_left"  : [
+        "block_left"  : [
           { 
             "is_visible"  : False, 
             "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
             "position"    : "block_top_left", 
           }
         ],
-        "static_texts_middle" : [
+        "block_center_left" : [
           { 
             "is_visible"  : False, 
             "title_block" : [{ "locale" : "fr", "text" : "Sites publics", "is_visible" : False}],
             "position"    : "block_top_middle", 
           }
         ],
-        "static_texts_right" : [
+        "block_center_right" : [
+          { 
+            "is_visible"  : False, 
+            "title_block" : [{ "locale" : "fr", "text" : "Sites publics", "is_visible" : False}],
+            "position"    : "block_top_middle", 
+          }
+        ],
+        "block_right" : [
           { 
             "is_visible"  : False, 
             "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
@@ -56,14 +64,14 @@ default_app_footer = [
 
       "links_options" : {
 
-        "block_links_left" : {
+        "block_left" : {
           "is_visible"  : False,
           "position"    : "block_top_left",
           "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
           "links"       : []
         },
 
-        "block_links_center_left" : {
+        "block_center_left" : {
           "is_visible"  : True,
           "position"    : "block_top_center_left",
           "title_block" : [{ "locale" : "fr", "text" : "L'Agence du numérique", "is_visible" : False}],
@@ -96,7 +104,7 @@ default_app_footer = [
           ]
         },
 
-        "block_links_center_right" : {
+        "block_center_right" : {
           "is_visible"  : True,
           "position"    : "block_top_center_left",
           "title_block" : [{ "locale" : "fr", "text" : "Société numérique", "is_visible" : False}],
@@ -177,7 +185,7 @@ default_app_footer = [
           ]
         },
 
-        "block_links_right" : {
+        "block_right" : {
           "is_visible"  : True,
           "position"    : "block_top_right",
           "title_block" : [{ "locale" : "fr", "text" : "Les sites publics", "is_visible" : False}],

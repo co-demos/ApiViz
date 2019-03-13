@@ -1,6 +1,9 @@
 <template>
-  <DynamicSearchScreenSqueleton :logo="logo" :brand="brand" mainClass="list">
-      <SearchResultsList/>
+  <DynamicSearchScreenSqueleton 
+    :logo="logo" 
+    :brand="brand" 
+    mainClass="list"
+    ><SearchResultsList/>
   </DynamicSearchScreenSqueleton>
 </template>
 
@@ -11,9 +14,11 @@ import DynamicSearchScreenSqueleton from './DynamicSearchScreenSqueleton.vue'
 import SearchResultsList from './SearchResultsList.vue';
 
 export default {
-      name: 'DynamicList',
+    name: 'DynamicList',
     props:[
-      'routeConfig','logo', 'brand'
+      'routeConfig',
+      'logo', 
+      'brand'
     ],
     components: {
         DynamicSearchScreenSqueleton, SearchResultsList

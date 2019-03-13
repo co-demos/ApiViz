@@ -1,7 +1,19 @@
+
+import { textFromLocale } from '../utilsApiviz.js';
+
+
 const getSearchConfigColumnCount = state => state.search.config.display.columnCount;
 const getSearchConfigDefaultShowCount = state => state.search.config.display.defaultShowCount;
 const getSearchConfigMoreProjectOnScrollCount = state => state.search.config.display.moreProjectOnScrollCount;
 const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.display.scrollBeforeBottomTrigger;
+
+// FOR TRANSLATIONS
+const getTranslation = (state) => (textsData) => {
+  const locale = state.locale
+  const textField = 'text'
+  console.log("textsData : ", textsData)
+  return textFromLocale( textsData.texts, locale, textField )
+}
 
 // - - - - - - - - - - - - - - - //
 // GLOBAL APP CONFIG GETTERS
@@ -26,11 +38,11 @@ const getStylesConfig = state => {
 }
 const getSocialsConfig = state => {
   // console.log("state.config : \n", state.config )
-  if (!state.config
-    || !state.config.socials
-    ) {
-      console.log('getSocialsConfig - some condition not respected');       return undefined;
-  }
+  // if (!state.config
+  //   || !state.config.socials
+  //   ) {
+  //     console.log('getSocialsConfig - some condition not respected');       return undefined;
+  // }
   return state.config.socials
 }
 
@@ -41,7 +53,7 @@ const getNavbarConfig = state => {
     ) {
       console.log('getNavbarConfig - some condition not respected');       return undefined;
   }
-  return state.config.navbar
+  return state.config.navbar.app_navbar
 }
 const getFooterConfig = state => {
   // console.log("state.config : \n", state.config )
@@ -50,7 +62,7 @@ const getFooterConfig = state => {
     ) {
       console.log('getFooterConfig - some condition not respected');       return undefined;
   }
-  return state.config.footer
+  return state.config.footer.app_footer
 }
 
 
@@ -152,6 +164,8 @@ const getImgUrl = (state, getters) => (obj) => {
 // FINALLY EXPORT GETTERS
 // - - - - - - - - - - - - - - - //
 export default {
+  getTranslation, 
+  
   getSearchConfigColumnCount,
   getSearchConfigDefaultShowCount,
   getSearchConfigMoreProjectOnScrollCount,

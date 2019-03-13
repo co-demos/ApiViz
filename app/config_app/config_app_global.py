@@ -13,6 +13,23 @@ default_global_config = [
       "is_default"  : True
     },
 
+    { "field"       : "app_screen_tabs",
+      "app_version" : version,
+      "help"        : u"The default homepage for your ApiViz instance",
+      
+      "tab_list"    : { 
+        "link_text"  : [ {"locale" : "fr", "text" : "liste" }],
+      },
+      "tab_map"    : { 
+        "link_text"  : [ {"locale" : "fr", "text" : "carte" }],
+      },
+      "tab_stat"    : { 
+        "link_text"  : [ {"locale" : "fr", "text" : "données" }],
+      },
+
+      "is_default"  : True
+    },
+
   ### LOGO
     { "field"       : "app_logo",
       "content"     : u"apiviz default logo in navbar",
@@ -35,7 +52,7 @@ default_global_config = [
     { "field"       : "app_title",
       "app_version" : version,
       "help"        : u"Choose a title for your ApiViz instance",
-      "content"     : u"ApiViz",
+      "content"     : u"SoNum",
       "is_default"  : True
     },
 

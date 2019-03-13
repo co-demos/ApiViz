@@ -12,62 +12,64 @@ const INITIAL_FILTER_DESCRIPTIONS = CHOICES_FILTERS_TAGS.filter(c => c.name !== 
 
 
 function makeEmptySelectedFilters(filterDescriptions){
-    const selectedFilters = new Map()
-    for(const f of filterDescriptions){
-        selectedFilters.set(f.name, new Set())
-    }
-    return selectedFilters;
+  const selectedFilters = new Map()
+  for(const f of filterDescriptions){
+    selectedFilters.set(f.name, new Set())
+  }
+  return selectedFilters;
 }
 
 
 const storeGenerator = new Vuex.Store({
-    strict: true,
+  strict: true,
 
-    state: {
-        
-        user: {
-            infos: undefined,
-            role: undefined,
-            isLoggedin: false
+  state: {
+      
+    locale: 'fr',
+
+    user: {
+        infos: undefined,
+        role: undefined,
+        isLoggedin: false
+    },
+    jwt:undefined,
+
+    geolocByProjectId: new Map(),
+    spiders: undefined,
+    
+    displayedProject: undefined,
+    
+    filterDescriptions: INITIAL_FILTER_DESCRIPTIONS,
+    
+    // the current route to watch
+    // currentRouteConfig : undefined,
+
+    // global config for ApiViz instance 
+    config: {},
+
+    // search parameters
+    search: {
+        dataset_uri: undefined,
+        endpoint_type: undefined,
+        endpoint: undefined,
+        question: {
+            query: new URL(location).searchParams.get('text') || '',
+            selectedFilters: makeEmptySelectedFilters(INITIAL_FILTER_DESCRIPTIONS)
         },
-        jwt:undefined,
-
-        geolocByProjectId: new Map(),
-        spiders: undefined,
-        
-        displayedProject: undefined,
-        
-        filterDescriptions: INITIAL_FILTER_DESCRIPTIONS,
-        
-        // the current route to watch
-        // currentRouteConfig : undefined,
-
-        // global config for ApiViz instance 
-        config: {},
-
-        // search parameters
-        search: {
-            dataset_uri: undefined,
-            endpoint_type: undefined,
-            endpoint: undefined,
-            question: {
-                query: new URL(location).searchParams.get('text') || '',
-                selectedFilters: makeEmptySelectedFilters(INITIAL_FILTER_DESCRIPTIONS)
-            },
-            answer: {
-                pendingAbort: undefined, // function that can be used to abort the current pending search
-                result: undefined, // search results {projects, total}
-                error: undefined // if last search ended in an error
-            },
-            config:{
-              display: {
-                columnCount : undefined,
-                defaultShowCount : undefined,
-                moreProjectOnScrollCount : undefined,
-                scrollBeforeBottomTrigger : undefined
-              }
-            }
+        answer: {
+            pendingAbort: undefined, // function that can be used to abort the current pending search
+            result: undefined, // search results {projects, total}
+            error: undefined // if last search ended in an error
+        },
+        config:{
+          display: {
+            columnCount : undefined,
+            defaultShowCount : undefined,
+            moreProjectOnScrollCount : undefined,
+            scrollBeforeBottomTrigger : undefined
+          }
         }
+      }
 
     },
     getters,

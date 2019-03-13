@@ -3,12 +3,15 @@
 
         <!-- NAVBAR -->
         <NavBar 
-            v-if="this.has_navbar"
-            :navbarConfig="this.navbarConfig" 
-            :logo="this.globalConfig.app_logo"
-            :brand="this.globalConfig.app_title.content"
-            :currentRouteConfig="this.routeConfig"
-            :localRouteConfig="localRouteConfig.field"
+          v-if="this.has_navbar"
+          :navbarConfig="this.navbarConfig" 
+
+          :logo="this.globalConfig.app_logo"
+          :brand="this.globalConfig.app_title.content"
+          :appLocales="this.globalConfig.app_languages" 
+
+          :currentRouteConfig="this.routeConfig"
+          :localRouteConfig="localRouteConfig.field"
         ></NavBar>
             <!-- :logo="logo" 
             :brand="brand"  -->
@@ -17,50 +20,51 @@
         <!-- DYNAMIC COMPONENT -->
 
         <!-- <component 
-            :is="this.dynamic_template" 
-            :routeConfig="this.localRouteConfig"
+          :is="this.dynamic_template" 
+          :routeConfig="this.localRouteConfig"
         ></component> -->
 
         <!-- REMOTE STATICS -->
         <DynamicStatic 
-            v-if="localRouteConfig.dynamic_template == 'DynamicStatic' "
-            :routeConfig="localRouteConfig"
-        ></DynamicStatic> -->
+          v-if="localRouteConfig.dynamic_template == 'DynamicStatic' "
+          :routeConfig="localRouteConfig"
+        ></DynamicStatic>
 
         <!-- DATA VISUALISATION -->
         <DynamicList 
-            v-if="localRouteConfig.dynamic_template == 'DynamicList' "
-            :routeConfig="localRouteConfig"
+          v-if="localRouteConfig.dynamic_template == 'DynamicList' "
+          :routeConfig="localRouteConfig"
         ></DynamicList>
 
         <DynamicMap 
-            v-if="localRouteConfig.dynamic_template == 'DynamicMap' "
-            :routeConfig="localRouteConfig"
+          v-if="localRouteConfig.dynamic_template == 'DynamicMap' "
+          :routeConfig="localRouteConfig"
         ></DynamicMap>
 
         <DynamicDetail 
-            v-if="localRouteConfig.dynamic_template == 'DynamicDetail' "
-            :routeConfig="localRouteConfig"
+          v-if="localRouteConfig.dynamic_template == 'DynamicDetail' "
+          :routeConfig="localRouteConfig"
         ></DynamicDetail>
 
 
 
         <!-- DEBUGGING -->
-        <div>
-          <br><br>
+        <!-- <div> -->
+          <!-- <br><br> -->
           <!-- navbarConfig : <br><code> {{ this.navbarConfig }} </code> <br><br>> -->
           <!-- globalConfig : <br><code> {{ this.globalConfig }} </code> <br><br> -->
-          localRouteConfig.field : <code> {{ localRouteConfig.field }} </code> <br><br>
+          <!-- localRouteConfig.field : <code> {{ localRouteConfig.field }} </code> <br><br> -->
           <!-- routeConfig.field : <code>{{ this.routeConfig.field }} </code> <br><br> -->
           <!-- footerConfig : <br><code> {{ this.footerConfig }} </code> <br><br> -->
-        </div>
+        <!-- </div> -->
 
 
         <!-- FOOTER -->
         <Footer 
-            v-if="this.has_footer"
-            :footerConfig="this.footerConfig" 
-        />
+          v-if="this.has_footer"
+          :footerConfig="this.footerConfig" 
+          :appSocials="this.socialsConfig" 
+        ></Footer>
 
     </div>
 </template>
@@ -129,10 +133,13 @@ export default {
       // watch the route path
       '$route.fullPath': function (newPath, oldPath) {
         console.log('\n- - DynamicScreen / watch $route.fullPath : ', this.$route.fullPath);
+        // console.log('- - DynamicScreen / newPath : ', newPath);
+        // console.log('- - DynamicScreen / oldPath : ', oldPath);
+        console.log('- - DynamicScreen / watch $route : ', this.$route);
         console.log('- - DynamicScreen / (before) state : ', this.$store.state);
 
         // find new route config corresponding to requested path
-        this.$store.dispatch('setSearchEndpointConfig', { path : this.$route.fullPath})
+        this.$store.dispatch('setSearchEndpointConfig', { path : this.$route.path})
         // this.$store.dispatch('setSearchEndpoint')
         console.log('- - DynamicScreen / (after) state : ', this.$store.state);
         this.localRouteConfig = this.$store.state.search.currentRouteConfig
@@ -156,21 +163,25 @@ export default {
       }),
 
       globalConfig(){
-          let globalConfig = this.$store.getters.getGlobalConfig
-          // console.log(" - - globalConfig : ", globalConfig)
-          return globalConfig
+        let globalConfig = this.$store.getters.getGlobalConfig
+        // console.log(" - - globalConfig : ", globalConfig)
+        return globalConfig
       },
       stylesConfig(){
-          return this.$store.getters.getStylesConfig      
+        return this.$store.getters.getStylesConfig
       },
       socialsConfig(){
-          return this.$store.getters.getSocialsConfig      
+        let socialsConf = this.$store.getters.getSocialsConfig
+        console.log(" - - socialsConf : ", socialsConf)
+        return socialsConf
       },
       navbarConfig(){    
-          return this.$store.getters.getNavbarConfig      
+        let navbarConf = this.$store.getters.getNavbarConfig
+        // console.log(" - - navbarConf : ", navbarConf)
+        return navbarConf
       },
       footerConfig(){    
-          return this.$store.getters.getFooterConfig      
+        return this.$store.getters.getFooterConfig
       },
 
       routeConfig(){     

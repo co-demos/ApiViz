@@ -3,37 +3,37 @@
         <div class="container inline-filters">
 
             <!-- <template class="all"> -->
-                <a class="button is-small" @click="clearAllFilters">
-                    <span>
-                        Supprimer tous les filtres
-                    </span>
-                    <!-- x -->
-                    <span class="icon is-small">
-                        <i class="fas fa-times"></i>
-                    </span>
-                </a>
+            <a class="button is-small" @click="clearAllFilters">
+                <span>
+                    Supprimer tous les filtres
+                </span>
+                <!-- x -->
+                <span class="icon is-small">
+                    <i class="fas fa-times"></i>
+                </span>
+            </a>
             <!-- </template> -->
 
             <!-- <template > -->
-                <a 
-                    v-for="{filter, value} in selectedFilters" :key="filter+value"
-                    class="button is-small is-grey" 
-                    @click="clearFilter({filter, value})"
-                    >
-                    <span>
-                    {{
-                        filterDescriptions
-                            .find(f => f.name === filter)
-                            .choices
-                            .find(c => c.name === value)
-                            .fullname
-                    }}
-                    </span>
-                    <!-- x -->
-                    <span class="icon is-small">
-                        <i class="fas fa-times"></i>
-                    </span>
-                </a>
+            <a 
+                v-for="{filter, value} in selectedFilters" :key="filter+value"
+                class="button is-small is-grey" 
+                @click="clearFilter({filter, value})"
+                >
+                <span>
+                {{
+                    filterDescriptions
+                        .find(f => f.name === filter)
+                        .choices
+                        .find(c => c.name === value)
+                        .fullname
+                }}
+                </span>
+                <!-- x -->
+                <span class="icon is-small">
+                    <i class="fas fa-times"></i>
+                </span>
+            </a>
             <!-- </template> -->
 
         </div>

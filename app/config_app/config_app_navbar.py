@@ -16,12 +16,21 @@ default_app_navbar = [
         "extra_buttons" : [ ### for buttons not declared in routes/pages
 
             { "is_visible" : True, 
+              "position"   : "exterior_left",
+              "link_to"    : "/xp-carto/liste",
+              "is_external_link" : False,
+              "link_type"  : "link", ### show btn border
+              "icon_class" : "", 
+              "link_text"  : [{"locale" : "fr", "text" : "partage d'expériences" }],
+              "tooltip"    : [{"locale" : "fr", "text" : "voir la carte" }] 
+            },
+            { "is_visible" : True, 
               "position"   : "exterior_right",
               "link_to"    : "/sonum-carto/liste",
               "is_external_link" : False,
               "link_type"  : "link", ### show btn border
               "icon_class" : "", 
-              "link_text"  : [{"locale" : "fr", "text" : "lieux" }],
+              "link_text"  : [{"locale" : "fr", "text" : "lieux de médiation numérique" }],
               "tooltip"    : [{"locale" : "fr", "text" : "voir la carte" }] 
             },
             { "is_visible" : True, 
