@@ -1,75 +1,85 @@
 <template>
-    <div class="map">
-        <div class="count-and-tabs-container">
-            <div class="container">
-                <CISSearchResultsCountAndTabs :view="VIEW_MAP" :open="!!highlightedProject">
-                    <div class="highlighted-project" v-if="highlightedProject" slot="project">
-                        <button class="button close" @click="highlightProject(undefined)">
-                            <span class="icon is-small">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </button>
+  <div class="map">
+    <div class="count-and-tabs-container">
+      <div class="container">
+        <CISSearchResultsCountAndTabs :view="VIEW_MAP" :open="!!highlightedProject">
+          <div class="highlighted-project" v-if="highlightedProject" slot="project">
+            
+            <!-- BUTTON TO CLOSE PREVIEW -->
+            <button class="button close" @click="highlightProject(undefined)">
+              <span class="icon is-small">
+                <i class="fas fa-times"></i>
+              </span>
+            </button>
+            
+            <!-- PROJECT CARD -->
+            <div class="card">
 
-                        <div class="card">
-                            <router-link :to="`/project/${highlightedProject.id}`" class="card-image">
-                                <img :src="highlightedProject.image" 
-                                    :alt="'illustration du projet' + highlightedProject.title">
-                            </router-link>
-                            
-                            <div class="card-content" v-if="highlightedProject.address.trim().length > 1">
-                                <!-- 
-                                <span class="icon has-text-light">
-                                    <i class="fas fa-location-arrow"></i>
-                                </span> -->
-                                <span class="icon">
-                                    <img class="image is-16x16" src="/static/icons/icon_pin.svg">
-                                </span>
-                                <span class="subtitle is-6">
-                                    {{highlightedProject.address.slice(0, 100)}}
-                                </span>
-                            </div>
+              <!-- BLOCK IMAGE -->
+              <router-link :to="`/project/${highlightedProject.id}`" class="card-image">
+                <img :src="highlightedProject.image" 
+                  :alt="'illustration du projet' + highlightedProject.title">
+              </router-link>
+              
+              <!-- BLOCK ADDRESS -->
+              <div class="card-content" v-if="highlightedProject.address.trim().length > 1">
+                <!-- 
+                <span class="icon has-text-light">
+                  <i class="fas fa-location-arrow"></i>
+                </span> -->
+                <span class="icon">
+                  <img class="image is-16x16" src="/static/icons/icon_pin.svg">
+                </span>
+                <span class="subtitle is-6">
+                  {{highlightedProject.address.slice(0, 100)}}
+                </span>
+              </div>
 
-                            <router-link :to="`/project/${highlightedProject.id}`" class="card-content">
-                                <h1>{{highlightedProject.title}}</h1>
-                            </router-link>
+              <!-- BLOCK LINK -->
+              <router-link :to="`/project/${highlightedProject.id}`" class="card-content">
+                <h1>{{highlightedProject.title}}</h1>
+              </router-link>
 
-                            <div class="card-content" 
-                                v-if="Array.isArray(highlightedProject.tags) && highlightedProject.tags.length >=1">
-                                <span v-for="tag in highlightedProject.tags" class="tag" :key="tag">
-                                    {{tag}}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </CISSearchResultsCountAndTabs>
-            </div>
-        </div>
+              <!-- BLOCK TAGS -->
+              <div class="card-content" 
+                v-if="Array.isArray(highlightedProject.tags) && highlightedProject.tags.length >=1">
+                <span v-for="tag in highlightedProject.tags" class="tag" :key="tag">
+                  {{tag}}
+                </span>
+              </div>
 
-        <l-map
-        :zoom="zoom"
-        :options="{zoomControl: false}"
-        :center="center"
-        :bounds="bounds"
-        @update:center="centerUpdate"
-        @update:zoom="zoomUpdate">
-            <l-control-zoom position="bottomright"/>
-            <l-tile-layer
-                :url="url"
-                :attribution="attribution"/>
-            <v-marker-cluster :options="{showCoverageOnHover: false, iconCreateFunction: iconCreateFunction}">
-                <l-marker v-for="p in displayedProjects"
-                    :key="p.id"
-                    :lat-lng="{lng: geolocByProjectId.get(p.id).longitude, lat: geolocByProjectId.get(p.id).latitude}"
-                    @click="highlightProject(p)">
-                    
-                    <l-icon
-                        iconUrl="/static/icons/icon_pin_plein_violet.svg"
-                        :iconSize="p === highlightedProject ? [46, 46] : [29, 29]"/>                    
+              </div>
 
-                </l-marker>
-            </v-marker-cluster>
-        </l-map>
-    </div>
+          </div>
+        </CISSearchResultsCountAndTabs>
+      </div>
+  </div>
+
+  <l-map
+    :zoom="zoom"
+    :options="{zoomControl: false}"
+    :center="center"
+    :bounds="bounds"
+    @update:center="centerUpdate"
+    @update:zoom="zoomUpdate">
+    <l-control-zoom position="bottomright"/>
+    <l-tile-layer
+        :url="url"
+        :attribution="attribution"/>
+    <v-marker-cluster :options="{showCoverageOnHover: false, iconCreateFunction: iconCreateFunction}">
+        <l-marker v-for="p in displayedProjects"
+            :key="p.id"
+            :lat-lng="{lng: geolocByProjectId.get(p.id).longitude, lat: geolocByProjectId.get(p.id).latitude}"
+            @click="highlightProject(p)">
+            
+            <l-icon
+                iconUrl="/static/icons/icon_pin_plein_violet.svg"
+                :iconSize="p === highlightedProject ? [46, 46] : [29, 29]"/>                    
+
+        </l-marker>
+      </v-marker-cluster>
+    </l-map>
+  </div>
 </template>
 
 <script>
@@ -96,6 +106,12 @@ export default {
         'v-marker-cluster': Vue2LeafletMarkerCluster,
         CISSearchResultsCountAndTabs
     },
+
+
+    props: [
+      'routeConfig'
+    ],
+
     data() {
         return {
             zoom: 6,
@@ -115,21 +131,28 @@ export default {
             VIEW_MAP
         };
     },
+
+
+
     computed: {
-        ...mapState({
-            projects({search}){ return search.answer.result && search.answer.result.projects },
-            displayedProjects(){
-                return this.projects && this.projects.filter(p => this.geolocByProjectId.get(p.id))
-            },
-            bounds(){
-                return this.displayedProjects && new L.LatLngBounds(this.displayedProjects.map(p => ({
-                    lng: this.geolocByProjectId.get(p.id).longitude, 
-                    lat: this.geolocByProjectId.get(p.id).latitude
-                })));
-            },
-            geolocByProjectId({geolocByProjectId}){return geolocByProjectId}
-        })
+      ...mapState({
+        projects({search}){ return search.answer.result && search.answer.result.projects },
+        displayedProjects(){
+            return this.projects && this.projects.filter(p => this.geolocByProjectId.get(p.id))
+        },
+        bounds(){
+            return this.displayedProjects && new L.LatLngBounds(this.displayedProjects.map(p => ({
+                lng: this.geolocByProjectId.get(p.id).longitude, 
+                lat: this.geolocByProjectId.get(p.id).latitude
+            })));
+        },
+        geolocByProjectId({geolocByProjectId}){return geolocByProjectId}
+      })
     },
+
+
+
+
     methods: {
         zoomUpdate(zoom) {
             this.currentZoom = zoom;

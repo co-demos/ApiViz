@@ -1,8 +1,12 @@
 const SOURCE_FILTER_NAME = 'source_';
 
 export default {
+
+    setAsMapSearch (state, isForMap) {
+        state.search.question.for_map = isForMap
+    },
     setSearchedText (state, {searchedText}) {
-        state.search.question.query = searchedText
+      state.search.question.query = searchedText
     },
     setSelectedFilters (state, {selectedFilters}) {
         // trigger re-render
@@ -19,11 +23,11 @@ export default {
     },
 
     setSearchResult(state, {result}){
-        state.search.answer = {
-            pendingAbort: undefined,
-            result,
-            error: undefined
-        }
+      state.search.answer = {
+        pendingAbort: undefined,
+        result,
+        error: undefined
+      }
     },
     setSearchPending(state, {pendingAbort}){
         state.search.answer = {
@@ -33,12 +37,12 @@ export default {
         }
     },
     setSearchError(state, {error}){
-        console.error('search error', error)
-        state.search.answer = {
-            pendingAbort: undefined,
-            result: undefined,
-            error
-        }
+      console.error('search error', error)
+      state.search.answer = {
+        pendingAbort: undefined,
+        result: undefined,
+        error
+      }
     },
 
     setSourceFilter(state, {sourceFilter}){

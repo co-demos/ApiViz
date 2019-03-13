@@ -28,7 +28,10 @@
 
             <div :id="filter.name" class="navbar-dropdown is-right">
 
-              <a class="navbar-item" v-for="choice in filter.choices" :key="choice.name">
+              <a 
+                class="navbar-item" 
+                v-for="choice in filter.choices" :key="choice.name"
+                >
                 <div class="field">
                   <input 	class="is-checkradio is-default is-normal" 
                           :id="choice.name" 

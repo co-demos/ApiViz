@@ -260,6 +260,7 @@ default_data_endpoints_config = [
       },
       "content"       : u"apiviz default API endpoint for map results",
       "root_url"      : "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc68328ed724cebd7fbf",
+      # "root_url"      : "http://localhost:4000/api/dso/infos/get_one/5c7ebc68328ed724cebd7fbf",
       "args_options"  : [
         {  "arg" : "token",            "optional" : True, "in" : ["url","header"], "default" : "",   "type": "str" },
         {  "arg" : "map_list",         "optional" : False, "in" : ["url"],         "default" : True, "type": "bool" },

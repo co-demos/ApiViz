@@ -177,6 +177,17 @@ export function searchProjects(url = undefined){
 
 }
 
+export function searchEndpointGenerator(obj) {
+  if (!obj) { throw 'error in searchEnpointCreator: no parameter defined' }
+  let routeArguments = obj.routeArgs 
+  let queries = clientQueries
+
+  let baseQuery = obj.baseUrl + '?'
+
+  // loop in routeArgs + queries then append to baseQuery
+
+  return baseQuery
+}
 
 export function searchEnpointCreator(obj){
 // (text, tags, spiderIds=[], page=1, per_page=100, baseUrl = `${APISearchOrigin}`, token = undefined ){
@@ -214,5 +225,6 @@ export function searchEnpointCreator(obj){
 
 
     // return `${APISearchOrigin}/api/data?page_n=${page}&results_per_page=${per_page}&shuffle_seed=${shuffle_seed}${searchArg}${tagsArg}${tokenArg}`
+    // return obj.baseUrl+`?${pageArg}${per_pageArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
     return obj.baseUrl+`?${pageArg}${per_pageArg}${shuffle_seedArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
 }

@@ -199,7 +199,7 @@ export default {
       console.log(" - - DynamicDetail / item : \n ", item)
       this.displayableItem = item
     })
-    .catch(err => this.isError = true, console.error('item route error', err))
+    .catch(function(err) { this.isError = true ; console.error('item route error', err) })
   },
 
   data: () => {

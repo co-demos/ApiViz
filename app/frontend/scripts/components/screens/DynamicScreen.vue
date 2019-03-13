@@ -115,7 +115,9 @@ export default {
     created: function () {
       console.log("\n - - DynamicScreen / created ... ")
     },
+    
     beforeMount: function () {
+
       console.log("\n - - DynamicScreen / beforeMount ... ")
       // console.log(" - - state.config : \n ", this.$store.state.config)
       console.log(" - - DynamicScreen / this.routeConfig : \n ", this.routeConfig)
@@ -129,6 +131,9 @@ export default {
         console.log(" - - DynamicScreen / path : ", path )
         this.$store.dispatch('setSearchEndpointConfig', { path : path })
         // this.$store.dispatch('setSearchEndpoint')
+      }
+      if ( this.routeConfig.dynamic_templates == 'DynamicMap '){
+        this.$store.commit('setAsMapSearch', true)
       }
 
     },
@@ -162,6 +167,13 @@ export default {
         // this.$store.dispatch('setSearchEndpoint')
         console.log('- - DynamicScreen / (after) state : ', this.$store.state);
         this.localRouteConfig = this.$store.state.search.currentRouteConfig
+
+        // set forMap == true in search.query via mutation for DynamicMap
+        if ( this.localRouteConfig.dynamic_templates == 'DynamicMap '){
+          this.$store.commit('setAsMapSearch', true)
+        } else {
+          this.$store.commit('setAsMapSearch', false)
+        }
 
       },
 
