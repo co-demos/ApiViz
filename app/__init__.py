@@ -48,6 +48,8 @@ from	flask 			import Flask, g, current_app, session, request
 from 	flask_wtf.csrf 	import CSRFProtect
 # from	flask import jsonify, flash, render_template, url_for, make_response, request, redirect
 
+from flask_cors import CORS
+
 import  socket
 
 try : 
@@ -74,6 +76,7 @@ from	flask_pymongo import PyMongo ### flask_pymongo instead of flask.ext.pymongo
 
 ### create Flask app 
 app		= Flask( __name__ )
+CORS(app)
 
 ### FOR DEBUGGING PURPOSES
 ### LOG / PRINT HEADERS
