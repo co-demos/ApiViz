@@ -100,6 +100,9 @@ export default {
 
   // MAIN SEARCH ACTION
   search({state, commit, dispatch}){
+
+    console.log("\n-- search ...", )
+
     const {search} = state;
 
     // const dataset_uri = search.dataset_uri
@@ -128,15 +131,18 @@ export default {
       baseUrl:root_url,
 
       search: search.question.query,
+
       tags:cisTags,
       page:1,
       per_page:100,
 
       // here for map requests 
-      //map_list : search.for_map,
-      //as_latlng : search.for_map
+      map_list : search.for_map,
+      as_latlng : search.for_map
       
     })
+    console.log("-- search / endpoint : \n", endpoint )
+
 
     // perform search
     const searchPendingAbort = searchProjects(endpoint)

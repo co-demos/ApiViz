@@ -202,7 +202,7 @@ export function searchEnpointCreator(obj){
     const tagsArg = (obj.tags && obj.tags.size >= 1) ? `&search_in_tags=${encodeURIComponent([...obj.tags].join(','))}` : '';
     const tokenArg = (obj.token) ? `&token=${encodeURIComponent(obj.token)}` : ''
 
-    //if none, defualt value provided (otherwise the backend will provide anyway)
+    //if none, default value provided (otherwise the backend will provide anyway)
     const per_pageArg = (typeof obj.per_page == 'number') ? '&per_page='+obj.per_page : '&per_page=100';
     const map_listArg = (typeof obj.map_list == 'boolean') ? '&map_list='+obj.map_list : '&map_list=false';
     const as_latlngArg = (typeof obj.as_latlng == 'boolean') ? '&as_latlng='+obj.as_latlng : '&as_latlng=false';
@@ -224,7 +224,10 @@ export function searchEnpointCreator(obj){
     const descendingArg = (typeof obj.descending == 'boolean') ? '&descending='+obj.descending : '';
 
 
-    // return `${APISearchOrigin}/api/data?page_n=${page}&results_per_page=${per_page}&shuffle_seed=${shuffle_seed}${searchArg}${tagsArg}${tokenArg}`
+    
+    // WITH SHUFFLE 
     return obj.baseUrl+`?${pageArg}${per_pageArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
+    
+    // WITHOUT SHUFFLE
     // return obj.baseUrl+`?${pageArg}${per_pageArg}${shuffle_seedArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
 }
