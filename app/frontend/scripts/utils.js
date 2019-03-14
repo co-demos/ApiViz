@@ -7,173 +7,173 @@ const APISearchOrigin = 'http://www.cis-openscraper.com';
 let abortableFetchSupported = false;
 
 try{
-    const ac = new AbortController()
+  const ac = new AbortController()
 
-    fetch('.', {signal: ac.signal})
-    .then(r => r.text())
-    .then(result => {
-        abortableFetchSupported = false;
-    })
-    .catch(err => {
-        abortableFetchSupported = err.name === 'AbortError'
-    })
+  fetch('.', {signal: ac.signal})
+  .then(r => r.text())
+  .then(result => {
+    abortableFetchSupported = false;
+  })
+  .catch(err => {
+    abortableFetchSupported = err.name === 'AbortError'
+  })
 
-    ac.abort();
+  ac.abort();
 }
 catch(e){
-    abortableFetchSupported = false;
+  abortableFetchSupported = false;
 }
 
 
 
 function makeProjectTagToUnifiedTagsMap(){
-    const map = new Map();
+  const map = new Map();
 
-    for(const [code, projectTags] of Object.entries(NORMALIZATION_TAGS_SOURCES_CIS_DICT)){
-        const unifiedTagName = NOMENCLATURE_CIS_DICT[code].fullname;
+  for(const [code, projectTags] of Object.entries(NORMALIZATION_TAGS_SOURCES_CIS_DICT)){
+    const unifiedTagName = NOMENCLATURE_CIS_DICT[code].fullname;
 
-        for(const tag of projectTags){
-            let unifiedTagNames = map.get(tag)
-            if(!unifiedTagNames){
-                unifiedTagNames = new Set()
-            }
-            unifiedTagNames.add(unifiedTagName)
+    for(const tag of projectTags){
+      let unifiedTagNames = map.get(tag)
+      if(!unifiedTagNames){
+          unifiedTagNames = new Set()
+      }
+      unifiedTagNames.add(unifiedTagName)
 
-            map.set(tag, unifiedTagNames);
-        }
+      map.set(tag, unifiedTagNames);
     }
+  }
 
-    return map;
+  return map;
 }
 
 
 
 function fromMongoModelToFrontModel(projectInMongo){
-    return {
-        id: projectInMongo['sd_id'],
-        // title: Array.isArray(projectInMongo['titre du projet']) ? projectInMongo['titre du projet'].join(' '): '',
-        // tags: projectInMongo['tags'] || [],
-        // image: projectInMongo['image(s) du projet'],
-        address: (projectInMongo['adresse structure']) ? projectInMongo['adresse structure'] : '',
-        services: (projectInMongo['services']) ? projectInMongo['services'] : '',
-        ville: (projectInMongo['ville structure']) ? projectInMongo['ville structure'] : '',
+  return {
+    id: projectInMongo['sd_id'],
+    // title: Array.isArray(projectInMongo['titre du projet']) ? projectInMongo['titre du projet'].join(' '): '',
+    // tags: projectInMongo['tags'] || [],
+    // image: projectInMongo['image(s) du projet'],
+    address: (projectInMongo['adresse structure']) ? projectInMongo['adresse structure'] : '',
+    services: (projectInMongo['services']) ? projectInMongo['services'] : '',
+    ville: (projectInMongo['ville structure']) ? projectInMongo['ville structure'] : '',
 
-        // projectPartners: Array.isArray(projectInMongo['partenaires du projet']) ? projectInMongo['partenaires du projet'].join(' '): '',
-        // website: projectInMongo['website'] && projectInMongo['website'][0],
-        // pageAtSourcer: projectInMongo['link_data'],
-        // projectInSourcerListing: projectInMongo['link_src'],
-        // spiderId: projectInMongo['spider_id'],
-        // description: Array.isArray(projectInMongo['résumé du projet']) ? projectInMongo['résumé du projet'].join(' '): '',
-    }
+    // projectPartners: Array.isArray(projectInMongo['partenaires du projet']) ? projectInMongo['partenaires du projet'].join(' '): '',
+    // website: projectInMongo['website'] && projectInMongo['website'][0],
+    // pageAtSourcer: projectInMongo['link_data'],
+    // projectInSourcerListing: projectInMongo['link_src'],
+    // spiderId: projectInMongo['spider_id'],
+    // description: Array.isArray(projectInMongo['résumé du projet']) ? projectInMongo['résumé du projet'].join(' '): '',
+  }
 }
 
 
 const projectTagToUnifiedTags = makeProjectTagToUnifiedTagsMap();
 
 function uniformizeProject(p){
-    const TEXTURE_COUNT = 16;
-    if(!p.sd_id){ return p}
-    if(!p.image){
-        // add texture as image
-        // so it's a deterministic function, let's use the id to determine which texture is used
-        console.log(p);
-        p.image = `/static/illustrations/textures/medium_fiche_${ (parseInt(p.sd_id.substr(p.sd_id.length - 6), 16)%TEXTURE_COUNT) + 1}.png`
-    }
-    else{
-        p.image = p.image[0]
-    }
+  const TEXTURE_COUNT = 16;
+  if(!p.sd_id){ return p}
+  if(!p.image){
+      // add texture as image
+      // so it's a deterministic function, let's use the id to determine which texture is used
+      console.log(p);
+      p.image = `/static/illustrations/textures/medium_fiche_${ (parseInt(p.sd_id.substr(p.sd_id.length - 6), 16)%TEXTURE_COUNT) + 1}.png`
+  }
+  else{
+      p.image = p.image[0]
+  }
 
-    let projectUnifiedTags = new Set()
+  let projectUnifiedTags = new Set()
 
-    for(const projectTag of p.tags){
-        const unifiedTags = projectTagToUnifiedTags.get(projectTag)
+  for(const projectTag of p.tags){
+      const unifiedTags = projectTagToUnifiedTags.get(projectTag)
 
-        if(unifiedTags){
-            for(const t of unifiedTags){
-                projectUnifiedTags.add(t);
-            }
-        }
-        else{
-            // console.warn('No unified tag for project tag', projectTag, p.id, p.title)
-        }
-    }
+      if(unifiedTags){
+          for(const t of unifiedTags){
+              projectUnifiedTags.add(t);
+          }
+      }
+      else{
+          // console.warn('No unified tag for project tag', projectTag, p.id, p.title)
+      }
+  }
 
-    p.tags = [...projectUnifiedTags]
+  p.tags = [...projectUnifiedTags]
 
-    return p;
+  return p;
 }
 
 
 // This function is awkward
 // TODO Create a dedicated server-side end-point to get only the spiders
 export function getSpiders(){
-    let url = `${APISearchOrigin}/api/infos?only_spiders_list=true`;
+  let url = `${APISearchOrigin}/api/infos?only_spiders_list=true`;
 
-    return fetch(url)
-    .then(r => r.json())
-    .then(({spiders}) => spiders.spiders_dict)
+  return fetch(url)
+  .then(r => r.json())
+  .then(({spiders}) => spiders.spiders_dict)
 }
 
 
 // This function is super-inefficient
 // TODO Create a server-side end-point to get only one project
 export function getProjectById(id,root_url){
-    const url = searchEnpointCreator({
-      page:1,
-      per_page:2,
-      baseUrl:root_url,
-      item_id:id
-    })
+  const url = searchEnpointCreator({
+    page:1,
+    per_page:2,
+    baseUrl:root_url,
+    item_id:id
+  })
 
-    return fetch(url)
-    .then(r => r.json())
-    .then(({data, query}) =>
-           data && data.data_raw && data.data_raw.f_data  && Array.isArray(data.data_raw.f_data)
-              ? data.data_raw.f_data[0]
-              : undefined
-    )
+  return fetch(url)
+  .then(r => r.json())
+  .then(({data, query}) =>
+    data && data.data_raw && data.data_raw.f_data  && Array.isArray(data.data_raw.f_data)
+      ? data.data_raw.f_data[0]
+      : undefined
+  )
 }
 
 
 export function searchProjects(url = undefined){
 
-    // abort fetch if this is supported
-    // abort manually when response arrives otherwise
-    const ac = abortableFetchSupported ? new AbortController() : undefined
-    let searchAborted = false
+  // abort fetch if this is supported
+  // abort manually when response arrives otherwise
+  const ac = abortableFetchSupported ? new AbortController() : undefined
+  let searchAborted = false
 
-    return {
-        abort(){
-            searchAborted = true
+  return {
+    abort(){
+      searchAborted = true
 
-            if(ac)
-                ac.abort()
-        },
-        promise: (ac ? fetch(url, {signal: ac.signal} ) : fetch(url))
-            .then(r => r.json())
-            .then(({data, query}) => {
-                if(searchAborted){
-                    const error = new Error('Search aborted')
-                    error.name = 'AbortError'
-                    throw error
-                }
-                else{
-                  console.log(data);
-                    return {
-                        projects: data
-                        && data.data_raw
-                        && data.data_raw.f_data
-                        && Array.isArray(data.data_raw.f_data)
-                        ? data.data_raw.f_data
-                        // .map( (p) => fromMongoModelToFrontModel(p,state))
-                        // .map(uniformizeProject)
-                        : [],
-                        total: (data && data.data_raw && data.data_raw.f_data_count) ? data.data_raw.f_data_count : 0
-                    }
-                }
-            })
+      if(ac)
+          ac.abort()
+    },
+    promise: (ac ? fetch(url, {signal: ac.signal} ) : fetch(url))
+    .then(r => r.json())
+    .then(({data, query}) => {
+      if(searchAborted){
+        const error = new Error('Search aborted')
+        error.name = 'AbortError'
+        throw error
+      }
+      else{
+        console.log(data);
+        return {
+          projects: data
+          && data.data_raw
+          && data.data_raw.f_data
+          && Array.isArray(data.data_raw.f_data)
+          ? data.data_raw.f_data
+          // .map( (p) => fromMongoModelToFrontModel(p,state))
+          // .map(uniformizeProject)
+          : [],
+          total: (data && data.data_raw && data.data_raw.f_data_count) ? data.data_raw.f_data_count : 0
+        }
+      }
+    })
 
-    }
+  }
 
 }
 
@@ -225,9 +225,9 @@ export function searchEnpointCreator(obj){
 
 
     
-    // WITH SHUFFLE 
-    return obj.baseUrl+`?${pageArg}${per_pageArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
+    // WITHOUT SHUFFLE 
+    // return obj.baseUrl+`?${pageArg}${per_pageArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
     
-    // WITHOUT SHUFFLE
-    // return obj.baseUrl+`?${pageArg}${per_pageArg}${shuffle_seedArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
+    // WITH SHUFFLE
+    return obj.baseUrl+`?${pageArg}${per_pageArg}${shuffle_seedArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
 }

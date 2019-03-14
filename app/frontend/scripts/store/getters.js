@@ -18,6 +18,9 @@ const getTranslation = (state) => (textsData) => {
 // - - - - - - - - - - - - - - - //
 // GLOBAL APP CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
+const getRootUrlBackend = state => {
+  return state.rootUrlBackend
+}
 const getGlobalConfig = state => {
   // console.log("state.config : \n", state.config )
   if (!state.config
@@ -198,6 +201,7 @@ const getImageUrl = (state) => (obj) => {
   }
   return image
 }
+
 // - - - - - - - - - - - - - - - //
 // BROADER CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
@@ -259,6 +263,7 @@ const getEndpointConfigStat = state => {
 export default {
   getTranslation, 
   
+  getRootUrlBackend,
   getSearchConfigColumnCount,
   getSearchConfigDefaultShowCount,
   getSearchConfigMoreProjectOnScrollCount,

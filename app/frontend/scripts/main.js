@@ -22,15 +22,15 @@ const unsync = sync(store, router)
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    new Vue({
-        el: document.querySelector('#vue-content'),
-        router,
-        store,
-        // mounted: function () {
-        //   console.log("document.addEventListener / beforeCreate ... ")
-        //   store.dispatch('getConfigAll');
-        // },
-        render: h => h( Vue.component('router-view') )
-    })
+  new Vue({
+    el: document.querySelector('#vue-content'),
+    router,
+    store,
+    // mounted: function () {
+    //   console.log("document.addEventListener / beforeCreate ... ")
+    //   store.dispatch('getConfigAll');
+    // },
+    render: h => h( Vue.component('router-view') )
+  })
 
 }, {once: true})

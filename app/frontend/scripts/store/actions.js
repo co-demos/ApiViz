@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { apiConfig } from '../config/api.js';
+import {apiConfig} from '../config/api.js';
 import {csvParse} from 'd3-dsv';
 import {searchProjects, getSpiders, searchEnpointCreator, searchEndpointGenerator} from '../utils.js';
 
 const SOURCE_FILTER_NAME = 'source_';
 
 
-// SPIDERS-RELATED --> DEPRECATED IN THE FUTURE
+// LEGACY SPIDERS-RELATED --> DEPRECATED IN THE FUTURE
 function makeSourceFilterFromSpiders(spiders){
   return {
     "fullname": "Source",
@@ -22,7 +22,7 @@ function makeSourceFilterFromSpiders(spiders){
   }
 }
 
-// CIS-RELATED --> DEPRECATED IN THE FUTURE
+// LEGACY CIS-RELATED --> DEPRECATED IN THE FUTURE
 function filterValuesToCISTags(filterValues){
   const cisTags = new Set();
 
@@ -130,15 +130,19 @@ export default {
 
       baseUrl:root_url,
 
+      // query from main input in search bar
       search: search.question.query,
-
+      
+      // tags / filters
       tags:cisTags,
+
+      // pagination
       page:1,
       per_page:100,
-
+      
       // here for map requests 
-      map_list : search.for_map,
-      as_latlng : search.for_map
+      map_list : search.question.for_map,
+      as_latlng : search.question.for_map
       
     })
     console.log("-- search / endpoint : \n", endpoint )
@@ -173,7 +177,7 @@ export default {
   
 
   ////////////////////////////////////////////////
-  // TO ERASE ABSOLUTLY -> data must be pre-geocoded when arriving as response
+  // TO COMMENT ABSOLUTLY -> data must be pre-geocoded when arriving as response
   findProjectsGeolocs({commit}, projects){
     const projectWithValidAddress = projects.filter(p => p['address'])
     const addresses = projectWithValidAddress.map(p => p['address'].replace(/[^(\w|\s)]/g, '').slice(0, 200) )
@@ -236,9 +240,11 @@ export default {
     // dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints?as_list=true'})
   },
 
-  getConfigType({commit},{type,configTypeEndpoint}) {
+  getConfigType({commit, getters},{type,configTypeEndpoint}) {
+    const rootURLbackend = getters.getRootUrlBackend
     return axios
-    .get(apiConfig.rootURL+'/config/'+configTypeEndpoint)
+    .get(rootURLbackend+'/config/'+configTypeEndpoint)
+    // .get(apiConfig.rootURL+'/config/'+configTypeEndpoint)
     .then(response => {
       // console.log("type : ", type," / response : ", response)
       let app_config = (response && response.data && response.data.app_config) ? response.data.app_config : undefined
@@ -249,7 +255,7 @@ export default {
   },
 
 
-
+  // TO VARIABILIZE
   setSearchConfigDisplay({commit}) {
     // here this function will probably change when this may be inherited from the configuration files
     const defaultDisplay = {
@@ -260,6 +266,8 @@ export default {
     }
     commit('setSearchConfig', {type:'display',result:defaultDisplay});
   },
+
+  // USER-RELATED
   saveLoginInfos({commit}, {APIresponse}){
     let r = APIresponse
     let tokens = (r && r.data && r.data.tokens) ? r.data.tokens : undefined
@@ -277,13 +285,7 @@ export default {
   },
 
 
-
-  // setCurrentRouteAndEndpointConfig({dispatch}) {
-  //     let arr = []
-  //     arr.push(dispatch('getConfigType',{type:'routes',configTypeEndpoint:'routes?as_list=true'}))
-  //     arr.push(dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints?as_list=true'}))
-  //     return Promise.all(arr)
-  // },
+  // FOR ENDPOINT CONFIG
   setSearchEndpointConfig({commit,getters,state},{path}) {
 
     let routeConfig = getters.getCurrentRouteConfig(path)
@@ -303,6 +305,12 @@ export default {
     commit('setSearchParam',{type:'endpoint',result:endpointConfig})
     // console.log("-- setSearchEndpointConfig / state.search : \n", state.search )
   },
+  // setCurrentRouteAndEndpointConfig({dispatch}) {
+  //     let arr = []
+  //     arr.push(dispatch('getConfigType',{type:'routes',configTypeEndpoint:'routes?as_list=true'}))
+  //     arr.push(dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints?as_list=true'}))
+  //     return Promise.all(arr)
+  // },
 
   // setSearchEndpoint({commit,getters,state}) {
   //   let endpointConfig = getters.getEndpointConfig

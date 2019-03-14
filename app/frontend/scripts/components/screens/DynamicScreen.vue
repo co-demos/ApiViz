@@ -104,10 +104,10 @@ export default {
       DynamicDetail
     },
 
-    // props: [
+    props: [
     //   'logo', 
     //   'brand'
-    // ],
+    ],
 
     beforeCreate: function () {
       console.log("\n - - DynamicScreen / beforeCreate ... ")
@@ -122,7 +122,7 @@ export default {
       // console.log(" - - state.config : \n ", this.$store.state.config)
       console.log(" - - DynamicScreen / this.routeConfig : \n ", this.routeConfig)
       
-      // set local data
+      // set local data config
       this.localRouteConfig = this.routeConfig
 
       if( this.routeConfig.dynamic_templates !== 'DynamicStatic' ) {

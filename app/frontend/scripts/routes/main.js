@@ -19,7 +19,7 @@ const routerGenerator = function(store){
       routes,
       props:true,
       scrollBehavior (to, from, savedPosition) {
-          return savedPosition ? savedPosition : { x: 0, y: 0 };
+        return savedPosition ? savedPosition : { x: 0, y: 0 };
       }
   })
 }

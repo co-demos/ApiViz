@@ -25,7 +25,7 @@ try :
 	if config_name in ["default", "testing"] : 
 		from .config_secret_vars_example import *
 	
-	elif config_name == "production" : 
+	elif config_name in ["preprd", "production"] : 
 		from .config_secret_vars_prod import *
 
 	### load env vars

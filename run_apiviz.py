@@ -17,7 +17,7 @@ debug = True
 
 
 @click.command()
-@click.option('--mode', 	default="default", 		nargs=1,	help="The <mode> you need to run the app : default, testing, production" )
+@click.option('--mode', 	default="default", 		nargs=1,	help="The <mode> you need to run the app : default, testing, preprod, production" )
 @click.option('--host', 	default="localhost", 	nargs=1,	help="The <host> name you want the app to run on : <IP_NUMBER> " )
 @click.option('--port', 	default="8100", 			nargs=1,	help="The <port> number you want the app to run on : <PORT_NUMBER>")
 @click.option('--https', 	default="false", 			nargs=1,	help="The <https> mode you want the app to run on : true | false")

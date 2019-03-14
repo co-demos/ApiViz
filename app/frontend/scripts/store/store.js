@@ -8,9 +8,10 @@ import mutations from './mutations';
 
 Vue.use(Vuex)
 
+// >>> LEGACY FILTERS
 const INITIAL_FILTER_DESCRIPTIONS = CHOICES_FILTERS_TAGS.filter(c => c.name !== 'methods_')
 
-
+// >>> LEGACY FILTERS / CREATION - LOW LEVEL FUNCTION
 function makeEmptySelectedFilters(filterDescriptions){
   const selectedFilters = new Map()
   for(const f of filterDescriptions){
@@ -20,13 +21,20 @@ function makeEmptySelectedFilters(filterDescriptions){
 }
 
 
+// MAIN STORE
 const storeGenerator = new Vuex.Store({
   strict: true,
 
   state: {
-      
+    
+    // APP MODE : default | preprod | prod
+    runMode : undefined,
+    rootUrlBackend : undefined,
+
+    // FOR TRANSLATIONS
     locale: 'fr',
 
+    // USER-RELATED
     user: {
         infos: undefined,
         role: undefined,
@@ -34,34 +42,40 @@ const storeGenerator = new Vuex.Store({
     },
     jwt:undefined,
 
+    // LEGACY
     geolocByProjectId: new Map(),
     spiders: undefined,
     
+    // CURRENT 
     displayedProject: undefined,
     
+    // FILTERS
     filterDescriptions: INITIAL_FILTER_DESCRIPTIONS,
-    
-    // the current route to watch
-    // currentRouteConfig : undefined,
 
-    // global config for ApiViz instance 
+    // APIVIZ CONFIG
     config: {},
 
-    // search parameters
+    // SEARCH PARAMETERS
     search: {
+
+      // DATASET
       dataset_uri: undefined,
       endpoint_type: undefined,
       endpoint: undefined,
+
+      // QUERY FROM USER
       question: {
         query: new URL(location).searchParams.get('text') || '',
         for_map : false,
         selectedFilters: makeEmptySelectedFilters(INITIAL_FILTER_DESCRIPTIONS)
       },
+      // RESULTS
       answer: {
         pendingAbort: undefined, // function that can be used to abort the current pending search
         result: undefined, // search results {projects, total}
         error: undefined // if last search ended in an error
       },
+      // UI IN SEARCH PAGES CONFIG
       config:{
         display: {
           columnCount : undefined,
@@ -73,6 +87,8 @@ const storeGenerator = new Vuex.Store({
       }
 
     },
+
+    // STORE MODULES
     getters,
     mutations,
     actions

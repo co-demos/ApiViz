@@ -96,15 +96,15 @@ const FRANCE_CENTER = [46.2276, 2.2137];
 
 
 export default {
-    name: "CISMap",
+    name: "APIVIZmap",
     components: {
-        LMap,
-        LControlZoom,
-        LTileLayer,
-        LMarker,
-        LIcon,
-        'v-marker-cluster': Vue2LeafletMarkerCluster,
-        CISSearchResultsCountAndTabs
+      LMap,
+      LControlZoom,
+      LTileLayer,
+      LMarker,
+      LIcon,
+      'v-marker-cluster': Vue2LeafletMarkerCluster,
+      CISSearchResultsCountAndTabs
     },
 
 
@@ -113,23 +113,23 @@ export default {
     ],
 
     data() {
-        return {
-            zoom: 6,
-            currentZoom: 6,
-            center: FRANCE_CENTER,
-            currentCenter: FRANCE_CENTER,
+      return {
+        zoom: 6,
+        currentZoom: 6,
+        center: FRANCE_CENTER,
+        currentCenter: FRANCE_CENTER,
 
-            // url: 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',
-            // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contibutors',
-            
-            url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: 'abcd',
-            maxZoom: 19,
+        // url: 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',
+        // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contibutors',
+        
+        url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19,
 
-            highlightedProject: undefined,
-            VIEW_MAP
-        };
+        highlightedProject: undefined,
+        VIEW_MAP
+      };
     },
 
 
