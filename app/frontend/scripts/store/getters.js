@@ -131,7 +131,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
   }
 
   const getProjectConfigUniform = (state, getters) => (itemData) => {
-    console.log("getProjectConfigUniform - itemData : ", itemData)
+    console.log(" ++ getProjectConfigUniform - itemData : ", itemData)
     let res = {}
     const infoTypes = ['id','title','image','address','tags']
     infoTypes.forEach( function(infoType){
@@ -141,6 +141,22 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
     res.image = getters.getImgUrl(res)
     res.fullItem = itemData
     return res
+  }
+
+  const getResults = (state) => {
+    return state.search.answer.result && state.search.answer.results.projects
+  }
+
+  const getGeoResults = (state, getters) => {
+    let allResults = getters.getResults
+    console.log(" ++ getGeoResults / allResults : ", allResults)
+    if (typeof allResults !== 'undefined'){
+      let filtered = allResults.filter(i => !i.lat && !i.lon)
+      console.log(" ++ getGeoResults / filtered : ", filtered)
+      return filtered
+    } else {
+      return undefined
+    }
   }
 
 
@@ -303,6 +319,8 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 
     defaultText,
 
+    getResults,
+    getGeoResults,
     getProjectConfig,
     getProjectConfigUniform,
     getImgUrl,

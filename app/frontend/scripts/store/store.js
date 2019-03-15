@@ -71,6 +71,8 @@ const storeGenerator = new Vuex.Store({
         query: new URL(location).searchParams.get('text') || '',
         forMap : false,
         shuffleSeed : 1234,
+        page:1,
+        perPage:100,
         selectedDatasetFilters: undefined,
         selectedFilters: makeEmptySelectedFilters(INITIAL_FILTER_DESCRIPTIONS),
       },

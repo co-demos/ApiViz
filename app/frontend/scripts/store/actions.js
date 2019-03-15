@@ -109,7 +109,7 @@ export default {
 
 
   // MAIN SEARCH ACTION
-  search({state, commit, dispatch}){
+  search({state, commit, dispatch, getters}){
 
     console.log("\n// search / main action to query endpoint..." )
 
@@ -121,7 +121,7 @@ export default {
     selectedFiltersWithoutSourceurs.delete(SOURCE_FILTER_NAME);
     console.log("// search / selectedFiltersWithoutSourceurs : ", selectedFiltersWithoutSourceurs )
 
-    
+
     // LEGACY
     const cisTags = filterValuesToCISTags(selectedFiltersWithoutSourceurs)
     console.log("// search / cisTags : ", cisTags )
@@ -138,23 +138,21 @@ export default {
       search.answer.pendingAbort.abort()
     }
 
+
+
+
     //create the endpoints
     let root_url = (state.search && state.search.endpoint) ? state.search.endpoint.root_url : dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints'})
 
     const endpoint = searchEnpointCreator({
-
       baseUrl:root_url,
-
       // query from main input in search bar
       search: search.question.query,
-      
       // tags / filters
       tags:cisTags,
-
       // pagination
       page:1,
       per_page:100,
-      
       // here for map requests 
       map_list : search.question.for_map,
       as_latlng : search.question.for_map
@@ -162,16 +160,27 @@ export default {
     })
     console.log("-- search / endpoint : \n", endpoint )
 
+    // TEST ENDPOINT GENERATOR
+    const endpointBis = searchEndpointGenerator({
+      endpointConfig : state.search.endpoint,
+      questionParams : state.search.question
+    })
+    console.log("-- search / endpoint : \n", endpointBis )
+
+
+
+
+
 
     // perform search
     const searchPendingAbort = searchProjects(endpoint)
-    commit('setSearchPending', {pendingAbort: searchPendingAbort})
+    commit('setSearchPending', { pendingAbort: searchPendingAbort })
 
     searchPendingAbort.promise
-      .then(({items, total}) => {
+      .then(({projects, total}) => {
         console.log("-- search / total : \n", total )
-        console.log("-- search / items : \n", items )
-        commit('setSearchResult', {result: {items, total}})
+        console.log("-- search / projects : \n", projects )
+        commit('setSearchResult', {result: {projects, total}})
       })
       .catch(error => {
         // don't report aborted fetch as errors

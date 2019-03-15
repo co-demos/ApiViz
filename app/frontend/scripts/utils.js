@@ -137,6 +137,8 @@ export function getProjectById(id,root_url){
 
 export function searchProjects(url = undefined){
 
+  console.log("+ + + searchProjects ... ");
+
   // abort fetch if this is supported
   // abort manually when response arrives otherwise
   const ac = abortableFetchSupported ? new AbortController() : undefined
@@ -158,7 +160,7 @@ export function searchProjects(url = undefined){
         throw error
       }
       else{
-        console.log(data);
+        console.log("+ + + searchProjects (response) / data :", data);
         return {
           projects: data
           && data.data_raw
@@ -178,13 +180,19 @@ export function searchProjects(url = undefined){
 }
 
 export function searchEndpointGenerator(obj) {
-  if (!obj) { throw 'error in searchEnpointCreator: no parameter defined' }
-  let routeArguments = obj.routeArgs 
-  let queries = clientQueries
+  if (!obj) { throw 'error in searchEndpointGenerator: no parameter defined' }
 
-  let baseQuery = obj.baseUrl + '?'
+  console.log("+ + + searchEndpointGenerator / ...")
+  console.log("+ + + searchEndpointGenerator / obj : \n ", obj)
+
+  const endpointConfig = obj.endpointConfig
+  const questionParms = obj.questionParms
+
+
+  let baseQuery = endpointConfig.root_url + '?'
 
   // loop in routeArgs + queries then append to baseQuery
+  console.log("+ + + searchEndpointGenerator / baseQuery : \n ", baseQuery)
 
   return baseQuery
 }
@@ -228,7 +236,6 @@ export function searchEnpointCreator(obj){
     const descendingArg = (typeof obj.descending == 'boolean') ? '&descending='+obj.descending : '';
 
 
-    
     // WITHOUT SHUFFLE 
     // return obj.baseUrl+`?${pageArg}${per_pageArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
     

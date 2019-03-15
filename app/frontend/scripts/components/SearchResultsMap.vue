@@ -6,9 +6,9 @@
         <CISSearchResultsCountAndTabs 
           :view="VIEW_MAP" 
           :open="!!highlightedItem"
-        >
-
-
+          >
+          
+          <!-- HIGHLIGHTED ITEM  -->
           <div class="highlighted-project" v-if="highlightedItem" slot="project">
             
             <!-- BUTTON TO CLOSE PREVIEW -->
@@ -78,10 +78,11 @@
     :zoom="zoom"
     :options="{zoomControl: false}"
     :center="center"
-    :bounds="bounds"
     @update:center="centerUpdate"
-    @update:zoom="zoomUpdate">
+    @update:zoom="zoomUpdate"
+    >
 
+    <!-- :bounds="bounds" -->
     <l-control-zoom position="bottomright"/>
 
     <l-tile-layer
@@ -89,19 +90,41 @@
       :attribution="attribution"/>
 
       <!-- MARKER CLUSTER -->
-      <v-marker-cluster :options="{showCoverageOnHover: false, iconCreateFunction: iconCreateFunction}">
-        <l-marker v-for="p in displayedProjects"
-          :key="p.id"
-          :lat-lng="{lng: geolocByProjectId.get(p.id).longitude, lat: geolocByProjectId.get(p.id).latitude}"
-          @click="highlightProject(p)">
+      <v-marker-cluster 
+        :options="{showCoverageOnHover: false, iconCreateFunction: iconCreateFunction}"
+        >
+        <!-- <l-marker 
+          v-for="p in displayedProjects"
+          :key="p.sd_id"
+          :lat-lng="itemToMarker(p)"
+          @click="highlightProject(p)"
+          >
           <l-icon
-              iconUrl="/static/icons/icon_pin_plein_violet.svg"
-              :iconSize="p === highlightedItem ? [46, 46] : [29, 29]"
-          />                    
+            iconUrl="/static/icons/icon_pin_plein_violet.svg"
+            :iconSize="p === highlightedItem ? [46, 46] : [29, 29]"
+          />
+        </l-marker> -->
+
+
+        <l-marker 
+          v-for="(p, i) in projects"
+          :key="i"
+          :lat-lng="{lng: parseFloat(p.lon), lat: parseFloat(p.lat)}"
+          @click="highlightProject(p)"
+          >
+          <!-- :lat-lng="{lng: parseFloat(p.lon), lat: parseFloat(p.lat)}" -->
+          <!-- :lat-lng="{lng: geolocByProjectId.get(p.id).lon, lat: geolocByProjectId.get(p.id).lat}" -->
+          <l-icon
+            iconUrl="/static/icons/icon_pin_plein_violet.svg"
+            :iconSize="p === highlightedItem ? [46, 46] : [29, 29]"
+          />
         </l-marker>
+
+
       </v-marker-cluster>
 
     </l-map>
+
   </div>
 </template>
 
@@ -146,6 +169,11 @@ export default {
 
       // ITEMS
       highlightedItem: undefined,
+      itemsOnMap : [
+        {sd_id : 'A', lat : '47.412', lon : '-1.218' },
+        {sd_id : 'B', lat : '47.4234', lon : '-1.248' },
+
+      ],
 
       // LEAFLET SETUP
       zoom: 6,
@@ -169,6 +197,8 @@ export default {
     console.log("\n - - SearchResultsMap / beforeMount ... ")
     console.log(" - - SearchResultsMap / routeConfig : \n", this.routeConfig)
     console.log(" - - SearchResultsMap / endPointConfig : \n", this.endPointConfig)
+
+    console.log("test marker / L.latLng(47.412, -1.218)", L.latLng(47.412, -1.218))
     // set up leaflet options
     const mapOptions = this.endPointConfig.map_options
 
@@ -186,34 +216,54 @@ export default {
   mounted(){
 
     console.log(" - - SearchResultsMap / mounted... ")
-    if(this.projects){
-      const projectsWithMissingAddress = this.projects.filter(p => !this.geolocByProjectId.has(p.id))
+    // if(this.projects){
+    //   const projectsWithMissingAddress = this.projects.filter(p => !p.lat)
+    //   // if(projectsWithMissingAddress.length >= 1)
+    //   //   this.findProjectsGeolocs(projectsWithMissingAddress)
+    //   }
+    this.itemsOnMap = projects
 
-      if(projectsWithMissingAddress.length >= 1)
-        this.findProjectsGeolocs(projectsWithMissingAddress)
-      }
   },
 
   computed: {
+
     ...mapState({
       projects({search}){ return search.answer.result && search.answer.result.projects },
-      displayedProjects(){
-        return this.projects && this.projects.filter(p => this.geolocByProjectId.get(p.id))
-      },
-      bounds(){
-        return this.displayedProjects && new L.LatLngBounds(this.displayedProjects.map(p => ({
-          lng: this.geolocByProjectId.get(p.id).longitude, 
-          lat: this.geolocByProjectId.get(p.id).latitude
-        })));
-      },
-      geolocByProjectId({geolocByProjectId}){return geolocByProjectId}
-    })
+      // displayedProjects(){
+      //   return this.projects && this.projects.filter(p => this.geolocByProjectId.get(p.id))
+      // },
+      // displayedProjects(){
+      //   console.log("displayedProjects : ", this.projects)
+      //   if(this.projects){
+      //     let itemsWithLatLng = this.projects.filter(i => !i.lat && !i.lon)
+      //     return itemsWithLatLng
+      //   }
+      // },
+      // bounds(){
+      //   return this.displayedProjects && new L.LatLngBounds(this.displayedProjects.map(p => ({
+      //     // lng: this.geolocByProjectId.get(p.id).lon, 
+      //     // lat: this.geolocByProjectId.get(p.id).lat
+      //     lng: parseFloat(p.lon), 
+      //     lat: parseFloat(p.lat),
+      //   })));
+      // },
+      // geolocByProjectId({geolocByProjectId}){return geolocByProjectId}
+    }),
+    // displayedProjects(){
+    //   let items = this.$store.getters.getGeoResults
+    //   console.log("displayedProjects / items : ", items)
+    //   if (typeof items !== 'undefined') {
+    //     return items
+    //   }
+    // },
   },
 
 
 
 
   methods: {
+
+
     zoomUpdate(zoom) {
       this.currentZoom = zoom;
     },
@@ -227,24 +277,24 @@ export default {
       const markerCount = cluster.getChildCount();
 
       return new L.DivIcon({
-          html: `<span>${markerCount}</span>`, 
-          className: 'cis-marker-cluster',
-          iconSize: new L.Point(40, 40)
+        html: `<span>${markerCount}</span>`, 
+        className: 'cis-marker-cluster',
+        iconSize: new L.Point(40, 40)
       });
     },
-    ...mapActions([
-      'findProjectsGeolocs'
-    ])
+    // ...mapActions([
+    //   'findProjectsGeolocs'
+    // ])
   },
 
-  beforeUpdate(){
-    if(this.projects){
-      const projectsWithMissingAddress = this.projects.filter(p => !this.geolocByProjectId.has(p.id))
-
-      if(projectsWithMissingAddress.length >= 1)
-          this.findProjectsGeolocs(projectsWithMissingAddress)
-    }
-  },
+  // beforeUpdate(){
+  //   console.log(" - - SearchResultsMap / beforeUpdate... ")
+  //   if(this.projects){
+  //     const projectsWithMissingAddress = this.projects.filter(p => !this.geolocByProjectId.has(p.lat))
+  //   //   if(projectsWithMissingAddress.length >= 1)
+  //   //       this.findProjectsGeolocs(projectsWithMissingAddress)
+  //   }
+  // },
 
 };
 </script>

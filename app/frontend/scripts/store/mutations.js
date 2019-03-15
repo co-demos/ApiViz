@@ -74,6 +74,7 @@ export default {
 
   // RESULTS-RELATED
   setSearchResult(state, {result}){
+    console.log("== setSearchResult / result : ", result)
     state.search.answer = {
       pendingAbort: undefined,
       result,
