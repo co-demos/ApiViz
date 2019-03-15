@@ -12,6 +12,7 @@ default_app_footer = [
       "template_url"      : None,
       "is_dynamic"        : True,
       "dynamic_template"  : 'DynamicFooter',
+      "has_credits_footer": True,
       "active_columns"    : ['block_left', 'block_center_left', 'block_center_right','block_right'],
 
       "contents_fields" : {

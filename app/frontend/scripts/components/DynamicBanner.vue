@@ -1,7 +1,13 @@
 <style scoped>
 
-.banner-height {
+.banner-height-with-filters {
   padding-top: 110px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  height: 160px
+}
+.banner-height-without-filters {
+  padding-top: 60px;
   margin-top: 10px;
   margin-bottom: 30px;
   height: 160px
@@ -12,13 +18,12 @@
 
   <section >
     <div 
-      class="container banner-height has-text-center skip-navbar"
+      :class="`container ${ hasFilters ? 'banner-height-with-filters' : 'banner-height-without-filters' } has-text-center skip-navbar`"
       >
       <span v-html="rawHtml"></span>
-
-
     </div>
   </section>
+
 </template>
 
 <script>
@@ -28,6 +33,7 @@ import axios from 'axios'
 export default {
     props:[
       'template_url',
+      'dynamicTemplate',
       'navbarConfig'
     ],
   data: () => {
@@ -39,7 +45,11 @@ export default {
   computed: {
     ...mapState({
       user: 'user'
-    })
+    }),
+    hasFilters(){
+      console.log("hasFilters / this.dynamicTemplate : ", this.dynamicTemplate)
+      return (this.dynamicTemplate === 'DynamicStatic' )? false : true
+    }
   },
   mounted(){
     

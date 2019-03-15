@@ -34,11 +34,12 @@
             <br>
             <div class="content">
               <template  
-                v-for="icon in appSocials"
+                  v-for="(icon, index) in appSocials"
                 >
                 <!-- {{ icon }} -->
                 <a
                   class="button is-primary" 
+                  :key="index"
                   :href="icon.url" 
                 >
                   <span class="icon">

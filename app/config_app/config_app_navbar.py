@@ -35,6 +35,15 @@ default_app_navbar = [
             },
             { "is_visible" : True, 
               "position"   : "exterior_right",
+              "link_to"    : "/sonum-carto/projet",
+              "is_external_link" : False,
+              "link_type"  : "link", ### show btn border
+              "icon_class" : "", 
+              "link_text"  : [{"locale" : "fr", "text" : "le projet" }],
+              "tooltip"    : [{"locale" : "fr", "text" : "voir la carte" }] 
+            },
+            { "is_visible" : True, 
+              "position"   : "exterior_right",
               "link_to"    : "/",
               "is_external_link" : True,
               "link_type"  : "button", ### show btn border

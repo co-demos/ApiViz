@@ -48,6 +48,7 @@
     <DynamicBanner 
       v-if="this.has_banner"
       :template_url="this.getCurrentBanner.template_url"
+      :dynamicTemplate="localRouteConfig.dynamic_template"
     ></DynamicBanner> 
 
 
@@ -89,6 +90,21 @@
       :appSocials="this.socialsConfig" 
     ></Footer>
 
+    <!-- PROJECT's PARTNERS FOOTER -->
+    <footer class="footer extra-footer">
+      <div class="content has-text-centered">
+          Avec l'appui de :
+          <strong><a href="https://jgthms.com">la MedNum</a></strong>
+        </p>
+      </div>
+    </footer>
+
+    <!-- CREDIT / REMOTE FOOTER -->
+    <DynamicStaticRaw 
+      :routeConfig="localRouteConfig"
+      :templateURL="'https://raw.githubusercontent.com/co-demos/structure/master/pages-html/codemos-footer.html'"
+    ></DynamicStaticRaw>
+
   </div>
 </template>
 
@@ -100,6 +116,7 @@ import Footer from '../Footer.vue';
 
 import DynamicBanner    from '../DynamicBanner.vue';
 import DynamicStatic    from '../DynamicStatic.vue';
+import DynamicStaticRaw from '../DynamicStaticRaw.vue';
 import DynamicList      from '../DynamicList.vue';
 import DynamicMap       from '../DynamicMap.vue';
 import DynamicDetail    from '../DynamicDetail.vue';
@@ -110,6 +127,7 @@ export default {
     Footer, 
     DynamicBanner,
     DynamicStatic, 
+    DynamicStaticRaw,
     DynamicList, 
     DynamicMap, 
     DynamicDetail
@@ -304,8 +322,6 @@ export default {
       return resultSet
     },
 
-
-
   },
 
 
@@ -318,3 +334,20 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../../../styles/apiviz-colors.scss';
+@import '../../../styles/apiviz-misc.scss';
+
+.extra-footer {
+  background-color : $apiviz-primary ;
+  color : #ffffff;
+  padding-top : 10px ;
+  padding-bottom : 10px;
+
+  a {
+    color : white;
+  }
+}
+
+</style>

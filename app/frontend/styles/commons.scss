@@ -76,6 +76,10 @@ p a.colored {
 	color: $apiviz-primary;
 	text-decoration: underline;
 }
+p a.white-link {
+  color : white;
+	text-decoration: underline;
+}
 
 .cis-tabs{
 	display: flex;

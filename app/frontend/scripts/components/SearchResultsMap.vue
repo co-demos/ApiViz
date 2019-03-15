@@ -108,10 +108,12 @@
 
         <l-marker 
           v-for="(p, i) in projects"
+          v-if="checkIfItemHasLatLng(p)"
           :key="i"
           :lat-lng="{lng: parseFloat(p.lon), lat: parseFloat(p.lat)}"
           @click="highlightProject(p)"
           >
+          <!-- :lat-lng="{lng: parseFloat(p.lon), lat: parseFloat(p.lat)}" -->
           <!-- :lat-lng="{lng: parseFloat(p.lon), lat: parseFloat(p.lat)}" -->
           <!-- :lat-lng="{lng: geolocByProjectId.get(p.id).lon, lat: geolocByProjectId.get(p.id).lat}" -->
           <l-icon
@@ -170,9 +172,8 @@ export default {
       // ITEMS
       highlightedItem: undefined,
       itemsOnMap : [
-        {sd_id : 'A', lat : '47.412', lon : '-1.218' },
-        {sd_id : 'B', lat : '47.4234', lon : '-1.248' },
-
+        // {sd_id : 'A', lat : '47.412', lon : '-1.218' },
+        // {sd_id : 'B', lat : '47.4234', lon : '-1.248' },
       ],
 
       // LEAFLET SETUP
@@ -198,7 +199,7 @@ export default {
     console.log(" - - SearchResultsMap / routeConfig : \n", this.routeConfig)
     console.log(" - - SearchResultsMap / endPointConfig : \n", this.endPointConfig)
 
-    console.log("test marker / L.latLng(47.412, -1.218)", L.latLng(47.412, -1.218))
+    // console.log("test marker / L.latLng(47.412, -1.218)", L.latLng(47.412, -1.218))
     // set up leaflet options
     const mapOptions = this.endPointConfig.map_options
 
@@ -221,7 +222,7 @@ export default {
     //   // if(projectsWithMissingAddress.length >= 1)
     //   //   this.findProjectsGeolocs(projectsWithMissingAddress)
     //   }
-    this.itemsOnMap = projects
+    this.itemsOnMap = this.projects
 
   },
 
@@ -263,6 +264,20 @@ export default {
 
   methods: {
 
+    checkIfStringFloat(value){
+      let val = parseFloat(value)
+      if(!isNaN(val)){
+        return val
+      } else {
+        return false
+      }
+    },
+    getLatLng(item){
+      return { lat : this.checkIfStringFloat(item.lat) , lng : checkIfStringFloat(item.lon) }
+    },
+    checkIfItemHasLatLng(item){
+      return this.checkIfStringFloat(item.lat) && this.checkIfStringFloat(item.lon)
+    },
 
     zoomUpdate(zoom) {
       this.currentZoom = zoom;

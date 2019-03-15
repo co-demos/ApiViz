@@ -17,7 +17,7 @@ default_routes_config = [
     "route_activated"   : True,
     "banner" : {
       "activated"  : True,
-      "banner_uri" : "apiviz_default"
+      "banner_uri" : "banner-sonum-carto"
     },
 
     "in_main_navbar"    : False,
@@ -44,11 +44,47 @@ default_routes_config = [
       "is_default"        : True
   },
 
+  
   ### - - - - - - - - - - - - - - - - - ###
   ### PAGES : DATASETS --> TO BE ADDED VIA BACK OFFICE BY ADMIN USER
   ### - - - - - - - - - - - - - - - - - ###
 
   ### DATASETS CARTO SONUM
+
+    ### PAGE PROJECT
+    { "field"             : "sonum_carto_project",
+      "is_global_app_homepage" : True,
+      "route_title"       : u"Home",
+      "route_description" : u"apiviz default home page",
+      "route_activated"   : True,
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : "banner-sonum-carto"
+      },
+      "in_main_navbar"    : False,
+      "navbar_btn_options" : {
+        "position"   : "middle_right",
+        "link_type"  : "link",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },
+
+      "in_footer"         : False,
+      "link_in_logo"      : True,
+      "urls"              : ["/sonum-carto/projet"],
+      "template_url"      : "https://raw.githubusercontent.com/co-demos/carto-sonum/master/pages-html/sonum-carto-projet.html",
+      "help"              : u"you can specify a remote template (f.e. a github url)",
+      "languages"         : ["fr"],
+        "app_version"       : version,
+      "comment"           : u"Main project route in french",
+      "is_dynamic"        : True,
+      "dynamic_template"  : "DynamicStatic",
+      "has_navbar"        : True,
+      "has_footer"        : True,
+        "is_default"        : True
+    },
+
     ## PAGE - map
     { "field"             : "sonum_carto_carte",
       "is_global_app_homepage" : False,
