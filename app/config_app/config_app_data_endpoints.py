@@ -11,6 +11,7 @@ default_data_endpoints_config = [
     ### CONFIRM JWT
     { "field"         : "app_data_API_user_auth",
       "data_type"     : "user",
+      "endpoint_type" : "auth",
       "content"       : u"apiviz default API endpoint for user authentication (confirm acces)",
       "root_url"      : "http://localhost:4100/api/auth/tokens/confirm_access",
       "args_options"  : [
@@ -25,6 +26,7 @@ default_data_endpoints_config = [
     ### NEW ACCESS JWT
     { "field"         : "app_data_API_user_new_access_token",
       "data_type"     : "user",
+      "endpoint_type" : "auth",
       "content"       : u"apiviz default API endpoint for user authentication (new acces token) : needs a valid refresh token as token ",
       "root_url"      : "http://localhost:4100/api/auth/tokens/new_access_token",
       "args_options"  : [
@@ -39,6 +41,7 @@ default_data_endpoints_config = [
     ### REGISTER
     { "field"         : "app_data_API_user_register",
       "data_type"     : "user",
+      "endpoint_type" : "auth",
       "content"       : u"apiviz default API endpoint for registering a new user",
       "root_url"      : "http://localhost:4100/api/usr/register/",
       "args_options"  : [
@@ -53,6 +56,7 @@ default_data_endpoints_config = [
     ### LOGIN
     { "field"         : "app_data_API_user_login",
       "data_type"     : "user",
+      "endpoint_type" : "auth",
       "content"       : u"apiviz default API endpoint for login",
       "root_url"      : "http://localhost:4100/api/auth/login/",
       "args_options"  : [
@@ -67,6 +71,7 @@ default_data_endpoints_config = [
     ### USER LIST
     { "field"         : "app_data_API_user_list",
       "data_type"     : "user",
+      "endpoint_type" : "user_modif",
       "content"       : u"apiviz default API endpoint for users list",
       "root_url"      : "http://localhost:4100/api/usr/infos/list",
       "args_options"  : [
@@ -83,6 +88,7 @@ default_data_endpoints_config = [
     ### USER INFOS
     { "field"         : "app_data_API_user_infos",
       "data_type"     : "user",
+      "endpoint_type" : "user_modif",
       "content"       : u"apiviz default API endpoint for user infos",
       "root_url"      : "http://localhost:4100/api/usr/infos/get_one/",
       "args_options"  : [
@@ -98,6 +104,7 @@ default_data_endpoints_config = [
     ### USER EDIT
     { "field"         : "app_data_API_user_edit",
       "data_type"     : "user",
+      "endpoint_type" : "user_modif",
       "content"       : u"apiviz default API endpoint for editing an user",
       "root_url"      : "http://localhost:4100/api/auth/edit/",
       "args_options"  : [
@@ -114,6 +121,7 @@ default_data_endpoints_config = [
     ### USER DELETE
     { "field"         : "app_data_API_user_delete",
       "data_type"     : "user",
+      "endpoint_type" : "user_modif",
       "content"       : u"apiviz default API endpoint for deleting an user",
       "root_url"      : "http://localhost:4100/api/auth/edit/",
       "args_options"  : [
@@ -129,6 +137,7 @@ default_data_endpoints_config = [
     ### USER FORGOT PWD
     { "field"         : "app_data_API_forgot_pwd",
       "data_type"     : "user",
+      "endpoint_type" : "user_modif",
       "content"       : u"apiviz default API endpoint for changing password",
       "root_url"      : "http://localhost:4100/api/auth/password/password_forgotten",
       "args_options"  : [
@@ -170,6 +179,47 @@ default_data_endpoints_config = [
         {  "arg" : "token",             "optional" : True, "in" : ["url","header"],   "default" : "",   "type": "str" },
         {  "arg" : "get_filters",       "optional" : False, "in" : ["url"],           "default" : True, "type": "bool" },
         {  "arg" : "get_uniques",       "optional" : False, "in" : ["url"],           "default" : "tag", "type": "str" },
+      ],
+
+      "filter_options" : [
+        { "name"		: u"Services__",
+          "id"      : "filter_1",
+          "dataType" : "text",
+          "fullname": u"Jours d'ouverture",		
+          "choices"	: [
+            {"name" : u"AC", "fullname" : u"accompagnement"},
+            {"name" : u"FO", "fullname" : u"formation"},
+            {"name" : u"AL", "fullname" : u"accès libre"},
+          ]
+        },
+        { "name"		: u"horairesJours__",
+          "id"      : "filter_2",
+          "dataType" : "text",
+          "fullname": u"Jours d'ouverture",		
+          "choices"	: [
+            {"name" : u"1", "fullname" : u"lundi"},
+            {"name" : u"2", "fullname" : u"mardi"},
+            {"name" : u"3", "fullname" : u"mercredi"},
+            {"name" : u"4", "fullname" : u"jeudi"},
+            {"name" : u"5", "fullname" : u"vendredi"},
+            {"name" : u"6", "fullname" : u"samedi"},
+            {"name" : u"7", "fullname" : u"dimanche"},
+          ]
+        },
+        {	"name"		: u"source__",
+          "id"      : "filter_3",
+          "dataType" : "text",
+          "fullname" 	: u"Source",		
+          "choices"	: [
+            {"name" : u"APTIC",            "fullname" : u"APTIC"},
+            {"name" : u"DRJSCS",           "fullname" : u"DRJSCS"},
+            {"name" : u"Gironde",           "fullname" : u"Gironde"},
+            {"name" : u"Loire-Atlantique", "fullname" : u"Loire-Atlantique"},
+            {"name" : u"MSAP",             "fullname" : u"MSAP"},
+            {"name" : u"NetPublic",        "fullname" : u"NetPublic"},
+          ] , 
+        },
+
       ],
       "app_version"    : version,
       "method"        : "GET",
@@ -263,13 +313,15 @@ default_data_endpoints_config = [
       # "root_url"      : "http://localhost:4000/api/dso/infos/get_one/5c89636d328ed70609be03ab",
       "args_options"  : [
         {  "arg" : "token",            "optional" : True, "in" : ["url","header"], "default" : "",   "type": "str" },
+
         {  "arg" : "map_list",         "optional" : False, "in" : ["url"],         "default" : True, "type": "bool" },
         {  "arg" : "as_latlng",        "optional" : False, "in" : ["url"],         "default" : True, "type": "bool" },
         {  "arg" : "only_geocoded",    "optional" : False, "in" : ["url"],         "default" : True, "type": "bool" },
-        {  "arg" : "page_n",           "optional" : True, "in" : ["url"],           "default" : 1,   "type": "int" },
-        {  "arg" : "results_per_page", "optional" : True, "in" : ["url"],           "default" : 100,   "type": "int" },
-        {  "arg" : "search_for",       "optional" : True, "in" : ["url"],           "default" : "",   "type": "str" },
-        {  "arg" : "search_in",        "optional" : True, "in" : ["url"],           "default" : "",   "type": "str" },
+
+        {  "arg" : "page_n",           "optional" : True, "in" : ["url"],          "default" : 1,    "type": "int" },
+        {  "arg" : "results_per_page", "optional" : True, "in" : ["url"],          "default" : 100,  "type": "int" },
+        {  "arg" : "search_for",       "optional" : True, "in" : ["url"],          "default" : "",   "type": "str" },
+        {  "arg" : "search_in",        "optional" : True, "in" : ["url"],          "default" : "",   "type": "str" },
       ],
       "app_version"    : version,
       "method"        : "GET",

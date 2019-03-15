@@ -1,15 +1,20 @@
 <template>
   <div>
-    <SearchWithFilters/>
+    <SearchWithFilters
+      :filtersConfig="filtersConfig"
+    />
     <main :class="mainClass">
       <FiltersFeedback/>
       <slot/>
     </main>
 
-    <!-- <br><br>
-    DynamicSearchSqueleton // endpointConfig : <br><code>{{ this.endpointConfig }}</code>
-    <br><br>
-    DynamicSearchSqueleton // getEndpointConfigFilters : <br><code>{{ this.getEndpointConfigFilters }}</code> -->
+    <!-- DEBUGGING -->
+      <!-- 
+        <br><br>
+      DynamicSearchSqueleton // endpointConfig : <br><code>{{ this.endpointConfig }}</code>
+      <br><br>
+      DynamicSearchSqueleton // getEndpointConfigFilters : <br><code>{{ this.getEndpointConfigFilters }}</code> 
+    --> 
 
   </div>
 </template>
@@ -31,6 +36,7 @@ export default {
 	props: [
     // 'logo', 
     // 'brand', 
+    'filtersConfig',
     'mainClass'
   ],
   computed : {

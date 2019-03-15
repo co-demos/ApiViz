@@ -6,19 +6,21 @@ import getters from './getters';
 import actions from './actions';
 import mutations from './mutations';
 
+import {makeEmptySelectedFilters} from '../utilsApiviz';
+
 Vue.use(Vuex)
 
 // >>> LEGACY FILTERS
 const INITIAL_FILTER_DESCRIPTIONS = CHOICES_FILTERS_TAGS.filter(c => c.name !== 'methods_')
 
 // >>> LEGACY FILTERS / CREATION - LOW LEVEL FUNCTION
-function makeEmptySelectedFilters(filterDescriptions){
-  const selectedFilters = new Map()
-  for(const f of filterDescriptions){
-    selectedFilters.set(f.name, new Set())
-  }
-  return selectedFilters;
-}
+// function makeEmptySelectedFilters(filterDescriptions){
+//   const selectedFilters = new Map()
+//   for(const f of filterDescriptions){
+//     selectedFilters.set(f.name, new Set())
+//   }
+//   return selectedFilters;
+// }
 
 
 // MAIN STORE
@@ -51,6 +53,7 @@ const storeGenerator = new Vuex.Store({
     
     // FILTERS
     filterDescriptions: INITIAL_FILTER_DESCRIPTIONS,
+    datasetFilters: undefined,
 
     // APIVIZ CONFIG
     config: {},
@@ -66,8 +69,10 @@ const storeGenerator = new Vuex.Store({
       // QUERY FROM USER
       question: {
         query: new URL(location).searchParams.get('text') || '',
-        for_map : false,
-        selectedFilters: makeEmptySelectedFilters(INITIAL_FILTER_DESCRIPTIONS)
+        forMap : false,
+        shuffleSeed : 1234,
+        selectedDatasetFilters: undefined,
+        selectedFilters: makeEmptySelectedFilters(INITIAL_FILTER_DESCRIPTIONS),
       },
       // RESULTS
       answer: {

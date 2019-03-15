@@ -2,8 +2,14 @@
   <div class="map">
     <div class="count-and-tabs-container">
       <div class="container">
-        <CISSearchResultsCountAndTabs :view="VIEW_MAP" :open="!!highlightedProject">
-          <div class="highlighted-project" v-if="highlightedProject" slot="project">
+
+        <CISSearchResultsCountAndTabs 
+          :view="VIEW_MAP" 
+          :open="!!highlightedItem"
+        >
+
+
+          <div class="highlighted-project" v-if="highlightedItem" slot="project">
             
             <!-- BUTTON TO CLOSE PREVIEW -->
             <button class="button close" @click="highlightProject(undefined)">
@@ -16,13 +22,17 @@
             <div class="card">
 
               <!-- BLOCK IMAGE -->
-              <router-link :to="`/project/${highlightedProject.id}`" class="card-image">
-                <img :src="highlightedProject.image" 
-                  :alt="'illustration du projet' + highlightedProject.title">
+              <router-link 
+                :to="`/project/${highlightedItem.id}`" 
+                class="card-image"
+              >
+                <img 
+                  :src="highlightedItem.image" 
+                  :alt="highlightedItem.title">
               </router-link>
               
               <!-- BLOCK ADDRESS -->
-              <div class="card-content" v-if="highlightedProject.address.trim().length > 1">
+              <div class="card-content" v-if="highlightedItem.address.trim().length > 1">
                 <!-- 
                 <span class="icon has-text-light">
                   <i class="fas fa-location-arrow"></i>
@@ -31,19 +41,26 @@
                   <img class="image is-16x16" src="/static/icons/icon_pin.svg">
                 </span>
                 <span class="subtitle is-6">
-                  {{highlightedProject.address.slice(0, 100)}}
+                  {{ highlightedItem.address.slice(0, 100) }}
                 </span>
               </div>
 
               <!-- BLOCK LINK -->
-              <router-link :to="`/project/${highlightedProject.id}`" class="card-content">
-                <h1>{{highlightedProject.title}}</h1>
+              <router-link 
+                :to="`/project/${highlightedItem.id}`" 
+                class="card-content"
+                >
+                <h1>{{highlightedItem.title}}</h1>
               </router-link>
 
               <!-- BLOCK TAGS -->
               <div class="card-content" 
-                v-if="Array.isArray(highlightedProject.tags) && highlightedProject.tags.length >=1">
-                <span v-for="tag in highlightedProject.tags" class="tag" :key="tag">
+                v-if="Array.isArray(highlightedItem.tags) && highlightedItem.tags.length >=1">
+                <span 
+                  v-for="tag in highlightedItem.tags" 
+                  :key="tag"
+                  class="tag"
+                > 
                   {{tag}}
                 </span>
               </div>
@@ -51,7 +68,9 @@
               </div>
 
           </div>
+
         </CISSearchResultsCountAndTabs>
+
       </div>
   </div>
 
@@ -62,25 +81,31 @@
     :bounds="bounds"
     @update:center="centerUpdate"
     @update:zoom="zoomUpdate">
-    <l-control-zoom position="bottomright"/>
-    <l-tile-layer
-        :url="url"
-        :attribution="attribution"/>
-    <v-marker-cluster :options="{showCoverageOnHover: false, iconCreateFunction: iconCreateFunction}">
-        <l-marker v-for="p in displayedProjects"
-            :key="p.id"
-            :lat-lng="{lng: geolocByProjectId.get(p.id).longitude, lat: geolocByProjectId.get(p.id).latitude}"
-            @click="highlightProject(p)">
-            
-            <l-icon
-                iconUrl="/static/icons/icon_pin_plein_violet.svg"
-                :iconSize="p === highlightedProject ? [46, 46] : [29, 29]"/>                    
 
+    <l-control-zoom position="bottomright"/>
+
+    <l-tile-layer
+      :url="url"
+      :attribution="attribution"/>
+
+      <!-- MARKER CLUSTER -->
+      <v-marker-cluster :options="{showCoverageOnHover: false, iconCreateFunction: iconCreateFunction}">
+        <l-marker v-for="p in displayedProjects"
+          :key="p.id"
+          :lat-lng="{lng: geolocByProjectId.get(p.id).longitude, lat: geolocByProjectId.get(p.id).latitude}"
+          @click="highlightProject(p)">
+          <l-icon
+              iconUrl="/static/icons/icon_pin_plein_violet.svg"
+              :iconSize="p === highlightedItem ? [46, 46] : [29, 29]"
+          />                    
         </l-marker>
       </v-marker-cluster>
+
     </l-map>
   </div>
 </template>
+
+
 
 <script>
 import { mapState, mapActions } from 'vuex'
@@ -96,102 +121,131 @@ const FRANCE_CENTER = [46.2276, 2.2137];
 
 
 export default {
-    name: "APIVIZmap",
-    components: {
-      LMap,
-      LControlZoom,
-      LTileLayer,
-      LMarker,
-      LIcon,
-      'v-marker-cluster': Vue2LeafletMarkerCluster,
-      CISSearchResultsCountAndTabs
+  name: "SearchResultsMap",
+
+  components: {
+    LMap,
+    LControlZoom,
+    LTileLayer,
+    LMarker,
+    LIcon,
+    'v-marker-cluster': Vue2LeafletMarkerCluster,
+    CISSearchResultsCountAndTabs
+  },
+
+  props: [
+    'routeConfig', 
+    'endPointConfig'
+  ],
+
+  data() {
+    return {
+
+      // LOCAL DATA
+      VIEW_MAP,
+
+      // ITEMS
+      highlightedItem: undefined,
+
+      // LEAFLET SETUP
+      zoom: 6,
+      maxZoom: 19,
+      currentZoom: 6,
+      center: FRANCE_CENTER,
+      currentCenter: FRANCE_CENTER,
+
+      // url: 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',
+      // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contibutors',
+      
+      url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      
+    };
+  },
+
+  beforeMount: function () {
+    console.log("- - - - - MAP TIME !!!! - - - - - -")
+    console.log("\n - - SearchResultsMap / beforeMount ... ")
+    console.log(" - - SearchResultsMap / routeConfig : \n", this.routeConfig)
+    console.log(" - - SearchResultsMap / endPointConfig : \n", this.endPointConfig)
+    // set up leaflet options
+    const mapOptions = this.endPointConfig.map_options
+
+    this.zoom = mapOptions.zoom
+    this.maxZoom = mapOptions.maxZoom
+    this.currentZoom = mapOptions.currentZoom
+    this.center = mapOptions.center
+    this.currentCenter = mapOptions.currentCenter
+    this.url = mapOptions.url
+    this.attribution = mapOptions.attribution
+    this.subdomains = mapOptions.subdomains
+
+  },
+
+  mounted(){
+
+    console.log(" - - SearchResultsMap / mounted... ")
+    if(this.projects){
+      const projectsWithMissingAddress = this.projects.filter(p => !this.geolocByProjectId.has(p.id))
+
+      if(projectsWithMissingAddress.length >= 1)
+        this.findProjectsGeolocs(projectsWithMissingAddress)
+      }
+  },
+
+  computed: {
+    ...mapState({
+      projects({search}){ return search.answer.result && search.answer.result.projects },
+      displayedProjects(){
+        return this.projects && this.projects.filter(p => this.geolocByProjectId.get(p.id))
+      },
+      bounds(){
+        return this.displayedProjects && new L.LatLngBounds(this.displayedProjects.map(p => ({
+          lng: this.geolocByProjectId.get(p.id).longitude, 
+          lat: this.geolocByProjectId.get(p.id).latitude
+        })));
+      },
+      geolocByProjectId({geolocByProjectId}){return geolocByProjectId}
+    })
+  },
+
+
+
+
+  methods: {
+    zoomUpdate(zoom) {
+      this.currentZoom = zoom;
     },
-
-
-    props: [
-      'routeConfig'
-    ],
-
-    data() {
-      return {
-        zoom: 6,
-        currentZoom: 6,
-        center: FRANCE_CENTER,
-        currentCenter: FRANCE_CENTER,
-
-        // url: 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',
-        // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contibutors',
-        
-        url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19,
-
-        highlightedProject: undefined,
-        VIEW_MAP
-      };
+    centerUpdate(center) {
+      this.currentCenter = center;
     },
-
-
-
-    computed: {
-      ...mapState({
-        projects({search}){ return search.answer.result && search.answer.result.projects },
-        displayedProjects(){
-            return this.projects && this.projects.filter(p => this.geolocByProjectId.get(p.id))
-        },
-        bounds(){
-            return this.displayedProjects && new L.LatLngBounds(this.displayedProjects.map(p => ({
-                lng: this.geolocByProjectId.get(p.id).longitude, 
-                lat: this.geolocByProjectId.get(p.id).latitude
-            })));
-        },
-        geolocByProjectId({geolocByProjectId}){return geolocByProjectId}
-      })
+    highlightProject(p) {
+      this.highlightedItem = p;
     },
+    iconCreateFunction(cluster){
+      const markerCount = cluster.getChildCount();
 
-
-
-
-    methods: {
-        zoomUpdate(zoom) {
-            this.currentZoom = zoom;
-        },
-        centerUpdate(center) {
-            this.currentCenter = center;
-        },
-        highlightProject(p) {
-            this.highlightedProject = p;
-        },
-        iconCreateFunction(cluster){
-            const markerCount = cluster.getChildCount();
-
-            return new L.DivIcon({
-                html: `<span>${markerCount}</span>`, 
-                className: 'cis-marker-cluster',
-                iconSize: new L.Point(40, 40)
-            });
-        },
-        ...mapActions([
-            'findProjectsGeolocs'
-        ])
+      return new L.DivIcon({
+          html: `<span>${markerCount}</span>`, 
+          className: 'cis-marker-cluster',
+          iconSize: new L.Point(40, 40)
+      });
     },
-    beforeUpdate(){
-        if(this.projects){
-            const projectsWithMissingAddress = this.projects.filter(p => !this.geolocByProjectId.has(p.id))
+    ...mapActions([
+      'findProjectsGeolocs'
+    ])
+  },
 
-            if(projectsWithMissingAddress.length >= 1)
-                this.findProjectsGeolocs(projectsWithMissingAddress)
-        }
-    },
-    mounted(){
-        if(this.projects){
-            const projectsWithMissingAddress = this.projects.filter(p => !this.geolocByProjectId.has(p.id))
+  beforeUpdate(){
+    if(this.projects){
+      const projectsWithMissingAddress = this.projects.filter(p => !this.geolocByProjectId.has(p.id))
 
-            if(projectsWithMissingAddress.length >= 1)
-                this.findProjectsGeolocs(projectsWithMissingAddress)
-        }
+      if(projectsWithMissingAddress.length >= 1)
+          this.findProjectsGeolocs(projectsWithMissingAddress)
     }
+  },
+
 };
 </script>
 

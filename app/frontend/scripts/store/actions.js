@@ -1,7 +1,8 @@
 import axios from 'axios';
-import {apiConfig} from '../config/api.js';
+// import {apiConfig} from '../config/api.js';
 import {csvParse} from 'd3-dsv';
 import {searchProjects, getSpiders, searchEnpointCreator, searchEndpointGenerator} from '../utils.js';
+import {makeEmptySelectedFilters} from '../utilsApiviz';
 
 const SOURCE_FILTER_NAME = 'source_';
 
@@ -62,7 +63,17 @@ export default {
 
 
   // FOR FILTERS
+  createDatasetFilters({state, getters}){
+    console.log("\n// createDatasetFilters / state : ", state )
+    const currentFiltersConfig = getters.getEndpointConfigFilters
+    console.log("// createDatasetFilters / currentFiltersConfig : ", currentFiltersConfig)
+    let initialFilters = makeEmptySelectedFilters(currentFiltersConfig.filter_options)
+    console.log("// createDatasetFilters / initialFilters : ", initialFilters)
+  },
+
+  // FOR QUERY SEARCH FILTERS
   toggleFilter({state, commit, dispatch}, {filter, value}){
+    console.log("\n// toggleFilter ..." )
     const selectedFilters = state.search.question.selectedFilters
     const selectedValues = selectedFilters.get(filter)
     if(selectedValues.has(value))
@@ -75,6 +86,7 @@ export default {
   },
 
   emptyOneFilter({state, commit, dispatch}, {filter}){
+    console.log("\n// emptyOneFilter ..." )
     const selectedFilters = state.search.question.selectedFilters
     selectedFilters.set(filter, new Set())
 
@@ -83,40 +95,43 @@ export default {
   },
 
   clearAllFilters({commit, dispatch}){
+    console.log("\n// clearAllFilters ..." )
     commit('clearAllFilters')
     dispatch('search')
   },
 
-
-
-  // FOR SEARCH
+  // FOR QUERY SEARCH TEXT
   searchedTextChanged({commit, dispatch}, {searchedText}){
+    console.log("\n// searchedTextChanged ..." )
     commit('setSearchedText', {searchedText})
     dispatch('search')
   },
 
 
-
-
   // MAIN SEARCH ACTION
   search({state, commit, dispatch}){
 
-    console.log("\n-- search ...", )
+    console.log("\n// search / main action to query endpoint..." )
 
     const {search} = state;
+    console.log("// search / search : ", search )
 
     // const dataset_uri = search.dataset_uri
     const selectedFiltersWithoutSourceurs = new Map(search.question.selectedFilters)
     selectedFiltersWithoutSourceurs.delete(SOURCE_FILTER_NAME);
+    console.log("// search / selectedFiltersWithoutSourceurs : ", selectedFiltersWithoutSourceurs )
 
+    
+    // LEGACY
     const cisTags = filterValuesToCISTags(selectedFiltersWithoutSourceurs)
-
+    console.log("// search / cisTags : ", cisTags )
     const selectedSources = search.question.selectedFilters.get(SOURCE_FILTER_NAME)
-
+    console.log("// search / selectedSources : ", selectedSources )
     // SPIDERS-RELATED --> DEPRECATED
     const spiderIds = selectedSources ? [...selectedSources].map(source => {
     	return [...Object.entries(state.spiders)].find(([id, spider]) => spider.name === source)[0]
     }) : undefined;
+
 
     // abort previous search if any
     if(search.answer.pendingAbort){
@@ -150,12 +165,13 @@ export default {
 
     // perform search
     const searchPendingAbort = searchProjects(endpoint)
-
     commit('setSearchPending', {pendingAbort: searchPendingAbort})
 
     searchPendingAbort.promise
-      .then(({projects, total}) => {
-        commit('setSearchResult', {result: {projects, total}})
+      .then(({items, total}) => {
+        console.log("-- search / total : \n", total )
+        console.log("-- search / items : \n", items )
+        commit('setSearchResult', {result: {items, total}})
       })
       .catch(error => {
         // don't report aborted fetch as errors
@@ -165,7 +181,7 @@ export default {
   },
   
 
-  // DEPRECATED ????? creates error when commented.... 
+  // LEGACY DEPRECATED ????? creates error when commented.... 
   getSpiders({commit}){
     getSpiders()
     .then(spiders => {
@@ -289,51 +305,14 @@ export default {
   setSearchEndpointConfig({commit,getters,state},{path}) {
 
     let routeConfig = getters.getCurrentRouteConfig(path)
-    // console.log("\n-- setSearchEndpointConfig / endpointConfig :\n ", routeConfig)
-    
-    // if (!endpointConfig) { console.log('here ?'); return undefined }
-    // let arr = []
-    // arr.push(commit('setSearchParam',{type:'currentRouteConfig',result:routeConfig}))
-    // arr.push(commit('setSearchParam',{type:'dataset_uri',result:routeConfig.dataset_uri}))
-    // arr.push(commit('setSearchParam',{type:'endpoint_type',result:routeConfig.endpoint_type}))
-    // return Promise.all(arr)
+
     commit('setSearchParam',{type:'currentRouteConfig',result:routeConfig})
     commit('setSearchParam',{type:'dataset_uri',result:routeConfig.dataset_uri})
     commit('setSearchParam',{type:'endpoint_type',result:routeConfig.endpoint_type})
     
     let endpointConfig = getters.getEndpointConfig
     commit('setSearchParam',{type:'endpoint',result:endpointConfig})
-    // console.log("-- setSearchEndpointConfig / state.search : \n", state.search )
+
   },
-  // setCurrentRouteAndEndpointConfig({dispatch}) {
-  //     let arr = []
-  //     arr.push(dispatch('getConfigType',{type:'routes',configTypeEndpoint:'routes?as_list=true'}))
-  //     arr.push(dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints?as_list=true'}))
-  //     return Promise.all(arr)
-  // },
-
-  // setSearchEndpoint({commit,getters,state}) {
-  //   let endpointConfig = getters.getEndpointConfig
-  //   // console.log("\n-- setSearchEndpoint / endpointConfig :\n ", endpointConfig)
-    
-  //   // if (!endpointConfig) { return undefined }
-  //   // let arr = []
-  //   // arr.push(commit('setSearchParam',{type:'endpoint',result:endpointConfig}))
-  //   // return Promise.all(arr)
-  //   commit('setSearchParam',{type:'endpoint',result:endpointConfig})
-  // },
-
-  // - - - - - - - - - - - - // 
-  // DEPRECATED
-  // - - - - - - - - - - - - // 
-  // fetchCurrentEndpoint({commit},{type,configTypeEndpoint}) {
-  //     return true
-  //     // return axios
-  //     //   .get(apiConfig.rootURL+'/config/'+configTypeEndpoint)
-  //     //   .then(response => {
-  //     //     let app_config = (response && response.data && response.data.app_config) ? response.data.app_config : undefined
-  //     //     commit('setConfig', {type:type,result:app_config}); return app_config
-  //     //   })
-  //     //   .catch( err => console.log('there was an error trying to fetch some configuration file',err) )
-  // },
+  
 }

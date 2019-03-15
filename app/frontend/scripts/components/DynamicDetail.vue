@@ -13,7 +13,6 @@
         </a>
 
 
-        
         <!-- DEBUGGING  -->
         <!-- {{ displayableItem }} -->
 
@@ -71,15 +70,27 @@
           <!-- //// COLUMN RIGHT //// -->
 
           <div class="column is-5">
-            <div class="added" v-if="spider">
+
+            <!-- BLOCK MAIN ILLUSTRATION -->
+            <a :href="matchProjectWithConfig('block_wesite')" target="_blank">
+              <img 
+                class="illustration" 
+                :src="itemImage('card_img_main')" 
+                :alt="matchProjectWithConfig('block_title')" 
+              />
+                <!-- :src="projectFormatted.image" -->
+            </a>
+
+
+            <div class="added">
               <div class="columns">
 
-                <div class="column is-8">
+                <div class="column is-12">
                   
                   <!-- BLOCK SOURCE -->
                   <div>
                     <span>
-                      <img src="/static/icons/icon_link.svg">
+                      <!-- <img src="/static/icons/icon_link.svg"> -->
                       {{ sourceData }} {{ matchProjectWithConfig('block_src')}}
                     </span>
                   </div>
@@ -105,13 +116,10 @@
                 </div>
               </div>
 
-              <!-- <a :href="projectFormatted.pageAtSourcer" target="_blank">
-                <img 
-                  class="illustration" 
-                  :src="projectFormatted.image"
-                />
-              </a> -->
 
+
+
+              <!-- BLOCK TAGS -->
               <!-- <div 
                 v-if="Array.isArray(projectFormatted.tags) && projectFormatted.tags.length >= 1" 
                 class="content"
@@ -168,15 +176,21 @@ export default {
 
   props: [
     'routeConfig',
+    'endPointConfig',
     // 'logo', 
     // 'brand'
   ],
 
+  data: () => {
+    return   {
+      displayableItem : null,
+      contentFields : null,
+      isError: false
+    }
+  },
+  
   beforeMount: function () {
     console.log("\n - - DynamicDetail / beforeMount ... ")
-    console.log(" - - DynamicDetail / this.contentFields : \n ", this.contentFields)
-    console.log(" - - DynamicDetail / this.project : \n ", this.project)
-    // console.log(" - - DynamicDetail / this.$store.state.config.global.app_basic_dict : \n ", this.$store.state.config.global.app_basic_dict)
     this.contentFields = this.routeConfig.contents_fields
 
   },
@@ -202,14 +216,6 @@ export default {
     .catch(function(err) { this.isError = true ; console.error('item route error', err) })
   },
 
-  data: () => {
-    return   {
-      displayableItem : null,
-      contentFields : null,
-      isError: false
-    }
-  },
-
   computed: {
     // ...mapState({
     //   project: 'displayedProject',
@@ -218,7 +224,7 @@ export default {
     ...mapState({
         user: 'user'
     }),
-
+    
     // default texts
     backToResults() {
       return this.$store.getters.defaultText({txt:'back_to_results'})
@@ -258,6 +264,10 @@ export default {
 
   methods : {
     
+    itemImage(fieldBlock){
+      return this.$store.getters.getImageUrl({item: this.displayableItem, position: fieldBlock})
+      // return this.item
+    },
     matchProjectWithConfig(fieldBlock) {
       const contentField = this.contentFields.find(f=> f.position == fieldBlock)
       const field = contentField.field

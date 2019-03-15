@@ -5,7 +5,9 @@
     </div>
 
     <div class="container" v-if="!pending">
-      <CISSearchResultsCountAndTabs :view="VIEW_LIST"/>
+      <CISSearchResultsCountAndTabs 
+        :view="VIEW_LIST"
+      />
 
       <div class="columns" v-if="total > 0" >
         <div class="column is-3" v-for="(itemsColumn, i) in projectColumns" :key="i">
@@ -57,6 +59,13 @@ export default {
     'projectContentsFields'
   ],
 
+  data(){
+    return {
+      VIEW_LIST,
+      showCount: undefined,
+    }
+  },
+
   // beforeCreate: function () {
   //   console.log("\n - - SearchResultsList / beforeCreate ... ")
   // },
@@ -70,16 +79,24 @@ export default {
   //   console.log(" - - SearchResultsList / this.$store.state.search : \n ", this.$store.state.search)
   //   // this.projectContentsFields = this.routeConfig.content_fields
   // },
-  // mounted : function () {
-  //   console.log("\n - - SearchResultsList / mounted ... ")
-  //   console.log("- - SearchResultsList / this.$store.state.search.answer.result \n", this.$store.state.search.answer.result)
-  // },
 
-  data(){
-    return {
-      VIEW_LIST,
-      showCount: undefined,
+  mounted(){
+    this.$store.dispatch('setSearchConfigDisplay');
+    this.showCount = this.$store.getters.getSearchConfigDefaultShowCount
+
+    scrollListener = () => {
+      const getSearchConfigScrollBeforeBottomTrigger = this.$store.getters.getSearchConfigScrollBeforeBottomTrigger
+      const getSearchConfigMoreProjectOnScrollCount = this.$store.getters.getSearchConfigMoreProjectOnScrollCount
+
+      if (getSearchConfigMoreProjectOnScrollCount && getSearchConfigScrollBeforeBottomTrigger &&
+        window.innerHeight + window.scrollY >= (document.body.offsetHeight - getSearchConfigScrollBeforeBottomTrigger)
+      ) {
+        if(this.$store.state.search.answer.result && this.showCount < this.$store.state.search.answer.result.projects.length){
+          this.showCount = this.showCount + getSearchConfigMoreProjectOnScrollCount
+        }
+      }
     }
+    window.addEventListener('scroll', scrollListener, {passive: true})
   },
 
   watch: {
@@ -123,27 +140,6 @@ export default {
     }
   },
 
-  mounted(){
-    this.$store.dispatch('setSearchConfigDisplay');
-
-    this.showCount = this.$store.getters.getSearchConfigDefaultShowCount
-
-    scrollListener = () => {
-      const getSearchConfigScrollBeforeBottomTrigger = this.$store.getters.getSearchConfigScrollBeforeBottomTrigger
-      const getSearchConfigMoreProjectOnScrollCount = this.$store.getters.getSearchConfigMoreProjectOnScrollCount
-
-      if (getSearchConfigMoreProjectOnScrollCount && getSearchConfigScrollBeforeBottomTrigger &&
-        window.innerHeight + window.scrollY >= (document.body.offsetHeight - getSearchConfigScrollBeforeBottomTrigger)
-      ) {
-          if(this.$store.state.search.answer.result && this.showCount < this.$store.state.search.answer.result.projects.length){
-            this.showCount = this.showCount + getSearchConfigMoreProjectOnScrollCount
-          }
-      }
-    }
-
-    window.addEventListener('scroll', scrollListener, {passive: true})
-  },
-
   beforeDestroy(){
     window.removeEventListener('scroll', scrollListener)
 
@@ -154,19 +150,18 @@ export default {
 </script>
 
 <style scoped>
+  /* TODO SASS : make a variable out of this background-value. Also used in CISSearchResultsCountAndTabs */
+  .search-results-list{
+      background-color: #F6F6F6;
+      width: 100%;
 
-/* TODO SASS : make a variable out of this background-value. Also used in CISSearchResultsCountAndTabs */
-.search-results-list{
-    background-color: #F6F6F6;
-    width: 100%;
-
-    padding-bottom: 0;
-    padding-top: 1rem;
-}
+      padding-bottom: 0;
+      padding-top: 1rem;
+  }
 
 
-.pending{
-    text-align: center;
-    padding: 2em;
-}
+  .pending{
+      text-align: center;
+      padding: 2em;
+  }
 </style>

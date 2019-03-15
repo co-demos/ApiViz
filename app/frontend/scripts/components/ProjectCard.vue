@@ -10,15 +10,15 @@
         >
         <img 
           class="proj-card-img" 
-          :src="projectInfos.image" 
-          :alt="projectInfos.title" 
+          :src="itemInfos.image" 
+          :alt="itemInfos.title" 
         >
       </router-link>
 
       <!-- BLOCK ADDRESS -->
       <div class="card-content">
 
-        <div class="content" v-if="projectInfos.address">
+        <div class="content" v-if="itemInfos.address">
           <span class="icon">
             <img class="image is-16x16" src="/static/icons/icon_pin.svg">
           </span>
@@ -54,8 +54,8 @@
         </div>
 
         <!-- BLOCK TAGS -->
-        <div class="content" v-if="Array.isArray( projectInfos.tags ) && projectInfos.tags.length >=1">
-          <span v-for="tag in projectInfos.tags" class="tag" :key="tag">
+        <div class="content" v-if="Array.isArray( itemInfos.tags ) && itemInfos.tags.length >=1">
+          <span v-for="tag in itemInfos.tags" class="tag" :key="tag">
               {{ tag }}
           </span>
         </div>
@@ -108,7 +108,7 @@ export default {
     dataset_uri(){
       return this.$store.state.search.dataset_uri
     },
-    projectInfos(){
+    itemInfos(){
       return this.$store.getters.getProjectConfigUniform(this.item)
       // return this.item
     },
@@ -150,7 +150,7 @@ export default {
     },
     projectCity() {
       let cityItem = this.matchProjectWithConfig('block_city')
-      console.log('cityItem : ', cityItem)
+      // console.log('cityItem : ', cityItem)
       let city = ( cityItem || cityItem !== 'None' ) ?  cityItem : this.noAddress
       return city
     },

@@ -1,5 +1,6 @@
 <template>
   <DynamicSearchScreenSqueleton 
+    :filtersConfig="filtersConfig"
     mainClass="list"
     >
     <SearchResultsList
@@ -23,10 +24,17 @@ export default {
 
   props:[
     'routeConfig',
+    'endPointConfig',
+    'filtersConfig'
     // 'logo', 
     // 'brand'
   ],
 
+  data: () => {
+    return   {
+      // localFiltersConfig : undefined,
+    }
+  },
   // beforeCreate: function () {
   //   console.log("\n - - DynamicList / beforeCreate ... ")
   // },
@@ -35,8 +43,10 @@ export default {
   // },
   // beforeMount: function () {
   //   console.log("\n - - DynamicList / beforeMount ... ")
-  //   console.log(" - - DynamicScreen / this.routeConfig : \n ", this.routeConfig)
-
+    // let datasetFilters = this.$store.getters('getRouteConfigFiltersForDataset')
+    // console.log(" - - DynamicScreen / datasetFilters : \n ", localFiltersConfig)
+    // this.localFilters = datasetFilters.filters_description
+    // console.log(" - - DynamicScreen / this.routeConfig : \n ", this.routeConfig)
   // },
   // mounted: function () {
   //   console.log("\n - - DynamicList / mounted ... ")

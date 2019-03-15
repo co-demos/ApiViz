@@ -1,10 +1,14 @@
 <template>
   <DynamicSearchScreenSqueleton 
+    :filtersConfig="filtersConfig"
     mainClass="list"
     >
     <!-- :logo="logo" 
     :brand="brand"  -->
-      <SearchResultsMap/>
+      <SearchResultsMap
+        :routeConfig="routeConfig"
+        :endPointConfig="endPointConfig"
+      />
   </DynamicSearchScreenSqueleton>
 </template>
 
@@ -18,12 +22,14 @@ export default {
   name: 'DynamicMap',  
   props:[
     'routeConfig',
+    'endPointConfig',
+    'filtersConfig',
     // 'logo', 
     // 'brand'
   ],
   components: {
-      DynamicSearchScreenSqueleton, 
-      SearchResultsMap
+    DynamicSearchScreenSqueleton, 
+    SearchResultsMap
   },
   computed: {
     ...mapState({
@@ -33,7 +39,7 @@ export default {
 }
 </script>
 <style>
-.list .filter-feedback{
+  .list .filter-feedback{
     padding-bottom: 0;
-}
+  }
 </style>

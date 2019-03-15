@@ -59,8 +59,8 @@ export const dynamicRoutesGenerator = function(store){
           console.log("... dynamicRoutesGenerator / store.state.config.global is undefined ...")
           store.dispatch('getConfigAll')
           .then(() => {
-              console.log("... dynamicRoutesGenerator / after getConfigAll ... "),
-              next()
+            console.log("... dynamicRoutesGenerator / after getConfigAll ... ");
+            next()
           })
           .catch(() => {console.log( 'error...'); next('error')})
         } else { 

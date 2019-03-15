@@ -132,7 +132,7 @@ CHOICES_FILTERS_TAGS = [
     ]
   },
   
-  {	"name"		: u"pubics_",
+  {	"name"		: u"publics_",
     "fullname"	: u"Publics",		
     "choices"	: [
       # {"name" : u""				, "fullname" : u"Tous publics"},

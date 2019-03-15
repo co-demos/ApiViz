@@ -25,7 +25,11 @@ export default {
     components: {
         NavBar, SearchWithFilters, FiltersFeedback, Footer
     },
-	props: ['logo', 'brand', 'mainClass']
+	props: [
+    'logo', 
+    'brand', 
+    'mainClass'
+  ]
 }
 </script>
 

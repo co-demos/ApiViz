@@ -190,10 +190,14 @@ export function searchEndpointGenerator(obj) {
 }
 
 export function searchEnpointCreator(obj){
-// (text, tags, spiderIds=[], page=1, per_page=100, baseUrl = `${APISearchOrigin}`, token = undefined ){
+
+    // (text, tags, spiderIds=[], page=1, per_page=100, baseUrl = `${APISearchOrigin}`, token = undefined ){
     if (!obj) { throw 'error in searchEnpointCreator: no parameter defined' }
 
-    // the firat argument: no & at the begining
+    console.log("+ + + searchEnpointCreator / ...")
+    console.log("+ + + searchEnpointCreator / obj : \n ", obj)
+
+    // the first argument: no & at the begining
     const pageArg = (typeof obj.page == 'number') ? 'page='+obj.page : 'page=1';
 
     // then come the other arguments

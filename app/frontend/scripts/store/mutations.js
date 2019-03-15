@@ -1,4 +1,5 @@
 import { apiConfig } from '../config/api.js';
+import {makeEmptySelectedFilters} from '../utilsApiviz';
 
 const SOURCE_FILTER_NAME = 'source_';
 
@@ -6,16 +7,22 @@ export default {
 
   // APP MODE AND ROOT URL BACKEND
   setRunMode(state, runMode ){
-    console.log("== setRunMode / runMode : ", runMode )
+    console.log("\n=== setRunMode / runMode : ", runMode )
     state.runMode = runMode
-
-    console.log("== setRunMode / apiConfig : \n ", apiConfig )
+    console.log("=== setRunMode / apiConfig : \n ", apiConfig )
     const roots = apiConfig[runMode]
     state.rootUrlBackend = roots.rootURL
   },
 
 
   // FILTERS-RELATED
+  setDatasetFilters(state, datasetFilter ){
+    console.log("\n=== setDatasetFilters / datasetFilter : ", datasetFilter )
+    const filterOptions = datasetFilter.filter_options
+    console.log("=== setDatasetFilters / filterOptions : ", filterOptions )
+    state.datasetFilters = filterOptions
+  },
+  // LEGACY - SPIDERS RELATED
   setSourceFilter(state, {sourceFilter}){
     const sourceFilterIndex = state.filterDescriptions.findIndex(fd => fd.name === SOURCE_FILTER_NAME)
 
@@ -28,22 +35,23 @@ export default {
       //state.filterDescriptions = state.filterDescriptions
     }
   },
-
   // LEGACY
   setSpiders(state, {spiders}){
     state.spiders = spiders
   },
 
   // SEARCH-RELATED
-  setAsMapSearch (state, isForMap) {
-      state.search.question.for_map = isForMap
+  setIsMapSearch (state, routeConfig) {
+    console.log("\n=== setIsMapSearch / routeConfig : ", routeConfig )
+    state.search.question.forMap = ( routeConfig.dynamic_template === 'DynamicMap' ) ? true : false
+    // console.log("=== setIsMapSearch / state.search : ", state.search )
   },
   setSearchedText (state, {searchedText}) {
     state.search.question.query = searchedText
   },
   setSelectedFilters (state, {selectedFilters}) {
-      // trigger re-render
-      state.search.question.selectedFilters = new Map(selectedFilters)
+    // trigger re-render
+    state.search.question.selectedFilters = new Map(selectedFilters)
   },
   emptyOneFilter (state, {filter}) {
       state.search.question.selectedFilters.set(filter, new Set())
