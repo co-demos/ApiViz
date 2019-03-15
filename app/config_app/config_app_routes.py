@@ -110,6 +110,11 @@ default_routes_config = [
         },
       ],
 
+      "lat_long_fields" : {
+        "latitude" : "lat",
+        "longitude" : "lon"
+      },
+
       "images_fields"        : {
         "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
         "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
@@ -381,6 +386,7 @@ default_routes_config = [
         "card_img_main"  : { "field" : "", "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
         "card_img_top"   : { "field" : "", "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
       },
+
       "ui_options"        : {
         "card_color"     : { "value" : None, "default" : "white", },
         "text_color"     : { "value" : None, "default" : "black", },
