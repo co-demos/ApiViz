@@ -8,7 +8,7 @@ import os, sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-os.environ['FLASK_CONFIGURATION'] = "production"
+os.environ['FLASK_CONFIGURATION'] = "preprod"
 
 from app import app, log_app
 
