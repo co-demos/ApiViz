@@ -12,6 +12,7 @@ correction_env_path = {
   "development"   : "",
   "testing"       : "",
   "production"    : "",
+  "preprod"       : "",
   "default"       : ""       ### 'default' for local development
 }
 repath_env_vars = correction_env_path[config_name]
