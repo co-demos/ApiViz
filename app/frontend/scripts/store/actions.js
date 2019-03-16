@@ -67,8 +67,10 @@ export default {
     console.log("\n// createDatasetFilters / state : ", state )
     const currentFiltersConfig = getters.getEndpointConfigFilters
     console.log("// createDatasetFilters / currentFiltersConfig : ", currentFiltersConfig)
-    let initialFilters = makeEmptySelectedFilters(currentFiltersConfig.filter_options)
-    console.log("// createDatasetFilters / initialFilters : ", initialFilters)
+    if (currentFiltersConfig){
+      let initialFilters = makeEmptySelectedFilters(currentFiltersConfig.filter_options)
+      console.log("// createDatasetFilters / initialFilters : ", initialFilters)
+    }
   },
 
   // FOR QUERY SEARCH FILTERS

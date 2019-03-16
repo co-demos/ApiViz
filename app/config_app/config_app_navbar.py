@@ -44,7 +44,7 @@ default_app_navbar = [
             },
             { "is_visible" : True, 
               "position"   : "exterior_right",
-              "link_to"    : "/",
+              "link_to"    : "https://forum.societenumerique.gouv.fr",
               "is_external_link" : True,
               "link_type"  : "button", ### show btn border
               "icon_class" : "", 

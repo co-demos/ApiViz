@@ -1,3 +1,11 @@
+<style scoped>
+  @import '../../styles/apiviz-colors.scss';
+  .router-link-active{
+    color: $apiviz-primary;
+    text-decoration:underline;
+  }
+</style>
+
 <template>
   <div id="navbar-main" class="navbar-menu">
     <div class="navbar-end">
@@ -8,33 +16,48 @@
 
       <!-- {{ linksOptions }} -->
 
+
+      <!-- NAVBAR ITEMS -->
       <template 
         v-for="(link, index) in this.NavbarLinks.extra_buttons"
         >
         <router-link 
           v-if="link.link_type == 'link' && link.is_visible == true"
           :key="index"
-          class="navbar-item" 
+          :class="`navbar-item`" 
           :to="link.link_to"
           >
             <span>{{ translate(link, 'link_text' ) }}</span>
         </router-link>
       </template>
 
+
+      <!-- BUTTONS LINKS -->
       <div class="buttons"> 
+
         <template 
           v-for="(link, index) in this.NavbarLinks.extra_buttons"
           >
-          <router-link 
-            :key="index"
-            v-if="link.link_type == 'button' && link.is_visible == true"
-            class="navbar-item button is-primary is-outlined is-small" 
+          
+          <router-link
+            v-if="!link.is_external_link && link.link_type == 'button' && link.is_visible == true"
+            :class="`navbar-item button is-primary is-outlined is-small`" 
             :to="link.link_to"
             >
-              <span>{{ translate( link,'link_text' ) }}</span>
+            <span>{{ translate( link,'link_text' ) }}</span>
           </router-link>
 
+          <a
+            v-if="link.is_external_link && link.link_type == 'button' && link.is_visible == true"
+            :class="`navbar-item button is-primary is-outlined is-small test`" 
+            :href="link.link_to"
+            target="_blank"
+            >
+            <span>{{ translate( link,'link_text' ) }}</span>
+          </a>
+
         </template>
+
       </div>
 
       <!-- <div class="navbar-item">
@@ -68,8 +91,15 @@ export default {
   beforeMount: function () {
     // console.log("// NavbarLinks : ", this.NavbarLinks)
   },
-
+  computed : {
+  },
   methods : {
+    // isCurrentRoute(linkTo){
+    //   console.log("\n...... linkTo : ", linkTo)
+    //   let path = this.$router.currentRoute.path
+    //   console.log("...... path : ", path)
+    //   return ( path === linkTo ) ? true : false 
+    // },
     translate( textsToTranslate, listField ) {
       // console.log("textsToTranslate : ", textsToTranslate )
       let listTexts = textsToTranslate.link_text

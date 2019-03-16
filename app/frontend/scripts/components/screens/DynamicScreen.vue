@@ -10,9 +10,9 @@
       :brand="this.globalConfig.app_title.content"
       :appLocales="this.globalConfig.app_languages" 
 
-      :currentRouteConfig="this.routeConfig"
-      :localRouteConfig="localRouteConfig.field"
     ></NavBar>
+      <!-- :currentRouteConfig="this.routeConfig"
+      :localRouteConfig="localRouteConfig.field" -->
         <!-- :logo="logo" 
         :brand="brand"  -->
 
@@ -31,6 +31,7 @@
       <!-- globalConfig : <br><code> {{ this.globalConfig }} </code> <br><br> -->
       <!-- stylesConfig : <br><code> {{ this.stylesConfig }} </code> <br><br> -->
       <!-- routeConfig.field : <code>{{ this.routeConfig.field }} </code> <br><br> -->
+      <!-- routeConfig : <code>{{ this.routeConfig }} </code> <br><br> -->
       <!-- footerConfig : <br><code> {{ this.footerConfig }} </code> <br><br> -->
       <!-- search.endpoint_type : <br><code> {{ this.$store.state.search.endpoint_type }} </code> <br><br> -->
       <!-- search.endpoint : <br><code> {{ this.$store.state.search.endpoint }} </code> <br><br> -->
@@ -99,7 +100,7 @@
       </div>
     </footer>
 
-    <!-- CREDIT / REMOTE FOOTER -->
+    <!-- CREDITS CODEMOS / REMOTE FOOTER -->
     <DynamicStaticRaw 
       :routeConfig="localRouteConfig"
       :templateURL="'https://raw.githubusercontent.com/co-demos/structure/master/pages-html/codemos-footer.html'"
@@ -229,7 +230,7 @@ export default {
         console.log('- - DynamicScreen / watch / (after) setIsMapSearch : ', this.$store.state);
         this.localEndpointConfig = this.$store.getters.getEndpointConfig
         console.log('- - DynamicScreen / watch / (after) localEndpointConfig : ', this.localEndpointConfig);
-        if (this.currentDatasetURI !== this.localEndpointConfig.dataset_uri ) {
+        if (this.localEndpointConfig && this.currentDatasetURI !== this.localEndpointConfig.dataset_uri ) {
           this.currentDatasetURI = this.currentDatasetURI
           this.localFiltersConfig = this.$store.getters.getEndpointConfigFilters
         }

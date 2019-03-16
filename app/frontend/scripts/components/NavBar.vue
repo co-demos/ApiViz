@@ -1,23 +1,23 @@
 <template>
     <nav class="navbar is-white is-fixed-top" role="navigation" aria-label="main navigation">
 
-        <div class="container">
-            
-            <Brand 
-                :logo="logo" 
-                :brand="brand"
-            ></Brand>
+      <div class="container">
+          
+        <Brand 
+          :logo="logo" 
+          :brand="brand"
+        ></Brand>
 
-            <!-- DEBUGGING -->
-            <!-- currentRouteConfig : {{ currentRouteConfig.field }} -
-            localRouteConfig : {{ localRouteConfig }} -->
+        <!-- DEBUGGING -->
+        <!-- currentRouteConfig : {{ currentRouteConfig.field }} -
+        localRouteConfig : {{ localRouteConfig }} -->
 
-            <NavBarContent 
-                :NavbarLinks="this.navbarConfig.links_options"
-                :user="user"
-            ></NavBarContent>
+        <NavBarContent 
+          :NavbarLinks="this.navbarConfig.links_options"
+          :user="user"
+        ></NavBarContent>
 
-        </div>
+      </div>
 
     </nav>
 </template>
@@ -27,21 +27,21 @@ import Brand from './Brand.vue';
 import NavBarContent from './NavBarContent.vue';
 
 export default {
-    components: {
-        Brand,
-        NavBarContent
-    },
-    props: [
-        'navbarConfig',
-        'appLocales',
-        'logo', 
-        'brand', 
-        
-        // 'currentRouteConfig',
-        // 'localRouteConfig',
+  components: {
+    Brand,
+    NavBarContent
+  },
+  props: [
+    'navbarConfig',
+    'appLocales',
+    'logo', 
+    'brand', 
+    
+    // 'currentRouteConfig',
+    // 'localRouteConfig',
 
-        'user'
-    ]
+    'user'
+  ]
 }
 </script>
 
