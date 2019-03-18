@@ -77,9 +77,9 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
       return state.config.routes.find(function(r) {
         return r.urls.indexOf(currentRoute) !== -1;
       });
-    } catch (e) { 
-      console.log('err',e); 
-      return undefined 
+    } catch (e) {
+      console.log('err',e);
+      return undefined
     }
   }
   const getRouteConfigListForDataset = state => {
@@ -121,12 +121,12 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 // ITEMS CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
   const getProjectConfig = (state) => (position) => {
-    try {   
+    try {
       return state.search.currentRouteConfig.contents_fields.find( function(f) {  return f.position === position; });
-    }       
-    catch (e) { 
-      console.log('err',e); 
-      return undefined 
+    }
+    catch (e) {
+      console.log('err',e);
+      return undefined
     }
   }
 
@@ -144,7 +144,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
   }
 
   const getResults = (state) => {
-    return state.search.answer.result && state.search.answer.results.projects
+    return state.search.answer.result && state.search.answer.result.projects
   }
 
   const getGeoResults = (state, getters) => {
@@ -202,7 +202,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 
     const defaultImages = getters.getRouteConfigDefaultDatasetImages
     console.log("getImageUrl - defaultImages : ", defaultImages)
-    
+
     const routeContentImagesFields = state.search.currentRouteConfig.images_fields
     console.log("getImageUrl - routeContentImagesFields : ", routeContentImagesFields)
 
@@ -289,8 +289,8 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 // FINALLY EXPORT GETTERS
 // - - - - - - - - - - - - - - - //
   export default {
-    getTranslation, 
-    
+    getTranslation,
+
     getRootUrlBackend,
     getSearchConfigColumnCount,
     getSearchConfigDefaultShowCount,
