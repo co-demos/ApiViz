@@ -113,22 +113,22 @@ export default {
   // MAIN SEARCH ACTION
   search({state, commit, dispatch, getters}){
 
-    console.log("\n// search / main action to query endpoint..." )
+    // console.log("\n// search / main action to query endpoint..." )
 
     const {search} = state;
-    console.log("// search / search : ", search )
+    // console.log("// search / search : ", search )
 
     // const dataset_uri = search.dataset_uri
     const selectedFiltersWithoutSourceurs = new Map(search.question.selectedFilters)
     selectedFiltersWithoutSourceurs.delete(SOURCE_FILTER_NAME);
-    console.log("// search / selectedFiltersWithoutSourceurs : ", selectedFiltersWithoutSourceurs )
+    // console.log("// search / selectedFiltersWithoutSourceurs : ", selectedFiltersWithoutSourceurs )
 
 
     // LEGACY
     const cisTags = filterValuesToCISTags(selectedFiltersWithoutSourceurs)
-    console.log("// search / cisTags : ", cisTags )
+    // console.log("// search / cisTags : ", cisTags )
     const selectedSources = search.question.selectedFilters.get(SOURCE_FILTER_NAME)
-    console.log("// search / selectedSources : ", selectedSources )
+    // console.log("// search / selectedSources : ", selectedSources )
     // SPIDERS-RELATED --> DEPRECATED
     const spiderIds = selectedSources ? [...selectedSources].map(source => {
     	return [...Object.entries(state.spiders)].find(([id, spider]) => spider.name === source)[0]
@@ -155,19 +155,19 @@ export default {
       // pagination
       page:1,
       per_page:100,
-      // here for map requests 
+      // here for map requests
       map_list : search.question.for_map,
       as_latlng : search.question.for_map
-      
+
     })
-    console.log("-- search / endpoint : \n", endpoint )
+    // console.log("-- search / endpoint : \n", endpoint )
 
     // TEST ENDPOINT GENERATOR
     let endpointBis = searchEndpointGenerator({
       endpointConfig : state.search.endpoint,
       questionParams : state.search.question
     })
-    console.log("-- search / endpoint : \n", endpointBis )
+    // console.log("-- search / endpoint : \n", endpointBis )
 
     // special endpoint only for map
     if (state.search.question.forMap){

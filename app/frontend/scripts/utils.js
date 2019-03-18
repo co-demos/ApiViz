@@ -192,24 +192,24 @@ export function searchEndpointGenerator(obj) {
   const questionParams = obj.questionParams
 
   // base query to be completed with args + questions
-  let baseQuery = endpointConfig.root_url 
+  let baseQuery = endpointConfig.root_url
 
-  
+
   // for map query
   if (questionParams.forMap === true){
     // find map-related args
     // baseQuery = baseQuery + "?map_list=true&as_latlng=true"
     baseQuery = baseQuery + "?map_list=true"
   }
-  
+
   // loop in routeArgs + queries then append to baseQuery
   for (let key in endpointConfigArgs ) {
-    console.log("+ + + searchEndpointGenerator / endpointConfigArgs[key] : ", endpointConfigArgs[key])
+    // console.log("+ + + searchEndpointGenerator / endpointConfigArgs[key] : ", endpointConfigArgs[key])
 
   }
 
 
-  console.log("+ + + searchEndpointGenerator / baseQuery : \n ", baseQuery)
+  // console.log("+ + + searchEndpointGenerator / baseQuery : \n ", baseQuery)
 
   return baseQuery
 }
@@ -219,8 +219,8 @@ export function searchEnpointCreator(obj){
     // (text, tags, spiderIds=[], page=1, per_page=100, baseUrl = `${APISearchOrigin}`, token = undefined ){
     if (!obj) { throw 'error in searchEnpointCreator: no parameter defined' }
 
-    console.log("+ + + searchEnpointCreator / ...")
-    console.log("+ + + searchEnpointCreator / obj : \n ", obj)
+    // console.log("+ + + searchEnpointCreator / ...")
+    // console.log("+ + + searchEnpointCreator / obj : \n ", obj)
 
     // the first argument: no & at the begining
     const pageArg = (typeof obj.page == 'number') ? 'page='+obj.page : 'page=1';
