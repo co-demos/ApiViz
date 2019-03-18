@@ -7,9 +7,9 @@ export default {
 
   // APP MODE AND ROOT URL BACKEND
   setRunMode(state, runMode ){
-    console.log("\n=== setRunMode / runMode : ", runMode )
+    // console.log("\n=== setRunMode / runMode : ", runMode )
     state.runMode = runMode
-    console.log("=== setRunMode / apiConfig : \n ", apiConfig )
+    // console.log("=== setRunMode / apiConfig : \n ", apiConfig )
     const roots = apiConfig[runMode]
     state.rootUrlBackend = roots.rootURL
   },
@@ -42,7 +42,7 @@ export default {
 
   // SEARCH-RELATED
   setIsMapSearch (state, routeConfig) {
-    console.log("\n=== setIsMapSearch / routeConfig : ", routeConfig )
+    // console.log("\n=== setIsMapSearch / routeConfig : ", routeConfig )
     state.search.question.forMap = ( routeConfig.dynamic_template === 'DynamicMap' ) ? true : false
     // console.log("=== setIsMapSearch / state.search : ", state.search )
   },
@@ -74,7 +74,7 @@ export default {
 
   // RESULTS-RELATED
   setSearchResult(state, {result}){
-    console.log("== setSearchResult / result : ", result)
+    // console.log("== setSearchResult / result : ", result)
     state.search.answer = {
       pendingAbort: undefined,
       result,

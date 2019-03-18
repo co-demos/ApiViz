@@ -184,8 +184,8 @@ export default {
 
     searchPendingAbort.promise
       .then(({projects, total}) => {
-        console.log("-- search / total : \n", total )
-        console.log("-- search / projects : \n", projects )
+        // console.log("-- search / total : \n", total )
+        // console.log("-- search / projects : \n", projects )
         commit('setSearchResult', {result: {projects, total}})
         // if search is for map either fill resultMap if empty or do nothing
         // commit ('setSearchResultMap', {resultMap: {projects, total}})

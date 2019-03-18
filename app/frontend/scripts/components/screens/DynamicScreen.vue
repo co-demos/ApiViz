@@ -157,7 +157,7 @@ export default {
   
   beforeMount: function () {
 
-    console.log("\n - - DynamicScreen / beforeMount ... ")
+    // console.log("\n - - DynamicScreen / beforeMount ... ")
     // console.log(" - - state.config : \n ", this.$store.state.config)
     console.log(" - - DynamicScreen / this.routeConfig : \n ", this.routeConfig)
     
@@ -165,26 +165,26 @@ export default {
     this.localRouteConfig = this.routeConfig
 
     const currentTemplate = this.localRouteConfig.dynamic_templates 
-    console.log(" - - DynamicScreen / currentTemplate : ", currentTemplate)
-    console.log(" - - DynamicScreen / localRouteConfig.dynamic_templates  : ", this.localRouteConfig.dynamic_templates )
+    // console.log(" - - DynamicScreen / currentTemplate : ", currentTemplate)
+    // console.log(" - - DynamicScreen / localRouteConfig.dynamic_templates  : ", this.localRouteConfig.dynamic_templates )
 
     if( this.routeConfig.dynamic_templates !== 'DynamicStatic' ) {
 
       // setting localDatasetURI
       this.currentDatasetURI = this.$store.state.search.dataset_uri
-      console.log(" - - DynamicScreen / currentDatasetURI : ", this.currentDatasetURI)
+      // console.log(" - - DynamicScreen / currentDatasetURI : ", this.currentDatasetURI)
 
       // setting localEndpointConfig
-      console.log(" - - DynamicScreen / route IS for a dynamic content ... ")
+      // console.log(" - - DynamicScreen / route IS for a dynamic content ... ")
       let path = this.$router.currentRoute.path
-      console.log(" - - DynamicScreen / path : ", path )
+      // console.log(" - - DynamicScreen / path : ", path )
       this.$store.dispatch('setSearchEndpointConfig', { path : path })
       // this.$store.dispatch('setSearchEndpoint')
       this.localEndpointConfig = this.$store.getters.getEndpointConfig
       console.log(" - - DynamicScreen / localEndpointConfig : ", this.localEndpointConfig )
 
       // setting filters
-      console.log("\n - - DynamicScreen / setting filters ... ")
+      // console.log("\n - - DynamicScreen / setting filters ... ")
       this.localFiltersConfig = this.$store.getters.getEndpointConfigFilters
       console.log("\n - - DynamicScreen / this.localFiltersConfig : ", this.localFiltersConfig)
       // this.$store.commit('setDatasetFilters', this.localFiltersConfig )
@@ -198,7 +198,7 @@ export default {
   },
 
   mounted: function () {
-    console.log("\n - - DynamicScreen / mounted ... ")
+    // console.log("\n - - DynamicScreen / mounted ... ")
     // here we check what kind of dynamic route we have to provide
     if(!this.routeConfig) {
       this.$router.push({name:'error'})
@@ -242,12 +242,12 @@ export default {
     },
 
     // watch the localRouteConfig
-    localRouteConf: function (newConf, oldConf) {
-      console.log('\n- - DynamicScreen / watch localRouteConf...');
-      console.log('- - DynamicScreen / newConf : ', newConf);
-      console.log('- - DynamicScreen / oldConf : ', oldConf);
+    // localRouteConf: function (newConf, oldConf) {
+    //   console.log('\n- - DynamicScreen / watch localRouteConf...');
+    //   console.log('- - DynamicScreen / newConf : ', newConf);
+    //   console.log('- - DynamicScreen / oldConf : ', oldConf);
 
-    }
+    // }
   },
 
 
@@ -287,7 +287,7 @@ export default {
     },
     routeConfig(){
       let routeConf = this.$store.getters.getCurrentRouteConfig(this.$router.currentRoute.path)
-      console.log(" - - DynamicScreen / routeConf : ", routeConf)
+      // console.log(" - - DynamicScreen / routeConf : ", routeConf)
       return routeConf
     },
     // endPointConfig(){     
@@ -310,16 +310,10 @@ export default {
     // BANNER
     getCurrentBanner () {
       let bannersSet = this.stylesConfig.app_banners.banners_set
-      console.log("- - DynamicScreen / bannersSet : ", bannersSet)
-
-      console.log(" - - DynamicScreen / localRouteConfig : ", this.localRouteConfig )
       const routeBannerUri = this.localRouteConfig.banner.banner_uri
-      console.log("- - DynamicScreen / routeBannerUri : ", routeBannerUri )
-
       let resultSet = bannersSet.find(function(b) {
         return b.banner_uri == routeBannerUri
       })
-      console.log("- - DynamicScreen / resultSet : ", resultSet)
       return resultSet
     },
 

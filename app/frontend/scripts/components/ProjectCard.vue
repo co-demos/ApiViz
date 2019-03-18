@@ -88,9 +88,9 @@ export default {
   //   console.log("\n - - ProjectCard / created ... ")
   // },
   beforeMount: function () {
-    console.log("\n - - ProjectCard / beforeMount ... ")
+    // console.log("\n - - ProjectCard / beforeMount ... ")
     // console.log(" - - ProjectCard / this.contentFields : \n ", this.contentFields)
-    console.log(" - - ProjectCard / this.item : \n ", this.item)
+    // console.log(" - - ProjectCard / this.item : \n ", this.item)
     // console.log(" - - ProjectCard / this.$store.state.config.global.app_basic_dict : \n ", this.$store.state.config.global.app_basic_dict)
 
   },

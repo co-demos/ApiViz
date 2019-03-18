@@ -37,29 +37,24 @@ export const dynamicRoutesGenerator = function(store){
 
       beforeEnter(to, from, next){
 
-        console.log("\n... dynamicRoutesGenerator / beforeEnter ... ")
+        // console.log("\n... dynamicRoutesGenerator / beforeEnter ... ")
         
         // SET RUN MODE AND rootUrlBackend FOR SEARCHES
         if ( typeof store.state.runMode === 'undefined' || typeof store.state.rootUrlBackend === 'undefined' ) {
-          console.log("... dynamicRoutesGenerator / configName not defined")
           const configName = getConfigName('config_name')
-          console.log("... dynamicRoutesGenerator / configName : ", configName)
           store.commit('setRunMode', configName)
         }
-        console.log("... dynamicRoutesGenerator / store.state.runMode : ", store.state.runMode)
-        console.log("... dynamicRoutesGenerator / store.state.rootUrlBackend : ", store.state.rootUrlBackend)
-
 
         console.log("... dynamicRoutesGenerator / store.state :  \n ", store.state)
-        console.log("... dynamicRoutesGenerator / store.state.config :  \n ", store.state.config)
+        // console.log("... dynamicRoutesGenerator / store.state.config :  \n ", store.state.config)
 
 
         // CHECK IF config.global is undefined yet
         if ( typeof store.state.config.global === 'undefined' ) {
-          console.log("... dynamicRoutesGenerator / store.state.config.global is undefined ...")
+          // console.log("... dynamicRoutesGenerator / store.state.config.global is undefined ...")
           store.dispatch('getConfigAll')
           .then(() => {
-            console.log("... dynamicRoutesGenerator / after getConfigAll ... ");
+            // console.log("... dynamicRoutesGenerator / after getConfigAll ... ");
             next()
           })
           .catch(() => {console.log( 'error...'); next('error')})

@@ -47,7 +47,6 @@ export default {
       user: 'user'
     }),
     hasFilters(){
-      console.log("hasFilters / this.dynamicTemplate : ", this.dynamicTemplate)
       return (this.dynamicTemplate === 'DynamicStatic' )? false : true
     }
   },

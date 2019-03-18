@@ -137,7 +137,7 @@ export function getItemById(id,root_url){
 
 export function searchItems(url = undefined){
 
-  console.log("+ + + searchItems ... ");
+  // console.log("+ + + searchItems ... ");
 
   // abort fetch if this is supported
   // abort manually when response arrives otherwise
@@ -159,7 +159,7 @@ export function searchItems(url = undefined){
         throw error
       }
       else{
-        console.log("+ + + searchItems (response) / data :", data);
+        // console.log("+ + + searchItems (response) / data :", data);
         return {
           projects: data
           && data.data_raw
@@ -181,7 +181,7 @@ export function searchItems(url = undefined){
 export function searchEndpointGenerator(obj) {
   if (!obj) { throw 'error in searchEndpointGenerator: no parameter defined' }
 
-  console.log("+ + + searchEndpointGenerator / ...")
+  // console.log("+ + + searchEndpointGenerator / ...")
   console.log("+ + + searchEndpointGenerator / obj : \n ", obj)
 
   // endpoint config related
