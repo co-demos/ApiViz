@@ -42,7 +42,7 @@
                   @change="changeFilter"
                   >
                 <label :for="choice.name">
-                    {{ choice.fullname }}
+                  {{ choice.fullname }}
                 </label>
               </div>
             </a>
@@ -50,7 +50,8 @@
             <div class="navbar-item">
               <button class="button is-text is-fullwidth has-text-primary"
                 :data-filter="filter.name"
-                @click="emptyOneFilter({filter: filter.name})">
+                @click="emptyOneFilter({filter: filter.name})"
+              >
                 {{translate(endpointConfigFilters, 'reset' )}}
               </button>
             </div>

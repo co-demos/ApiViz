@@ -117,7 +117,7 @@ export function getSpiders(){
 
 // This function is super-inefficient
 // TODO Create a server-side end-point to get only one project
-export function getProjectById(id,root_url){
+export function getItemById(id,root_url){
   const url = searchEnpointCreator({
     page:1,
     per_page:2,
@@ -135,9 +135,9 @@ export function getProjectById(id,root_url){
 }
 
 
-export function searchProjects(url = undefined){
+export function searchItems(url = undefined){
 
-  console.log("+ + + searchProjects ... ");
+  console.log("+ + + searchItems ... ");
 
   // abort fetch if this is supported
   // abort manually when response arrives otherwise
@@ -147,7 +147,6 @@ export function searchProjects(url = undefined){
   return {
     abort(){
       searchAborted = true
-
       if(ac)
           ac.abort()
     },
@@ -160,7 +159,7 @@ export function searchProjects(url = undefined){
         throw error
       }
       else{
-        console.log("+ + + searchProjects (response) / data :", data);
+        console.log("+ + + searchItems (response) / data :", data);
         return {
           projects: data
           && data.data_raw
@@ -185,13 +184,31 @@ export function searchEndpointGenerator(obj) {
   console.log("+ + + searchEndpointGenerator / ...")
   console.log("+ + + searchEndpointGenerator / obj : \n ", obj)
 
+  // endpoint config related
   const endpointConfig = obj.endpointConfig
-  const questionParms = obj.questionParms
+  const endpointConfigArgs = endpointConfig.args_options
 
+  // question related
+  const questionParams = obj.questionParams
 
-  let baseQuery = endpointConfig.root_url + '?'
+  // base query to be completed with args + questions
+  let baseQuery = endpointConfig.root_url 
 
+  
+  // for map query
+  if (questionParams.forMap === true){
+    // find map-related args
+    // baseQuery = baseQuery + "?map_list=true&as_latlng=true"
+    baseQuery = baseQuery + "?map_list=true"
+  }
+  
   // loop in routeArgs + queries then append to baseQuery
+  for (let key in endpointConfigArgs ) {
+    console.log("+ + + searchEndpointGenerator / endpointConfigArgs[key] : ", endpointConfigArgs[key])
+
+  }
+
+
   console.log("+ + + searchEndpointGenerator / baseQuery : \n ", baseQuery)
 
   return baseQuery

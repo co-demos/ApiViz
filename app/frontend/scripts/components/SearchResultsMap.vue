@@ -76,7 +76,9 @@
 
   <l-map
     :zoom="zoom"
-    :options="{zoomControl: false}"
+    :min-zoom="minZoom"
+    :max-zoom="maxZoom"
+    :options="{ zoomControl: false }"
     :center="center"
     @update:center="centerUpdate"
     @update:zoom="zoomUpdate"
@@ -179,6 +181,7 @@ export default {
       // LEAFLET SETUP
       zoom: 6,
       maxZoom: 19,
+      minZoom: 2,
       currentZoom: 6,
       center: FRANCE_CENTER,
       currentCenter: FRANCE_CENTER,
@@ -205,6 +208,7 @@ export default {
 
     this.zoom = mapOptions.zoom
     this.maxZoom = mapOptions.maxZoom
+    this.minZoom = mapOptions.minZoom
     this.currentZoom = mapOptions.currentZoom
     this.center = mapOptions.center
     this.currentCenter = mapOptions.currentCenter
@@ -230,6 +234,7 @@ export default {
 
     ...mapState({
       projects({search}){ return search.answer.result && search.answer.result.projects },
+      items({search}){ return search.answer.resultMap && search.answer.result.projects },
       // displayedProjects(){
       //   return this.projects && this.projects.filter(p => this.geolocByProjectId.get(p.id))
       // },
@@ -274,6 +279,9 @@ export default {
     },
     getLatLng(item){
       return { lat : this.checkIfStringFloat(item.lat) , lng : checkIfStringFloat(item.lon) }
+    },
+    getLatLngDense(item){
+      return { lat : this.checkIfStringFloat(item.latlng[0]) , lng : checkIfStringFloat(item.latlng[1]) }
     },
     checkIfItemHasLatLng(item){
       return this.checkIfStringFloat(item.lat) && this.checkIfStringFloat(item.lon)

@@ -80,6 +80,7 @@ const storeGenerator = new Vuex.Store({
       answer: {
         pendingAbort: undefined, // function that can be used to abort the current pending search
         result: undefined, // search results {projects, total}
+        resultMap : undefined, // complete search results with minimal items as { _id, latlng } --> to be loaded just once for better experience + getters
         error: undefined // if last search ended in an error
       },
       // UI IN SEARCH PAGES CONFIG

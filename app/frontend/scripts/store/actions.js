@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import {apiConfig} from '../config/api.js';
 import {csvParse} from 'd3-dsv';
-import {searchProjects, getSpiders, searchEnpointCreator, searchEndpointGenerator} from '../utils.js';
+import {searchItems, getSpiders, searchEnpointCreator, searchEndpointGenerator} from '../utils.js';
 import {makeEmptySelectedFilters} from '../utilsApiviz';
 
 const SOURCE_FILTER_NAME = 'source_';
@@ -146,7 +146,7 @@ export default {
     //create the endpoints
     let root_url = (state.search && state.search.endpoint) ? state.search.endpoint.root_url : dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints'})
 
-    const endpoint = searchEnpointCreator({
+    let endpoint = searchEnpointCreator({
       baseUrl:root_url,
       // query from main input in search bar
       search: search.question.query,
@@ -163,19 +163,23 @@ export default {
     console.log("-- search / endpoint : \n", endpoint )
 
     // TEST ENDPOINT GENERATOR
-    const endpointBis = searchEndpointGenerator({
+    let endpointBis = searchEndpointGenerator({
       endpointConfig : state.search.endpoint,
       questionParams : state.search.question
     })
     console.log("-- search / endpoint : \n", endpointBis )
 
+    // special endpoint only for map
+    if (state.search.question.forMap){
+      endpoint = endpointBis
+    }
 
 
 
 
 
-    // perform search
-    const searchPendingAbort = searchProjects(endpoint)
+    // perform search --> !!! only request map search if map search results empty in store !!! 
+    const searchPendingAbort = searchItems(endpoint)
     commit('setSearchPending', { pendingAbort: searchPendingAbort })
 
     searchPendingAbort.promise
@@ -183,6 +187,8 @@ export default {
         console.log("-- search / total : \n", total )
         console.log("-- search / projects : \n", projects )
         commit('setSearchResult', {result: {projects, total}})
+        // if search is for map either fill resultMap if empty or do nothing
+        // commit ('setSearchResultMap', {resultMap: {projects, total}})
       })
       .catch(error => {
         // don't report aborted fetch as errors

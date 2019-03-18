@@ -81,6 +81,14 @@ export default {
       error: undefined
     }
   },
+  setSearchResultMap(state, {resultMap}){
+    console.log("== setSearchResultMap / result : ", resultMap)
+    state.search.answer = {
+      pendingAbort: undefined,
+      resultMap,
+      error: undefined
+    }
+  },
   setSearchPending(state, {pendingAbort}){
     state.search.answer = {
       pendingAbort,

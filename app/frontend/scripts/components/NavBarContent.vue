@@ -1,8 +1,8 @@
-<style scoped>
+<style lang="scss" scoped>
   @import '../../styles/apiviz-colors.scss';
   .router-link-active{
-    color: $apiviz-primary;
-    text-decoration:underline;
+    text-decoration: underline;
+    color: $apiviz-primary ;
   }
 </style>
 
@@ -41,6 +41,7 @@
           
           <router-link
             v-if="!link.is_external_link && link.link_type == 'button' && link.is_visible == true"
+            :key="index"
             :class="`navbar-item button is-primary is-outlined is-small`" 
             :to="link.link_to"
             >
@@ -49,6 +50,7 @@
 
           <a
             v-if="link.is_external_link && link.link_type == 'button' && link.is_visible == true"
+            :key="index"
             :class="`navbar-item button is-primary is-outlined is-small test`" 
             :href="link.link_to"
             target="_blank"

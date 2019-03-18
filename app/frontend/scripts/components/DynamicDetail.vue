@@ -166,7 +166,7 @@ import {mapState} from 'vuex'
 
 import NotFoundError from './NotFoundError.vue';
 
-import {getProjectById} from '../utils.js';
+import {getItemById} from '../utils.js';
 
 export default {
   name: 'DynamicDetail',
@@ -207,7 +207,7 @@ export default {
       }
     }, 100);
 
-    getProjectById(this.$route.query.id,this.$store.state.search.endpoint.root_url)
+    getItemById(this.$route.query.id,this.$store.state.search.endpoint.root_url)
     .then(item => {
       // this.$store.commit('setDisplayedProject', {item})
       console.log(" - - DynamicDetail / item : \n ", item)
@@ -306,107 +306,107 @@ export default {
 
 
 <style lang="scss" scoped>
-@import '../../styles/apiviz-colors.scss';
-@import '../../styles/apiviz-misc.scss';
+  @import '../../styles/apiviz-colors.scss';
+  @import '../../styles/apiviz-misc.scss';
 
-main{
-  background-color: $apiviz-grey-background;
-  margin-top: $apiviz-navbar-height;
-}
-
-a.back{
-  padding: 1em 0;
-  display: block;
-
-  color: $apiviz-text-color;
-
-  img{
-      height: 1.5em;
-      transform: translateY(0.4em);
+  main{
+    background-color: $apiviz-grey-background;
+    margin-top: $apiviz-navbar-height;
   }
 
-  span{
-      margin-left: 1em;
-  }
-}
+  a.back{
+    padding: 1em 0;
+    display: block;
 
-.columns{
-    margin-top: 0;
-}
+    color: $apiviz-text-color;
 
-.illustration{
-  width: 100%;
-  margin-bottom: 1em;
-}
+    img{
+        height: 1.5em;
+        transform: translateY(0.4em);
+    }
 
-.description, .added{
-  background-color: white;
-  padding: 1em;
-  margin-bottom: 1em;
-}
-
-.description{
-  h1{
-      font-weight: bold;
+    span{
+        margin-left: 1em;
+    }
   }
 
-  p{
-      margin-bottom: 1em;
+  .columns{
+      margin-top: 0;
   }
 
-  a{
-      color: $apiviz-primary;
-      border-bottom: 1px solid $apiviz-primary;
-  }
-}
-
-
-.added {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: left;
-
-  .link-at-sourcer img{
-      max-height: 1.1em;
-      transform: translateY(0.2em);
+  .illustration{
+    width: 100%;
+    margin-bottom: 1em;
   }
 
-  img{
-      height:auto;
+  .description, .added{
+    background-color: white;
+    padding: 1em;
+    margin-bottom: 1em;
   }
 
-  .no-left-padding {
-      padding-left: 0em;
-  }
-  .is-vertical-centered {
-      // padding-left: 1em;
-      display: flex;
-      align-items: center;
+  .description{
+    h1{
+        font-weight: bold;
+    }
+
+    p{
+        margin-bottom: 1em;
+    }
+
+    a{
+        color: $apiviz-primary;
+        border-bottom: 1px solid $apiviz-primary;
+    }
   }
 
-  .logo {
-      // max-width: 175px;
-      height: auto;
-      width:100%;
+
+  .added {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+
+    .link-at-sourcer img{
+        max-height: 1.1em;
+        transform: translateY(0.2em);
+    }
+
+    img{
+        height:auto;
+    }
+
+    .no-left-padding {
+        padding-left: 0em;
+    }
+    .is-vertical-centered {
+        // padding-left: 1em;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo {
+        // max-width: 175px;
+        height: auto;
+        width:100%;
+    }
+
+    a{
+        color: $apiviz-primary;
+        font-weight: bold;
+    }
   }
 
-  a{
-      color: $apiviz-primary;
-      font-weight: bold;
-  }
-}
+  .content{
+    h2{
+        font-weight: bold;
+    }
 
-.content{
-  h2{
-      font-weight: bold;
+    .tag{
+        background-color: #767676;
+        color: white;
+        margin-right: 1em;
+        margin-bottom: 0.5em;
+    }
   }
-
-  .tag{
-      background-color: #767676;
-      color: white;
-      margin-right: 1em;
-      margin-bottom: 0.5em;
-  }
-}
 </style>

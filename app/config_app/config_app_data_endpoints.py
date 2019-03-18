@@ -304,6 +304,7 @@ default_data_endpoints_config = [
         "currentCenter"    : [46.2276, 2.2137],
         "zoom"             : 6,
         "maxZoom"          : 18,
+        "minZoom"          : 3,
         "useMarkerCluster" : True,
         "pinIconUrl"       : "/static/icons/icon_pin_plein_violet.svg",
         "pinIconSize"      : { "highlighted" : [46, 46] , "normal" : [29, 29]}
