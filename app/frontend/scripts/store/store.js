@@ -6,29 +6,14 @@ import getters from './getters';
 import actions from './actions';
 import mutations from './mutations';
 
-import {makeEmptySelectedFilters} from '../utilsApiviz';
-
 Vue.use(Vuex)
-
-// >>> LEGACY FILTERS
-const INITIAL_FILTER_DESCRIPTIONS = CHOICES_FILTERS_TAGS.filter(c => c.name !== 'methods_')
-
-// >>> LEGACY FILTERS / CREATION - LOW LEVEL FUNCTION
-// function makeEmptySelectedFilters(filterDescriptions){
-//   const selectedFilters = new Map()
-//   for(const f of filterDescriptions){
-//     selectedFilters.set(f.name, new Set())
-//   }
-//   return selectedFilters;
-// }
-
 
 // MAIN STORE
 const storeGenerator = new Vuex.Store({
   strict: true,
 
   state: {
-    
+
     // APP MODE : default | preprod | prod
     runMode : undefined,
     rootUrlBackend : undefined,
@@ -46,13 +31,12 @@ const storeGenerator = new Vuex.Store({
 
     // LEGACY
     geolocByProjectId: new Map(),
-    spiders: undefined,
-    
-    // CURRENT 
+
+    // CURRENT
     displayedProject: undefined,
-    
+
     // FILTERS
-    filterDescriptions: INITIAL_FILTER_DESCRIPTIONS,
+    filterDescriptions: undefined,
     datasetFilters: undefined,
 
     // APIVIZ CONFIG
@@ -74,7 +58,7 @@ const storeGenerator = new Vuex.Store({
         page:1,
         perPage:100,
         selectedDatasetFilters: undefined,
-        selectedFilters: makeEmptySelectedFilters(INITIAL_FILTER_DESCRIPTIONS),
+        selectedFilters: new Map(),
       },
       // RESULTS
       answer: {

@@ -1,7 +1,5 @@
 import { apiConfig } from '../config/api.js';
-import {makeEmptySelectedFilters} from '../utilsApiviz';
-
-const SOURCE_FILTER_NAME = 'source_';
+import {makeEmptySelectedFilters} from '../utils';
 
 export default {
 
@@ -21,23 +19,6 @@ export default {
     const filterOptions = datasetFilter.filter_options
     console.log("=== setDatasetFilters / filterOptions : ", filterOptions )
     state.datasetFilters = filterOptions
-  },
-  // LEGACY - SPIDERS RELATED
-  setSourceFilter(state, {sourceFilter}){
-    const sourceFilterIndex = state.filterDescriptions.findIndex(fd => fd.name === SOURCE_FILTER_NAME)
-
-    if(sourceFilterIndex !== -1){
-      state.filterDescriptions[sourceFilterIndex] = sourceFilter
-    }
-    else{
-      state.filterDescriptions.push(sourceFilter);
-      state.search.question.selectedFilters.set(SOURCE_FILTER_NAME, new Set())
-      //state.filterDescriptions = state.filterDescriptions
-    }
-  },
-  // LEGACY
-  setSpiders(state, {spiders}){
-    state.spiders = spiders
   },
 
   // SEARCH-RELATED

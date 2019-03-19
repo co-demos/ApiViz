@@ -1,5 +1,5 @@
 
-import { textFromLocale } from '../utilsApiviz.js';
+import { textFromLocale } from '../utils';
 
 
 const getSearchConfigColumnCount = state => state.search.config.display.columnCount;

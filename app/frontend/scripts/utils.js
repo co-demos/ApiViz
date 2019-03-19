@@ -62,7 +62,6 @@ function fromMongoModelToFrontModel(projectInMongo){
     // website: projectInMongo['website'] && projectInMongo['website'][0],
     // pageAtSourcer: projectInMongo['link_data'],
     // projectInSourcerListing: projectInMongo['link_src'],
-    // spiderId: projectInMongo['spider_id'],
     // description: Array.isArray(projectInMongo['résumé du projet']) ? projectInMongo['résumé du projet'].join(' '): '',
   }
 }
@@ -101,17 +100,6 @@ function uniformizeProject(p){
   p.tags = [...projectUnifiedTags]
 
   return p;
-}
-
-
-// This function is awkward
-// TODO Create a dedicated server-side end-point to get only the spiders
-export function getSpiders(){
-  let url = `${APISearchOrigin}/api/infos?only_spiders_list=true`;
-
-  return fetch(url)
-  .then(r => r.json())
-  .then(({spiders}) => spiders.spiders_dict)
 }
 
 
@@ -216,7 +204,7 @@ export function searchEndpointGenerator(obj) {
 
 export function searchEnpointCreator(obj){
 
-    // (text, tags, spiderIds=[], page=1, per_page=100, baseUrl = `${APISearchOrigin}`, token = undefined ){
+    // (text, tags, page=1, per_page=100, baseUrl = `${APISearchOrigin}`, token = undefined ){
     if (!obj) { throw 'error in searchEnpointCreator: no parameter defined' }
 
     // console.log("+ + + searchEnpointCreator / ...")
@@ -253,9 +241,42 @@ export function searchEnpointCreator(obj){
     const descendingArg = (typeof obj.descending == 'boolean') ? '&descending='+obj.descending : '';
 
 
-    // WITHOUT SHUFFLE 
+    // WITHOUT SHUFFLE
     // return obj.baseUrl+`?${pageArg}${per_pageArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
-    
+
     // WITH SHUFFLE
-    return obj.baseUrl+`?${pageArg}${per_pageArg}${shuffle_seedArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
+    return obj.baseUrl+`?${pageArg}${per_pageArg}${shuffle_seedArg}${searchArg}${tagsArg}${tokenArg}${map_listArg}${as_latlngArg}${only_geocodedArg}${geo_precisionArg}${get_filtersArg}${is_completeArg}${only_statsArg}${normalizeArg}${search_forArg}${search_inArg}${search_tagsArg}${search_filtersArg}${search_intArg}${search_floatArg}${item_idArg}${sort_byArg}${descendingArg}`
+}
+
+
+
+export function makeEmptySelectedFilters(filterDescriptions){
+  console.log("::: makeEmptySelectedFilters / filterDescriptions : ", filterDescriptions)
+  const selectedFilters = new Map()
+  for(const f of filterDescriptions){
+    selectedFilters.set(f.name, new Set())
+  }
+  return selectedFilters;
+}
+
+export function textFromLocale(textsList, locale, field){
+  // console.log("::: textFromLocale / textsList : ", textsList)
+  // console.log("::: textFromLocale / locale : ", locale)
+  // console.log("::: textFromLocale / field : ", field)
+  let textObject = textsList.find(t => t.locale == locale )
+  let textOut = textObject[field]
+  // console.log("::: textFromLocale / textOut : ", textOut)
+  return textOut
+}
+
+export function createSelectedFiltersForSearch(selectedFiltersMap){
+  let filtersUri = []
+  selectedFiltersMap.forEach( (val,key,map) => {
+      console.log('val,key,map',val,key,map);
+      val.forEach( (v) => {
+        filtersUri.push(key + v)
+      })
+  })
+  console.log(filtersUri);
+  return filtersUri
 }

@@ -84,7 +84,6 @@
 
 <script>
 
-// import { textFromLocale } from '../utilsApiviz.js';
 
 export default {
   props : [

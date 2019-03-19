@@ -1,82 +1,30 @@
 import axios from 'axios';
 // import {apiConfig} from '../config/api.js';
 import {csvParse} from 'd3-dsv';
-import {searchItems, getSpiders, searchEnpointCreator, searchEndpointGenerator} from '../utils.js';
-import {makeEmptySelectedFilters} from '../utilsApiviz';
-
-const SOURCE_FILTER_NAME = 'source_';
-
-
-// LEGACY SPIDERS-RELATED --> DEPRECATED IN THE FUTURE
-function makeSourceFilterFromSpiders(spiders){
-  return {
-    "fullname": "Source",
-    "name": SOURCE_FILTER_NAME,
-    "choices": [ ...Object.entries(spiders)]
-      .map(([id, {name}]) => ({
-        "fullname": name,
-        "id": id,
-        "spiderId": id,
-        "name": name
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name))
-  }
-}
-
-// LEGACY CIS-RELATED --> DEPRECATED IN THE FUTURE
-function filterValuesToCISTags(filterValues){
-  const cisTags = new Set();
-
-  const categoriesByUITag = CATEGORIES_CIS_DICT_FLAT;
-  const cisTagByCategory = NORMALIZATION_TAGS_SOURCES_CIS_DICT;
-
-  let uiTags = [];
-  for(const [filter, tags] of filterValues.entries()){
-    uiTags = [...uiTags, ...([...tags].map(t => filter+t))]
-  }
-
-  for(const uiTag of uiTags){
-    const categories = categoriesByUITag[uiTag];
-
-    for(const category of categories){
-      const categoriesCISTags = cisTagByCategory[category];
-
-      for(const tag of categoriesCISTags){
-        cisTags.add(tag);
-      }
-    }
-  }
-
-  return cisTags;
-}
+import {searchItems, searchEnpointCreator, searchEndpointGenerator, createSelectedFiltersForSearch} from '../utils.js';
 
 
 export default {
 
-  // FOR TRANSLATIONS
-  // chooseTranslation({state}, textsData ){
-  //   const locale = state.locale
-  //   const textField = 'text'
-  //   console.log("textsData : ", textsData)
-  //   return textFromLocale( textsData.texts, locale, textField )
-  // },
 
 
   // FOR FILTERS
-  createDatasetFilters({state, getters}){
+  createDatasetFilters({state, getters, commit}){
     console.log("\n// createDatasetFilters / state : ", state )
     const currentFiltersConfig = getters.getEndpointConfigFilters
     console.log("// createDatasetFilters / currentFiltersConfig : ", currentFiltersConfig)
-    if (currentFiltersConfig){
-      let initialFilters = makeEmptySelectedFilters(currentFiltersConfig.filter_options)
-      console.log("// createDatasetFilters / initialFilters : ", initialFilters)
+    if (currentFiltersConfig && currentFiltersConfig.filter_options){
+      let filterDescriptions = currentFiltersConfig.filter_options
+      commit('setFilterDescriptions', filterDescriptions)
+      commit('clearAllFilters')
     }
   },
 
   // FOR QUERY SEARCH FILTERS
-  toggleFilter({state, commit, dispatch}, {filter, value}){
+  toggleFilter({state, commit, dispatch, getters}, {filter, value}){
     console.log("\n// toggleFilter ..." )
-    const selectedFilters = state.search.question.selectedFilters
+    const selectedFilters = new Map(getters.getSelectedFilters)
+    console.log(selectedFilters);
     const selectedValues = selectedFilters.get(filter)
     if(selectedValues.has(value))
       selectedValues.delete(value)
@@ -196,18 +144,7 @@ export default {
           commit('setSearchError', {error})
       })
   },
-  
 
-  // LEGACY DEPRECATED ????? creates error when commented.... 
-  getSpiders({commit}){
-    getSpiders()
-    .then(spiders => {
-      commit('setSpiders', {spiders})
-      commit('setSourceFilter', {sourceFilter: makeSourceFilterFromSpiders(spiders)})
-    })
-    .catch(err => console.error('err getSpiders', text, err))
-  },
-  
 
   ////////////////////////////////////////////////
   // TO COMMENT ABSOLUTLY -> data must be pre-geocoded when arriving as response

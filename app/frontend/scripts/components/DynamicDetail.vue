@@ -219,12 +219,11 @@ export default {
   computed: {
     // ...mapState({
     //   project: 'displayedProject',
-    //   spider({spiders}){ return spiders && this.project && spiders[this.project.spiderId] }
     // }),
     ...mapState({
         user: 'user'
     }),
-    
+
     // default texts
     backToResults() {
       return this.$store.getters.defaultText({txt:'back_to_results'})
