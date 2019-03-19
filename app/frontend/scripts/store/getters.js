@@ -71,8 +71,8 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 // ROUTE CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
   const getCurrentRouteConfig = (state) => (currentRoute) => {
-    // console.log('\n ++ getCurrentRouteConfig / currentRoute : \n', currentRoute)
-    // console.log(' ++ getCurrentRouteConfig / state.config.routes : \n', state.config.routes)
+    console.log('\n ++ getCurrentRouteConfig / currentRoute : \n', currentRoute)
+    console.log(' ++ getCurrentRouteConfig / state.config.routes : \n', state.config.routes)
     try {
       return state.config.routes.find(function(r) {
         return r.urls.indexOf(currentRoute) !== -1;
@@ -104,6 +104,9 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
     return state.config.styles.app_search_default_images_sets.images_sets.find(function(r) {
       return r.dataset_uri === state.search.dataset_uri;
     });
+  }
+  const getSearchDatasetURI = state => {
+    return state.search.dataset_uri
   }
 
 // DEFAULT TEXTS GETTERS
@@ -312,6 +315,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
     getRouteConfigMapForDataset,
     getRouteConfigStatForDataset,
     getRouteConfigDefaultDatasetImages,
+    getSearchDatasetURI,
 
     getEndpointConfigFilters,
     getEndpointConfigList,

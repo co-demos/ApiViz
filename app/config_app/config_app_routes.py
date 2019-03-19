@@ -120,30 +120,56 @@ default_routes_config = [
       "endpoint_type"     : "map",
 
       "contents_fields"  : [
-        { "field" : "title",
+
+        { "field" : "sd_id",
           "is_visible" : True,
-          "position" : "block_title",
+          "position" : "block_id",
           "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "adresse",
+        { "field" : "adresse structure",
           "is_visible" : True,
           "position" : "block_address",
           "trim" : 20,
           "locale" : "fr"
         },
-        { "field" : "présentation",
+        { "field" : "ville structure",
+          "is_visible" : True,
+          "position" : "block_city",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "intitulé structure",
+          "is_visible" : True,
+          "position" : "block_title",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "",
+          "is_visible" : True,
+          "position" : "block_image",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "description structure",
           "is_visible" : True,
           "position" : "block_abstract",
           "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "étiquettes",
+        { "field" : "source",
+          "is_visible" : True,
+          "position" : "block_src",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "",
           "is_visible" : True,
           "position" : "block_tags",
           "trim" : 50,
           "locale" : "fr"
-        },
+         },
+         
       ],
 
       "lat_long_fields" : {
@@ -407,7 +433,7 @@ default_routes_config = [
         # optional text contents
          { "field"       : "services",
            "is_visible"  : True,
-           "position"    : "block_right_bottom_1",
+           "position"    : "block_left_bottom_1",
            "title_block" : [{ "locale" : "fr", "text" : "Services proposés", "is_visible" : False }],
          },
          { "field"       : "infos_pratiques",

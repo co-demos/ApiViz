@@ -97,7 +97,7 @@ export default {
       endpointConfig : state.search.endpoint,
       questionParams : state.search.question
     })
-    // console.log("-- search / endpoint : \n", endpointBis )
+    console.log("-- search / endpointBis : \n", endpointBis )
 
     // special endpoint only for map
     if (state.search.question.forMap){
@@ -116,8 +116,9 @@ export default {
       .then(({projects, total}) => {
         // console.log("-- search / total : \n", total )
         // console.log("-- search / projects : \n", projects )
-        commit('setSearchResult', {result: {projects, total}})
+
         // if search is for map either fill resultMap if empty or do nothing
+        commit('setSearchResult', {result: {projects, total}})
         // commit ('setSearchResultMap', {resultMap: {projects, total}})
       })
       .catch(error => {

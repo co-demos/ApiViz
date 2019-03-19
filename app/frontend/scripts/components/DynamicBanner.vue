@@ -1,27 +1,61 @@
 <style scoped>
 
-.banner-height-with-filters {
-  padding-top: 110px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  height: 160px
+  .banner-height-with-filters {
+    padding-top: 125px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    height: 160px
+  }
+  .banner-height-without-filters {
+    padding-top: 60px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    height: 160px
+  }
+
+  .close{
+    z-index: 2;
+    position:absolute;
+    /* float: right;
+    display: flex;  */
+    align-self: flex-end;
+    /* justify-content: flex-end !important; */
+    justify-content: flex-end;
 }
-.banner-height-without-filters {
-  padding-top: 60px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  height: 160px
-}
+
 </style>
 
 <template>
 
-  <section >
-    <div 
-      :class="`container ${ hasFilters ? 'banner-height-with-filters' : 'banner-height-without-filters' } has-text-center skip-navbar`"
+  <section 
+    v-show="rawHtml !== '' "
+    :class="`${ hasFilters ? 'banner-height-with-filters' : 'banner-height-without-filters' } has-text-center skip-navbar`"
+    >
+
+    <!-- RAW HTML FOR BANNER -->
+    <div
+      :class="`container `"
       >
-      <span v-html="rawHtml"></span>
+
+      <!-- BUTTON TO CLOSE PREVIEW -->
+      <div class="content">
+
+        <button 
+          class="button close is-primary is-inverted" 
+          @click="rawHtml = ''"
+          >
+          <span class="icon is-small">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+
+        <span v-html="rawHtml"></span>
+
+      </div>
+
     </div>
+
+
   </section>
 
 </template>

@@ -21,10 +21,12 @@ default_global_config = [
       "no_abstract"    : [{"locale" : "fr", "text" : "(Pas de résumé)" }],
       "no_address"     : [{"locale" : "fr", "text" : "Pas d'adresse enregistrée" }],
       "no_info"        : [{"locale" : "fr", "text" : "Pas d'informations" }],
-      "source"         : [{"locale" : "fr", "text" : "source : " }],
+      "source"         : [{"locale" : "fr", "text" : "source" }],
       "back_to_results" : [{"locale" : "fr", "text" : "Retour aux résultats de recherche" }],
-      "see_website"     : [{"locale" : "fr", "text" : "Aller sur le site" }],
+      "see_website"    : [{"locale" : "fr", "text" : "Aller sur le site" }],
       "share_link"     : [{"locale" : "fr", "text" : "Partagez ce lieu" }],
+      "infos"          : [{"locale" : "fr", "text" : "Informations pratiques" }],
+      "services"       : [{"locale" : "fr", "text" : "Services" }],
 
       "is_default"  : True
     },

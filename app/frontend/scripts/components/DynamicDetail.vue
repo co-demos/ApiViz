@@ -38,8 +38,8 @@
                     <img class="image is-16x16" src="/static/icons/icon_pin.svg">
                 </span>
                 <!-- {{projectFormatted.address}} -->
-                {{ matchProjectWithConfig('block_address')}} -
-                {{ matchProjectWithConfig('block_cp')}}
+                {{ matchProjectWithConfig('block_address')}}
+                <!-- {{ matchProjectWithConfig('block_cp')}} -->
               </p>
 
               <!-- BLOCK ABSTRACT -->
@@ -63,6 +63,24 @@
               </a>
 
             </div>
+
+            <div class="added">
+              <div class="columns">
+
+                <div class="column is-12">
+                  
+                  <!-- BLOCK TAGS -->
+                  <div>
+                    <span>
+                      {{ servicesData }} : {{ matchProjectWithConfig('block_left_bottom_1')}}
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
           </div>
 
 
@@ -91,45 +109,37 @@
                   <div>
                     <span>
                       <!-- <img src="/static/icons/icon_link.svg"> -->
-                      {{ sourceData }} {{ matchProjectWithConfig('block_src')}}
+                      {{ sourceData }} : {{ matchProjectWithConfig('block_src')}}
                     </span>
                   </div>
 
-                  <!--
-                  <div v-if="projectFormatted.pageAtSourcer">
-                    <a :href="projectFormatted.pageAtSourcer" class="link-at-sourcer" target="_blank">
-                      Voir ce projet sur le site
-                    </a>
-                  </div>
-                  -->
-
                 </div>
 
-
-                </div>
               </div>
-
-
-
-
-              <!-- BLOCK TAGS -->
-              <!-- <div
-                v-if="Array.isArray(projectFormatted.tags) && projectFormatted.tags.length >= 1"
-                class="content"
-              >
-                <h2 class="title is-5">
-                  Catégories
-                </h2>
-                <span
-                  v-for="tag in projectFormatted.tags"
-                  class="tag"
-                  :key="tag"
-                  >
-                  {{tag}}
-                </span>
-              </div> -->
-
             </div>
+
+
+
+            <div class="added">
+              <div class="columns">
+
+                <div class="column is-12">
+                  
+                  <!-- BLOCK RIGHT BOTTOM 1 / INFOS -->
+                  <div>
+                    <span>
+                      {{ infosData }} : {{ matchProjectWithConfig('block_right_bottom_1')}}
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+
+
+          </div>
 
         </div>
       </div>
@@ -230,7 +240,12 @@ export default {
     sourceData() {
       return this.$store.getters.defaultText({txt:'source'})
     },
-
+    infosData() {
+      return this.$store.getters.defaultText({txt:'infos'})
+    },
+    servicesData() {
+      return this.$store.getters.defaultText({txt:'services'})
+    },
     // projectFormatted(){
     //   if (!this.project) {
     //     return {

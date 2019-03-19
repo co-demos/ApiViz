@@ -193,6 +193,8 @@ export default {
       // setting MapSearch
       this.$store.commit('setIsMapSearch', this.routeConfig)
 
+
+
     }
 
   },
@@ -220,13 +222,19 @@ export default {
       this.$store.dispatch('setSearchEndpointConfig', { path : this.$route.path})
       // this.$store.dispatch('setSearchEndpoint')
       console.log('- - DynamicScreen / watch / (after) state : ', this.$store.state);
-      this.localRouteConfig = this.$store.state.search.currentRouteConfig
-      this.currentDatasetURI = this.$store.state.search.dataset_uri
+
+      // this.localRouteConfig = this.$store.state.search.currentRouteConfig
+      this.localRouteConfig = this.$store.getters.getCurrentRouteConfig( this.$route.path )
+      console.log('- - DynamicScreen / watch / (after) localRouteConfig : ', this.localRouteConfig);
+
+      // this.currentDatasetURI = this.$store.state.search.dataset_uri
+      this.currentDatasetURI = this.$store.getters.getSearchDatasetURI
+      console.log('- - DynamicScreen / watch / (after) currentDatasetURI : ', this.currentDatasetURI);
 
       // check search for Map
       this.$store.commit('setIsMapSearch', this.localRouteConfig)
 
-      if( this.routeConfig.dynamic_templates !== 'DynamicStatic' ) {
+      if( this.localRouteConfig.dynamic_templates !== 'DynamicStatic' ) {
         console.log('- - DynamicScreen / watch / (after) setIsMapSearch : ', this.$store.state);
         this.localEndpointConfig = this.$store.getters.getEndpointConfig
         console.log('- - DynamicScreen / watch / (after) localEndpointConfig : ', this.localEndpointConfig);
@@ -234,6 +242,12 @@ export default {
           this.currentDatasetURI = this.currentDatasetURI
           this.localFiltersConfig = this.$store.getters.getEndpointConfigFilters
         }
+        if (this.localEndpointConfig) {
+          // reload results 
+          console.log('- - DynamicScreen / watch / (after) dispatch search... ');
+          this.$store.dispatch('search')
+        }
+
       } else {
         this.localEndpointConfig = undefined
         this.localFiltersConfig = undefined

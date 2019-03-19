@@ -58,17 +58,19 @@ export default {
 
   // RESULTS-RELATED
   setSearchResult(state, {result}){
-    // console.log("== setSearchResult / result : ", result)
+    console.log("== setSearchResult / result : ", result)
     state.search.answer = {
       pendingAbort: undefined,
       result,
+      resultMap: undefined,
       error: undefined
     }
   },
   setSearchResultMap(state, {resultMap}){
-    console.log("== setSearchResultMap / result : ", resultMap)
+    console.log("== setSearchResultMap / resultMap : ", resultMap)
     state.search.answer = {
       pendingAbort: undefined,
+      result:undefined,
       resultMap,
       error: undefined
     }
@@ -77,6 +79,7 @@ export default {
     state.search.answer = {
       pendingAbort,
       result: undefined,
+      resultMap: undefined,
       error: undefined
     }
   },
@@ -85,6 +88,7 @@ export default {
     state.search.answer = {
       pendingAbort: undefined,
       result: undefined,
+      resultMap: undefined,
       error
     }
   },

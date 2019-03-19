@@ -52,7 +52,7 @@
 <script>
 import {mapState} from 'vuex'
 
-import {VIEW_LIST, VIEW_MAP} from '../constants.js'
+import {VIEW_LIST, VIEW_MAP, VIEW_STAT} from '../constants.js'
 
 export default {
     name: 'CISSearchResultsCountAndTabs',
@@ -65,7 +65,8 @@ export default {
     data(){
       return {
           VIEW_MAP, 
-          VIEW_LIST
+          VIEW_LIST,
+          VIEW_STAT
       }
     },
 

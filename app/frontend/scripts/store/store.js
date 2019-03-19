@@ -54,6 +54,7 @@ const storeGenerator = new Vuex.Store({
       question: {
         query: new URL(location).searchParams.get('text') || '',
         forMap : false,
+        onlyGeocoded : true,
         shuffleSeed : 1234,
         page:1,
         perPage:100,
