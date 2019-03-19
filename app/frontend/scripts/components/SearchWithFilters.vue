@@ -47,7 +47,7 @@
                 </label>
               </div>
             </a>
-        
+
             <div class="navbar-item">
               <button class="button is-text is-fullwidth has-text-primary"
                 :data-filter="filter.name"
@@ -94,7 +94,6 @@ export default {
       this.$store.dispatch( 'emptyOneFilter', {filter} )
     },
     changeFilter({target}){
-      console.log('here chaginf a filter for ',target.getAttribute('data-filter') );
       this.$store.dispatch(
         'toggleFilter',
         {filter: target.getAttribute('data-filter'), value: target.getAttribute('data-choice')}
