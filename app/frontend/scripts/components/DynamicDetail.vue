@@ -31,14 +31,14 @@
               </h1>
 
               <!-- BLOCK ADDRESS -->
-              <p 
+              <p
               >
                 <!-- v-if="projectFormatted.address" -->
                 <span class="icon">
                     <img class="image is-16x16" src="/static/icons/icon_pin.svg">
                 </span>
                 <!-- {{projectFormatted.address}} -->
-                {{ matchProjectWithConfig('block_address')}} - 
+                {{ matchProjectWithConfig('block_address')}} -
                 {{ matchProjectWithConfig('block_cp')}}
               </p>
 
@@ -55,13 +55,13 @@
               </div> -->
 
               <!-- BLOCK WEBSITE -->
-              <a 
-                v-if="matchProjectWithConfig('block_wesite')" 
-                :href="matchProjectWithConfig('block_wesite')" 
+              <a
+                v-if="matchProjectWithConfig('block_wesite')"
+                :href="matchProjectWithConfig('block_wesite')"
                 target="_blank">
                 {{ seeWebsite }}
               </a>
-            
+
             </div>
           </div>
 
@@ -73,10 +73,10 @@
 
             <!-- BLOCK MAIN ILLUSTRATION -->
             <a :href="matchProjectWithConfig('block_wesite')" target="_blank">
-              <img 
-                class="illustration" 
-                :src="itemImage('card_img_main')" 
-                :alt="matchProjectWithConfig('block_title')" 
+              <img
+                class="illustration"
+                :src="itemImage('card_img_main')"
+                :alt="matchProjectWithConfig('block_title')"
               />
                 <!-- :src="projectFormatted.image" -->
             </a>
@@ -94,24 +94,17 @@
                       {{ sourceData }} {{ matchProjectWithConfig('block_src')}}
                     </span>
                   </div>
-                  
-                  <!-- 
+
+                  <!--
                   <div v-if="projectFormatted.pageAtSourcer">
                     <a :href="projectFormatted.pageAtSourcer" class="link-at-sourcer" target="_blank">
                       Voir ce projet sur le site
                     </a>
-                  </div> 
+                  </div>
                   -->
 
                 </div>
 
-                <!-- 
-                <div class="column is-4 no-left-padding is-vertical-centered">
-                  <a :href="projectFormatted.pageAtSourcer" target="_blank">
-                      <img class="logo" v-if="spider.logo_url" :src="spider.logo_url">
-                  </a>
-                </div> 
-                -->
 
                 </div>
               </div>
@@ -120,16 +113,16 @@
 
 
               <!-- BLOCK TAGS -->
-              <!-- <div 
-                v-if="Array.isArray(projectFormatted.tags) && projectFormatted.tags.length >= 1" 
+              <!-- <div
+                v-if="Array.isArray(projectFormatted.tags) && projectFormatted.tags.length >= 1"
                 class="content"
               >
                 <h2 class="title is-5">
                   Catégories
                 </h2>
-                <span 
-                  v-for="tag in projectFormatted.tags" 
-                  class="tag" 
+                <span
+                  v-for="tag in projectFormatted.tags"
+                  class="tag"
                   :key="tag"
                   >
                   {{tag}}
@@ -143,9 +136,9 @@
     </main>
 
     <NotFoundError v-if="isError"/>
-    
+
     <br>
-    
+
   </div>
 </template>
 
@@ -177,7 +170,7 @@ export default {
   props: [
     'routeConfig',
     'endPointConfig',
-    // 'logo', 
+    // 'logo',
     // 'brand'
   ],
 
@@ -188,7 +181,7 @@ export default {
       isError: false
     }
   },
-  
+
   beforeMount: function () {
     console.log("\n - - DynamicDetail / beforeMount ... ")
     this.contentFields = this.routeConfig.contents_fields
@@ -262,7 +255,7 @@ export default {
   },
 
   methods : {
-    
+
     itemImage(fieldBlock){
       return this.$store.getters.getImageUrl({item: this.displayableItem, position: fieldBlock})
       // return this.item

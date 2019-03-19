@@ -18,13 +18,13 @@
 
 
       <!-- NAVBAR ITEMS -->
-      <template 
+      <template
         v-for="(link, index) in this.NavbarLinks.extra_buttons"
         >
-        <router-link 
+        <router-link
           v-if="link.link_type == 'link' && link.is_visible == true"
           :key="index"
-          :class="`navbar-item`" 
+          :class="`navbar-item`"
           :to="link.link_to"
           >
             <span>{{ translate(link, 'link_text' ) }}</span>
@@ -33,16 +33,16 @@
 
 
       <!-- BUTTONS LINKS -->
-      <div class="buttons"> 
+      <div class="buttons">
 
-        <template 
+        <template
           v-for="(link, index) in this.NavbarLinks.extra_buttons"
           >
-          
+
           <router-link
             v-if="!link.is_external_link && link.link_type == 'button' && link.is_visible == true"
             :key="index"
-            :class="`navbar-item button is-primary is-outlined is-small`" 
+            :class="`navbar-item button is-primary is-outlined is-small`"
             :to="link.link_to"
             >
             <span>{{ translate( link,'link_text' ) }}</span>
@@ -51,7 +51,7 @@
           <a
             v-if="link.is_external_link && link.link_type == 'button' && link.is_visible == true"
             :key="index"
-            :class="`navbar-item button is-primary is-outlined is-small test`" 
+            :class="`navbar-item button is-primary is-outlined is-small test`"
             :href="link.link_to"
             target="_blank"
             >
@@ -99,7 +99,7 @@ export default {
     //   console.log("\n...... linkTo : ", linkTo)
     //   let path = this.$router.currentRoute.path
     //   console.log("...... path : ", path)
-    //   return ( path === linkTo ) ? true : false 
+    //   return ( path === linkTo ) ? true : false
     // },
     translate( textsToTranslate, listField ) {
       // console.log("textsToTranslate : ", textsToTranslate )

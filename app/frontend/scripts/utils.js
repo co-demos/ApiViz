@@ -234,6 +234,7 @@ export function searchEnpointCreator(obj){
     const search_forArg = (typeof obj.search_for == 'string') ? '&search_for='+obj.search_for : '';
     const search_inArg = (typeof obj.search_in == 'string') ? '&search_in='+obj.search_in : '';
     const search_tagsArg = (typeof obj.search_tags == 'string') ? '&search_tags='+obj.search_tags : '';
+    const search_filtersArg = (obj.search_filters && obj.search_filters.length >= 1) ? `&search_filters=${[...obj.search_filters].join('&search_filters=')}` : '';
     const search_intArg = (typeof obj.search_int == 'number') ? '&search_int='+obj.search_int : '';
     const search_floatArg = (typeof obj.search_float == 'number') ? '&search_float='+obj.search_float : '';
     const item_idArg = (typeof obj.item_id == 'string') ? '&item_id='+obj.item_id : '';

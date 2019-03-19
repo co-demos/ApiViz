@@ -283,7 +283,9 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
       && r.dataset_uri === state.search.dataset_uri;
     });
   }
-
+  const getSelectedFilters = state => {
+    return state.search.question.selectedFilters
+  }
 
 // - - - - - - - - - - - - - - - //
 // FINALLY EXPORT GETTERS
@@ -325,5 +327,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
     getProjectConfigUniform,
     getImgUrl,
     getImageUrl,
+
+    getSelectedFilters,
 
   };

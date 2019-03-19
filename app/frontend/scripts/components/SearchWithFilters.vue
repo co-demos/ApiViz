@@ -4,10 +4,10 @@
 
       <div class="search control is-expanded">
         <div class="image-container"><img src="/static/icons/icon_search_violet.svg"></div>
-        <input 
-          type="search" 
+        <input
+          type="search"
           v-model="searchedText"
-          class="input is-large is-light input-navbar" 
+          class="input is-large is-light input-navbar"
           :placeholder="translate(endpointConfigFilters, 'placeholder' )"
           @input="searchedTextChanged"
           >
@@ -15,12 +15,13 @@
 
       <div class="navbar-end">
 
-        <span v-for="filter in filterDescriptions" 
+        <span v-for="filter in filterDescriptions"
           :key="filter.name"
           :id="filter.name"
           class="navbar-item navbar-item-filter has-dropdown is-hoverable">
 
           <a :class='["navbar-link", {"has-text-weight-semibold" : selectedFilters.get(filter.name).size >= 1 } ]'>
+          <!-- <a :class='["navbar-link", {"has-text-weight-semibold" : isFilterFromSelectedFiltersBold(filter.name) } ]'> -->
             <span>
               {{ filter.fullname }}
             </span>
@@ -28,14 +29,14 @@
 
           <div :id="filter.name" class="navbar-dropdown is-right">
 
-            <a 
-              class="navbar-item" 
+            <a
+              class="navbar-item"
               v-for="choice in filter.choices" :key="choice.name"
               >
               <div class="field">
-                <input 	class="is-checkradio is-default is-normal" 
-                  :id="choice.name" 
-                  type="checkbox" 
+                <input 	class="is-checkradio is-default is-normal"
+                  :id="choice.name"
+                  type="checkbox"
                   :checked="selectedFilters.get(filter.name).has(choice.name)"
                   :data-filter="filter.name"
                   :data-choice="choice.name"
@@ -67,8 +68,8 @@
 import {mapState} from 'vuex'
 
 export default {
-  
-  computed: 
+
+  computed:
     {
       ...mapState({
         selectedFilters: ({search}) => search.question.selectedFilters,
@@ -93,8 +94,9 @@ export default {
       this.$store.dispatch( 'emptyOneFilter', {filter} )
     },
     changeFilter({target}){
+      console.log('here chaginf a filter for ',target.getAttribute('data-filter') );
       this.$store.dispatch(
-        'toggleFilter', 
+        'toggleFilter',
         {filter: target.getAttribute('data-filter'), value: target.getAttribute('data-choice')}
       )
     },
@@ -102,7 +104,16 @@ export default {
     translate( textsToTranslate, listField ) {
       let listTexts = textsToTranslate[listField]
       return this.$store.getters.getTranslation({ texts : listTexts })
-    }
+    },
+    isFilterFromSelectedFiltersBold(filterName){
+      return false
+      // return (this.selectedFilters.get(filterName)) ? this.selectedFilters.get(filterName) : undefined
+    },
+    isFilterFromSelectedFiltersChecked(filterName){
+      //  :checked="selectedFilters.get(filter.name).has(choice.name)"
+      return false
+      // return (this.selectedFilters.get(filterName)) ? this.selectedFilters.get(filterName) : undefined
+    },
   },
 
   mounted(){
@@ -123,7 +134,7 @@ export default {
   height: $apiviz-search-bar-height;
 
   font-size: $apiviz-navbar-font-size;
-  
+
   .search{
     flex: 1;
 
@@ -150,7 +161,7 @@ export default {
   }
 
   .navbar-end{
-      
+
     .navbar-link::after{
         content: url("/static/icons/icon_chevron3.svg");
         border: 0;

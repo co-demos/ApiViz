@@ -34,6 +34,9 @@ export default {
     // trigger re-render
     state.search.question.selectedFilters = new Map(selectedFilters)
   },
+  setFilterDescriptions (state, filterDescriptions) {
+    state.filterDescriptions = filterDescriptions
+  },
   emptyOneFilter (state, {filter}) {
       state.search.question.selectedFilters.set(filter, new Set())
 

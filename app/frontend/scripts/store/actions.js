@@ -35,9 +35,9 @@ export default {
     dispatch('search')
   },
 
-  emptyOneFilter({state, commit, dispatch}, {filter}){
+  emptyOneFilter({state, commit, dispatch, getters}, {filter}){
     console.log("\n// emptyOneFilter ..." )
-    const selectedFilters = state.search.question.selectedFilters
+    const selectedFilters = new Map(getters.getSelectedFilters)
     selectedFilters.set(filter, new Set())
 
     commit('setSelectedFilters', {selectedFilters})
@@ -62,33 +62,15 @@ export default {
   search({state, commit, dispatch, getters}){
 
     // console.log("\n// search / main action to query endpoint..." )
-
     const {search} = state;
     // console.log("// search / search : ", search )
 
-    // const dataset_uri = search.dataset_uri
-    const selectedFiltersWithoutSourceurs = new Map(search.question.selectedFilters)
-    selectedFiltersWithoutSourceurs.delete(SOURCE_FILTER_NAME);
-    // console.log("// search / selectedFiltersWithoutSourceurs : ", selectedFiltersWithoutSourceurs )
-
-
-    // LEGACY
-    const cisTags = filterValuesToCISTags(selectedFiltersWithoutSourceurs)
-    // console.log("// search / cisTags : ", cisTags )
-    const selectedSources = search.question.selectedFilters.get(SOURCE_FILTER_NAME)
-    // console.log("// search / selectedSources : ", selectedSources )
-    // SPIDERS-RELATED --> DEPRECATED
-    const spiderIds = selectedSources ? [...selectedSources].map(source => {
-    	return [...Object.entries(state.spiders)].find(([id, spider]) => spider.name === source)[0]
-    }) : undefined;
-
-
+    const selectedFilters = createSelectedFiltersForSearch(getters.getSelectedFilters)
+    console.log('selectedFilters',selectedFilters);
     // abort previous search if any
     if(search.answer.pendingAbort){
       search.answer.pendingAbort.abort()
     }
-
-
 
 
     //create the endpoints
@@ -99,7 +81,7 @@ export default {
       // query from main input in search bar
       search: search.question.query,
       // tags / filters
-      tags:cisTags,
+      search_filters:selectedFilters,
       // pagination
       page:1,
       per_page:100,
