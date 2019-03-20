@@ -9,7 +9,7 @@ import axios from 'axios'
 
 export default {
     props:[
-      'routeConfig',
+      // 'routeConfig',
       'templateURL'
     ],
   data: () => {

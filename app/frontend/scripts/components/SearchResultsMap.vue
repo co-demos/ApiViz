@@ -30,6 +30,7 @@
             <!-- PROJECT CARD -->
             <div class="card">
 
+              <!-- LOADER -->
               <div 
                 class="columns is-mobile is-vcentered"
                 v-show="!itemLoaded"
@@ -42,6 +43,7 @@
                 </div>
               </div>
 
+              <!-- ITEM DATA -->
               <ProjectCard 
                 v-if="itemLoaded"
                 :item="highlightedItem"
@@ -49,50 +51,6 @@
                 >
               </ProjectCard>
 
-
-              <!-- BLOCK IMAGE -->
-              <!-- <router-link 
-                :to="`/project/${highlightedItem.id}`" 
-                class="card-image"
-              >
-                <img 
-                  :src="highlightedItem.image" 
-                  :alt="highlightedItem.title">
-              </router-link> -->
-              
-              <!-- BLOCK ADDRESS -->
-              <!-- <div class="card-content" v-if="highlightedItem.address.trim().length > 1"> -->
-                <!-- 
-                <span class="icon has-text-light">
-                  <i class="fas fa-location-arrow"></i>
-                </span> -->
-                <!-- <span class="icon">
-                  <img class="image is-16x16" src="/static/icons/icon_pin.svg">
-                </span>
-                <span class="subtitle is-6">
-                  {{ highlightedItem.address.slice(0, 100) }}
-                </span>
-              </div> -->
-
-              <!-- BLOCK LINK -->
-              <!-- <router-link 
-                :to="`/project/${highlightedItem.id}`" 
-                class="card-content"
-                >
-                <h1>{{highlightedItem.title}}</h1>
-              </router-link> -->
-
-              <!-- BLOCK TAGS -->
-              <!-- <div class="card-content" 
-                v-if="Array.isArray(highlightedItem.tags) && highlightedItem.tags.length >=1">
-                <span 
-                  v-for="tag in highlightedItem.tags" 
-                  :key="tag"
-                  class="tag"
-                > 
-                  {{tag}}
-                </span>
-              </div> -->
 
             </div>
 
@@ -288,7 +246,7 @@ export default {
 
     ...mapState({
       projects({search}){ return search.answer.result && search.answer.result.projects },
-      items({search}){ return search.answer.resultMap && search.answer.result.projects },
+      // items({search}){ return search.answer.resultMap && search.answer.result.projects },
       // displayedProjects(){
       //   return this.projects && this.projects.filter(p => this.geolocByProjectId.get(p.id))
       // },
@@ -354,8 +312,9 @@ export default {
       // show loader 
       this.showCard = true
       this.itemLoaded = false
+      // get 
       // get item info
-      getItemById(i.sd_id,this.$store.state.search.endpoint.root_url)
+      getItemById(i.sd_id, this.$store.state.search.endpoint)
       .then(item => {
         // this.$store.commit('setDisplayedProject', {item})
         // console.log(" - - DynamicDetail / item : \n ", item)
@@ -365,45 +324,6 @@ export default {
       .catch(function(err) { this.isError = true ; console.error('item route error', err) })
 
     },
-
-
-
-    // itemImage(fieldBlock){
-    //   return this.$store.getters.getImageUrl({item: this.displayableItem, position: fieldBlock})
-    //   // return this.item
-    // },
-    // matchProjectWithConfig(fieldBlock) {
-    //   const contentField = this.contentFields.find(f=> f.position == fieldBlock)
-    //   const field = contentField.field
-    //   return this.displayableItem[field]
-    // },
-    // projectId() {
-    //   return this.matchProjectWithConfig('block_id')
-    // },
-    // projectAbstract() {
-    //   let fullAbstract = this.matchProjectWithConfig('block_abstract')
-    //   fullAbstract = ( fullAbstract == null ) ? this.noAbstractText : fullAbstract
-    //   const tail = fullAbstract.length > MAX_SUMMARY_LENGTH ? '...' : '';
-    //   return fullAbstract.slice(0, MAX_SUMMARY_LENGTH) + tail
-    // },
-    // projectInfo(field) {
-    //   let fullInfo = this.matchProjectWithConfig(field)
-    //   fullInfo = ( fullInfo == null ) ? this.noInfos : fullInfo
-    //   return fullInfo
-    // },
-    // projectAddress() {
-    //   let fullAddress = this.matchProjectWithConfig('block_address')
-    //   console.log('fullAddress : ', fullAddress)
-    //   let address = ( fullAddress || fullAddress !== 'None' ) ?  fullAddress : this.noAddress
-    //   return address
-    // },
-
-
-
-
-
-
-
 
 
 
@@ -422,19 +342,12 @@ export default {
     // ])
   },
 
-  // beforeUpdate(){
-  //   console.log(" - - SearchResultsMap / beforeUpdate... ")
-  //   if(this.projects){
-  //     const projectsWithMissingAddress = this.projects.filter(p => !this.geolocByProjectId.has(p.lat))
-  //   //   if(projectsWithMissingAddress.length >= 1)
-  //   //       this.findProjectsGeolocs(projectsWithMissingAddress)
-  //   }
-  // },
 
 };
 </script>
 
 <style>
+  
   .app-loader {
     margin: 1.5em;
     padding: 1.5em
@@ -445,10 +358,10 @@ export default {
   }
 
   /*
-      Leaflet adds its own z-index to a bunch of elements which makes the map appear on top of 
-      other elements with no good reason
-      This line allows for the map to be usable without known limit yet while leaving the map below
-      other elements
+    Leaflet adds its own z-index to a bunch of elements which makes the map appear on top of 
+    other elements with no good reason
+    This line allows for the map to be usable without known limit yet while leaving the map below
+    other elements
   */
   .map .leaflet-container *{
     z-index: 1;
@@ -475,7 +388,7 @@ export default {
     align-items: center;
     justify-content: center;
 
-    background-color: #80C2BD;
+    background-color: #a174ac;
     color: white;
 
     font-size: 16px;

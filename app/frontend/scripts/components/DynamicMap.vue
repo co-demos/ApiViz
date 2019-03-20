@@ -3,12 +3,10 @@
     :filtersConfig="filtersConfig"
     mainClass="list"
     >
-    <!-- :logo="logo" 
-    :brand="brand"  -->
-      <SearchResultsMap
-        :routeConfig="routeConfig"
-        :endPointConfig="endPointConfig"
-      />
+    <SearchResultsMap
+      :routeConfig="routeConfig"
+      :endPointConfig="endPointConfig"
+    />
   </DynamicSearchScreenSqueleton>
 </template>
 
@@ -40,6 +38,6 @@ export default {
 </script>
 <style>
   .list .filter-feedback{
-    padding-bottom: 0;
+    padding-bottom: 1em;
   }
 </style>

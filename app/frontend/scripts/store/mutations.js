@@ -62,24 +62,24 @@ export default {
     state.search.answer = {
       pendingAbort: undefined,
       result,
-      resultMap: undefined,
+      // resultMap: undefined,
       error: undefined
     }
   },
-  setSearchResultMap(state, {resultMap}){
-    console.log("== setSearchResultMap / resultMap : ", resultMap)
-    state.search.answer = {
-      pendingAbort: undefined,
-      result:undefined,
-      resultMap,
-      error: undefined
-    }
-  },
+  // setSearchResultMap(state, {resultMap}){
+  //   console.log("== setSearchResultMap / resultMap : ", resultMap)
+  //   state.search.answer = {
+  //     pendingAbort: undefined,
+  //     result:undefined,
+  //     // resultMap,
+  //     error: undefined
+  //   }
+  // },
   setSearchPending(state, {pendingAbort}){
     state.search.answer = {
       pendingAbort,
       result: undefined,
-      resultMap: undefined,
+      // resultMap: undefined,
       error: undefined
     }
   },
@@ -88,7 +88,7 @@ export default {
     state.search.answer = {
       pendingAbort: undefined,
       result: undefined,
-      resultMap: undefined,
+      // resultMap: undefined,
       error
     }
   },

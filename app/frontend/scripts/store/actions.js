@@ -10,9 +10,9 @@ export default {
 
   // FOR FILTERS
   createDatasetFilters({state, getters, commit}){
-    console.log("\n// createDatasetFilters / state : ", state )
+    // console.log("\n// createDatasetFilters / state : ", state )
     const currentFiltersConfig = getters.getEndpointConfigFilters
-    console.log("// createDatasetFilters / currentFiltersConfig : ", currentFiltersConfig)
+    // console.log("// createDatasetFilters / currentFiltersConfig : ", currentFiltersConfig)
     if (currentFiltersConfig && currentFiltersConfig.filter_options){
       let filterDescriptions = currentFiltersConfig.filter_options
       commit('setFilterDescriptions', filterDescriptions)
@@ -22,7 +22,7 @@ export default {
 
   // FOR QUERY SEARCH FILTERS
   toggleFilter({state, commit, dispatch, getters}, {filter, value}){
-    console.log("\n// toggleFilter ..." )
+    // console.log("\n// toggleFilter ..." )
     const selectedFilters = new Map(getters.getSelectedFilters)
     console.log(selectedFilters);
     const selectedValues = selectedFilters.get(filter)
@@ -74,42 +74,36 @@ export default {
 
 
     //create the endpoints
-    let root_url = (state.search && state.search.endpoint) ? state.search.endpoint.root_url : dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints'})
+    // let root_url = (state.search && state.search.endpoint) ? state.search.endpoint.root_url : dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints'})
 
-    let endpoint = searchEnpointCreator({
-      baseUrl:root_url,
-      // query from main input in search bar
-      search: search.question.query,
-      // tags / filters
-      search_filters:selectedFilters,
-      // pagination
-      page:1,
-      per_page:100,
-      // here for map requests
-      map_list : search.question.for_map,
-      as_latlng : search.question.for_map
+    // let endpoint = searchEnpointCreator({
+    //   baseUrl:root_url,
+    //   // query from main input in search bar
+    //   search: search.question.query,
+    //   // tags / filters
+    //   search_filters:selectedFilters,
+    //   // pagination
+    //   page:1,
+    //   per_page:100,
+    //   // here for map requests
+    //   map_list : search.question.for_map,
+    //   as_latlng : search.question.for_map
 
-    })
+    // })
     // console.log("-- search / endpoint : \n", endpoint )
 
-    // TEST ENDPOINT GENERATOR
-    let endpointBis = searchEndpointGenerator({
+    // ENDPOINT GENERATOR
+    let endpointGenerated = searchEndpointGenerator({
       endpointConfig : state.search.endpoint,
-      questionParams : state.search.question
+      questionParams : state.search.question,
+      selectedFilters : selectedFilters,
     })
-    console.log("-- search / endpointBis : \n", endpointBis )
-
-    // special endpoint only for map
-    if (state.search.question.forMap){
-      endpoint = endpointBis
-    }
-
-
-
+    console.log("-- search / endpointBis : \n", endpointGenerated )
 
 
     // perform search --> !!! only request map search if map search results empty in store !!! 
-    const searchPendingAbort = searchItems(endpoint)
+    // const searchPendingAbort = searchItems(endpoint)
+    const searchPendingAbort = searchItems(endpointGenerated)
     commit('setSearchPending', { pendingAbort: searchPendingAbort })
 
     searchPendingAbort.promise
@@ -184,13 +178,6 @@ export default {
     arr.push(dispatch('getConfigType',{type:'routes',configTypeEndpoint:'routes?as_list=true'}) )
     arr.push(dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints?as_list=true'}) )
     return Promise.all(arr)
-    // dispatch('getConfigType',{type:'global',configTypeEndpoint:'global'})
-    // dispatch('getConfigType',{type:'styles',configTypeEndpoint:'styles'})
-    // dispatch('getConfigType',{type:'socials',configTypeEndpoint:'socials'})
-    // dispatch('getConfigType',{type:'footer',configTypeEndpoint:'footer'})
-    // dispatch('getConfigType',{type:'navbar',configTypeEndpoint:'navbar'})
-    // dispatch('getConfigType',{type:'routes',configTypeEndpoint:'routes?as_list=true'})
-    // dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints?as_list=true'})
   },
 
   getConfigType({commit, getters},{type,configTypeEndpoint}) {

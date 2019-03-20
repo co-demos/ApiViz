@@ -9,7 +9,7 @@
       <router-link 	
         id="logo_home"
         class="navbar-item" 
-        to="/">
+        :to="logoTo">
         <img 
             id="navbar-logo" 
             :src="this.logo.url"
@@ -25,7 +25,8 @@
 <script>
 export default {
   props: [
-    'logo', 
+    'logo',
+    'logoTo', 
     'brand'
   ]
 }

@@ -5,7 +5,6 @@
     <NavBar 
       v-if="this.has_navbar"
       :navbarConfig="this.navbarConfig" 
-
       :logo="this.globalConfig.app_logo"
       :brand="this.globalConfig.app_title.content"
       :appLocales="this.globalConfig.app_languages" 
@@ -84,7 +83,7 @@
 
 
 
-    <!-- FOOTER -->
+    <!-- FOOTERS -->
     <Footer 
       v-if="this.has_footer"
       :footerConfig="this.footerConfig" 
@@ -92,17 +91,13 @@
     ></Footer>
 
     <!-- PROJECT's PARTNERS FOOTER -->
-    <footer class="footer extra-footer">
-      <div class="content has-text-centered">
-          Avec l'appui de :
-          <strong><a href="https://jgthms.com">la MedNum</a></strong>
-        </p>
-      </div>
-    </footer>
+    <DynamicStaticRaw 
+      v-if="this.has_credits_footer"
+      :templateURL="this.footerConfig.credits_footer_url"
+    ></DynamicStaticRaw>
 
     <!-- CREDITS CODEMOS / REMOTE FOOTER -->
     <DynamicStaticRaw 
-      :routeConfig="localRouteConfig"
       :templateURL="'https://raw.githubusercontent.com/co-demos/structure/master/pages-html/codemos-footer.html'"
     ></DynamicStaticRaw>
 
@@ -186,7 +181,7 @@ export default {
       // setting filters
       // console.log("\n - - DynamicScreen / setting filters ... ")
       this.localFiltersConfig = this.$store.getters.getEndpointConfigFilters
-      console.log("\n - - DynamicScreen / this.localFiltersConfig : ", this.localFiltersConfig)
+      // console.log(" - - DynamicScreen / this.localFiltersConfig : ", this.localFiltersConfig)
       // this.$store.commit('setDatasetFilters', this.localFiltersConfig )
       this.$store.dispatch('createDatasetFilters' )
       
@@ -212,39 +207,39 @@ export default {
     
     // watch the route path
     '$route.fullPath': function (newPath, oldPath) {
-      console.log('\n- - DynamicScreen / watch / $route.fullPath : ', this.$route.fullPath);
+      // console.log('\n- - DynamicScreen / watch / $route.fullPath : ', this.$route.fullPath);
       // console.log('- - DynamicScreen / newPath : ', newPath);
       // console.log('- - DynamicScreen / oldPath : ', oldPath);
-      console.log('- - DynamicScreen / watch / $route : ', this.$route);
-      console.log('- - DynamicScreen / watch / (before) state : ', this.$store.state);
+      // console.log('- - DynamicScreen / watch / $route : ', this.$route);
+      // console.log('- - DynamicScreen / watch / (before) state : ', this.$store.state);
 
       // find new route config corresponding to requested path
       this.$store.dispatch('setSearchEndpointConfig', { path : this.$route.path})
       // this.$store.dispatch('setSearchEndpoint')
-      console.log('- - DynamicScreen / watch / (after) state : ', this.$store.state);
+      // console.log('- - DynamicScreen / watch / (after) state : ', this.$store.state);
 
       // this.localRouteConfig = this.$store.state.search.currentRouteConfig
       this.localRouteConfig = this.$store.getters.getCurrentRouteConfig( this.$route.path )
-      console.log('- - DynamicScreen / watch / (after) localRouteConfig : ', this.localRouteConfig);
+      // console.log('- - DynamicScreen / watch / (after) localRouteConfig : ', this.localRouteConfig);
 
       // this.currentDatasetURI = this.$store.state.search.dataset_uri
       this.currentDatasetURI = this.$store.getters.getSearchDatasetURI
-      console.log('- - DynamicScreen / watch / (after) currentDatasetURI : ', this.currentDatasetURI);
+      // console.log('- - DynamicScreen / watch / (after) currentDatasetURI : ', this.currentDatasetURI);
 
       // check search for Map
       this.$store.commit('setIsMapSearch', this.localRouteConfig)
 
       if( this.localRouteConfig.dynamic_templates !== 'DynamicStatic' ) {
-        console.log('- - DynamicScreen / watch / (after) setIsMapSearch : ', this.$store.state);
+        // console.log('- - DynamicScreen / watch / (after) setIsMapSearch : ', this.$store.state);
         this.localEndpointConfig = this.$store.getters.getEndpointConfig
-        console.log('- - DynamicScreen / watch / (after) localEndpointConfig : ', this.localEndpointConfig);
+        // console.log('- - DynamicScreen / watch / (after) localEndpointConfig : ', this.localEndpointConfig);
         if (this.localEndpointConfig && this.currentDatasetURI !== this.localEndpointConfig.dataset_uri ) {
           this.currentDatasetURI = this.currentDatasetURI
           this.localFiltersConfig = this.$store.getters.getEndpointConfigFilters
         }
         if (this.localEndpointConfig) {
           // reload results 
-          console.log('- - DynamicScreen / watch / (after) dispatch search... ');
+          // console.log('- - DynamicScreen / watch / (after) dispatch search... ');
           this.$store.dispatch('search')
         }
 
@@ -255,13 +250,7 @@ export default {
 
     },
 
-    // watch the localRouteConfig
-    // localRouteConf: function (newConf, oldConf) {
-    //   console.log('\n- - DynamicScreen / watch localRouteConf...');
-    //   console.log('- - DynamicScreen / newConf : ', newConf);
-    //   console.log('- - DynamicScreen / oldConf : ', oldConf);
 
-    // }
   },
 
 
@@ -316,6 +305,9 @@ export default {
     },
     has_footer(){      
       return (this.routeConfig) ? this.routeConfig.has_footer : undefined 
+    },
+    has_credits_footer(){      
+      return (this.footerConfig) ? this.footerConfig.has_credits_footer : undefined 
     },
     has_banner(){      
       return (this.localRouteConfig) ? this.localRouteConfig.banner.activated : false 

@@ -13,6 +13,7 @@ default_app_footer = [
       "is_dynamic"        : True,
       "dynamic_template"  : 'DynamicFooter',
       "has_credits_footer": True,
+      "credits_footer_url" : "https://raw.githubusercontent.com/co-demos/carto-sonum/master/pages-html/footer-mednum.html",
       "active_columns"    : ['block_left', 'block_center_left', 'block_center_right','block_right'],
 
       "contents_fields" : {

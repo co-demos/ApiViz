@@ -210,7 +210,7 @@ export default {
       }
     }, 100);
 
-    getItemById(this.$route.query.id,this.$store.state.search.endpoint.root_url)
+    getItemById(this.$route.query.id,this.$store.state.search.endpoint)
     .then(item => {
       // this.$store.commit('setDisplayedProject', {item})
       console.log(" - - DynamicDetail / item : \n ", item)

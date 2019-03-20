@@ -5,6 +5,7 @@
           
         <Brand 
           :logo="logo" 
+          :logoTo="this.navbarConfig.logo_to"
           :brand="brand"
         ></Brand>
 
