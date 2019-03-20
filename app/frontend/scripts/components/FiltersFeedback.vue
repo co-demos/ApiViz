@@ -29,7 +29,7 @@
           </span>
 
           <span class="icon is-small">
-              <i class="fas fa-times"></i>
+            <i class="fas fa-times"></i>
           </span>
         </a>
 
@@ -91,11 +91,12 @@ export default {
 
 .filter-feedback{
     width: 100%;
-    background-color: #F6F6F6;
+    /* background-color: #F6F6F6; */
 }
 
 .filter-feedback > .inline-filters{
     padding-top: 1em;
+    padding-bottom: 1em;
     font-size: 12px;
 }
 

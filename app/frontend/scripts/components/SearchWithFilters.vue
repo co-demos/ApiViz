@@ -128,44 +128,44 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/apiviz-colors.scss';
-@import '../../styles/apiviz-misc.scss';
-@import '../../styles/rem.scss';
+  @import '../../styles/apiviz-colors.scss';
+  @import '../../styles/apiviz-misc.scss';
+  @import '../../styles/rem.scss';
 
-.search-bar {
-  top: $apiviz-navbar-height;
-  height: $apiviz-search-bar-height;
+  .search-bar {
+    top: $apiviz-navbar-height;
+    height: $apiviz-search-bar-height;
 
-  font-size: $apiviz-navbar-font-size;
+    font-size: $apiviz-navbar-font-size;
 
-  .search{
-    flex: 1;
+    .search{
+      flex: 1;
 
-    display: flex;
-    flex-direction: row;
-    //justify-content: center;
-    align-items: center;
-
-    .image-container{
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      //justify-content: center;
       align-items: center;
 
-      img{
-          width: rem(36px);
+      .image-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            width: rem(36px);
+        }
+      }
+
+      input[type="search"]{
+        height: 100%;
+        border: 0;
       }
     }
 
-    input[type="search"]{
-      height: 100%;
-      border: 0;
-    }
-  }
+    .navbar-end{
 
-  .navbar-end{
-
-    .navbar-link::after{
+      .navbar-link::after{
         content: url("/static/icons/icon_chevron3.svg");
         border: 0;
 
@@ -176,13 +176,13 @@ export default {
 
         right: 1em;
         top: 47%;
-    }
+      }
 
-    .navbar-item{
+      .navbar-item{
         padding: 0.2em 0.2em;
         border-left: 1px solid #CBCBCB;
+      }
     }
   }
-}
 
 </style>
