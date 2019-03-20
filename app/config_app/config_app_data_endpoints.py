@@ -214,8 +214,8 @@ default_data_endpoints_config = [
           "fullname" 	: u"Source",		
           "choices"	: [
             {"name" : u"APTIC",            "fullname" : u"APTIC"},
-            {"name" : u"DRJSCS",           "fullname" : u"DRJSCS"},
             {"name" : u"Gironde",          "fullname" : u"Gironde"},
+            {"name" : u"Hauts de France",  "fullname" : u"Hauts de France"},
             {"name" : u"Loire-Atlantique", "fullname" : u"Loire-Atlantique"},
             {"name" : u"MSAP",             "fullname" : u"MSAP"},
             {"name" : u"NetPublic",        "fullname" : u"NetPublic"},
@@ -244,6 +244,7 @@ default_data_endpoints_config = [
         {  "app_arg" : "perPage",    "arg" : "per_page",         "optional" : True, "in" : ["url"],           "default" : 100, "type": "int" },
         {  "app_arg" : "query",      "arg" : "search_for",       "optional" : True, "in" : ["url"],           "default" : "", "type": "str" },
         {  "app_arg" : "filters",    "arg" : "search_filters",   "optional" : True, "in" : ["url"],           "default" : "", "type": "str" },
+        {  "app_arg" : "shuffleSeed","arg" : "shuffle_seed",     "optional" : True, "in" : ["url"],           "default" : 0 , "type": "int" },
 
       ],
       "app_version"    : version,
@@ -383,6 +384,7 @@ default_data_endpoints_config = [
         {  "app_arg" : "perPage",    "arg" : "per_page",         "optional" : True, "in" : ["url"],           "default" : 100, "type": "int" },
         {  "app_arg" : "query",      "arg" : "search_for",       "optional" : True, "in" : ["url"],           "default" : "", "type": "str" },
         {  "app_arg" : "filters",    "arg" : "search_filters",   "optional" : True, "in" : ["url"],           "default" : "", "type": "str" },
+        {  "app_arg" : "shuffleSeed","arg" : "shuffle_seed",     "optional" : True, "in" : ["url"],           "default" : 0 , "type": "int" },
       ],
       "app_version"   : version,
       "method"        : "GET",

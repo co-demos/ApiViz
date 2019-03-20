@@ -107,7 +107,7 @@ export function searchEndpointGenerator(obj) {
   // base query to be completed with args + questions
   let baseQuery = endpointConfig.root_url + '?'
 
-  const appArgs = ['query', 'forMap', 'page', 'perPage', 'onlyGeocoded', 'itemId' ]
+  const appArgs = ['query', 'forMap', 'page', 'perPage', 'onlyGeocoded', 'itemId', 'shuffleSeed' ]
   
   // loop in routeArgs + queries then append to baseQuery
   let argsArray = []

@@ -183,12 +183,10 @@ export default {
       this.localFiltersConfig = this.$store.getters.getEndpointConfigFilters
       // console.log(" - - DynamicScreen / this.localFiltersConfig : ", this.localFiltersConfig)
       // this.$store.commit('setDatasetFilters', this.localFiltersConfig )
-      this.$store.dispatch('createDatasetFilters' )
+      this.$store.dispatch('createDatasetFilters')
       
       // setting MapSearch
       this.$store.commit('setIsMapSearch', this.routeConfig)
-
-
 
     }
 
@@ -220,22 +218,28 @@ export default {
 
       // this.localRouteConfig = this.$store.state.search.currentRouteConfig
       this.localRouteConfig = this.$store.getters.getCurrentRouteConfig( this.$route.path )
-      // console.log('- - DynamicScreen / watch / (after) localRouteConfig : ', this.localRouteConfig);
+      console.log('- - DynamicScreen / watch / localRouteConfig : ', this.localRouteConfig);
 
-      // this.currentDatasetURI = this.$store.state.search.dataset_uri
-      this.currentDatasetURI = this.$store.getters.getSearchDatasetURI
-      // console.log('- - DynamicScreen / watch / (after) currentDatasetURI : ', this.currentDatasetURI);
+      // let previousDatasetURI = this.$store.getters.getSearchDatasetURI
+      // console.log('- - DynamicScreen / watch / previousDatasetURI : ', previousDatasetURI);
+      let currentDatasetURI = this.$store.getters.getSearchDatasetURI
+      console.log('- - DynamicScreen / watch / currentDatasetURI : ', currentDatasetURI);
+      // commit('setDatasetURI', currentDatasetURI)
 
       // check search for Map
       this.$store.commit('setIsMapSearch', this.localRouteConfig)
 
       if( this.localRouteConfig.dynamic_templates !== 'DynamicStatic' ) {
-        // console.log('- - DynamicScreen / watch / (after) setIsMapSearch : ', this.$store.state);
+        console.log('- - DynamicScreen / watch / localRouteConfig : ', this.localRouteConfig);
+        
         this.localEndpointConfig = this.$store.getters.getEndpointConfig
-        // console.log('- - DynamicScreen / watch / (after) localEndpointConfig : ', this.localEndpointConfig);
-        if (this.localEndpointConfig && this.currentDatasetURI !== this.localEndpointConfig.dataset_uri ) {
-          this.currentDatasetURI = this.currentDatasetURI
+        console.log('- - DynamicScreen / watch / localEndpointConfig : ', this.localEndpointConfig);
+        
+        if ( this.localEndpointConfig && currentDatasetURI !== this.currentDatasetURI ) {
+          console.log('- - DynamicScreen / watch / need to reinit filters ... ')
+          this.currentDatasetURI = currentDatasetURI
           this.localFiltersConfig = this.$store.getters.getEndpointConfigFilters
+          this.$store.dispatch('createDatasetFilters')
         }
         if (this.localEndpointConfig) {
           // reload results 

@@ -1,7 +1,9 @@
 <template>
   <div class="search-bar navbar is-white is-fixed-top" role="menubar" aria-label="filters navigation">
     <div class="container">
+      
 
+      <!-- INPUT TEXT -->
       <div class="search control is-expanded">
         <div class="image-container"><img src="/static/icons/icon_search_violet.svg"></div>
         <input
@@ -13,6 +15,8 @@
           >
       </div>
 
+
+      <!-- INPUT FILTERS -->
       <div class="navbar-end">
 
         <span v-for="filter in filterDescriptions"

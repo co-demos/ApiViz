@@ -24,7 +24,7 @@ export default {
   toggleFilter({state, commit, dispatch, getters}, {filter, value}){
     // console.log("\n// toggleFilter ..." )
     const selectedFilters = new Map(getters.getSelectedFilters)
-    console.log(selectedFilters);
+    // console.log("// toggleFilter / selectedFilters : ", selectedFilters);
     const selectedValues = selectedFilters.get(filter)
     if(selectedValues.has(value))
       selectedValues.delete(value)
@@ -36,7 +36,7 @@ export default {
   },
 
   emptyOneFilter({state, commit, dispatch, getters}, {filter}){
-    console.log("\n// emptyOneFilter ..." )
+    // console.log("\n// emptyOneFilter ..." )
     const selectedFilters = new Map(getters.getSelectedFilters)
     selectedFilters.set(filter, new Set())
 
@@ -45,14 +45,14 @@ export default {
   },
 
   clearAllFilters({commit, dispatch}){
-    console.log("\n// clearAllFilters ..." )
+    // console.log("\n// clearAllFilters ..." )
     commit('clearAllFilters')
     dispatch('search')
   },
 
   // FOR QUERY SEARCH TEXT
   searchedTextChanged({commit, dispatch}, {searchedText}){
-    console.log("\n// searchedTextChanged ..." )
+    // console.log("\n// searchedTextChanged ..." )
     commit('setSearchedText', {searchedText})
     dispatch('search')
   },
