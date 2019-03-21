@@ -32,7 +32,7 @@
 
               <!-- LOADER -->
               <div 
-                class="columns is-mobile is-vcentered"
+                class="columns is-mobile is-vcentered "
                 v-show="!itemLoaded"
                 >
                 <div 
@@ -58,6 +58,7 @@
                 v-if="itemLoaded"
                 :item="highlightedItem"
                 :contentFields="contentFields"
+                :view="VIEW_MAP"
                 >
               </ProjectCard>
 
@@ -506,7 +507,6 @@ export default {
       transform: rotate(360deg);
     }
   }
-
 
 
   .app-loader {

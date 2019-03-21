@@ -1,6 +1,9 @@
 <template>
-  <div class="column is-12">
-    <div class="card proj-card">
+  <div 
+    :class="`column is-12 ${ view === 'VIEW_MAP' ? 'hover-effect' : ''}`">
+    <div 
+      :class="`card proj-card ${ view === 'VIEW_LIST' ? 'hover-effect' : ''}`"
+      >
       
 
       <!-- BLOCK IMAGE -->
@@ -79,7 +82,8 @@ export default {
 
   props: [
     'item',
-    'contentFields'
+    'contentFields',
+    'view'
     ],
   // beforeCreate: function () {
   //   console.log("\n - - ProjectCard / beforeCreate ... ")
@@ -176,9 +180,9 @@ export default {
 .proj-card {
 	border-radius: 3px ;
   box-shadow : $apiviz-discrete-shadow;
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1)
 }
-.proj-card:hover {
+.hover-effect:hover {
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
 }
 

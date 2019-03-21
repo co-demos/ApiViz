@@ -17,6 +17,7 @@
               :key="item.id" 
               :item="item"
               :contentFields="projectContentsFields"
+              :view="VIEW_LIST"
               />
           </div>
         </div>
