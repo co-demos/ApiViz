@@ -73,7 +73,7 @@
   </div>
 
   <div 
-    v-show="!projects"
+    v-show="!projects || itemLoading"
     class="lds-roller floating"
     >
     <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
@@ -200,6 +200,7 @@ export default {
       // ITEMS
       highlightedItem: undefined,
       itemLoaded: false,
+      itemLoading: false,
       showCard:false,
       itemsOnMap : [
         // {sd_id : 'A', lat : '47.412', lon : '-1.218' },
@@ -358,6 +359,7 @@ export default {
       // show loader 
       this.showCard = true
       this.itemLoaded = false
+      this.itemLoading = true
       this.center = [i.lat, i.lon]
       // this.center = [i.lon, i.lat]
       // get item ID
@@ -368,6 +370,7 @@ export default {
         // console.log(" - - DynamicDetail / item : \n ", item)
         this.highlightedItem = item;
         this.itemLoaded = true
+        this.itemLoading = false
       })
       .catch(function(err) { this.isError = true ; console.error('item route error', err) })
 
