@@ -14,13 +14,21 @@ export default {
     'endPointConfig',
     'itemsForMap',
     'mapObject',
-    'checkIfStringFloat'
+    'checkIfStringFloat',
+    'contentFields',
+    'highlightedItem'
   ],
 
   data() {
     return {
       itemsOnMap : [],
       pruneCluster: undefined,
+
+      iconSizeNormal : [29, 29],
+      iconSizeHighlighted : [49, 49],
+
+      // testProp : "this is the test prop",
+
     };
   },
   mounted(){
@@ -28,15 +36,30 @@ export default {
     this.itemsOnMap = this.projects
     this.pruneCluster = new PruneClusterForLeaflet();
 
-    // we configure the onClick option
-    // this.pruneCluster.PrepareLeafletMarker = function(leafletMarker, data) {
-    //     leafletMarker.on('click', function(){
-    //       console.log(data);
-    //       // "showCard=true; highlightItem(item)"
-    //     });
-    // };
+    const iconNormalSize = this.iconSizeNormal
+    const emitDataFunction = this.emitItem
+    const setIconSize = this.getIconSize
 
-    //--------------------------------- configutation de l'icon du Cluster
+
+    // we configure the onClick option
+    this.pruneCluster.PrepareLeafletMarker = function(leafletMarker, data) {
+
+      leafletMarker.setIcon(
+        L.icon({
+          iconUrl: '/static/icons/icon_pin_plein_violet.svg',
+			    // iconSize: setIconSize(data),
+			    iconSize: iconNormalSize,
+			    // iconSize: [48, 48]
+		    })
+      );
+
+      leafletMarker.on('click', function(){
+        // console.log("PrepareLeafletMarker / data : ", data);
+        emitDataFunction(data)
+      });
+    };
+
+    //--------------------------------- configuration de l'icon du Cluster
     this.pruneCluster.BuildLeafletClusterIcon = function(cluster) {
          var e = new L.Icon.MarkerCluster();
          e.stats = cluster.stats;
@@ -86,11 +109,11 @@ export default {
                  }
              }
              canvas.beginPath();
-             canvas.fillStyle = 'yellow';
+             canvas.fillStyle = '#a174ac';
              canvas.arc(22, 22, 18, 0, Math.PI*2);
              canvas.fill();
              canvas.closePath();
-             canvas.fillStyle = '#555';
+             canvas.fillStyle = 'white';
              canvas.textAlign = 'center';
              canvas.textBaseline = 'middle';
              canvas.font = 'bold 12px sans-serif';
@@ -99,7 +122,7 @@ export default {
      });
     //--------------------------------- the end of the Cluster icon configuration
 
-    console.log('this.mapObject',this.mapObject);
+    // console.log('this.mapObject',this.mapObject);
     let map = this.mapObject.mapObject;
     map.addLayer(this.pruneCluster);
   },
@@ -120,6 +143,10 @@ export default {
 
   methods:{
 
+    emitItem(item){
+      this.$emit('getSelectedItem', item)
+    },
+
     checkIfItemHasLatLng(item){
       return this.checkIfStringFloat(item.lat) && this.checkIfStringFloat(item.lon)
     },
@@ -139,25 +166,63 @@ export default {
 
     },
 
-    createIcon(data, category) {
-        return L.icon({
-            iconUrl: '/static/icons/icon_pin_plein_violet.svg',
-            iconSize: [38, 95],
-            iconAnchor: [22, 94],
-            // shadowUrl: 'my-icon-shadow.png',
-            shadowSize: [68, 95],
-            shadowAnchor: [22, 94]
-        });
-    },
+    // createIcon(data, category) {
+    //     return L.icon({
+    //         iconUrl: '/static/icons/icon_pin_plein_violet.svg',
+    //         iconSize: [38, 95],
+    //         iconAnchor: [22, 94],
+    //         // shadowUrl: 'my-icon-shadow.png',
+    //         shadowSize: [68, 95],
+    //         shadowAnchor: [22, 94]
+    //     });
+    // },
 
     createMarker(obj,pruneCluster){
       let parsedObj = JSON.parse(JSON.stringify(obj))
       let marker = new PruneCluster.Marker(parsedObj.lat, parsedObj.lon);
-      marker.data.icon = this.createIcon;
-      marker.data.ID = parsedObj.sd_id;
+      // marker.data.icon = this.createIcon;
+      // marker.data.ID = parsedObj.sd_id;
+      marker.data.ID = this.itemId(obj);
+      marker.data.lat = parsedObj.lat;
+      marker.data.lon = parsedObj.lon;
       return marker
     },
+
+    getIconSize(item){
+      if (this.highlightedItem) {
+        const itemID = item.ID
+        // console.log("getIconSize / itemID : " , itemID)
+        let highlightedItemID = this.itemId(this.highlightedItem, 'block_id')
+        // console.log("getIconSize / highlightedItemID : " , highlightedItemID)
+        // return this.itemId(item, 'block_id') === this.itemId(this.highlightedItem, 'block_id') ? this.iconSizeHighlighted : this.iconSizeNormal
+        // return itemID === highlightedItemID ? this.iconSizeHighlighted : this.iconSizeNormal
+        return itemID === highlightedItemID ? [49,49] : [29,29]
+      } else {
+        return this.iconSizeNormal
+      }
+    },
+    matchItemWithConfig(item, fieldBlock) {
+      // console.log("matchItemWithConfig / item : ", item)
+      const contentField = this.contentFields.find(f=> f.position == fieldBlock)
+      // console.log("matchItemWithConfig / contentField : ", contentField)
+      const field = contentField.field
+      return item[field]
+    },
+    itemId(item) {
+      // console.log("itemId / item : ", item)
+      return this.matchItemWithConfig(item, 'block_id')
+    },
+    getHighlightedItemId(){
+      if ( this.highlightedItem ) {
+        return this.itemId(highlightedItem, 'block_id') 
+      } else {
+        return false
+      }
+    },
+
   },
+
+
 
 
 }

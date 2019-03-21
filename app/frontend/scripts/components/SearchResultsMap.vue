@@ -125,9 +125,11 @@
         :itemsForMap="itemsForMap"
         :checkIfStringFloat="checkIfStringFloat"
         :mapObject="this.$refs.map"
+
+        :contentFields="contentFields"
+        @getSelectedItem="handleIconSignal"
+        :highlightedItem="highlightedItem"
       />
-        <!-- :highlightedItemId="getHighlightedItemId()" -->
-        <!-- @getSelectedItem="console.log(e)" -->
 
     </l-map>
 
@@ -290,14 +292,15 @@ export default {
 
   methods: {
 
+    handleIconSignal(itemData){
+      // console.log('handleIconSignal / itemData : ', itemData)
+      this.highlightItem(itemData)
+    },
     itemsForMap(){
       if (this.projects){
         return this.projects.filter(item => this.checkIfItemHasLatLng(item) )
       }
     },
-
-
-
     getIconSize(item, highlightedItem){
       if (highlightedItem) {
         return this.itemId(item, 'block_id') === this.itemId(highlightedItem, 'block_id') ? this.iconSizeHighlighted : this.iconSizeNormal
@@ -318,6 +321,7 @@ export default {
     },
     getHighlightedItemId(){
       if ( this.highlightedItem ) {
+        // console.log("itemId / this.highlightedItem : ", this.highlightedItem)
         return this.itemId(highlightedItem, 'block_id') 
       } else {
         return false
@@ -334,12 +338,12 @@ export default {
         return false
       }
     },
-    getLatLng(item){
-      return { lat : this.checkIfStringFloat(item.lat) , lng : checkIfStringFloat(item.lon) }
-    },
-    getLatLngDense(item){
-      return { lat : this.checkIfStringFloat(item.latlng[0]) , lng : checkIfStringFloat(item.latlng[1]) }
-    },
+    // getLatLng(item){
+    //   return { lat : this.checkIfStringFloat(item.lat) , lng : checkIfStringFloat(item.lon) }
+    // },
+    // getLatLngDense(item){
+    //   return { lat : this.checkIfStringFloat(item.latlng[0]) , lng : checkIfStringFloat(item.latlng[1]) }
+    // },
     checkIfItemHasLatLng(item){
       return this.checkIfStringFloat(item.lat) && this.checkIfStringFloat(item.lon)
     },
@@ -358,20 +362,21 @@ export default {
       // show loader 
       this.showCard = true
       this.itemLoaded = false
-      this.itemLoading = true
+      // this.itemLoading = true
       this.center = [i.lat, i.lon]
       // this.center = [i.lon, i.lat]
       // get item ID
-      const item_id = this.itemId(i)
+      // const item_id = this.itemId(i)
+      const item_id = i.ID
       getItemById( item_id, this.$store.state.search.endpoint)
-      .then(item => {
-        // this.$store.commit('setDisplayedProject', {item})
-        // console.log(" - - DynamicDetail / item : \n ", item)
-        this.highlightedItem = item;
-        this.itemLoaded = true
-        this.itemLoading = false
-      })
-      .catch(function(err) { this.isError = true ; console.error('item route error', err) })
+        .then(item => {
+          // this.$store.commit('setDisplayedProject', {item})
+          // console.log(" - - DynamicDetail / item : ", item)
+          this.highlightedItem = item;
+          this.itemLoaded = true
+          // this.itemLoading = false
+        })
+        .catch(function(err) { this.isError = true ; console.error('item route error', err) })
 
     },
 
