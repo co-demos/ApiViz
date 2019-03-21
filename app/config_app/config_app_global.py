@@ -17,7 +17,7 @@ default_global_config = [
       "app_version" : version,
       "help"        : u"The default dict for your ApiViz instance",
 
-      "no_data"        : [{"locale" : "fr", "text" : "NR" }],
+      "no_data"        : [{"locale" : "fr", "text" : "non renseigné" }],
       "reinit_filters" : [{"locale" : "fr", "text" : "Supprimer tous les filtrees" }],
       "no_abstract"    : [{"locale" : "fr", "text" : "(Pas de résumé)" }],
       "no_address"     : [{"locale" : "fr", "text" : "Pas d'adresse enregistrée" }],
