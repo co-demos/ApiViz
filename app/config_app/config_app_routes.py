@@ -228,7 +228,7 @@ default_routes_config = [
       "route_description" : u"Page de recherche d'Apiviz",
       "route_activated"   : True,
       "banner" : {
-        "activated"  : True,
+        "activated"  : False,
         "banner_uri" : "banner-sonum-carto"
       },
       "is_dataset_homepage" : False,

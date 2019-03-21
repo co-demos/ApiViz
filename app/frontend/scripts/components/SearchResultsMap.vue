@@ -110,8 +110,10 @@
           <l-icon
             v-if="checkIfItemHasLatLng(item)"
             iconUrl="/static/icons/icon_pin_plein_violet.svg"
-            :iconSize="item === highlightedItem ? [46, 46] : [29, 29]"
+            :iconSize="getIconSize(item, highlightedItem)"
           />
+            <!-- :iconSize="item.sd_id === highlightedItem.sd_id ? [46, 46] : [29, 29]" -->
+            <!-- :iconSize="itemId(item, 'block_id') === itemId(highlightedItem, 'block_id') ? [46, 46] : [29, 29]" -->
         </l-marker>
 
 
@@ -170,6 +172,8 @@ export default {
 
       // LOCAL DATA
       VIEW_MAP,
+      iconSizeNormal : [29, 29],
+      iconSizeHighlighted : [49, 49],
 
       // FIELDS MAPPER
       contentFields : undefined,
@@ -280,6 +284,29 @@ export default {
     },
 
 
+
+    getIconSize(item, highlightedItem){
+      if (highlightedItem) {
+        return this.itemId(item, 'block_id') === this.itemId(highlightedItem, 'block_id') ? this.iconSizeHighlighted : this.iconSizeNormal
+      } else {
+        return this.iconSizeNormal
+      }
+    },
+    matchItemWithConfig(item, fieldBlock) {
+      console.log("matchItemWithConfig / item : ", item)
+      const contentField = this.contentFields.find(f=> f.position == fieldBlock)
+      console.log("matchItemWithConfig / contentField : ", contentField)
+      const field = contentField.field
+      return item[field]
+    },
+    itemId(item) {
+      // console.log("itemId / item : ", item)
+      return this.matchItemWithConfig(item, 'block_id')
+    },
+
+
+
+
     checkIfStringFloat(value){
       let val = parseFloat(value)
       if(!isNaN(val)){
@@ -308,10 +335,12 @@ export default {
 
 
     highlightItem(i) {
-      // console.log("highlightItem / p : \n", p)
+      console.log("highlightItem / i : ", i)
       // show loader 
       this.showCard = true
       this.itemLoaded = false
+      this.center = [i.lat, i.lon]
+      // this.center = [i.lon, i.lat]
       // get 
       // get item info
       getItemById(i.sd_id, this.$store.state.search.endpoint)
