@@ -341,9 +341,9 @@ export default {
       this.itemLoaded = false
       this.center = [i.lat, i.lon]
       // this.center = [i.lon, i.lat]
-      // get 
-      // get item info
-      getItemById(i.sd_id, this.$store.state.search.endpoint)
+      // get item ID
+      const item_id = this.itemId(i)
+      getItemById( item_id, this.$store.state.search.endpoint)
       .then(item => {
         // this.$store.commit('setDisplayedProject', {item})
         // console.log(" - - DynamicDetail / item : \n ", item)
