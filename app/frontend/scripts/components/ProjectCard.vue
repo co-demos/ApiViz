@@ -175,7 +175,11 @@ export default {
 
 .proj-card {
 	border-radius: 3px ;
-	box-shadow : $apiviz-discrete-shadow;
+  box-shadow : $apiviz-discrete-shadow;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1)
+}
+.proj-card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
 }
 
 .proj-card-img {
