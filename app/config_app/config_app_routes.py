@@ -228,7 +228,7 @@ default_routes_config = [
       "route_description" : u"Page de recherche d'Apiviz",
       "route_activated"   : True,
       "banner" : {
-        "activated"  : False,
+        "activated"  : True,
         "banner_uri" : "banner-sonum-carto"
       },
       "is_dataset_homepage" : False,
@@ -429,8 +429,25 @@ default_routes_config = [
           "trim" : 0,
           "locale" : "fr"
         },
-
+        { "field" : "contact",
+          "is_visible" : True,
+          "position" : "block_contact",
+          "trim" : 0,
+          "locale" : "fr"
+        },
         # optional text contents
+        { "field" : "téléphone",
+          "is_visible" : True,
+          "position" : "block_tel",
+          "trim" : 0,
+          "locale" : "fr"
+        },
+        { "field" : "horaires structure",
+          "is_visible" : True,
+          "position" : "block_open_infos",
+          "trim" : 0,
+          "locale" : "fr"
+        },
          { "field"       : "services",
            "is_visible"  : True,
            "position"    : "block_left_bottom_1",

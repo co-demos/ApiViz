@@ -90,23 +90,28 @@ export default {
 <style scoped>
 
 .filter-feedback{
-    width: 100%;
-    /* background-color: #F6F6F6; */
+  width: 100%;
+  /* background-color: #F6F6F6; */
+  background-color: white;
+  /* border-top: 1px solid; */
+  /* border-top-color: #40529d; */
+  /* top : -1px; */
+  z-index: 10;
 }
 
 .filter-feedback > .inline-filters{
-    padding-top: 1em;
-    padding-bottom: 1em;
-    font-size: 12px;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-size: 12px;
 }
 
 .filter-feedback > .inline-filters a.button {
-    border-radius: 3px;
-    margin-right: 0.5em;
-    border: 1px solid #767676;
-    padding-top: 0.1em ;
-    padding-bottom: 0.1em ;
-    height: inherit;
+  border-radius: 3px;
+  margin-right: 0.5em;
+  border: 1px solid #767676;
+  padding-top: 0.1em ;
+  padding-bottom: 0.1em ;
+  height: inherit;
 }
 /* .filter-feedback > .inline-filters span{
     white-space: nowrap;

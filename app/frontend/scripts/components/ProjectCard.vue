@@ -49,7 +49,7 @@
         <!-- BLOCK SOURCE -->
         <div class="content">
           <p class="subtitle is-6 is-italic has-text-grey">
-            {{ this.$store.getters.defaultText({txt:'source'})}} {{ matchProjectWithConfig('block_src')}}
+            {{ this.$store.getters.defaultText({txt:'source'})}} : {{ matchProjectWithConfig('block_src')}}
           </p>
         </div>
 
@@ -111,6 +111,9 @@ export default {
     itemInfos(){
       return this.$store.getters.getProjectConfigUniform(this.item)
       // return this.item
+    },
+    noData() {
+      return this.$store.getters.defaultText({txt:'no_data'})
     },
     noAbstractText() {
       return this.$store.getters.defaultText({txt:'no_abstract'})

@@ -5,7 +5,7 @@
 
         <CISSearchResultsCountAndTabs 
           :view="VIEW_MAP" 
-          :open="!!highlightedItem"
+          :open="!!showCard"
           >
           
           <!-- HIGHLIGHTED ITEM  -->

@@ -2,10 +2,14 @@
   <div>
 
     <main v-if="displayableItem">
+      
       <div class="container">
 
         <a class="back" @click="goBack">
-          <img src="/static/icons/icon_arrow1.svg">
+          <!-- <img src="/static/icons/icon_arrow1.svg"> -->
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
           <span>
             <!-- Retour aux résultats de recherche -->
             {{ backToResults }}
@@ -35,7 +39,7 @@
               >
                 <!-- v-if="projectFormatted.address" -->
                 <span class="icon">
-                    <img class="image is-16x16" src="/static/icons/icon_pin.svg">
+                  <img class="image is-16x16" src="/static/icons/icon_pin.svg">
                 </span>
                 <!-- {{projectFormatted.address}} -->
                 {{ matchProjectWithConfig('block_address')}}
@@ -54,13 +58,28 @@
                   <p>{{projectFormatted.projectPartners}}</p>
               </div> -->
 
-              <!-- BLOCK WEBSITE -->
-              <a
-                v-if="matchProjectWithConfig('block_wesite')"
-                :href="matchProjectWithConfig('block_wesite')"
-                target="_blank">
-                {{ seeWebsite }}
-              </a>
+              <div class="columns">
+
+                <!-- BLOCK WEBSITE -->
+                <div class="column is-5 is-offset-1 link">
+                  <a
+                    v-if="matchProjectWithConfig('block_wesite')"
+                    :href="matchProjectWithConfig('block_wesite')"
+                    target="_blank">
+                    {{ seeWebsite }}
+                  </a>
+                </div>
+                
+                <!-- BLOCK CONTACT -->
+                <div class="column is-5 is-offset-1 link">
+                  <a
+                    v-if="matchProjectWithConfig('block_contact')"
+                    :href="'mailto:' + matchProjectWithConfig('block_contact')"
+                    target="_blank">
+                    {{ seeContact }}
+                  </a>
+                </div>
+              </div>
 
             </div>
 
@@ -71,8 +90,11 @@
                   
                   <!-- BLOCK TAGS -->
                   <div>
+                    <span class="has-text-weight-semibold">
+                      {{ servicesData }} : <br><br>
+                    </span>
                     <span>
-                      {{ servicesData }} : {{ matchProjectWithConfig('block_left_bottom_1')}}
+                      {{ matchProjectWithConfig('block_left_bottom_1')}}
                     </span>
                   </div>
 
@@ -107,9 +129,15 @@
                   
                   <!-- BLOCK SOURCE -->
                   <div>
-                    <span>
+                    <!-- <span class="icon is-small">
+                      <i class="fas fa-info-circle"></i>
+                    </span> &nbsp; -->
+                    <span class="has-text-weight-semibold">
                       <!-- <img src="/static/icons/icon_link.svg"> -->
-                      {{ sourceData }} : {{ matchProjectWithConfig('block_src')}}
+                      {{ sourceData }} : 
+                    </span>
+                    <span>
+                      {{ matchProjectWithConfig('block_src')}}
                     </span>
                   </div>
 
@@ -127,8 +155,38 @@
                   
                   <!-- BLOCK RIGHT BOTTOM 1 / INFOS -->
                   <div>
+                    <span class="has-text-weight-semibold">
+                      {{ infosData }} : <br><br>
+                    </span>
+                  </div>
+
+                  <div>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-right"></i>
+                    </span>
                     <span>
-                      {{ infosData }} : {{ matchProjectWithConfig('block_right_bottom_1')}}
+                      {{ infosTel }} : 
+                      {{ matchProjectWithConfig('block_tel')}} <br>
+                    </span>
+                  </div>
+
+                  <div>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-right"></i>
+                    </span>
+                    <span>
+                      {{ infosOpen }} : <br>
+                      {{ matchProjectWithConfig('block_open_infos')}} <br>
+                    </span>
+                  </div>
+
+                  <div>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-right"></i>
+                    </span>
+                    <span>
+                      {{ infosMore }} : 
+                      {{ matchProjectWithConfig('block_right_bottom_1')}}
                     </span>
                   </div>
 
@@ -231,8 +289,12 @@ export default {
     backToResults() {
       return this.$store.getters.defaultText({txt:'back_to_results'})
     },
+
     seeWebsite() {
       return this.$store.getters.defaultText({txt:'see_website'})
+    },
+    seeContact() {
+      return this.$store.getters.defaultText({txt:'see_contact'})
     },
     shareLink() {
       return this.$store.getters.defaultText({txt:'share_link'})
@@ -243,8 +305,29 @@ export default {
     infosData() {
       return this.$store.getters.defaultText({txt:'infos'})
     },
+    infosTel() {
+      return this.$store.getters.defaultText({txt:'tel'})
+    },
+    infosOpen() {
+      return this.$store.getters.defaultText({txt:'open_infos'})
+    },
+    infosMore() {
+      return this.$store.getters.defaultText({txt:'more_infos'})
+    },
     servicesData() {
       return this.$store.getters.defaultText({txt:'services'})
+    },
+    noData() {
+      return this.$store.getters.defaultText({txt:'no_data'})
+    },
+    noAbstractText() {
+      return this.$store.getters.defaultText({txt:'no_abstract'})
+    },
+    noInfos() {
+      return this.$store.getters.defaultText({txt:'no_info'})
+    },
+    noAddress() {
+      return this.$store.getters.defaultText({txt:'no_address'})
     },
     // projectFormatted(){
     //   if (!this.project) {
@@ -277,12 +360,24 @@ export default {
     },
     matchProjectWithConfig(fieldBlock) {
       const contentField = this.contentFields.find(f=> f.position == fieldBlock)
+      // console.log("contentField : ", contentField)
       const field = contentField.field
-      return this.displayableItem[field]
+      let content = this.displayableItem[field]
+      // console.log("content : ", content)
+      if ( content && content !== "None" && content !== "" ){
+        return content
+      } else {
+        // console.log("content is None | null ...")
+        // console.log("this.noData : ", this.noData)
+        return this.noData
+      }
+
     },
+
     projectId() {
       return this.matchProjectWithConfig('block_id')
     },
+
     projectAbstract() {
       let fullAbstract = this.matchProjectWithConfig('block_abstract')
       fullAbstract = ( fullAbstract == null ) ? this.noAbstractText : fullAbstract
@@ -317,8 +412,13 @@ export default {
   @import '../../styles/apiviz-misc.scss';
 
   main{
+    // background-color: $apiviz-blue-deep;
     background-color: $apiviz-grey-background;
     margin-top: $apiviz-navbar-height;
+    height: 100%;
+    padding-bottom: 3em;
+    
+
   }
 
   a.back{
@@ -326,14 +426,16 @@ export default {
     display: block;
 
     color: $apiviz-text-color;
+    // color: white ;
 
-    img{
-        height: 1.5em;
-        transform: translateY(0.4em);
+    img, .icon{
+      height: 1.5em;
+      transform: translateY(0.6em);
     }
 
     span{
-        margin-left: 1em;
+      margin-left: 1em;
+      // color: white ;
     }
   }
 
@@ -347,7 +449,9 @@ export default {
   }
 
   .description, .added{
+    // background-color: $apiviz-blue-deep;
     background-color: white;
+    // color: white;
     padding: 1em;
     margin-bottom: 1em;
   }
