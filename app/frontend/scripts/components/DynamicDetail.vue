@@ -63,8 +63,9 @@
                 <!-- BLOCK WEBSITE -->
                 <div class="column is-5 is-offset-1 link">
                   <a
+                    :class="matchProjectWithConfig('block_wesite') === noData ? 'disabled has-text-grey' : '' "
                     v-if="matchProjectWithConfig('block_wesite')"
-                    :href="matchProjectWithConfig('block_wesite')"
+                    :href="matchProjectWithConfig('block_wesite') === noData ? '' : matchProjectWithConfig('block_wesite') "
                     target="_blank">
                     {{ seeWebsite }}
                   </a>
@@ -73,8 +74,10 @@
                 <!-- BLOCK CONTACT -->
                 <div class="column is-5 is-offset-1 link">
                   <a
+                    class=""
+                    :class="matchProjectWithConfig('block_contact') === noData ? 'disabled has-text-grey' : '' "
                     v-if="matchProjectWithConfig('block_contact')"
-                    :href="'mailto:' + matchProjectWithConfig('block_contact')"
+                    :href="matchProjectWithConfig('block_wesite') === noData ? '' :'mailto:' + matchProjectWithConfig('block_contact') "
                     target="_blank">
                     {{ seeContact }}
                   </a>
@@ -290,6 +293,10 @@ export default {
       return this.$store.getters.defaultText({txt:'back_to_results'})
     },
 
+    noData() {
+      return this.$store.getters.defaultText({txt:'no_data'})
+    },
+
     seeWebsite() {
       return this.$store.getters.defaultText({txt:'see_website'})
     },
@@ -316,9 +323,6 @@ export default {
     },
     servicesData() {
       return this.$store.getters.defaultText({txt:'services'})
-    },
-    noData() {
-      return this.$store.getters.defaultText({txt:'no_data'})
     },
     noAbstractText() {
       return this.$store.getters.defaultText({txt:'no_abstract'})
@@ -419,6 +423,12 @@ export default {
     padding-bottom: 3em;
     
 
+  }
+
+  a.disabled {
+    pointer-events: none;
+    border-bottom: none !important ;
+    cursor: default;
   }
 
   a.back{
