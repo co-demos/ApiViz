@@ -251,14 +251,14 @@ export default {
   },
 
   beforeMount: function () {
-    console.log("\n - - DynamicDetail / beforeMount ... ")
+    // console.log("\n - - DynamicDetail / beforeMount ... ")
     this.contentFields = this.routeConfig.contents_fields
 
   },
 
   mounted(){
     // hack to scroll top because vue-router scrollBehavior thing doesn't seem to work on Firefox on Linux at least
-    console.log(" - - DynamicDetail / mounted... ")
+    // console.log(" - - DynamicDetail / mounted... ")
     const int = setInterval(() => {
       if(window.pageYOffset < 50){
         clearInterval(int)
@@ -271,7 +271,7 @@ export default {
     getItemById(this.$route.query.id,this.$store.state.search.endpoint)
     .then(item => {
       // this.$store.commit('setDisplayedProject', {item})
-      console.log(" - - DynamicDetail / item : \n ", item)
+      // console.log(" - - DynamicDetail / item : \n ", item)
       this.displayableItem = item
     })
     .catch(function(err) { this.isError = true ; console.error('item route error', err) })
@@ -391,7 +391,7 @@ export default {
     },
     projectAddress() {
       let fullAddress = this.matchProjectWithConfig('block_address')
-      console.log('fullAddress : ', fullAddress)
+      // console.log('fullAddress : ', fullAddress)
       let address = ( fullAddress || fullAddress !== 'None' ) ?  fullAddress : this.noAddress
       return address
     },

@@ -94,7 +94,7 @@ export function searchEndpointGenerator(obj) {
   if (!obj) { throw 'error in searchEndpointGenerator: no parameter defined' }
 
   // console.log("+ + + searchEndpointGenerator / ...")
-  console.log("+ + + searchEndpointGenerator / obj : \n ", obj)
+  // console.log("+ + + searchEndpointGenerator / obj : \n ", obj)
 
   // endpoint config related
   const endpointConfig = obj.endpointConfig
@@ -125,7 +125,7 @@ export function searchEndpointGenerator(obj) {
   // loop in selectedFilters to add filters request if any
   // find corresponding mapper in endPointConfig
   const filterMapper = endpointConfigArgs.find( c => c.app_arg === 'filters')
-  console.log("+ + + searchEndpointGenerator / filterMapper : \n ", filterMapper)
+  // console.log("+ + + searchEndpointGenerator / filterMapper : \n ", filterMapper)
   if (filterMapper && selectedFilters.length > 0 ){
     const EndpointArg = filterMapper.arg
     for (let index in selectedFilters) {
@@ -193,7 +193,7 @@ export function searchEndpointGenerator(obj) {
 
 
 export function makeEmptySelectedFilters(filterDescriptions){
-  console.log("::: makeEmptySelectedFilters / filterDescriptions : ", filterDescriptions)
+  // console.log("::: makeEmptySelectedFilters / filterDescriptions : ", filterDescriptions)
   const selectedFilters = new Map()
   for(const f of filterDescriptions){
     selectedFilters.set(f.name, new Set())
@@ -219,6 +219,6 @@ export function createSelectedFiltersForSearch(selectedFiltersMap){
       filtersUri.push(key + v)
     })
   })
-  console.log(filtersUri);
+  // console.log(filtersUri);
   return filtersUri
 }

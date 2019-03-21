@@ -226,16 +226,16 @@ export default {
   },
 
   beforeMount: function () {
-    console.log("- - - - - MAP TIME !!!! - - - - - -")
-    console.log("\n - - SearchResultsMap / beforeMount ... ")
-    console.log(" - - SearchResultsMap / routeConfig : \n", this.routeConfig)
-    console.log(" - - SearchResultsMap / endPointConfig : \n", this.endPointConfig)
+    // console.log("- - - - - MAP TIME !!!! - - - - - -")
+    // console.log("\n - - SearchResultsMap / beforeMount ... ")
+    // console.log(" - - SearchResultsMap / routeConfig : \n", this.routeConfig)
+    // console.log(" - - SearchResultsMap / endPointConfig : \n", this.endPointConfig)
 
     // let pruneCluster = new PruneClusterForLeaflet();
 
     // set up fields mapper
     this.contentFields = this.routeConfig.contents_fields
-    console.log(" - - SearchResultsMap / contentFields : \n", this.contentFields)
+    // console.log(" - - SearchResultsMap / contentFields : \n", this.contentFields)
 
     // console.log("test marker / L.latLng(47.412, -1.218)", L.latLng(47.412, -1.218))
     // set up leaflet options
@@ -255,7 +255,7 @@ export default {
 
   mounted(){
 
-    console.log(" - - SearchResultsMap / mounted... ")
+    // console.log(" - - SearchResultsMap / mounted... ")
     // if(this.projects){
     //   const projectsWithMissingAddress = this.projects.filter(p => !p.lat)
     //   // if(projectsWithMissingAddress.length >= 1)
@@ -312,9 +312,9 @@ export default {
       }
     },
     matchItemWithConfig(item, fieldBlock) {
-      console.log("matchItemWithConfig / item : ", item)
+      // console.log("matchItemWithConfig / item : ", item)
       const contentField = this.contentFields.find(f=> f.position == fieldBlock)
-      console.log("matchItemWithConfig / contentField : ", contentField)
+      // console.log("matchItemWithConfig / contentField : ", contentField)
       const field = contentField.field
       return item[field]
     },
@@ -354,7 +354,7 @@ export default {
 
 
     highlightItem(i) {
-      console.log("highlightItem / i : ", i)
+      // console.log("highlightItem / i : ", i)
       // show loader 
       this.showCard = true
       this.itemLoaded = false

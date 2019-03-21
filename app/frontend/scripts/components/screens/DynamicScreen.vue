@@ -154,7 +154,7 @@ export default {
 
     // console.log("\n - - DynamicScreen / beforeMount ... ")
     // console.log(" - - state.config : \n ", this.$store.state.config)
-    console.log(" - - DynamicScreen / this.routeConfig : \n ", this.routeConfig)
+    // console.log(" - - DynamicScreen / this.routeConfig : \n ", this.routeConfig)
     
     // set local route and endpoint config
     this.localRouteConfig = this.routeConfig
@@ -172,7 +172,7 @@ export default {
       this.$store.dispatch('setSearchEndpointConfig', { path : path })
       // this.$store.dispatch('setSearchEndpoint')
       this.localEndpointConfig = this.$store.getters.getEndpointConfig
-      console.log(" - - DynamicScreen / localEndpointConfig : ", this.localEndpointConfig )
+      // console.log(" - - DynamicScreen / localEndpointConfig : ", this.localEndpointConfig )
 
       // setting localDatasetURI
       // this.currentDatasetURI = this.$store.state.search.dataset_uri
@@ -219,28 +219,28 @@ export default {
 
       // this.localRouteConfig = this.$store.state.search.currentRouteConfig
       this.localRouteConfig = this.$store.getters.getCurrentRouteConfig( this.$route.path )
-      console.log('- - DynamicScreen / watch / localRouteConfig : ', this.localRouteConfig);
+      // console.log('- - DynamicScreen / watch / localRouteConfig : ', this.localRouteConfig);
 
       // let previousDatasetURI = this.$store.getters.getSearchDatasetURI
       // console.log('- - DynamicScreen / watch / previousDatasetURI : ', previousDatasetURI);
       // let currentDatasetURI = this.$store.getters.getSearchDatasetURI
       let currentDatasetURI = this.localRouteConfig.dataset_uri
-      console.log('- - DynamicScreen / watch / this.currentDatasetURI : ', this.currentDatasetURI);
-      console.log('- - DynamicScreen / watch / currentDatasetURI : ', currentDatasetURI);
+      // console.log('- - DynamicScreen / watch / this.currentDatasetURI : ', this.currentDatasetURI);
+      // console.log('- - DynamicScreen / watch / currentDatasetURI : ', currentDatasetURI);
       // commit('setDatasetURI', currentDatasetURI)
 
       // check search for Map
       this.$store.commit('setIsMapSearch', this.localRouteConfig)
 
       if( this.localRouteConfig.dynamic_templates !== 'DynamicStatic' ) {
-        console.log('- - DynamicScreen / watch / localRouteConfig : ', this.localRouteConfig);
+        // console.log('- - DynamicScreen / watch / localRouteConfig : ', this.localRouteConfig);
         
         this.localEndpointConfig = this.$store.getters.getEndpointConfig
-        console.log('- - DynamicScreen / watch / localEndpointConfig : ', this.localEndpointConfig);
+        // console.log('- - DynamicScreen / watch / localEndpointConfig : ', this.localEndpointConfig);
         
         if ( currentDatasetURI !== this.currentDatasetURI ) {
         // if ( this.localEndpointConfig && currentDatasetURI !== this.currentDatasetURI ) {
-          console.log('- - DynamicScreen / watch / need to reinit filters ... ')
+          // console.log('- - DynamicScreen / watch / need to reinit filters ... ')
           this.currentDatasetURI = currentDatasetURI
           this.localFiltersConfig = this.$store.getters.getEndpointConfigFilters
           this.$store.dispatch('createDatasetFilters')

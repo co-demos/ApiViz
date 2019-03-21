@@ -66,7 +66,7 @@ export default {
     // console.log("// search / search : ", search )
 
     const selectedFilters = createSelectedFiltersForSearch(getters.getSelectedFilters)
-    console.log('selectedFilters',selectedFilters);
+    // console.log('selectedFilters',selectedFilters);
     // abort previous search if any
     if(search.answer.pendingAbort){
       search.answer.pendingAbort.abort()
@@ -98,7 +98,7 @@ export default {
       questionParams : state.search.question,
       selectedFilters : selectedFilters,
     })
-    console.log("-- search / endpointBis : \n", endpointGenerated )
+    // console.log("-- search / endpointBis : \n", endpointGenerated )
 
 
     // perform search --> !!! only request map search if map search results empty in store !!! 
