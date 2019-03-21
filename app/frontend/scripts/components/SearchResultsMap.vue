@@ -72,6 +72,7 @@
       </div>
   </div>
 
+  <!-- LOADER -->
   <div 
     v-show="!projects || itemLoading"
     class="lds-roller floating"
@@ -90,6 +91,7 @@
     :center="center"
     @update:center="centerUpdate"
     @update:zoom="zoomUpdate"
+    ref='map'
     >
 
     <l-control-zoom position="bottomright"/>
@@ -99,44 +101,33 @@
       :attribution="attribution"/>
 
       <!-- MARKER CLUSTER -->
-      <v-marker-cluster 
+      <!-- <v-marker-cluster 
         v-if="projects"
         :options="{showCoverageOnHover: false, iconCreateFunction: iconCreateFunction}"
         >
-        <!-- <l-marker 
-          v-for="p in displayedProjects"
-          :key="p.sd_id"
-          :lat-lng="itemToMarker(p)"
-          @click="highlightItem(p)"
-          >
-          <l-icon
-            iconUrl="/static/icons/icon_pin_plein_violet.svg"
-            :iconSize="p === highlightedItem ? [46, 46] : [29, 29]"
-          />
-        </l-marker> -->
-
-
-          <!-- v-for="(item, i) in projects" -->
         <l-marker 
           v-for="(item, i) in itemsForMap()"
           :key="i"
           :lat-lng="{lng: parseFloat(item.lon), lat: parseFloat(item.lat)}"
           @click="showCard=true; highlightItem(item)"
           >
-          <!-- :lat-lng="{lng: parseFloat(p.lon), lat: parseFloat(p.lat)}" -->
-          <!-- :lat-lng="{lng: parseFloat(p.lon), lat: parseFloat(p.lat)}" -->
-          <!-- :lat-lng="{lng: geolocByProjectId.get(p.id).lon, lat: geolocByProjectId.get(p.id).lat}" -->
           <l-icon
             v-if="checkIfItemHasLatLng(item)"
             iconUrl="/static/icons/icon_pin_plein_violet.svg"
             :iconSize="getIconSize(item, highlightedItem)"
           />
-            <!-- :iconSize="item.sd_id === highlightedItem.sd_id ? [46, 46] : [29, 29]" -->
-            <!-- :iconSize="itemId(item, 'block_id') === itemId(highlightedItem, 'block_id') ? [46, 46] : [29, 29]" -->
         </l-marker>
+      </v-marker-cluster> -->
 
-
-      </v-marker-cluster>
+      <CustomMarkers
+        :routeConfig="routeConfig"
+        :endPointConfig="endPointConfig"
+        :itemsForMap="itemsForMap"
+        :checkIfStringFloat="checkIfStringFloat"
+        :mapObject="this.$refs.map"
+      />
+        <!-- :highlightedItemId="getHighlightedItemId()" -->
+        <!-- @getSelectedItem="console.log(e)" -->
 
     </l-map>
 
@@ -155,6 +146,7 @@ import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
 
 import ProjectCard from './ProjectCard.vue'
 import CISSearchResultsCountAndTabs from './CISSearchResultsCountAndTabs.vue'
+import CustomMarkers from './CustomMarkers.vue'
 
 import {VIEW_MAP} from '../constants.js'
 import {getItemById} from '../utils.js';
@@ -171,8 +163,9 @@ export default {
     LTileLayer,
     LMarker,
     LIcon,
-    'v-marker-cluster': Vue2LeafletMarkerCluster,
 
+    CustomMarkers,
+    // 'v-marker-cluster': Vue2LeafletMarkerCluster,
     // PruneCluster,
     // PruneClusterForLeaflet,
 
@@ -323,7 +316,13 @@ export default {
       // console.log("itemId / item : ", item)
       return this.matchItemWithConfig(item, 'block_id')
     },
-
+    getHighlightedItemId(){
+      if ( this.highlightedItem ) {
+        return this.itemId(highlightedItem, 'block_id') 
+      } else {
+        return false
+      }
+    },
 
 
 

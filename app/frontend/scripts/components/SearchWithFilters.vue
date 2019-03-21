@@ -109,9 +109,9 @@ export default {
   methods: {
 
     collapseChoices(filterName){
-      console.log("collapseChoices / filterName : ", filterName)
+      // console.log("collapseChoices / filterName : ", filterName)
       let element = this.$refs[filterName][0]
-      console.log("collapseChoices / element : ", element)
+      // console.log("collapseChoices / element : ", element)
       element.classList.toggle("hide-choices")
 
     },
