@@ -5,7 +5,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import { L, LIcon } from 'vue2-leaflet';
-import { PruneCluster, PruneClusterForLeaflet } from '../../node_modules/prunecluster/dist/PruneCluster.js'
+import { PruneCluster, PruneClusterForLeaflet } from '../utilsPruneCluster.js'
 
 export default {
   name: "CustomMarkers",
