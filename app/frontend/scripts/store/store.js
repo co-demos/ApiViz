@@ -18,6 +18,9 @@ const storeGenerator = new Vuex.Store({
     runMode : undefined,
     rootUrlBackend : undefined,
 
+    // UX OPTIONS
+    bannerVisible : true,
+    
     // FOR TRANSLATIONS
     locale: 'fr',
 

@@ -37,24 +37,30 @@ export default {
     this.pruneCluster = new PruneClusterForLeaflet();
 
     const iconNormalSize = this.iconSizeNormal
-    const emitDataFunction = this.emitItem
-    const setIconSize = this.getIconSize
+    const iconBigSize = this.iconSizeHighlighted
 
+    const emitDataFunction = this.emitItem
+    const IconSize = this.getIconSize
+
+    const smallIcon = L.icon({
+      iconUrl: '/static/icons/icon_pin_plein_violet.svg',
+      iconSize: iconNormalSize,
+    })
+
+    const bigIcon = L.icon({
+      iconUrl: '/static/icons/icon_pin_plein_violet.svg',
+      iconSize: iconBigSize,
+    })
 
     // we configure the onClick option
     this.pruneCluster.PrepareLeafletMarker = function(leafletMarker, data) {
 
-      leafletMarker.setIcon(
-        L.icon({
-          iconUrl: '/static/icons/icon_pin_plein_violet.svg',
-			    // iconSize: setIconSize(data),
-			    iconSize: iconNormalSize,
-			    // iconSize: [48, 48]
-		    })
-      );
+      leafletMarker.setIcon( smallIcon );
 
-      leafletMarker.on('click', function(){
+      leafletMarker.on('click', function(e){
         // console.log("PrepareLeafletMarker / data : ", data);
+        // console.log("PrepareLeafletMarker / this : ", this);
+        leafletMarker.setIcon( bigIcon )
         emitDataFunction(data)
       });
     };
