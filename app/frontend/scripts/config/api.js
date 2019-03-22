@@ -14,8 +14,8 @@ export const apiConfig = Object.freeze({
   },
 
   production : {
-    rootURL: 'http://sonum-beta.fr/backend/api',
-    toktokURL: 'http://sonum-beta.fr/backend/api',
+    rootURL: 'https://sonum-beta.fr/backend/api',
+    toktokURL: 'https://sonum-beta.fr/backend/api',
   }
 
 })
