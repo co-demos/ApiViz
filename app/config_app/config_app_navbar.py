@@ -45,7 +45,7 @@ default_app_navbar = [
           },
           { "is_visible" : True, 
             "position"   : "exterior_right",
-            "link_to"    : "https://forum.societenumerique.gouv.fr",
+            "link_to"    : "https://forum.societenumerique.gouv.fr/category/10/cartographie-des-services-de-médiation-et-d-inclusion-numérique",
             "is_external_link" : True,
             "link_type"  : "button", ### show btn border
             "icon_class" : "", 
