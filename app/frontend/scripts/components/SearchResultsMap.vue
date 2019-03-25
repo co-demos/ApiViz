@@ -312,8 +312,13 @@ export default {
       // console.log("matchItemWithConfig / item : ", item)
       const contentField = this.contentFields.find(f=> f.position == fieldBlock)
       // console.log("matchItemWithConfig / contentField : ", contentField)
-      const field = contentField.field
-      return item[field]
+      if (contentField) {
+        const field = contentField.field
+        return item[field]
+      }
+      else {
+        return undefined
+      }
     },
     itemId(item) {
       // console.log("itemId / item : ", item)

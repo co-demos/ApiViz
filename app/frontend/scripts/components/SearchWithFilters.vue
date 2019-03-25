@@ -166,7 +166,7 @@ export default {
   .search-bar {
     top: $apiviz-navbar-height;
     height: $apiviz-search-bar-height;
-
+    z-index: 10;
     font-size: $apiviz-navbar-font-size;
 
     .search{

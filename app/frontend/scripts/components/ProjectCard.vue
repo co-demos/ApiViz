@@ -21,7 +21,7 @@
       <!-- BLOCK ADDRESS -->
       <div class="card-content">
 
-        <div class="content" v-if="itemInfos.address">
+        <div class="content" v-if="projectCity()">
           <span class="icon">
             <img class="image is-16x16" src="/static/icons/icon_pin.svg">
           </span>
@@ -36,23 +36,23 @@
         </div>
 
         <!-- BLOCK TITLE -->
-        <p class="title is-5 has-text-weight-bold has-text-black-ter">
-          <router-link :to="`/${dataset_uri}/detail?id=${matchItemWithConfig('block_id')}`">
+        <p class="title is-5 has-text-weight-bold has-text-black-ter" v-if="matchItemWithConfig('block_id')">
+          <router-link :to="`/${dataset_uri}/detail?id=${ matchItemWithConfig('block_id') }`">
             {{ matchItemWithConfig('block_title')}}
           </router-link>
         </p>
 
         <!-- BLOCK ABSTRACT -->
-        <div class="content">
+        <div class="content" v-if="projectAbstract()">
           <p class="subtitle is-6">
             {{ projectAbstract() }}
           </p>
         </div>
 
         <!-- BLOCK SOURCE -->
-        <div class="content">
+        <div class="content" v-if="matchItemWithConfig('block_src')">
           <p class="subtitle is-6 is-italic has-text-grey">
-            {{ this.$store.getters.defaultText({txt:'source'})}} : {{ matchItemWithConfig('block_src')}}
+            {{ this.$store.getters.defaultText({txt:'source'})}} : {{ matchItemWithConfig('block_src') }}
           </p>
         </div>
 
@@ -131,9 +131,15 @@ export default {
   },
   methods : {
     matchItemWithConfig(fieldBlock) {
+      // console.log("matchItemWithConfig / fieldBlock : ", fieldBlock )
       const contentField = this.contentFields.find(f=> f.position == fieldBlock)
-      const field = contentField.field
-      return this.item[field]
+      if (contentField) {
+        const field = contentField.field
+        return this.item[field]
+      }
+      else {
+        return undefined
+      }
     },
     projectId() {
       return this.matchItemWithConfig('block_id')

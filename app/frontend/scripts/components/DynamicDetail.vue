@@ -365,15 +365,19 @@ export default {
     matchProjectWithConfig(fieldBlock) {
       const contentField = this.contentFields.find(f=> f.position == fieldBlock)
       // console.log("contentField : ", contentField)
-      const field = contentField.field
-      let content = this.displayableItem[field]
-      // console.log("content : ", content)
-      if ( content && content !== "None" && content !== "" ){
-        return content
+      if (contentField){
+        const field = contentField.field
+        let content = this.displayableItem[field]
+        // console.log("content : ", content)
+        if ( content && content !== "None" && content !== "" ){
+          return content
+        } else {
+          // console.log("content is None | null ...")
+          // console.log("this.noData : ", this.noData)
+          return this.noData
+        }
       } else {
-        // console.log("content is None | null ...")
-        // console.log("this.noData : ", this.noData)
-        return this.noData
+        return undefined
       }
 
     },

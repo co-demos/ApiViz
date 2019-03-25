@@ -8,7 +8,8 @@
       :logo="this.globalConfig.app_logo"
       :brand="this.globalConfig.app_title.content"
       :appLocales="this.globalConfig.app_languages" 
-
+      :currentDatasetURI="currentDatasetURI"
+      :localRouteConfig="localRouteConfig"
     ></NavBar>
       <!-- :currentRouteConfig="this.routeConfig"
       :localRouteConfig="localRouteConfig.field" -->

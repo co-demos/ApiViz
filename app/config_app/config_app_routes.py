@@ -572,30 +572,43 @@ default_routes_config = [
       "endpoint_type"     : "map",
 
       "contents_fields"  : [
-        { "field" : "title",
+
+        { "field" : "sd_id",
+          "is_visible" : True,
+          "position" : "block_id",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "titre initiative",
           "is_visible" : True,
           "position" : "block_title",
           "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "adresse",
+        { "field" : "adresse structure",
           "is_visible" : True,
           "position" : "block_address",
           "trim" : 20,
           "locale" : "fr"
         },
-        { "field" : "présentation",
+        { "field" : "city",
+          "is_visible" : True,
+          "position" : "block_city",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "présentation initiative",
           "is_visible" : True,
           "position" : "block_abstract",
           "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "étiquettes",
+        { "field" : "type structure",
           "is_visible" : True,
           "position" : "block_tags",
           "trim" : 50,
           "locale" : "fr"
-        },
+         },
       ],
 
       "images_fields"        : {
@@ -679,25 +692,37 @@ default_routes_config = [
 
       "contents_fields"  : [
 
-        { "field" : "title",
+        { "field" : "sd_id",
+          "is_visible" : True,
+          "position" : "block_id",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "titre initiative",
           "is_visible" : True,
           "position" : "block_title",
           "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "adresse",
+        { "field" : "adresse structure",
           "is_visible" : True,
           "position" : "block_address",
           "trim" : 20,
           "locale" : "fr"
         },
-        { "field" : "présentation",
+        { "field" : "city",
+          "is_visible" : True,
+          "position" : "block_city",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "présentation initiative",
           "is_visible" : True,
           "position" : "block_abstract",
           "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "étiquettes",
+        { "field" : "type structure",
           "is_visible" : True,
           "position" : "block_tags",
           "trim" : 50,
@@ -706,7 +731,7 @@ default_routes_config = [
       ],
 
       "images_fields"        : {
-        "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
+        "card_img_main" : { "field" : "illustration initiative", "default" : "img_card",  "is_visible" : True  },
         "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
       },
       "ui_options" : {
@@ -979,5 +1004,38 @@ default_routes_config = [
       "is_default"        : True
   },
 
+    ### PAGE TOOLS - FR
+    { "field"             : "app_tools",
+      "is_global_app_homepage" : True,
+      "route_title"       : u"Outils",
+      "route_description" : u"apiviz default tools page",
+      "route_activated"   : True,
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : ""
+      },
+      "in_main_navbar"    : False,
+      "navbar_btn_options" : {
+        "position"   : "middle_right",
+        "link_type"  : "link",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "" }],
+      },
+
+      "in_footer"         : True,
+      "link_in_logo"      : False,
+      "urls"              : ["/apiviz/outils"],
+      "template_url"      : "https://raw.githubusercontent.com/co-demos/structure/master/pages-html/tools-fr.html",
+      "help"              : u"you can specify a remote template (f.e. a github url)",
+      "languages"         : ["fr"],
+        "app_version"       : version,
+      "comment"           : u"Main apiviz tools route in french",
+      "is_dynamic"        : True,
+      "dynamic_template"  : "DynamicStatic",
+      "has_navbar"        : True,
+      "has_footer"        : True,
+        "is_default"        : True
+    },
   ### ...
 ]
