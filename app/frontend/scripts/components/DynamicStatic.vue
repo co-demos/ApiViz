@@ -11,14 +11,12 @@
     <hr> 
     s-->
 
-    <!-- <div class="hero-body"> -->
 
     <!-- MAIN PART -->
     <div class="container">
       <span v-html="rawHtml"></span>
     </div>
 
-    <!-- </div> -->
 
 
   </section>

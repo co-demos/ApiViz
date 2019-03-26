@@ -928,7 +928,7 @@ default_routes_config = [
         "is_default"        : True
     },
 
-    ### PAGE PROJECT
+    ### PAGE STRATEGIE
     { "field"             : "sonum_xp_strategie",
       "is_global_app_homepage" : True,
       "route_title"       : u"Stratégie XP",
@@ -950,7 +950,7 @@ default_routes_config = [
       "in_footer"         : False,
       "link_in_logo"      : True,
       "urls"              : ["/sonum-xp/stratégie"],
-      "template_url"      : "https://raw.githubusercontent.com/co-demos/xp-sonum/master/pages-html/strategie.html",
+      "template_url"      : "https://raw.githubusercontent.com/co-demos/xp-sonum/master/pages-html/strategie-clean.html",
       "help"              : u"you can specify a remote template (f.e. a github url)",
       "languages"         : ["fr"],
         "app_version"       : version,

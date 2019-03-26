@@ -31,6 +31,7 @@ default_app_navbar = [
               { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/carte", "link_text" : [{"locale" : "fr", "text" : "Cartographie des initiatives"}] },
               { "is_divider" : True,  "is_external_link" : False },
               { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/stratégie", "link_text" : [{"locale" : "fr", "text" : "Elaborer une stratégie locale d'inclusion numérique"}] },
+              { "is_divider" : True,  "is_external_link" : False },
               { "is_divider" : False, "is_external_link" : True, "link_to" : "https://societenumerique.gouv.fr/territoires/", "link_text" : [{"locale" : "fr", "text" : "Bénéficier des outils à ma disposition"}] },
               { "is_divider" : False, "is_external_link" : True, "link_to" : "https://societenumerique.gouv.fr/hubs/", "link_text" : [{"locale" : "fr", "text" : "Mobiliser les interlocuteurs"}] },
             ]
