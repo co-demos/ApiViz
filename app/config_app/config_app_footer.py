@@ -176,12 +176,20 @@ default_app_footer = [
             #   "link_text"  : [{"locale" : "fr", "text" : "register" }],
             #   "tooltip"    : [{"locale" : "fr", "text" : "se créer un compte" }] 
             # },
-            { "is_visible" : False, 
+            { "is_visible" : True, 
               "link_to"    : "https://github.com/co-demos/ApiViz",
               "is_external_link" : True,
               "link_type"  : "text",
               "icon_class" : "", 
               "link_text"  : [{"locale" : "fr", "text" : "code source" }],
+              "tooltip"    : [{"locale" : "fr", "text" : "accéder au code source" }] 
+            },
+            { "is_visible" : True, 
+              "link_to"    : "/apiviz/outils",
+              "is_external_link" : False,
+              "link_type"  : "text",
+              "icon_class" : "", 
+              "link_text"  : [{"locale" : "fr", "text" : "outils open source" }],
               "tooltip"    : [{"locale" : "fr", "text" : "accéder au code source" }] 
             },
           ]

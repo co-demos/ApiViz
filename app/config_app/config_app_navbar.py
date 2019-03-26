@@ -27,11 +27,12 @@ default_app_navbar = [
             "tooltip"    : [{"locale" : "fr", "text" : "voir la liste" }],
             "has_dropdown" : True,
             "dropdowns"  : [
-              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/liste", "link_text" : [{"locale" : "fr", "text" : "vue liste"}] },
-              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/carte", "link_text" : [{"locale" : "fr", "text" : "vue carte"}] },
-              { "is_divider" : True },
-              { "is_divider" : False, "is_external_link" : False, "link_to" : "/", "link_text" : [{"locale" : "fr", "text" : "ressources"}] },
-              { "is_divider" : False, "is_external_link" : False, "link_to" : "/", "link_text" : [{"locale" : "fr", "text" : "guide"}] },
+              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/liste", "link_text" : [{"locale" : "fr", "text" : "Documentation des initiatives inspirantes"}] },
+              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/carte", "link_text" : [{"locale" : "fr", "text" : "Cartographie des initiatives"}] },
+              { "is_divider" : True,  "is_external_link" : False },
+              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/stratégie", "link_text" : [{"locale" : "fr", "text" : "Elaborer une stratégie locale d'inclusion numérique"}] },
+              { "is_divider" : False, "is_external_link" : True, "link_to" : "https://societenumerique.gouv.fr/territoires/", "link_text" : [{"locale" : "fr", "text" : "Bénéficier des outils à ma disposition"}] },
+              { "is_divider" : False, "is_external_link" : True, "link_to" : "https://societenumerique.gouv.fr/hubs/", "link_text" : [{"locale" : "fr", "text" : "Mobiliser les interlocuteurs"}] },
             ]
           },
 
@@ -46,10 +47,10 @@ default_app_navbar = [
             "tooltip"    : [{"locale" : "fr", "text" : "voir la carte" }],
             "has_dropdown" : True,
             "dropdowns"  : [
-              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-carto/liste", "link_text" : [{"locale" : "fr", "text" : "vue liste"}] },
-              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-carto/carte", "link_text" : [{"locale" : "fr", "text" : "vue carte"}] },
-              { "is_divider" : True },
-              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-carto/projet", "link_text" : [{"locale" : "fr", "text" : "le projet"}] },
+              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-carto/carte", "link_text" : [{"locale" : "fr", "text" : "Cartographie des lieux de médiation numérique"}] },
+              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-carto/liste", "link_text" : [{"locale" : "fr", "text" : "Liste des lieux de médiation numérique"}] },
+              { "is_divider" : True,  "is_external_link" : False },
+              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-carto/projet", "link_text" : [{"locale" : "fr", "text" : "Le projet de cartographie"}] },
             ]
           },
 

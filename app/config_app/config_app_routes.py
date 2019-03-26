@@ -928,6 +928,39 @@ default_routes_config = [
         "is_default"        : True
     },
 
+    ### PAGE PROJECT
+    { "field"             : "sonum_xp_strategie",
+      "is_global_app_homepage" : True,
+      "route_title"       : u"Stratégie XP",
+      "route_description" : u"apiviz default home page",
+      "route_activated"   : True,
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : "banner-sonum-xp"
+      },
+      "in_main_navbar"    : False,
+      "navbar_btn_options" : {
+        "position"   : "middle_right",
+        "link_type"  : "link",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },
+
+      "in_footer"         : False,
+      "link_in_logo"      : True,
+      "urls"              : ["/sonum-xp/stratégie"],
+      "template_url"      : "https://raw.githubusercontent.com/co-demos/xp-sonum/master/pages-html/strategie.html",
+      "help"              : u"you can specify a remote template (f.e. a github url)",
+      "languages"         : ["fr"],
+        "app_version"       : version,
+      "comment"           : u"Main project route in french",
+      "is_dynamic"        : True,
+      "dynamic_template"  : "DynamicStatic",
+      "has_navbar"        : True,
+      "has_footer"        : True,
+        "is_default"        : True
+    },
 
   ### - - - - - - - - - - - - - - - - - ###
   ### CUSTOM ROUTES-PAGES --> TO BE ADDED VIA BACK OFFICE BY ADMIN USER

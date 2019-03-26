@@ -11,7 +11,7 @@
 
         <!-- DEBUGGING -->
         <!-- currentRouteConfig : {{ currentRouteConfig.field }} -->
-
+      
         <NavBarContent 
           :NavbarLinks="this.navbarConfig.links_options"
           :user="user"

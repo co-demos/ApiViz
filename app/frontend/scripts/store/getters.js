@@ -16,6 +16,11 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
     return textFromLocale( textsData.texts, locale, textField )
   }
 
+// UX GETTERS
+const getNavbarVisibility = state => {
+  return state.showNav
+}
+
 // GLOBAL APP CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
   const getRootUrlBackend = state => {
@@ -295,7 +300,8 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 // - - - - - - - - - - - - - - - //
   export default {
     getTranslation,
-
+    getNavbarVisibility,
+    
     getRootUrlBackend,
     getSearchConfigColumnCount,
     getSearchConfigDefaultShowCount,

@@ -16,6 +16,9 @@ export default {
   disableBanners(state){
     state.bannerVisible = false
   },
+  switchNavbarMenu(state){
+    state.showNav = !state.showNav
+  },
 
   // FILTERS-RELATED
   setDatasetFilters(state, datasetFilter ){

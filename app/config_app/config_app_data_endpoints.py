@@ -350,7 +350,7 @@ default_data_endpoints_config = [
         {"locale" : "fr", "text" : "Tapez le nom d'une initiative" }
       ],
       "items_found"   : [
-        {"locale" : "fr", "text" : "initiatives trouvés" }
+        {"locale" : "fr", "text" : "initiatives trouvées" }
       ],
       "reset"   : [
         {"locale" : "fr", "text" : "Effacer" }
@@ -480,6 +480,7 @@ default_data_endpoints_config = [
         "currentCenter"    : [46.2276, 2.2137],
         "zoom"             : 6,
         "maxZoom"          : 18,
+        "minZoom"          : 5,
         "useMarkerCluster" : True,
         "pinIconUrl"       : "/static/icons/icon_pin_plein_violet.svg",
         "pinIconSize"      : { "highlighted" : [46, 46], "normal" : [29, 29]}

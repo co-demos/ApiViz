@@ -54,11 +54,11 @@ export default {
   },
 
   beforeMount: function () {
-    console.log("\n - - DynamicStatic / beforeMount ... ")
+    // console.log("\n - - DynamicStatic / beforeMount ... ")
   },
 
   mounted(){
-    console.log("\n - - DynamicStatic / mounted ... ")
+    // console.log("\n - - DynamicStatic / mounted ... ")
 
     this.getRawHtml()
     // // hack to scroll top because vue-router scrollBehavior thing doesn't seem to work on Firefox on Linux at least

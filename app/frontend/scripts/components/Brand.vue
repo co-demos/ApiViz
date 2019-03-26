@@ -17,8 +17,18 @@
         ></img>
       </router-link>
 
-    </div>
+      <!-- cf : https://jsfiddle.net/tbonz/80jkq0Ls/ -->
+      <div 
+        class="navbar-burger" 
+        @click="triggerBurger()" 
+        :class="{ 'is-active': showNav }"
+        >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
+    </div>
 
 </template>
 
@@ -28,6 +38,16 @@ export default {
     'logo',
     'logoTo', 
     'brand'
-  ]
+  ],
+  computed: {
+    showNav() {
+      return this.$store.getters.getNavbarVisibility
+    }
+  },
+  methods : {
+    triggerBurger(){
+      this.$store.commit('switchNavbarMenu')
+    }
+  }
 }
 </script>
