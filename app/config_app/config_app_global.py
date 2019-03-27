@@ -22,16 +22,21 @@ default_global_config = [
       "no_abstract"    : [{"locale" : "fr", "text" : "(Pas de résumé)" }],
       "no_address"     : [{"locale" : "fr", "text" : "Pas d'adresse enregistrée" }],
       "no_info"        : [{"locale" : "fr", "text" : "Pas d'information" }],
+      
       "source"         : [{"locale" : "fr", "text" : "Source" }],
-      "back_to_results" : [{"locale" : "fr", "text" : "Retour aux résultats de recherche" }],
+      "back_to_results": [{"locale" : "fr", "text" : "Retour aux résultats de recherche" }],
       "see_website"    : [{"locale" : "fr", "text" : "Aller sur le site" }],
       "see_contact"    : [{"locale" : "fr", "text" : "Contact" }],
       "share_link"     : [{"locale" : "fr", "text" : "Partagez ce lieu" }],
       "infos"          : [{"locale" : "fr", "text" : "Informations pratiques" }],
       "open_infos"     : [{"locale" : "fr", "text" : "Horaires" }],
       "more_infos"     : [{"locale" : "fr", "text" : "Autres informations" }],
+      "name"           : [{"locale" : "fr", "text" : "prénom" }],
+      "surname"        : [{"locale" : "fr", "text" : "nom" }],
       "tel"            : [{"locale" : "fr", "text" : "Téléphone" }],
+      "period"         : [{"locale" : "fr", "text" : "Période" }],
       "services"       : [{"locale" : "fr", "text" : "Services proposés" }],
+      "dowload_file"   : [{"locale" : "fr", "text" : "Télécharger le document" }],
 
       "is_default"  : True
     },
