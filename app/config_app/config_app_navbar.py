@@ -20,15 +20,16 @@ default_app_navbar = [
           # NAVBAR ITEM - LINK WITH DROPDOWNS
           { "is_visible" : True, 
             "position"   : "exterior_right",
-            "link_to"    : "/sonum-xp/liste",
+            "link_to"    : "/sonum-xp/accueil",
             "is_external_link" : False,
             "link_type"  : "link", ### show as link
             "icon_class" : "", 
-            "link_text"  : [{"locale" : "fr", "text" : "partage d'expériences" }],
+            "link_text"  : [{"locale" : "fr", "text" : "territoires" }],
             "tooltip"    : [{"locale" : "fr", "text" : "voir la liste" }],
             "has_dropdown" : True,
             "dropdowns"  : [
-              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/stratégie", "link_text" : [{"locale" : "fr", "text" : "Elaborer une stratégie locale d'inclusion numérique"}] },
+              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/accueil",   "link_text" : [{"locale" : "fr", "text" : "Accueil"}] },
+              { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/strategie", "link_text" : [{"locale" : "fr", "text" : "Elaborer une stratégie locale d'inclusion numérique"}] },
               { "is_divider" : True,  "is_external_link" : False },
               { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/liste", "link_text" : [{"locale" : "fr", "text" : "Documentation des initiatives inspirantes"}] },
               { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/carte", "link_text" : [{"locale" : "fr", "text" : "Cartographie des initiatives"}] },

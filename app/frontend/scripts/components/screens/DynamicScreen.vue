@@ -59,6 +59,10 @@
       :routeConfig="localRouteConfig"
     ></DynamicStatic>
 
+    <!-- LOCAL TEST STATIC -->
+    <DynamicStaticTest 
+      v-if="localRouteConfig.dynamic_template == 'DynamicStaticTest' "
+    ></DynamicStaticTest>
 
 
     <!-- DATA VISUALISATION -->
@@ -111,12 +115,13 @@ import {mapState} from 'vuex'
 import NavBar from '../NavBar.vue';
 import Footer from '../Footer.vue';
 
-import DynamicBanner    from '../DynamicBanner.vue';
-import DynamicStatic    from '../DynamicStatic.vue';
-import DynamicStaticRaw from '../DynamicStaticRaw.vue';
-import DynamicList      from '../DynamicList.vue';
-import DynamicMap       from '../DynamicMap.vue';
-import DynamicDetail    from '../DynamicDetail.vue';
+import DynamicBanner     from '../DynamicBanner.vue';
+import DynamicStatic     from '../DynamicStatic.vue';
+import DynamicStaticRaw  from '../DynamicStaticRaw.vue';
+import DynamicStaticTest from '../DynamicStaticTest.vue';
+import DynamicList       from '../DynamicList.vue';
+import DynamicMap        from '../DynamicMap.vue';
+import DynamicDetail     from '../DynamicDetail.vue';
 
 export default {
   components: {
@@ -125,6 +130,7 @@ export default {
     DynamicBanner,
     DynamicStatic, 
     DynamicStaticRaw,
+    DynamicStaticTest,
     DynamicList, 
     DynamicMap, 
     DynamicDetail
@@ -160,11 +166,11 @@ export default {
     // set local route and endpoint config
     this.localRouteConfig = this.routeConfig
 
-    const currentTemplate = this.localRouteConfig.dynamic_templates 
+    const currentTemplate = this.localRouteConfig.dynamic_template 
     // console.log(" - - DynamicScreen / currentTemplate : ", currentTemplate)
     // console.log(" - - DynamicScreen / localRouteConfig.dynamic_templates  : ", this.localRouteConfig.dynamic_templates )
 
-    if( this.routeConfig.dynamic_templates !== 'DynamicStatic' ) {
+    if( this.routeConfig.dynamic_template !== 'DynamicStatic' ) {
 
       // setting localEndpointConfig
       // console.log(" - - DynamicScreen / route IS for a dynamic content ... ")
@@ -298,6 +304,7 @@ export default {
       return (this.routeConfig) ? this.routeConfig.dynamic_template : undefined 
     },
     routeConfig(){
+      // console.log(" - - DynamicScreen / this.$router.currentRoute.path : ", this.$router.currentRoute.path)
       let routeConf = this.$store.getters.getCurrentRouteConfig(this.$router.currentRoute.path)
       // console.log(" - - DynamicScreen / routeConf : ", routeConf)
       return routeConf
