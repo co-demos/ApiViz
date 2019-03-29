@@ -18,7 +18,7 @@ default_app_navbar = [
         "extra_buttons" : [ ### for buttons not declared in routes/pages
 
           # NAVBAR ITEM - LINK WITH DROPDOWNS
-          { "is_visible" : True, 
+          { "is_visible" : False, 
             "position"   : "exterior_right",
             "link_to"    : "/sonum-xp/accueil",
             "is_external_link" : False,
