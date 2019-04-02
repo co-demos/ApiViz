@@ -1,7 +1,7 @@
-@import './cis-colors.scss';
+@import './apiviz-colors.scss';
 
 .error{
-    background-color: $cis-grey-background;
+    background-color: $apiviz-grey-background;
     height: 90vh;
     width: 100%;
 
@@ -19,7 +19,7 @@
     }
 
     h1{
-        color: $cis-primary;
+        color: $apiviz-primary;
     }
 
     p{

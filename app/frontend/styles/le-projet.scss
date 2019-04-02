@@ -1,6 +1,6 @@
 @import './rem.scss';
-@import './cis-colors.scss';
-@import './cis-spacing.scss';
+@import './apiviz-colors.scss';
+@import './apiviz-spacing.scss';
 
 main#projet{
 
@@ -12,7 +12,7 @@ main#projet{
         line-height: 1.3em;
         font-weight: bold;
 
-        margin-bottom: $cis-spacing_1;
+        margin-bottom: $apiviz-spacing_1;
     }
 
     .cis-cards{
@@ -42,7 +42,7 @@ main#projet{
 
     section#visibilité{
 
-	    margin-bottom: $cis-spacing_3;
+	    margin-bottom: $apiviz-spacing_3;
 
         .columns{
             align-items: center;
@@ -84,7 +84,7 @@ main#projet{
     
             margin-right: 1em;
     
-            background-color: $cis-grey-background;
+            background-color: $apiviz-grey-background;
             white-space: normal;
             vertical-align: top;
     
@@ -100,7 +100,7 @@ main#projet{
             }
         
             .text h1{
-                color: $cis-primary;
+                color: $apiviz-primary;
                 font-weight: bold;
                 margin-bottom: 1em;
             }
@@ -114,10 +114,10 @@ main#projet{
         width: 100%;
         height: 18em;
         padding: 1em 3em;
-	    margin-bottom: $cis-spacing_3;
+	    margin-bottom: $apiviz-spacing_3;
         
-        background-color: $cis-primary;
-        color: $cis-primary-invert;
+        background-color: $apiviz-primary;
+        color: $apiviz-primary-invert;
 
         display: flex;
         flex-direction: row;
@@ -129,7 +129,7 @@ main#projet{
         }
     
         h2{
-            color: $cis-primary-invert;
+            color: $apiviz-primary-invert;
             max-width: 26em;
             padding: 1em;
         }
@@ -140,18 +140,18 @@ main#projet{
 
     section#nous{
         
-	    margin-bottom: $cis-spacing_3;
+	    margin-bottom: $apiviz-spacing_3;
     }
 
 
     section#definition{
-        margin-bottom: $cis-spacing_3;
+        margin-bottom: $apiviz-spacing_3;
         
         .column {
             padding: 2em 1em;
-            background-color: $cis-primary;
+            background-color: $apiviz-primary;
     
-            color: $cis-primary-invert;
+            color: $apiviz-primary-invert;
         }
     
         h2{
@@ -162,11 +162,11 @@ main#projet{
 
 
     section#concrètement {
-        margin-bottom: $cis-spacing_3;
+        margin-bottom: $apiviz-spacing_3;
         
         .cis-cards {
             .cis-card {
-                background-color: $cis-grey-background;
+                background-color: $apiviz-grey-background;
             }
         
             p {
@@ -174,9 +174,9 @@ main#projet{
             }
         
             a {
-                color: $cis-primary;
-                border: 1px solid $cis-primary;
-                background-color: $cis-primary-invert;
+                color: $apiviz-primary;
+                border: 1px solid $apiviz-primary;
+                background-color: $apiviz-primary-invert;
             }
         }
     }
@@ -184,15 +184,15 @@ main#projet{
 
     section#communs{
 
-        margin-bottom: $cis-spacing_3;
+        margin-bottom: $apiviz-spacing_3;
 
         .subtitle{
             margin-bottom: 0.5em;
         }
 
         .charte{
-            color: $cis-primary-invert;
-            background-color: $cis-primary;
+            color: $apiviz-primary-invert;
+            background-color: $apiviz-primary;
     
             padding: 1em;
 

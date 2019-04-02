@@ -1,6 +1,6 @@
 # Created by https://www.gitignore.io/api/osx,python,komodoedit
 
-# cf : https://www.atlassian.com/git/tutorials/saving-changes/gitignore 
+# cf : https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
 ### remove file from repo previously not in gitignore
 # git rm -r --cached .
@@ -10,8 +10,6 @@
 
 
 ### CONFIG FILES
-# cis/app/backend/config_secret_vars_prod.py 
-# cis/app/backend/config.cfg
 **/config_secret_vars_prod.py
 **/config.cfg
 
@@ -74,7 +72,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-build/
 develop-eggs/
 dist/
 downloads/
@@ -167,3 +164,6 @@ snippets/
 # Front-end
 
 app/frontend/node_modules
+
+app/static/build/*
+!app/static/build/*.md

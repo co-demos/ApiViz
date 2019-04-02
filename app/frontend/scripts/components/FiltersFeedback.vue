@@ -1,42 +1,39 @@
 <template>
     <section class="filter-feedback" v-if="selectedFilters.length >= 1">
-        <div class="container inline-filters">
+      
+      <div class="container inline-filters">
 
-            <!-- <template class="all"> -->
-                <a class="button is-small" @click="clearAllFilters">
-                    <span>
-                        Supprimer tous les filtres
-                    </span>
-                    <!-- x -->
-                    <span class="icon is-small">
-                        <i class="fas fa-times"></i>
-                    </span>
-                </a>
-            <!-- </template> -->
+        <a class="button is-small" @click="clearAllFilters">
+          <span>
+            effacer les filtres
+          </span>
 
-            <!-- <template > -->
-                <a 
-                    v-for="{filter, value} in selectedFilters" :key="filter+value"
-                    class="button is-small is-grey" 
-                    @click="clearFilter({filter, value})"
-                    >
-                    <span>
-                    {{
-                        filterDescriptions
-                            .find(f => f.name === filter)
-                            .choices
-                            .find(c => c.name === value)
-                            .fullname
-                    }}
-                    </span>
-                    <!-- x -->
-                    <span class="icon is-small">
-                        <i class="fas fa-times"></i>
-                    </span>
-                </a>
-            <!-- </template> -->
+          <span class="icon is-small">
+            <i class="fas fa-times"></i>
+          </span>
+        </a>
 
-        </div>
+        <a 
+          v-for="{filter, value} in selectedFilters" :key="filter+value"
+          class="button is-small is-grey" 
+          @click="clearFilter({filter, value})"
+          >
+          <span>
+            {{
+              filterDescriptions
+                .find(f => f.name === filter)
+                .choices
+                .find(c => c.name === value)
+                .fullname
+            }}
+          </span>
+
+          <span class="icon is-small">
+            <i class="fas fa-times"></i>
+          </span>
+        </a>
+
+      </div>
     </section>
 </template>
 
@@ -46,52 +43,75 @@ import {mapState} from 'vuex'
 export default {
     name: 'FiltersFeedback',
     computed: {
-        ...mapState({
-            filterDescriptions: 'filterDescriptions',
-            selectedFilters: ({search}) => {
-                const {selectedFilters} = search.question
-                const filters = []
+      ...mapState({
+        filterDescriptions: 'filterDescriptions',
+        selectedFilters: ({search}) => {
+          const {selectedFilters} = search.question
+          const filters = []
 
-                for(const [filter, values] of selectedFilters){
-                    for(const value of values){
-                        filters.push({filter, value})
-                    }
-                }
-
-                return filters
+          for(const [filter, values] of selectedFilters){
+            for(const value of values){
+                filters.push({filter, value})
             }
-        })
+          }
+
+          return filters
+        }
+      }),
     },
     methods: {
-        clearAllFilters(){
-            this.$store.dispatch( 'clearAllFilters' )
-        },
-        clearFilter({filter, value}){
-            this.$store.dispatch( 'toggleFilter', {filter, value} )
-        }
-    },
+      clearAllFilters(){
+        this.$store.dispatch( 'clearAllFilters' )
+      },
+      clearFilter({filter, value}){
+        this.$store.dispatch( 'toggleFilter', {filter, value} )
+      },
+
+
+      // reinitFiltersTexts() {
+      //   let filtersDftReinit = this.$store.state.global.app_basic_dict
+      //   console.log("filtersDftReinit : ", filtersDftReinit )
+      //   return this.$store.getters.getTranslation({ texts : filtersDftReinit })
+      // },
+      // translate( textsToTranslate ) {
+      //   let listTexts = textsToTranslate
+      //   console.log("listTexts : ", listTexts )
+      //   return this.$store.getters.getTranslation({ texts : listTexts })
+      // },
+      // translateBis( textsToTranslate, listField ) {
+      //   let listTexts = textsToTranslate[listField]
+      //   return this.$store.getters.getTranslation({ texts : listTexts })
+      // }
+    }
+
 }
 </script>
 
 <style scoped>
 
 .filter-feedback{
-    width: 100%;
-    background-color: #F6F6F6;
+  width: 100%;
+  /* background-color: #F6F6F6; */
+  background-color: white;
+  /* border-top: 1px solid; */
+  /* border-top-color: #40529d; */
+  /* top : -1px; */
+  z-index: 10;
 }
 
 .filter-feedback > .inline-filters{
-    padding-top: 1em;
-    font-size: 12px;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-size: 12px;
 }
 
 .filter-feedback > .inline-filters a.button {
-    border-radius: 3px;
-    margin-right: 0.5em;
-    border: 1px solid #767676;
-    padding-top: 0.1em ;
-    padding-bottom: 0.1em ;
-    height: inherit;
+  border-radius: 3px;
+  margin-right: 0.5em;
+  border: 1px solid #767676;
+  padding-top: 0.1em ;
+  padding-bottom: 0.1em ;
+  height: inherit;
 }
 /* .filter-feedback > .inline-filters span{
     white-space: nowrap;

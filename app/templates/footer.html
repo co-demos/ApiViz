@@ -4,23 +4,49 @@
 		<div class="columns">
 
 			<div class="column is-4 is-offset-2">
-				{# <h2 class="has-text-primary"> Le Carrefour des innovations sociales </h2> #}
-				
+				<h2 class="has-text-primary"> {{ app_config.app_title.content}} </h2>
+
 				<ul>
 					<li>
-						<a href="/qui-sommes-nous">Qui sommes-nous ?</a>
-					<li>
-						<a href="https://github.com/entrepreneur-interet-general/CIS-front" target="_blank"> 
-							Code source 
+						<a href="{{app_config.app_code.url}}" target="_blank">
+							Code source
 						</a>
 					<li>
 						<a href="/login">Login</a>
+					</li>
 					<li>
 						<a href="/admin">Admin</a>
+					</li>
+					<li>
+						<a href="/tools/{{language}}">Tools</a>
+					</li>
+					<br>
+					<li>
+						<a target="_blank" href="/backend/api/config/global">API config : app global</a>
+					</li>
+					<li>
+						<a target="_blank" href="/backend/api/config/footer">API config : app footer</a>
+					</li>
+					<li>
+						<a target="_blank" href="/backend/api/config/navbar">API config : app navbar</a>
+					</li>
+					<li>
+						<a target="_blank" href="/backend/api/config/endpoints">API config : datasets' API endpoints</a>
+					</li>
+					<li>
+						<a target="_blank" href="/backend/api/config/styles">API config : app styles </a>
+					</li>
+					<li>
+						<a target="_blank" href="/backend/api/config/routes?as_list=true">API config : routes/pages</a>
+					</li>
+					<li>
+						<a target="_blank" href="/backend/api/config/socials?as_list=true">API config : app socials</a>
+					</li>
 			</div>
 
 
 			<div class="column is-4">
+
 				{# newsletter #}
 				{# <h2 class="has-text-primary">Newsletter</h2> #}
 
@@ -29,14 +55,24 @@
 				{# contact us #}
 				{# <h2 class="has-text-primary"><a href="/contact">Contactez-nous</a></h2> #}
 
-				{# social networks #}
-				{# <h2 class="has-text-primary">Suivez-nous</h2>
+			 	{# social networks #}
+				<h2 class="has-text-primary">Suivez-nous</h2>
 
 				<div class="content is-medium">
-					
-					<a 	id="btn_cis_facebook"
+
+					<a
 						class="button is-primary" 
-						href="https://www.facebook.com/TouteslesInnoSo/" >
+						href="https://www.github.com/co-demos/" >
+						<span class="icon">
+							<i class="fab fa-lg fa-github"></i>
+						</span>
+					</a>
+					
+					&nbsp;&nbsp;&nbsp;
+
+					<a
+						class="button is-primary" 
+						href="https://www.facebook.com/co-demos/" >
 						<span class="icon">
 							<i class="fab fa-lg fa-facebook"></i>
 						</span>
@@ -44,15 +80,15 @@
 					
 					&nbsp;&nbsp;&nbsp;
 
-					<a 	id="btn_cis_twitter"
+					<a
 						class="button is-primary" 
-						href="https://twitter.com/touteslesinnoso" >
+						href="https://twitter.com/co-demos" >
 						<span class="icon ">
 							<i class="fab fa-lg fa-twitter"></i>
 						</span>
 					</a>
 					
-				</div> #}
+				</div>
 
 			</div>
 

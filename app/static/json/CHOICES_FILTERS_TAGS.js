@@ -47,22 +47,22 @@ var CHOICES_FILTERS_TAGS = [
     }, 
     {
         "fullname": "Publics", 
-        "name": "pubics_", 
+        "name": "publics_", 
         "choices": [
             {
                 "fullname": "Handicap", 
                 "name": "handicap", 
-                "id": "pubics_handicap"
+                "id": "publics_handicap"
             }, 
             {
                 "fullname": "Jeunesse", 
                 "name": "youth", 
-                "id": "pubics_youth"
+                "id": "publics_youth"
             }, 
             {
                 "fullname": "Seniors", 
                 "name": "senior", 
-                "id": "pubics_senior"
+                "id": "publics_senior"
             }
         ]
     }, 

@@ -1,11 +1,11 @@
-@import './cis-colors.scss';
+@import './apiviz-colors.scss';
 
 
 section#presse {
     ul.mentions{
         li{
             display: inline-block;
-            background-color: $cis-grey-background;
+            background-color: $apiviz-grey-background;
             
             $mention-spacing: 1%;
 
@@ -50,7 +50,7 @@ section#presse {
             }
         
             a{
-                color: $cis-primary;
+                color: $apiviz-primary;
                 border-bottom: 1px solid currentColor;
         
                 display: inline-block;

@@ -2,29 +2,61 @@
 @import "../node_modules/bulma/sass/utilities/initial-variables";
 @import "../node_modules/bulma/sass/utilities/functions";
 @import "./rem.scss";
-@import "./cis-colors.scss";
-@import "./cis-misc.scss";
+@import "./apiviz-colors.scss";
+@import "./apiviz-misc.scss";
 
+// Barlow
 @import url(https://fonts.googleapis.com/css?family=Barlow:400,700&subset=latin-ext);
 
+// Nexa
+@font-face {
+    font-family: 'Nexa';
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://github.com/co-demos/carto-sonum/blob/master/graphisme/Nexa/Nexa-Book.otf?raw=true") format("opentype");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
-$primary		: $cis-primary; 
-$primary-invert : $cis-primary-invert;
+// BonvenoCF
+@font-face {
+    font-family: 'BonvenoCF';
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://github.com/co-demos/carto-sonum/blob/master/graphisme/BonvenoCF/BonvenoCF-Light.otf?raw=true") format("opentype");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
-$light 			: $cis-grey-light;
-$dark			: $cis-grey-dark;
+$primary        : $apiviz-primary; 
+$primary-invert : $apiviz-primary-invert;
+$info           : $apiviz-info; 
+$link           : $apiviz-link; 
+$success        : $apiviz-success; 
+$warning        : $apiviz-warning; 
+$danger         : $apiviz-danger; 
 
-$text           : $cis-text-color;
-$body-size      : $cis-base-font-size;
+
+$light          : $apiviz-grey-light;
+$dark           : $apiviz-grey-dark;
+
+$text           : $apiviz-text-color;
+$body-size      : $apiviz-base-font-size;
 
 $size-1         : rem(40px);
 $size-2         : rem(28px);
 
-$link			: $grey;
-$link-hover 	: $cis-primary;
+$link           : $grey;
+$link-hover     : $apiviz-primary;
 
-$family-sans-serif 	: "Barlow", sans-serif ;
-$family-primary 	: $family-sans-serif ; 
+
+$family-Barlow     : "Barlow", sans-serif ;
+$family-Nexa       : "Nexa" ;
+$family-BonvenoCF  : "BonvenoCF" ;
+
+
+// $family-sans-serif  : "Barlow", sans-serif ;
+$family-sans-serif  : "Nexa", sans-serif ;
+$family-primary     : $family-sans-serif ; 
+$family-secondary   : $family-BonvenoCF ; 
 
 
 // Import the rest of Bulma at the end
@@ -40,5 +72,5 @@ form .control{
 }
 
 .is-checkradio[type="checkbox"] + label{
-    font-size: $cis-navbar-font-size
+    font-size: $apiviz-navbar-font-size
 }

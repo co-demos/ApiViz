@@ -1,7 +1,7 @@
 @import './rem.scss';
 
 main#qui-fait-quoi{
-    background-color: $cis-grey-background;
+    background-color: $apiviz-grey-background;
 
     .input[type="search"]{
         margin-bottom: 1em;
@@ -102,7 +102,7 @@ main#qui-fait-quoi{
         
         
             footer{
-                background-color: $cis-grey-background;
+                background-color: $apiviz-grey-background;
                 position: relative;
         
                 font-size: 0.8em;
@@ -134,7 +134,7 @@ main#qui-fait-quoi{
                 }
             
                 .count{
-                    color: $cis-primary;
+                    color: $apiviz-primary;
                     max-width: 9em;
             
                     display: flex;

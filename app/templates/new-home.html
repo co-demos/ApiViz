@@ -4,220 +4,40 @@
 
 {# SEARCH INPUT #}
 <main id="home">
+
+    <br>
     <section id="top" class="hero">
         <div class="background columns is-centered">
             <div class="column is-8">
-                <h1 class="title is-1">Découvrez et repérez tous les projets d'innovation sociale en France</h1>
-                
+                <h1 class="title is-1">Bienvenue sur ApiViz</h1>
+
                 <form action="/recherche" method="GET" class="columns">
                     <div class="column is-10">
-                        <div class="image-container"><img src="/static/icons/icon_search_violet.svg"></div>
+                        {# <div class="image-container"><img src="/static/icons/icon_search_violet.svg"></div> #}
                         <input 
                             type="search" 
                             name="text"
                             class="input"
-                            placeholder="Quel thème vous intéresse ?">
+                            placeholder="search">
                         </input>
                     </div>
                     <div class="column is-2 is-hidden-touch">
-                        <button class="button is-fullwidth" type="submit">Rechercher</button>
+                        <button class="button is-fullwidth" type="submit">
+                            Rechercher
+                        </button>
                     </div>
-                    {# <div class="column is-2 is-hidden-desktop">
-                        <button class="button is-fullwidth" type="submit">R</button>
-                    </div> #}
                 </form>
 
                 <h3>
                     <span class="counter"></span>
-                    <span class="text">projets déjà réferencés</span>
+                    <span class="text">
+                        données
+                    </span>
                 </h3>
             </div>
         </div>
     </section>
-
-    {# VIDEO #}
-    <section>
-        <br>
-        <h2 class="title is-1">2 minutes pour comprendre le projet</h2>
-        <div class="columns is-centered"
-             height="600px">
-            <div class="column is-8" style="width:844px; height:475px">
-                <iframe 
-                    class="is-centered"
-                    width="844px" 
-                    height="475px" 
-                    src="https://www.youtube.com/embed/QKm1KLtm9DY" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-        <br>
-    </section>
-    
-    {# TEXT / PARTICIPATE #}
-    <section id="participer" class="hero">
-        <div class="background">
-
-            <div class="columns is-centered">
-                <div class="column is-8">
-
-                    <h1 class="title is-1">Comment participer ?</h1>
-                    <h2 class="title is-2">
-                        Nous ne référençons pas directement les projets. 
-                        <br>Nous relayons ceux recensés par les membres du <a href="/qui-sommes-nous">collectif</a>.
-                    </h2>
-                    <p>
-                        Des centaines de sites recensent déjà des projets d’innovation sociale. Nous voulons rendre cette information plus accessible. Les données sur les projets sont donc collectées auprès des sites des membres du collectif qui recensent des projets.
-                    </p>
-                    
-                </div>
-            </div>
-
-            <div class="columns is-centered rejoindre">
-                <div class="column is-4">
-                    <img src="/static/illustrations/HP_lame3_collectif%402x.png">
-                </div>
-                <div class="column is-4">
-                    <p>
-                        Vous recensez des projets d’innovation sociale et vous souhaiteriez les partager&nbsp;? Ou vous êtes simplement intéréssé.e par notre démarche&nbsp;?
-                    </p>
-                    <a class="button" href="/nous-rejoindre">Découvrez comment rejoindre le projet</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    {# TEXT / COLLECTIVE #}
-    <section id="collectif" class="hero">
-        <div class="columns is-centered">
-            <div class="column is-10">
-                <h1 class="title is-1">Un collectif de plus de 50 membres</h1>
-                <p>
-                    Le Carrefour des innovations sociales rassemble des associations, têtes de réseaux, collectivités, fondations, médias, centres de recherche et institutions
-                </p>
-                <div class="columns is-centered">
-                    <div class="column is-3">
-                        <h3>Ils ont initié le projet</h3>
-                        <ul class="columns">
-                            <li class="column"> <img src="/static/logos/Partenaires/Institution_et_tetes_de_reseau/CGET_signat_seul_CMJN.png" alt="Logo CGET">
-                            <li class="column"> <img src="/static/logos/Partenaires/Think_Thank_et_acteurs_de_la_recherche/LaFonda_RVB.png" alt="Logo La Fonda">
-                        </ul>
-                    </div>
-                    <div class="column is-offset-1 is-6">
-                        <h3>Ils copilotent le projet</h3>
-                        <ul class="columns">
-                            <li class="column"> <img src="/static/logos/Partenaires/Associations_et_accompagnateurs/AVISE_RVB.png" alt="Logo Avise">
-                            <li class="column"> <img src="/static/logos/Partenaires/Fondation_et_acteurs_engages_RSE/FONDATION_COGNAC_JAY.png" alt="Logo Fondation Cognacq-Jay">
-                            <li class="column"> <img src="/static/logos/Partenaires/Think_Thank_et_acteurs_de_la_recherche/APRILES.png" alt="Logo Apriles">
-                            <li class="column"> <img src="/static/logos/Partenaires/Associations_et_accompagnateurs/GNIAC.png" alt="Logo Gniac">
-                            <li class="column"> <img src="/static/logos/Partenaires/Think_Thank_et_acteurs_de_la_recherche/Labo_ESS.png" alt="Logo Le Labo ESS">
-                        </ul>
-                    </div>
-                </div>
-                <div class="columns is-centered">
-                    <a class="button" href="./qui-sommes-nous">Découvrez tous les membres du collectif</a>
-                </div>
-                <br>
-                <div>
-                    <h3>Ils soutiennent le projet</h3>
-                    <ul class="columns">
-                        <li class="column"> <img src="/static/logos/Partenaires/Fondation_et_acteurs_engages_RSE/FNCE_Horizontal_200ans.png" alt="Logo Fondation Caisse d'Epargne">
-                        <li class="column"> <img src="/static/logos/Partenaires/Institution_et_tetes_de_reseau/Investissements_d'avenir_-_logo.jpeg" alt="Logo Investissements d'avenir">
-                        <li class="column"> <img src="/static/logos/Partenaires/Institution_et_tetes_de_reseau/Etalab logo.PNG" alt="Logo Etalab">
-                        <li class="column"> <img src="/static/logos/Partenaires/Institution_et_tetes_de_reseau/EIG.png" alt="Logo Entrepreneur d'Intérêt général">
-                        <li class="column" style="height: 8em;"> <img src="/static/logos/Partenaires/Fondation_et_acteurs_engages_RSE/FFE.png" alt="Logo Fondation la France s'engage">
-                        <li class="column"> <img src="/static/logos/Partenaires/Fondation_et_acteurs_engages_RSE/FCC.png" alt="Logo Fondation Crédit Coopératif">
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {# NEEDS TO BE REDONE WITH BULMA-CAROUSEL !!! #}
-    <section id="témoignages" class="hero">
-        <div class="background">
-            <h1 class="title is-1">Le collectif témoigne</h1>
-
-            <div class="caroussel">
-                <button class="button previous"></button>
-                <div class="caroussel-container">
-                    <ul class="caroussel-content">
-                        <li>
-                            <img src="/static/photos/Portraits_photos_Hugues_Sibille.png">
-                            <div class="text">
-                                <h1>Hugues Sibille, Président du Labo de l’ESS et de la Commission Innovation sociale du CSESS</h1>
-                                <blockquote>« L’innovation sociale est une Grande Promesse qu’il nous incombe de reconnaître, de transformer et surtout d’accélérer, pour obtenir des résultats à la hauteur des besoins sociaux non  satisfaits »</blockquote>
-                            </div>
-                        <li>
-                            <img src="/static/photos/Portraits_photos_philippe_laurent.png">
-                            <div class="text">
-                                <h1>Philippe Laurent, Maire de Sceaux et Secrétaire général de l'AMF</h1>
-                                <blockquote>« Face au risque grandissant de fracture sociale et territoriale liée à la crise, l’ESS apparaît aujourd’hui comme une chance à saisir. Nous avons donc choisi de participer au Carrefour des innovations sociales pour partager des bonnes pratiques et des initiatives à impact positif qui bouleversent les façons de faire en créant de la valeur sociale partagée. » </blockquote>
-                            </div>
-                        <li>
-                            <img src="/static/photos/Portraits_photos_florence_raineix.png">
-                            <div class="text">
-                                <h1>Florence Raineix, directrice générale de la Fédération Nationale des Caisses d’Epargne</h1>
-                                <blockquote>« En tant que banques coopératives régionales, les Caisses d’Epargne via leur fédération, sont fières de contribuer à la co-construction de cette plateforme au service des territoires et de ses innovations sociales » </blockquote>
-                            </div>
-                        <li>
-                            <img src="/static/photos/Portraits_photos_yannick_blanc.png">
-                            <div class="text">
-                                <h1>Yannick Blanc, Vice-Président de la Fonda</h1>
-                                <blockquote>« Le Carrefour des innovations sociales peut devenir un levier avec lequel on soulève le monde. Il permettra de comprendre et développer la capacité d’initiative et de coopération présente dans la société, au fondement de l’innovation sociale et de ses promesses »</blockquote>
-                            </div>
-                        <li>
-                            <img src="/static/photos/Portraits_photos_cedric_szabo.png">
-                            <div class="text">
-                                <h1>Cédric Szabo, Directeur des Maires Ruraux de France  </h1>
-                                <blockquote>« A un carrefour, se rencontrent des protagonistes venus de tous horizons, dont certains ignoraient l’existence des autres. C’est pour donner à tous à voir le monde rural tel qu’il est que les projets municipaux ruraux ont toute leur place dans ce lieu d’échanges  » </blockquote>
-                            </div>
-                        <li>
-                            <img src="/static/photos/Portraits_photos_giorgia_segrebondi.png">
-                            <div class="text">
-                                <h1>Giorgia Sebregondi, Directrice du laboratoire des solidarités de la Fondation Cognacq-Jay</h1>
-                                <blockquote>« Ce projet, ce sont des rencontres enrichissantes, d'autres perspectives sur l'innovation sociale, l'expérience d'une gouvernance originale et la découverte de nouveaux projets solidaires » Julien Kounowski, Chef de projet SIILAB pour la DRJSCS Hauts-de-France « Pour apporter les travaux et les réalisations de notre laboratoire d'innovation publique et les partager au national sur le champ de l'innovation sociale » </blockquote>
-                            </div>
-                        <li>
-                            <img src="/static/photos/Portraits_photos_emma_stocking.png">
-                            <div class="text">
-                                <h1>Emma Stokking, Responsable innovation sociale à Sparknews</h1>
-                                <blockquote>« Sparknews a pour mission d’identifier et de mettre en valeur les innovations sociales les plus inspirantes. Il était donc naturel de nous associer à ce carrefour afin de contribuer et de trouver de nouveaux sujets » </blockquote>
-                            </div>
-                        <li>
-                            <img src="/static/photos/Portraits_photos_christophe_thevignot copie 4.png">
-                            <div class="text">
-                                <h1> Christophe Thevignot, AEIDL </h1>
-                                <blockquote>« Identifier, mettre en lumière et contribuer aux innovations sociales en Europe fait partie des priorités de l’AEIDL » Steven Bertal, co-fondateur de Génération2 Conseil « Le Carrefour des innovations sociales offre une lisibilité nouvelle du secteur de l'ESS en France, utile pour l'intérêt général et nos activités de conseil  » </blockquote>
-                            </div>
-                        <li>
-                            <img src="/static/photos/Portraits_photos_julien_kounowski.png">
-                            <div class="text">
-                                <h1> Julien Kounowski, chef de projet SIILAB pour la DRJSCS Hauts-de-France </h1>
-                                <blockquote>« Pour apporter les travaux et les réalisations de notre laboratoire d'innovation publique et les partager au national sur le champ de l'innovation sociale  » </blockquote>
-                            </div>
-                        <li>
-                            <img src="/static/photos/Portraits_photos_steven_bertal.png">
-                            <div class="text">
-                                <h1> Steven Bertal, co-fondateur de Génération2Conseil </h1>
-                                <blockquote>« Le Carrefour des innovations sociales offre une lisibilité nouvelle du secteur de l'ESS en France, utile pour l'intérêt général et nos activités de conseil.  » </blockquote>
-                            </div>
-                    </ul>
-                </div>
-                <button class="button next"></button>
-            </div>
-        </div>
-    </section>
-
-    {# CONTACT #}
-    <section id="contacter">
-        <h2 class="title is-2">Une question à nous poser ?</h2>
-
-        {% include "forms/form-feedback.html" %}
-    </section>
+    <br>
 </main>
 
 <script>
@@ -256,6 +76,7 @@ document.addEventListener('DOMContentLoaded', e => {
 
 
     // témoignages
+    /*
     let shift = 0;
     const SHIFT_UNIT = 17; // em
     const TESTIMONY_COUNT = document.querySelectorAll('#témoignages ul.caroussel-content li').length;
@@ -276,6 +97,7 @@ document.addEventListener('DOMContentLoaded', e => {
             shift += 1;
         carousselContainer.style.transform = `translateX(-${shift*SHIFT_UNIT}em)`
     })
+    */
 
 }, {once: true})
 </script>
