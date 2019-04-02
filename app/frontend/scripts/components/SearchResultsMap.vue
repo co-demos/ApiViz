@@ -72,6 +72,7 @@
       </div>
   </div>
 
+  <!-- LOADER -->
   <div 
     v-show="!projects || itemLoading"
     class="lds-roller floating"
@@ -90,6 +91,7 @@
     :center="center"
     @update:center="centerUpdate"
     @update:zoom="zoomUpdate"
+    ref='map'
     >
 
     <l-control-zoom position="bottomright"/>
@@ -99,33 +101,16 @@
       :attribution="attribution"/>
 
       <!-- MARKER CLUSTER -->
-      <v-marker-cluster 
+      <!-- <v-marker-cluster 
         v-if="projects"
         :options="{showCoverageOnHover: false, iconCreateFunction: iconCreateFunction}"
         >
-        <!-- <l-marker 
-          v-for="p in displayedProjects"
-          :key="p.sd_id"
-          :lat-lng="itemToMarker(p)"
-          @click="highlightItem(p)"
-          >
-          <l-icon
-            iconUrl="/static/icons/icon_pin_plein_violet.svg"
-            :iconSize="p === highlightedItem ? [46, 46] : [29, 29]"
-          />
-        </l-marker> -->
-
-
-          <!-- v-for="(item, i) in projects" -->
         <l-marker 
           v-for="(item, i) in itemsForMap()"
           :key="i"
           :lat-lng="{lng: parseFloat(item.lon), lat: parseFloat(item.lat)}"
           @click="showCard=true; highlightItem(item)"
           >
-          <!-- :lat-lng="{lng: parseFloat(p.lon), lat: parseFloat(p.lat)}" -->
-          <!-- :lat-lng="{lng: parseFloat(p.lon), lat: parseFloat(p.lat)}" -->
-          <!-- :lat-lng="{lng: geolocByProjectId.get(p.id).lon, lat: geolocByProjectId.get(p.id).lat}" -->
           <l-icon
             v-if="checkIfItemHasLatLng(item)"
             iconUrl="/static/icons/icon_pin_plein_violet.svg"
@@ -134,9 +119,19 @@
             <!-- :iconSize="item.sd_id === highlightedItem.sd_id ? [46, 46] : [29, 29]" -->
             <!-- :iconSize="itemId(item, 'block_id') === itemId(highlightedItem, 'block_id') ? [46, 46] : [29, 29]" -->
         </l-marker>
+      </v-marker-cluster> -->
 
+      <CustomMarkers
+        :routeConfig="routeConfig"
+        :endPointConfig="endPointConfig"
+        :itemsForMap="itemsForMap"
+        :checkIfStringFloat="checkIfStringFloat"
+        :mapObject="this.$refs.map"
 
-      </v-marker-cluster>
+        :contentFields="contentFields"
+        @getSelectedItem="handleIconSignal"
+        :highlightedItem="highlightedItem"
+      />
 
     </l-map>
 
@@ -155,6 +150,7 @@ import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
 
 import ProjectCard from './ProjectCard.vue'
 import CISSearchResultsCountAndTabs from './CISSearchResultsCountAndTabs.vue'
+import CustomMarkers from './CustomMarkers.vue'
 
 import {VIEW_MAP} from '../constants.js'
 import {getItemById} from '../utils.js';
@@ -171,8 +167,9 @@ export default {
     LTileLayer,
     LMarker,
     LIcon,
-    'v-marker-cluster': Vue2LeafletMarkerCluster,
 
+    CustomMarkers,
+    // 'v-marker-cluster': Vue2LeafletMarkerCluster,
     // PruneCluster,
     // PruneClusterForLeaflet,
 
@@ -297,11 +294,42 @@ export default {
 
   methods: {
 
+    handleIconSignal(itemData){
+      // console.log('handleIconSignal / itemData : ', itemData)
+      this.highlightItem(itemData)
+    },
     itemsForMap(){
       if (this.projects){
         return this.projects.filter(item => this.checkIfItemHasLatLng(item) )
       }
     },
+    getIconSize(item, highlightedItem){
+      if (highlightedItem) {
+        return this.itemId(item, 'block_id') === this.itemId(highlightedItem, 'block_id') ? this.iconSizeHighlighted : this.iconSizeNormal
+      } else {
+        return this.iconSizeNormal
+      }
+    },
+    matchItemWithConfig(item, fieldBlock) {
+      // console.log("matchItemWithConfig / item : ", item)
+      const contentField = this.contentFields.find(f=> f.position == fieldBlock)
+      // console.log("matchItemWithConfig / contentField : ", contentField)
+      const field = contentField.field
+      return item[field]
+    },
+    itemId(item) {
+      // console.log("itemId / item : ", item)
+      return this.matchItemWithConfig(item, 'block_id')
+    },
+    getHighlightedItemId(){
+      if ( this.highlightedItem ) {
+        // console.log("itemId / this.highlightedItem : ", this.highlightedItem)
+        return this.itemId(highlightedItem, 'block_id') 
+      } else {
+        return false
+      }
+    },
+
 
 
 
@@ -335,12 +363,12 @@ export default {
         return false
       }
     },
-    getLatLng(item){
-      return { lat : this.checkIfStringFloat(item.lat) , lng : checkIfStringFloat(item.lon) }
-    },
-    getLatLngDense(item){
-      return { lat : this.checkIfStringFloat(item.latlng[0]) , lng : checkIfStringFloat(item.latlng[1]) }
-    },
+    // getLatLng(item){
+    //   return { lat : this.checkIfStringFloat(item.lat) , lng : checkIfStringFloat(item.lon) }
+    // },
+    // getLatLngDense(item){
+    //   return { lat : this.checkIfStringFloat(item.latlng[0]) , lng : checkIfStringFloat(item.latlng[1]) }
+    // },
     checkIfItemHasLatLng(item){
       return this.checkIfStringFloat(item.lat) && this.checkIfStringFloat(item.lon)
     },
@@ -359,21 +387,21 @@ export default {
       // show loader 
       this.showCard = true
       this.itemLoaded = false
-      this.itemLoading = true
+      // this.itemLoading = true
       this.center = [i.lat, i.lon]
       // this.center = [i.lon, i.lat]
       // get item ID
-      const item_id = this.itemId(i)
+      // const item_id = this.itemId(i)
+      const item_id = i.ID
       getItemById( item_id, this.$store.state.search.endpoint)
-      .then(item => {
-        // this.$store.commit('setDisplayedProject', {item})
-        // console.log(" - - DynamicDetail / item : \n ", item)
-        this.highlightedItem = item;
-        this.itemLoaded = true
-        this.itemLoading = false
-      })
-      .catch(function(err) { this.isError = true ; console.error('item route error', err) })
-
+        .then(item => {
+          // this.$store.commit('setDisplayedProject', {item})
+          // console.log(" - - DynamicDetail / item : ", item)
+          this.highlightedItem = item;
+          this.itemLoaded = true
+          // this.itemLoading = false
+        })
+        .catch(function(err) { this.isError = true ; console.error('item route error', err) })
     },
 
 

@@ -33,6 +33,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 	sudo apt install virtualenv
 	```
 
+
 1. **install a [virtual environment](https://pypi.python.org/pypi/virtualenv)**
 	```sh
 	virtualenv venv
@@ -44,6 +45,12 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 	```sh
 	sudo pip install -r requirements.txt
 	```
+
+1. if any problem occur here try to reinstall pip with 
+
+  ```sh
+    curl https://bootstrap.pypa.io/get-pip.py | python
+  ```
 
 
 1. **optional** : _update the `app/config_app/config_secret_vars_example.py` file with your mongoDB URI (if you're not using default mongoDB connection_

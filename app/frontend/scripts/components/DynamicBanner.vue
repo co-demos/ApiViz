@@ -33,7 +33,7 @@
 <template>
 
   <section 
-    v-show="rawHtml !== '' "
+    v-show="rawHtml !== '' && bannerVisible"
     :class="`${ hasFilters ? 'banner-height-with-filters' : 'banner-height-without-filters' } has-text-center skip-navbar`"
     >
 
@@ -48,7 +48,7 @@
         <div class="buttons is-right">
           <button 
             class="button close is-primary is-inverted" 
-            @click="rawHtml = ''"
+            @click="disableBanners"
             >
             <span class="icon is-small">
               <i class="fas fa-times"></i>
@@ -87,7 +87,8 @@ export default {
   },
   computed: {
     ...mapState({
-      user: 'user'
+      user: 'user',
+      bannerVisible : 'bannerVisible'
     }),
     hasFilters(){
       return (this.dynamicTemplate === 'DynamicStatic' )? false : true
@@ -112,10 +113,14 @@ export default {
     .catch( (err) => {this.rawHtml = '<br><br>there is an <strong> Error </strong><br><br>'} )
   },
   methods: {
-  goBack(e){
-    e.preventDefault()
-    this.$router.back()
-  }
+    disableBanners() {
+      this.rawHtml = ''
+      this.$store.commit('disableBanners')
+    },
+    goBack(e){
+      e.preventDefault()
+      this.$router.back()
+    }
   }
 }
 </script>

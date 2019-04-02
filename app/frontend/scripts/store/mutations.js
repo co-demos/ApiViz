@@ -12,12 +12,17 @@ export default {
     state.rootUrlBackend = roots.rootURL
   },
 
-  
+  // UX OPTIONS-RELATED
+  disableBanners(state){
+    state.bannerVisible = false
+  },
+
+
   // FILTERS-RELATED
   setDatasetFilters(state, datasetFilter ){
-    console.log("\n=== setDatasetFilters / datasetFilter : ", datasetFilter )
+    // console.log("\n=== setDatasetFilters / datasetFilter : ", datasetFilter )
     const filterOptions = datasetFilter.filter_options
-    console.log("=== setDatasetFilters / filterOptions : ", filterOptions )
+    // console.log("=== setDatasetFilters / filterOptions : ", filterOptions )
     state.datasetFilters = filterOptions
   },
   
