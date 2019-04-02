@@ -1,7 +1,9 @@
 <template>
   <div class="search-bar navbar is-white is-fixed-top" role="menubar" aria-label="filters navigation">
     <div class="container">
+      
 
+      <!-- INPUT TEXT -->
       <div class="search control is-expanded">
         <div class="image-container"><img src="/static/icons/icon_search_violet.svg"></div>
         <input
@@ -13,27 +15,40 @@
           >
       </div>
 
-      <div class="navbar-end">
+
+      <!-- INPUT FILTERS -->
+      <hr class="is-flex-touch filters-delimiter">
+      <div class="navbar-end has-background-white "> <!-- is-hidden-touch (to completely hide from mobile)-->
+
 
         <span v-for="filter in filterDescriptions"
           :key="filter.name"
           :id="filter.name"
-          class="navbar-item navbar-item-filter has-dropdown is-hoverable">
+          href="#"
+          class="navbar-item navbar-item-filter has-dropdown is-hoverable"
+          >
 
-          <a :class='["navbar-link", {"has-text-weight-semibold" : selectedFilters.get(filter.name).size >= 1 } ]'>
+          <a 
+            :class='["navbar-link", {"has-text-weight-semibold" : selectedFilters.get(filter.name).size >= 1 } ]'
+            @click="collapseChoices(filter.name)"
+          >
           <!-- <a :class='["navbar-link", {"has-text-weight-semibold" : isFilterFromSelectedFiltersBold(filter.name) } ]'> -->
             <span>
               {{ filter.fullname }}
             </span>
           </a>
 
-          <div :id="filter.name" class="navbar-dropdown is-right">
+          <div  
+            :id="filter.name" 
+            :ref="filter.name"
+            class="navbar-dropdown is-right"
+            > <!-- here make it collapsable -->
 
             <a
               class="navbar-item"
               v-for="choice in filter.choices" :key="choice.name"
               >
-              <div class="field">
+              <div class="field is-narrow">
                 <input 	class="is-checkradio is-default is-normal"
                   :id="choice.name"
                   type="checkbox"
@@ -58,8 +73,10 @@
             </div>
 
           </div>
+        <hr class="is-flex-touch filters-delimiter">
         </span>
       </div>
+
     </div>
   </div>
 </template>
@@ -90,6 +107,15 @@ export default {
     },
 
   methods: {
+
+    collapseChoices(filterName){
+      console.log("collapseChoices / filterName : ", filterName)
+      let element = this.$refs[filterName][0]
+      console.log("collapseChoices / element : ", element)
+      element.classList.toggle("hide-choices")
+
+    },
+
     emptyOneFilter({filter}){
       this.$store.dispatch( 'emptyOneFilter', {filter} )
     },
@@ -124,44 +150,53 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/apiviz-colors.scss';
-@import '../../styles/apiviz-misc.scss';
-@import '../../styles/rem.scss';
+  @import '../../styles/apiviz-colors.scss';
+  @import '../../styles/apiviz-misc.scss';
+  @import '../../styles/rem.scss';
 
-.search-bar {
-  top: $apiviz-navbar-height;
-  height: $apiviz-search-bar-height;
+  .hide-choices{
+    display: none;
+  }
+  .filters-delimiter{
+    margin:0em;
+    background-color: $apiviz-primary;
+  }
 
-  font-size: $apiviz-navbar-font-size;
 
-  .search{
-    flex: 1;
+  .search-bar {
+    top: $apiviz-navbar-height;
+    height: $apiviz-search-bar-height;
 
-    display: flex;
-    flex-direction: row;
-    //justify-content: center;
-    align-items: center;
+    font-size: $apiviz-navbar-font-size;
 
-    .image-container{
+    .search{
+      flex: 1;
+
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      //justify-content: center;
       align-items: center;
 
-      img{
-          width: rem(36px);
+      .image-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            width: rem(36px);
+        }
+      }
+
+      input[type="search"]{
+        height: 100%;
+        border: 0;
       }
     }
 
-    input[type="search"]{
-      height: 100%;
-      border: 0;
-    }
-  }
+    .navbar-end{
 
-  .navbar-end{
-
-    .navbar-link::after{
+      .navbar-link::after{
         content: url("/static/icons/icon_chevron3.svg");
         border: 0;
 
@@ -172,13 +207,13 @@ export default {
 
         right: 1em;
         top: 47%;
-    }
+      }
 
-    .navbar-item{
+      .navbar-item{
         padding: 0.2em 0.2em;
         border-left: 1px solid #CBCBCB;
+      }
     }
   }
-}
 
 </style>
