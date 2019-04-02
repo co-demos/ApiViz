@@ -153,6 +153,185 @@ default_data_endpoints_config = [
   ### DATA ENDPOINTS
   ### - - - - - - - - - - - - - - - ###
 
+
+  ####### CIS #######
+
+    ### DATA FILTERS
+
+    { "field"         : "cis_data_API_filters",
+      "is_visible"    : True,
+      "is_disabled"   : False,
+      "data_type"     : "data",
+      "endpoint_type" : "filters",
+      "dataset_uri"   : "cis",
+
+      "placeholder"   : [
+        {"locale" : "fr", "text" : "Tapez le nom d'un lieu" }
+      ],
+      "items_found"   : [
+        {"locale" : "fr", "text" : "lieux trouvés" }
+      ],
+      "reset"   : [
+        {"locale" : "fr", "text" : "Effacer" }
+      ],
+
+      "content"       : u"apiviz default API endpoint for navbar filters",
+      "root_url"      : "https://solidata-api.co-demos.com/api/dsi/infos/get_one/5c7f0438328ed72e431f338e",
+      "args_options"  : [
+        {  "app_arg" : "dataToken",      "arg" : "token",             "optional" : True, "in" : ["url","header"],   "default" : "",   "type": "str" },
+        {  "app_arg" : "filtersList",    "arg" : "get_filters",       "optional" : False, "in" : ["url"],           "default" : True, "type": "bool" },
+        {  "app_arg" : "filterChoices",  "arg" : "get_uniques",       "optional" : False, "in" : ["url"],           "default" : "tag", "type": "str" },
+      ],
+
+      "filter_options" : [
+        { "name"		: u"coding services__", # TODO
+          "id"      : "filter_1",
+          "dataType" : "text",
+          "fullname": u"Domaines",
+          "choices"	: [
+            {"name" : u"ACC", "fullname" : u"accompagnement"},
+            {"name" : u"FOR", "fullname" : u"formation"},
+            {"name" : u"ACL", "fullname" : u"accès libre"},
+            # {"name" : u"non", "fullname" : u"aucun"},
+            {"name" : u"NR",  "fullname" : u"non renseigné"},
+          ]
+        },
+        { "name"		: u"coding audience__", # TODO
+          "id"      : "filter_2",
+          "dataType" : "text",
+          "fullname": u"Publics",
+          "choices"	: [
+            {"name" : u"ha", "fullname" : u"Handicap"},
+            {"name" : u"je", "fullname" : u"Jeunesse"},
+            {"name" : u"se", "fullname" : u"Seniors"},
+          ]
+        },
+        {	"name"		: u"source__", # TODO
+          "id"      : "filter_3",
+          "dataType" : "text",
+          "fullname" 	: u"Source",
+          "choices"	: [
+            {"name" : u"APTIC",            "fullname" : u"APTIC"},
+            {"name" : u"DRJSCS",           "fullname" : u"DRJSCS"},
+            {"name" : u"Gironde",          "fullname" : u"Gironde"},
+            {"name" : u"Loire-Atlantique", "fullname" : u"Loire-Atlantique"},
+            {"name" : u"MSAP",             "fullname" : u"MSAP"},
+            {"name" : u"NetPublic",        "fullname" : u"NetPublic"},
+          ],
+        },
+
+      ],
+      "app_version"    : version,
+      "method"        : "GET",
+      "help"          : u"define the endpoint to get data for : filters in search navbar",
+      "is_default"    : True
+    },
+
+
+    ### DATA LIST
+    { "field"         : "cis_data_API_list",
+      "is_visible"    : True,
+      "is_disabled"   : False,
+      "data_type"     : "data",
+      "endpoint_type" : "list",
+      "dataset_uri"   : "cis",
+      "content"       : u"apiviz default API endpoint for list results",
+      #"root_url"      : "https://solidata-api.co-demos.com/api/dso/infos/get_one/",
+      "root_url"      : "https://solidata-api.co-demos.com/api/dsi/infos/get_one/5c7f0438328ed72e431f338e",
+      "args_options"  : [
+        {  "app_arg" : "dataToken",  "arg" : "token",            "optional" : True, "in" : ["url","header"], "default" : "", "type": "str" },
+        {  "app_arg" : "page",       "arg" : "page_n",           "optional" : True, "in" : ["url"],           "default" : 1,   "type": "int" },
+        {  "app_arg" : "perPage",    "arg" : "per_page",         "optional" : True, "in" : ["url"],           "default" : 100, "type": "int" },
+        {  "app_arg" : "query",      "arg" : "search_for",       "optional" : True, "in" : ["url"],           "default" : "", "type": "str" },
+        {  "app_arg" : "filters",    "arg" : "search_filters",   "optional" : True, "in" : ["url"],           "default" : "", "type": "str" },
+
+      ],
+      "app_version"    : version,
+      "method"        : "GET",
+      "help"          : u"define the endpoint to get data for : a view list",
+      "is_default"    : True
+    },
+
+    ### DATA DETAIL
+    { "field"         : "cis_data_API_detail",
+      "is_visible"    : True,
+      "is_disabled"   : False,
+      "data_type"     : "data",
+      "endpoint_type" : "detail",
+      "dataset_uri"   : "cis",
+      "content"       : u"apiviz default API endpoint for detailled results",
+      "root_url"      : "https://solidata-api.co-demos.com/api/dsi/infos/get_one/5c7f0438328ed72e431f338e",
+      "args_options"  : [
+        {  "app_arg" : "dataToken",  "arg" : "token",     "optional" : True,  "in" : ["url","header"],   "default" : "", "type": "str" },
+        {  "app_arg" : "itemId",     "arg" : "item_id",   "optional" : False, "in" : ["url"],           "default" : "", "type": "str" },
+      ],
+      "app_version"    : version,
+      "method"        : "GET",
+      "help"          : u"define the endpoint to get data for : a detailled data",
+      "is_default"    : True
+    },
+
+    ### DATA STATS
+    { "field"         : "cis_data_API_stats",
+      "is_visible"    : False,
+      "is_disabled"   : False,
+      "data_type"     : "data",
+      "endpoint_type" : "stat",
+      "dataset_uri"    : "cis",
+      "content"       : u"apiviz default API endpoint for stats results",
+      "root_url"      : "https://solidata-api.co-demos.com/api/dsi/infos/get_one/5c7f0438328ed72e431f338e",
+      "args_options"   : [
+        {  "app_arg" : "dataToken",        "arg" : "token",                "optional" : True, "in" : ["url","header"],   "default" : "", "type": "str" },
+        {  "app_arg" : "onlyCountsSimple", "arg" : "only_counts_simple",   "optional" : True, "in" : ["url"],           "default" : "", "type": "bool" },
+      ],
+      "app_version"    : version,
+      "method"        : "GET",
+      "help"          : u"define the endpoint to get data for : a stat about the dataset",
+      "is_default"    : True
+    },
+
+    ### DATA MAP
+    { "field"         : "cis_data_API_map",
+      "is_visible"    : True,
+      "is_disabled"   : False,
+      "data_type"     : "data",
+      "endpoint_type" : "map",
+      "dataset_uri"   : "cis",
+      "map_options"   : {
+        "url"              : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+        "attribution"      : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        "subdomains"       : 'abcd',
+        "center"           : [46.2276, 2.2137],
+        "currentCenter"    : [46.2276, 2.2137],
+        "zoom"             : 6,
+        "maxZoom"          : 18,
+        "minZoom"          : 3,
+        "useMarkerCluster" : True,
+        "pinIconUrl"       : "/static/icons/icon_pin_plein_violet.svg",
+        "pinIconSize"      : { "highlighted" : [46, 46], "normal" : [29, 29]}
+      },
+      "content"       : u"apiviz default API endpoint for map results",
+      "root_url"      : "https://solidata-api.co-demos.com/api/dsi/infos/get_one/5c7f0438328ed72e431f338e",
+      "args_options"  : [
+        {  "app_arg" : "dataToken",  "arg" : "token",            "optional" : True, "in" : ["url","header"], "default" : "",   "type": "str" },
+
+        {  "app_arg" : "forMap",     "arg" : "map_list",         "optional" : False, "in" : ["url"],         "default" : True, "type": "bool" },
+        # {  "app_arg" : "asLatLng", "arg" : "as_latlng",        "optional" : False, "in" : ["url"],         "default" : True, "type": "bool" },
+        {  "app_arg" : "onlyGeocoded", "arg" : "only_geocoded",  "optional" : False, "in" : ["url"],         "default" : True, "type": "bool" },
+
+        # {  "app_arg" : "page",       "arg" : "page_n",           "optional" : True, "in" : ["url"],          "default" : 1,    "type": "int" },
+        # {  "app_arg" : "perPage",    "arg" : "per_page", "optional" : True, "in" : ["url"],          "default" : 100,  "type": "int" },
+        {  "app_arg" : "query",      "arg" : "search_for",       "optional" : True, "in" : ["url"],          "default" : "",   "type": "str" },
+        {  "app_arg" : "filters",    "arg" : "search_filters",   "optional" : True, "in" : ["url"],          "default" : "",   "type": "str" },
+        {  "app_arg" : "itemId",     "arg" : "item_id",          "optional" : True, "in" : ["url"],          "default" : "",   "type": "str" },
+
+      ],
+      "app_version"    : version,
+      "method"        : "GET",
+      "help"          : u"define the endpoint to get data for : map results",
+      "is_default"    : True
+    },
+
   ####### SONUM / CARTO #######
 
     ### DATA FILTERS
@@ -185,7 +364,7 @@ default_data_endpoints_config = [
         { "name"		: u"coding services__",
           "id"      : "filter_1",
           "dataType" : "text",
-          "fullname": u"Modalités d'accompagnement",		
+          "fullname": u"Modalités d'accompagnement",
           "choices"	: [
             {"name" : u"ACC", "fullname" : u"accompagnement"},
             {"name" : u"FOR", "fullname" : u"formation"},
@@ -197,7 +376,7 @@ default_data_endpoints_config = [
         { "name"		: u"coding jours__",
           "id"      : "filter_2",
           "dataType" : "text",
-          "fullname": u"Jours d'ouverture",		
+          "fullname": u"Jours d'ouverture",
           "choices"	: [
             {"name" : u"lu", "fullname" : u"lundi"},
             {"name" : u"ma", "fullname" : u"mardi"},
@@ -211,7 +390,7 @@ default_data_endpoints_config = [
         {	"name"		: u"source__",
           "id"      : "filter_3",
           "dataType" : "text",
-          "fullname" 	: u"Source",		
+          "fullname" 	: u"Source",
           "choices"	: [
             {"name" : u"APTIC",            "fullname" : u"APTIC"},
             {"name" : u"Gironde",          "fullname" : u"Gironde"},
@@ -219,7 +398,7 @@ default_data_endpoints_config = [
             {"name" : u"Loire-Atlantique", "fullname" : u"Loire-Atlantique"},
             {"name" : u"MSAP",             "fullname" : u"MSAP"},
             {"name" : u"NetPublic",        "fullname" : u"NetPublic"},
-          ], 
+          ],
         },
 
       ],
@@ -369,7 +548,7 @@ default_data_endpoints_config = [
         { "name"		: u"type structure__",
           "id"      : "filter_1",
           "dataType" : "text",
-          "fullname": u"Type de structure",		
+          "fullname": u"Type de structure",
           "choices"	: [
             {"name" : u"structure publique (CCAS, CIAS, bibliothèque, etc...)", "fullname" : u"structure publique"},
             {"name" : u"collectivité territoriale/EPCI",                        "fullname" : u"collectivité territoriale/EPCI"},
@@ -379,7 +558,7 @@ default_data_endpoints_config = [
         { "name"		: u"thématique__",
           "id"      : "filter_2",
           "dataType" : "text",
-          "fullname": u"Thématique",		
+          "fullname": u"Thématique",
           "choices"	: [
             {"name" : u"INCNUM", "fullname" : u"inclusion numérique"},
             {"name" : u"DEMPAR", "fullname" : u"démocratie participative"},

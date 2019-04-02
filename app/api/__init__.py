@@ -58,39 +58,39 @@ log_app.debug(">>> MongoDB / mongoColls.keys() : \n %s", pformat( mongoColls.key
 ### CREATE DEFAULT GLOBAL CONFIG IF COLLECTION IS EMPTY
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - ###
 def setupDefaultConfig(collection, defaultList, uniqueField="field") :
-  """ 
+  """
   main function to set up config collections
   """
-  
+
   ### delete all previous default items in collection
   collection.delete_many({"is_default" : True })
-  
-  ### set up 
-  for config_app_item in defaultList : 
-    
+
+  ### set up
+  for config_app_item in defaultList :
+
     # print ("- - - "*10 )
-    # log_app.debug(">>> config_item : \n%s", pformat(config_app_item)) 
+    # log_app.debug(">>> config_item : \n%s", pformat(config_app_item))
 
     current_app_config_item = collection.find_one({ uniqueField : config_app_item[ uniqueField ] })
     # log_app.debug(">>> current_app_config_item : \n%s", pformat(current_app_config_item))
-    
-    if current_app_config_item == None : 
+
+    if current_app_config_item == None :
       log_app.debug(">>> current_app_config_item is None --> add : %s", config_app_item[uniqueField])
       collection.insert(config_app_item)
 
-    else : 
-      if current_app_config_item["is_default"] : 
+    else :
+      if current_app_config_item["is_default"] :
         log_app.debug(">>> current_app_config_item is default --> update : %s", current_app_config_item[uniqueField])
         current_app_config_item_id = current_app_config_item["_id"]
         collection.replace_one( {"_id": current_app_config_item_id}, config_app_item )
 
 from app.config_app.config_app_global         import default_global_config
 from app.config_app.config_app_footer         import default_app_footer
-from app.config_app.config_app_navbar         import default_app_navbar
+from app.config_app.config_app_navbar         import default_app_navbar, custom_app_navbar
 from app.config_app.config_app_data_endpoints import default_data_endpoints_config
 from app.config_app.config_app_styles         import default_app_styles_config
 from app.config_app.config_app_routes         import default_routes_config
-from app.config_app.config_app_socials        import default_socials_config
+from app.config_app.config_app_socials        import default_socials_config, cis_socials_config
 
 ### retrieve default config for every collection
 existing_app_config             = list( mongo_config_global.find({}) )
@@ -118,16 +118,18 @@ log_app.debug(">>> existing_socials_config : \n%s \n", pformat(existing_socials_
 setupDefaultConfig( mongo_config_global,           default_global_config )
 setupDefaultConfig( mongo_config_footer,           default_app_footer )
 setupDefaultConfig( mongo_config_navbar,           default_app_navbar )
+setupDefaultConfig( mongo_config_navbar,           custom_app_navbar ) # CUSTOM
 setupDefaultConfig( mongo_config_data_endpoints,   default_data_endpoints_config )
 setupDefaultConfig( mongo_config_app_styles,       default_app_styles_config )
 setupDefaultConfig( mongo_config_routes,           default_routes_config )
 setupDefaultConfig( mongo_config_socials,          default_socials_config )
+setupDefaultConfig( mongo_config_socials,          cis_socials_config ) # CUSTOM
 
 
 
 def backup_mongo_collection(coll, filepath) :
   """
-  dumps all documents in collection in _backups_collections 
+  dumps all documents in collection in _backups_collections
   """
 
   cursor      = coll.find({})
@@ -140,7 +142,7 @@ def backup_mongo_collection(coll, filepath) :
 
 
 
-print 
+print
 
 
 

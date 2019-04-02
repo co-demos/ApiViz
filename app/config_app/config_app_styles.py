@@ -15,8 +15,10 @@ default_app_styles_config = [
         "default_background_navbar" : "#ffffff",
 
         ### SIMILI - BULMA
-        "primary"     : "#513085",
-        "secondary"   : "#a174ac",
+        # "primary"     : "#513085",
+        # "secondary"   : "#a174ac",
+        "primary"     : "#592d7b",
+        "secondary"   : "#80C2BD",
         "info"        : "#40529d",
         "warning"     : "#f3bd80",
         "error"       : "#d24745",
@@ -39,8 +41,10 @@ default_app_styles_config = [
         "default_invert"     : "#ffffff",
 
         ### SIMILI - BULMA
-        "primary"     : "#513085",
-        "secondary"   : "#a174ac",
+        # "primary"     : "#513085",
+        # "secondary"   : "#a174ac",
+        "primary"     : "#592d7b",
+        "secondary"   : "#80C2BD",
         "info"        : "#40529d",
         "warning"     : "#f3bd80",
         "error"       : "#d24745",
@@ -57,7 +61,7 @@ default_app_styles_config = [
 
     { "field"       : "app_typo",
       "content"     : {
-        "titles" : u"BonvenoCF-Light",
+        "titles" : u"BonvenoCF-Light", # TODO: replace with Barow
         "textes" : u"NEXA SANS",
       },
       "url"         : "",
@@ -135,6 +139,27 @@ default_app_styles_config = [
             { "dft_text" : "img_4", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgD.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
             { "dft_text" : "img_5", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgE.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
             { "dft_text" : "img_6", "src_image" : "https://github.com/co-demos/carto-sonum/blob/master/illustrations/illustrations_sonum_png/imgF.png?raw=true", "credits" : "Laurie Chapotte", "licence" : "" },
+          ]
+        },
+        {
+          "dataset_uri" : "cis",
+          "images_set"  : [
+            { "dft_text" : "img_1", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_1.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_2", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_2.png?r:aw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_3", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_3.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_4", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_4.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_5", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_5.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_6", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_6.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_7", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_7.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_8", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_8.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_9", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_9.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_10", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_10.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_11", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_11.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_12", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_12.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_13", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_13.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_14", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_14.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_15", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_15.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
+            { "dft_text" : "img_16", "src_image" : "https://raw.githubusercontent.com/entrepreneur-interet-general/CIS-front/master/cis/app/static/illustrations/textures/medium_fiche_16.png?raw=true", "credits" : "Élise Lalique", "licence" : "" },
           ]
         }
       ],

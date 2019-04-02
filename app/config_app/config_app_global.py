@@ -22,17 +22,17 @@ default_global_config = [
       "no_abstract"    : [{"locale" : "fr", "text" : "(Pas de résumé)" }],
       "no_address"     : [{"locale" : "fr", "text" : "Pas d'adresse enregistrée" }],
       "no_info"        : [{"locale" : "fr", "text" : "Pas d'information" }],
-      
+
       "source"         : [{"locale" : "fr", "text" : "Source" }],
       "back_to_results": [{"locale" : "fr", "text" : "Retour aux résultats de recherche" }],
       "see_website"    : [{"locale" : "fr", "text" : "Aller sur le site" }],
       "see_contact"    : [{"locale" : "fr", "text" : "Contact" }],
-      "share_link"     : [{"locale" : "fr", "text" : "Partagez ce lieu" }],
+      "share_link"     : [{"locale" : "fr", "text" : "Partagez ce lien" }],
       "infos"          : [{"locale" : "fr", "text" : "Informations pratiques" }],
       "open_infos"     : [{"locale" : "fr", "text" : "Horaires" }],
       "more_infos"     : [{"locale" : "fr", "text" : "Autres informations" }],
-      "name"           : [{"locale" : "fr", "text" : "prénom" }],
-      "surname"        : [{"locale" : "fr", "text" : "nom" }],
+      "name"           : [{"locale" : "fr", "text" : "Prénom" }],
+      "surname"        : [{"locale" : "fr", "text" : "Nom" }],
       "tel"            : [{"locale" : "fr", "text" : "Téléphone" }],
       "period"         : [{"locale" : "fr", "text" : "Période" }],
       "services"       : [{"locale" : "fr", "text" : "Services proposés" }],
@@ -44,13 +44,13 @@ default_global_config = [
     { "field"       : "app_screen_tabs",
       "app_version" : version,
       "help"        : u"The default homepage for your ApiViz instance",
-      "tab_list"    : { 
+      "tab_list"    : {
         "link_text"  : [ {"locale" : "fr", "text" : "liste" }],
       },
-      "tab_map"    : { 
+      "tab_map"    : {
         "link_text"  : [ {"locale" : "fr", "text" : "carte" }],
       },
-      "tab_stat"    : { 
+      "tab_stat"    : {
         "link_text"  : [ {"locale" : "fr", "text" : "données" }],
       },
       "is_default"  : True
@@ -59,7 +59,8 @@ default_global_config = [
   ### LOGO
     { "field"       : "app_logo",
       "content"     : u"apiviz default logo in navbar",
-      "url"          : "https://github.com/co-demos/carto-sonum/blob/master/logos/logo%2Bmarianne_typo%20sombre%404x.png?raw=true",
+      "url"         : "https://github.com/entrepreneur-interet-general/CIS-front/blob/master/cis/app/static/logos/CIS/CIS_logo.png?raw=true",
+      # "url"          : "https://github.com/co-demos/carto-sonum/blob/master/logos/logo%2Bmarianne_typo%20sombre%404x.png?raw=true",
       "app_version" : version,
       "help"        : u"The official default logo for your ApiViz instance",
       "is_default"  : True
@@ -78,7 +79,7 @@ default_global_config = [
     { "field"       : "app_title",
       "app_version" : version,
       "help"        : u"Choose a title for your ApiViz instance",
-      "content"     : u"SoNum",
+      "content"     : u"CIS - ApiBêta",
       "is_default"  : True
     },
 
@@ -121,12 +122,12 @@ default_global_config = [
       "in_footer"   : True,
       "is_default"  : True,
     },
-  
+
   ### SEO / INDEXING
     { "field"       : "app_indexing",
       "app_version" : version,
       "help"        : u"Choose a token for indexing your ApiViz instance",
-      "content"     : u"", 
+      "content"     : u"",
       "activated"    : False,
       "is_default"  : True
     },
@@ -141,7 +142,7 @@ default_global_config = [
       "is_default"  : True
     },
 
-  ### SUPPORT 
+  ### SUPPORT
     { "field"       : "app_support",
       "app_version" : version,
       "help"        : u"Choose the token for the support (ex. crisp) of your ApiViz instance",

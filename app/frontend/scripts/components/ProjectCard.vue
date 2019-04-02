@@ -1,20 +1,20 @@
 <template>
-  <div 
+  <div
     :class="`column is-12 ${ view === 'VIEW_MAP' ? 'hover-effect' : ''}`">
-    <div 
+    <div
       :class="`card proj-card ${ view === 'VIEW_LIST' ? 'hover-effect' : ''}`"
       >
-      
+
 
       <!-- BLOCK IMAGE -->
-      <router-link 
-        :to="`/${dataset_uri}/detail?id=${matchItemWithConfig('block_id')}`" 
+      <router-link
+        :to="`/${dataset_uri}/detail?id=${matchItemWithConfig('block_id')}`"
         class="card-image"
         >
-        <img 
-          class="proj-card-img" 
-          :src="itemInfos.image" 
-          :alt="itemInfos.title" 
+        <img
+          class="proj-card-img"
+          :src="itemInfos.image"
+          :alt="itemInfos.title"
         >
       </router-link>
 
@@ -38,7 +38,7 @@
         <!-- BLOCK TITLE -->
         <p class="title is-5 has-text-weight-bold has-text-black-ter" v-if="matchItemWithConfig('block_id')">
           <router-link :to="`/${dataset_uri}/detail?id=${ matchItemWithConfig('block_id') }`">
-            {{ matchItemWithConfig('block_title')}}
+            {{ matchItemWithConfig('block_title')[0]}}
           </router-link>
         </p>
 

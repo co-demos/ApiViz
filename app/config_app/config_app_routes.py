@@ -16,7 +16,7 @@ default_routes_config = [
     "route_description" : u"apiviz default home page",
     "route_activated"   : True,
     "banner" : {
-      "activated"  : True,
+      "activated"  : False,
       "banner_uri" : "banner-sonum-carto"
     },
 
@@ -32,7 +32,8 @@ default_routes_config = [
     "in_footer"         : False,
     "link_in_logo"      : True,
     "urls"              : ["/"],
-    "template_url"      : "https://raw.githubusercontent.com/co-demos/carto-sonum/master/pages-html/test-apiviz.html",
+    # "template_url"      : "https://raw.githubusercontent.com/co-demos/carto-sonum/master/pages-html/test-apiviz.html",
+    "template_url"      : "https://raw.githubusercontent.com/CBalsier/test-content/master/pages-html/home.html",
     "help"              : u"you can specify a remote template (f.e. a github url)",
     "languages"         : ["fr"],
       "app_version"       : version,
@@ -44,7 +45,7 @@ default_routes_config = [
       "is_default"        : True
   },
 
-  
+
   ### - - - - - - - - - - - - - - - - - ###
   ### PAGES : DATASETS --> TO BE ADDED VIA BACK OFFICE BY ADMIN USER
   ### - - - - - - - - - - - - - - - - - ###
@@ -169,7 +170,7 @@ default_routes_config = [
           "trim" : 50,
           "locale" : "fr"
          },
-         
+
       ],
 
       "lat_long_fields" : {
@@ -1090,6 +1091,481 @@ default_routes_config = [
         "is_default"        : True
     },
 
+### DATASET CIS
+    ### PAGE PROJECT
+  { "field"             : "cis_project",
+    "is_global_app_homepage" : True,
+    "route_title"       : u"Home",
+    "route_description" : u"apiviz default home page",
+    "route_activated"   : True,
+    "banner" : {
+      "activated"  : False,
+      "banner_uri" : "banner-sonum-carto"
+    },
+    "in_main_navbar"    : False,
+    "navbar_btn_options" : {
+      "position"   : "middle_right",
+      "link_type"  : "link",
+      "icon_class" : "",
+      "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+      "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+    },
+
+    "in_footer"         : False,
+    "link_in_logo"      : True,
+    "urls"              : ["/le-projet"],
+    # "template_url"      : "/static/le-projet.html",
+    "template_url"      : "https://raw.githubusercontent.com/CBalsier/test-content/master/pages-html/le-projet.html",
+    "help"              : u"you can specify a remote template (f.e. a github url)",
+    "languages"         : ["fr"],
+      "app_version"       : version,
+    "comment"           : u"Main project route in french",
+    "is_dynamic"        : True,
+    "dynamic_template"  : "DynamicStatic",
+    "has_navbar"        : True,
+    "has_footer"        : True,
+      "is_default"        : True
+  },
+    ### PAGE - map
+    { "field"             : "cis_carte",
+      "is_global_app_homepage" : False,
+      "route_title"       : u"Rechercher",
+      "route_description" : u"Page de recherche d'Apiviz",
+      "route_activated"   : True,
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : "banner-sonum-carto" # TODO
+      },
+      "is_dataset_homepage" : True,
+
+      "in_main_navbar"    : True,
+      "navbar_btn_options" : {
+        "only_in_navbar_for_this_dataset" : False,
+        "position"   : "middle_right",
+        "link_type"  : "link",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },
+
+      "in_footer"         : False,
+      "urls"              : ["/recherche/carte"],
+      "template_url"      : "/static/spa.html",
+      "help"             : u"you can specify a remote template (f.e. a github url)",
+      "languages"         : ["fr"],
+        "app_version"        : version,
+      "comment"           : u"Main search route in french",
+      "is_dynamic"        : True,
+      "dataset_uri"        : "cis",
+      "dynamic_template"  : 'DynamicMap',
+      "endpoint_type"     : "map",
+
+      "contents_fields"  : [
+
+        { "field" : "sd_id",
+          "is_visible" : True,
+          "position" : "block_id",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        # { "field" : "adresse structure", # SONUM
+        { "field" : "adresse du projet", # CIS
+          "is_visible" : True,
+          "position" : "block_address",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "ville structure",
+          "is_visible" : True,
+          "position" : "block_city",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        # { "field" : "intitulé structure", # SONUM
+        { "field" : "titre du projet", # CIS
+          "is_visible" : True,
+          "position" : "block_title",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "",
+          "is_visible" : True,
+          "position" : "block_image",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "résumé du projet",
+          "is_visible" : True,
+          "position" : "block_abstract",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "link_src", # spider/sourceur
+          "is_visible" : True,
+          "position" : "block_src",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "",
+          "is_visible" : True,
+          "position" : "block_tags",
+          "trim" : 50,
+          "locale" : "fr"
+         },
+
+      ],
+
+      "lat_long_fields" : {
+        "latitude" : "lat",
+        "longitude" : "lon"
+      },
+
+      "images_fields"        : {
+        "card_img_main" : { "field" : "image(s) du projet", "default" : "img_card",  "is_visible" : True  },
+        "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
+      },
+
+      "ui_options"        : {
+        "card_color"    : { "value" : None, "default" : "white", },
+        "text_color"    : { "value" : None, "default" : "black", },
+        "link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
+        "link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
+        "link_to_previous" : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document précédent" }] },
+      },
+
+      "links_options"  : {
+
+        "block_contents_links" : {
+         "is_visible"  : False,
+         "position"    : "block_bottom_1",
+         "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
+         "links"       : []
+        },
+
+        "block_data_infos" : {
+         "is_visible"  : False,
+         "position"    : "block_bottom_2",
+         "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
+         "links"       : []
+        },
+
+        "block_share" : {
+         "is_visible"  : False,
+         "position"    : "block_bottom_3",
+         "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
+         "links"       : []
+        },
+
+      },
+
+      "has_navbar"        : True,
+      "has_footer"        : True,
+      "deactivate_btn"    : False,
+      "is_visible"        : True,
+        "is_default"      : True
+    },
+
+    ### PAGE - list
+    { "field"             : "cis_liste",
+      "is_global_app_homepage" : False,
+      "route_title"       : u"Rechercher",
+      "route_description" : u"Page de recherche d'Apiviz",
+      "route_activated"   : True,
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : "banner-sonum-carto"
+      },
+      "is_dataset_homepage" : False,
+
+      "in_main_navbar"    : False,
+      "navbar_btn_options" : {
+        "only_in_navbar_for_this_dataset" : True,
+        "position"   : "middle_right",
+        "link_type"  : "link",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },
+
+      "in_footer"         : False,
+      "urls"              : ["/recherche", "/recherche/liste"],
+      "template_url"      : "/static/spa.html",
+      "help"             : u"you can specify a remote template (f.e. a github url)",
+      "languages"         : ["fr"],
+        "app_version"        : version,
+      "comment"           : u"Main search route in french",
+      "is_dynamic"        : True,
+      "dataset_uri"        : "cis",
+      "dynamic_template"  : 'DynamicList',
+      "endpoint_type"     : "list",
+
+      "contents_fields"  : [
+
+        { "field" : "sd_id",
+          "is_visible" : True,
+          "position" : "block_id",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "adresse du projet",
+          "is_visible" : True,
+          "position" : "block_address",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "ville structure",
+          "is_visible" : True,
+          "position" : "block_city",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        # { "field" : "intitulé structure", #SONUM
+        { "field" : "titre du projet",#CIS
+          "is_visible" : True,
+          "position" : "block_title",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "",
+          "is_visible" : True,
+          "position" : "block_image",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "résumé du projet",
+          "is_visible" : True,
+          "position" : "block_abstract",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "link_src",
+          "is_visible" : True,
+          "position" : "block_src",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "",
+          "is_visible" : True,
+          "position" : "block_tags",
+          "trim" : 50,
+          "locale" : "fr"
+         },
+
+      ],
+
+      "images_fields"        : {
+        "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
+        "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
+      },
+      "ui_options" : {
+        "card_color"    : { "value" : None, "default" : "white", },
+        "text_color"    : { "value" : None, "default" : "black", },
+        "link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
+        "link_to_next"     : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
+        "link_to_previous" : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document précédent" }] },
+      },
+
+      "links_options"  : {
+
+        "block_contents_links" : {
+         "is_visible"  : False,
+         "position"    : "block_bottom_1",
+         "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
+         "links"       : []
+        },
+
+        "block_data_infos" : {
+         "is_visible"  : False,
+         "position"    : "block_bottom_2",
+         "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
+         "links"       : []
+        },
+
+        "block_share" : {
+         "is_visible"  : False,
+         "position"    : "block_bottom_3",
+         "title_block" : [{ "locale" : "fr", "text" : "Partagez ce lieu", "is_visible" : False}],
+         "links"       : []
+        },
+
+      },
+
+      "has_navbar"        : True,
+      "has_footer"        : True,
+      "deactivate_btn"    : False,
+      "is_visible"        : True,
+        "is_default"        : True
+    },
+
+    ### PAGE - detail
+        { "field"             : "cis_detail",
+          "is_global_app_homepage" : False,
+          "route_title"        : u"Rechercher",
+          "route_description"  : u"Page de recherche d'Apiviz",
+          "route_activated"    : True,
+          "banner" : {
+            "activated"  : False,
+            "banner_uri" : "banner-sonum-carto"
+          },
+          "is_dataset_homepage" : False,
+
+          "in_main_navbar"    : False,
+          "navbar_btn_options" : {
+            "only_in_navbar_for_this_dataset" : True,
+            "position"   : "middle_right",
+            "link_type"  : "link",
+            "icon_class" : "",
+            "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+            "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+          },
+
+          "in_footer"         : False,
+          "urls"              : ["/project", "/cis/detail"],
+          "template_url"      : "/static/spa.html",
+          "help"              : u"you can specify a remote template (f.e. a github url)",
+          "languages"         : ["fr"],
+            "app_version"        : version,
+          "comment"           : u"Main search route in french",
+          "is_dynamic"        : True,
+          "dataset_uri"        : "cis",
+          "dynamic_template"  : 'DynamicDetail',
+          "endpoint_type"     : "detail",
+
+          "contents_fields"  : [
+
+            # { "field" : "intitulé structure", #SONUM
+            { "field" : "titre du projet",#CIS
+              "is_visible" : True,
+              "position" : "block_title",
+              "trim" : 0,
+              "locale" : "fr"
+            },
+            { "field" : "adresse du projet",
+              "is_visible" : True,
+              "position" : "block_address",
+              "trim" : 0,
+              "locale" : "fr"
+            },
+           { "field" : "code postal structure",
+              "is_visible" : True,
+              "position" : "block_cp",
+              "trim" : 0,
+              "locale" : "fr"
+            },
+            { "field" : "résumé du projet",
+              "is_visible" : True,
+              "position" : "block_abstract",
+              "trim" : 0,
+              "locale" : "fr"
+            },
+            { "field" : "link_src",
+              "is_visible" : False,
+              "position" : "block_src",
+              "trim" : 0,
+              "locale" : "fr"
+            },
+            { "field" : "services",
+              "is_visible" : True,
+              "position" : "block_tags",
+              "trim" : 0,
+              "locale" : "fr"
+            },
+            { "field" : "link_data",
+              "is_visible" : True,
+              "position" : "block_wesite",
+              "trim" : 0,
+              "locale" : "fr"
+            },
+
+            # optional text contents
+             # { "field"       : "services", # Not for CIS
+             #   "is_visible"  : True,
+             #   "position"    : "block_left_bottom_1",
+             #   "title_block" : [{ "locale" : "fr", "text" : "Services proposés", "is_visible" : False }],
+             # },
+             { "field"       : "tags",
+               "is_visible"  : True,
+               "position"    : "block_right_bottom_1",
+               "title_block" : [{ "locale" : "fr", "text" : "Tags", "is_visible" : True }],
+             },
+
+          ],
+
+          "images_fields"     : {
+            "card_img_main"  : { "field" : "", "default" : "img_card",  "is_visible" : True,  "position" : "block_right_top_1" },
+            "card_img_top"   : { "field" : "", "default" : None,        "is_visible" : False, "position" : "block_right_middle" },
+          },
+
+          "ui_options"        : {
+            "card_color"     : { "value" : None, "default" : "white", },
+            "text_color"     : { "value" : None, "default" : "black", },
+            "link_to_detail"   : { "is_visible" : True, "tooltip" : [{"locale" : "fr", "text" : "voir le document" }] },
+            "link_to_next"     : { "is_visible" : True,  "tooltip" : [{"locale" : "fr", "text" : "voir prochain document" }] },
+            "link_to_previous" : { "is_visible" : True,  "tooltip" : [{"locale" : "fr", "text" : "voir le document précédent" }] },
+          },
+
+      "links_options"  : {
+
+        "block_contents_links" : {
+         "is_visible"  : True,
+         "position"    : "block_left_middle_2",
+         "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
+         "links"       : [
+           { "field" : "website",
+             "is_visible" : True,
+             "link_type"  : "text",
+             "icon_class" : "",
+             "link_text"  : [{"locale" : "fr", "text" : "website" }],
+             "tooltip"    : [{"locale" : "fr", "text" : "voir le site" }]
+           },
+           { "field" : "contact",
+             "is_visible" : True,
+             "link_type"  : "text",
+             "icon_class" : "",
+             "link_text"  : [{"locale" : "fr", "text" : "contact" }],
+             "tooltip"    : [{"locale" : "fr", "text" : "contacter la structure" }]
+           },
+         ]
+        },
+
+        "block_share" : {
+         "is_visible"  : True,
+         "position"    : "block_left_bottom_2",
+         "title_block" : [{ "locale" : "fr", "text" : "Partagez ce lieu", "is_visible" : True}],
+         "links"       : [
+           {
+             "is_visible" : True,
+             "link_type"  : "icon",
+             "icon_class" : "fas fa-link",
+             "link_text"  : [{"locale" : "fr", "text" : "lien" }],
+             "tooltip"    : [{"locale" : "fr", "text" : "partager cette page (copier le lien)" }]
+           },
+          {
+             "is_visible" : True,
+             "link_type"  : "icon",
+             "icon_class" : "fab fa-facebook-f",
+             "link_text"  : [{"locale" : "fr", "text" : "facebook" }],
+             "tooltip"    : [{"locale" : "fr", "text" : "partager sur facebook" }]
+           },
+           {
+             "is_visible" : True,
+             "link_type"  : "icon",
+             "icon_class" : "fab fa-twitter",
+             "link_text"  : [{"locale" : "fr", "text" : "twitter" }],
+             "tooltip"    : [{"locale" : "fr", "text" : "partager sur twitter" }]
+           },
+         ]
+        },
+
+      },
+
+      "has_navbar"        : True,
+      "has_footer"        : True,
+      "deactivate_btn"    : False,
+      "is_visible"        : True,
+        "is_default"        : True
+    },
+
   ### - - - - - - - - - - - - - - - - - ###
   ### CUSTOM ROUTES-PAGES --> TO BE ADDED VIA BACK OFFICE BY ADMIN USER
   ### - - - - - - - - - - - - - - - - - ###
@@ -1118,7 +1594,8 @@ default_routes_config = [
     "in_footer"         : False,
     "link_in_logo"      : False,
     "urls"              : ["/qui-sommes-nous"],
-    "template_url"      : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/qui-sommes-nous.html?raw=true",
+    # "template_url"      : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/qui-sommes-nous.html?raw=true",
+    "template_url"      : "https://github.com/CBalsier/test-contact/blob/master/pages-html/le-collectif.html?raw=true",
     "help"              : u"you can specify a remote template (f.e. a github url)",
     "languages"         : ["fr"],
       "app_version"        : version,
@@ -1129,6 +1606,43 @@ default_routes_config = [
     "has_footer"        : True,
       "is_default"        : True
   },
+
+   ### PAGE : JOIN US/NOUS REJOINDRE
+   { "field"             : "app_join_us",
+     "is_global_app_homepage" : False,
+     "route_title"        : u"Home",
+     "route_description"  : u"Nous rejoindre",
+     "route_activated"    : True,
+     "banner" : {
+       "activated"  : False,
+       "banner_uri" : "default"
+     },
+     "is_dataset_homepage" : False,
+
+     "in_main_navbar"    : True,
+     "navbar_btn_options" : {
+       "position"   : "middle_right",
+       "link_type"  : "button",
+       "icon_class" : "",
+       "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+       "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+     },
+
+     "in_footer"         : False,
+     "link_in_logo"      : False,
+     "urls"              : ["/nous-rejoindre"],
+     # "template_url"      : "https://github.com/co-demos/carto-sonum/blob/master/pages-html/qui-sommes-nous.html?raw=true",
+     "template_url"      : "https://github.com/CBalsier/test-contact/blob/master/pages-html/nous-rejoindre.html?raw=true",
+     "help"              : u"you can specify a remote template (f.e. a github url)",
+     "languages"         : ["fr"],
+       "app_version"        : version,
+     "comment"           : u"A custom page for your ApiViz app",
+     "is_dynamic"        : True,
+     "dynamic_template"  : 'DynamicStatic',
+     "has_navbar"        : True,
+     "has_footer"        : True,
+       "is_default"        : True
+   },
 
   ### PAGES : TOOLS
   { "field"              : "app_outils",
