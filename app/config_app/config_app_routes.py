@@ -435,7 +435,6 @@ default_routes_config = [
           "trim" : 0,
           "locale" : "fr"
         },
-        # optional text contents
         { "field" : "téléphone",
           "is_visible" : True,
           "position" : "block_tel",
@@ -448,16 +447,16 @@ default_routes_config = [
           "trim" : 0,
           "locale" : "fr"
         },
-         { "field"       : "services",
-           "is_visible"  : True,
-           "position"    : "block_left_bottom_1",
-           "title_block" : [{ "locale" : "fr", "text" : "Services proposés", "is_visible" : False }],
-         },
-         { "field"       : "infos_pratiques",
-           "is_visible"  : True,
-           "position"    : "block_right_bottom_1",
-           "title_block" : [{ "locale" : "fr", "text" : "Informations pratiques", "is_visible" : False }],
-         },
+        { "field" : "services",
+          "is_visible" : True,
+          "position" : "block_services",
+          "title_block" : [{ "locale" : "fr", "text" : "Services proposés", "is_visible" : False }],
+        },
+        { "field" : "infos pratiques",
+          "is_visible" : True,
+          "position" : "block_infos_pract",
+          "title_block" : [{ "locale" : "fr", "text" : "Informations pratiques", "is_visible" : False }],
+        },
 
       ],
 
@@ -572,30 +571,43 @@ default_routes_config = [
       "endpoint_type"     : "map",
 
       "contents_fields"  : [
-        { "field" : "title",
+
+        { "field" : "sd_id",
+          "is_visible" : True,
+          "position" : "block_id",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "titre initiative",
           "is_visible" : True,
           "position" : "block_title",
           "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "adresse",
+        { "field" : "adresse structure",
           "is_visible" : True,
           "position" : "block_address",
           "trim" : 20,
           "locale" : "fr"
         },
-        { "field" : "présentation",
+        { "field" : "city",
+          "is_visible" : True,
+          "position" : "block_city",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "présentation initiative",
           "is_visible" : True,
           "position" : "block_abstract",
           "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "étiquettes",
+        { "field" : "type structure",
           "is_visible" : True,
           "position" : "block_tags",
           "trim" : 50,
           "locale" : "fr"
-        },
+         },
       ],
 
       "images_fields"        : {
@@ -679,25 +691,37 @@ default_routes_config = [
 
       "contents_fields"  : [
 
-        { "field" : "title",
+        { "field" : "sd_id",
+          "is_visible" : True,
+          "position" : "block_id",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "titre initiative",
           "is_visible" : True,
           "position" : "block_title",
           "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "adresse",
+        { "field" : "adresse structure",
           "is_visible" : True,
           "position" : "block_address",
           "trim" : 20,
           "locale" : "fr"
         },
-        { "field" : "présentation",
+        { "field" : "city",
+          "is_visible" : True,
+          "position" : "block_city",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "présentation initiative",
           "is_visible" : True,
           "position" : "block_abstract",
           "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "étiquettes",
+        { "field" : "type structure",
           "is_visible" : True,
           "position" : "block_tags",
           "trim" : 50,
@@ -706,7 +730,7 @@ default_routes_config = [
       ],
 
       "images_fields"        : {
-        "card_img_main" : { "field" : "", "default" : "img_card",  "is_visible" : True  },
+        "card_img_main" : { "field" : "illustration initiative", "default" : "img_card",  "is_visible" : True  },
         "card_img_top"  : { "field" : "", "default" : None,        "is_visible" : False },
       },
       "ui_options" : {
@@ -784,49 +808,145 @@ default_routes_config = [
 
       "contents_fields"  : [
 
-        { "field" : "title",
+        { "field" : "titre initiative",
           "is_visible" : True,
           "position" : "block_title",
-          "trim" : 0,
+          "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "adresse",
+        { "field" : "public visé",
           "is_visible" : True,
-          "position" : "block_address",
-          "trim" : 0,
+          "position" : "block_main_tags",
+          "custom_title" : "Publics visés :",
+          "is_tag_like" : True,
+          "tags_separator" : "-",
+          "trim" : 20,
           "locale" : "fr"
         },
-        { "field" : "présentation",
+        { "field" : "échelle action initiative",
+          "is_visible" : True,
+          "position" : "block_scale_tags",
+          "custom_title" : "Echelle :",
+          "is_tag_like" : True,
+          "tags_separator" : "-",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "nom structure porteuse",
+          "is_visible" : True,
+          "position" : "block_scale_2",
+          "custom_title" : "Structure :",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "adresse structure",
+          "is_visible" : True,
+          "position" : "block_scale_address",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "city",
+          "is_visible" : True,
+          "position" : "block_city",
+          "trim" : 20,
+          "locale" : "fr"
+        },
+        { "field" : "présentation structure",
+          "is_visible" : True,
+          "position" : "block_pre_abstract",
+          "custom_title" : "Présentation de la structure",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "présentation initiative",
           "is_visible" : True,
           "position" : "block_abstract",
-          "trim" : 0,
+          "custom_title" : "Présentation de l'initiative",
+          "trim" : 50,
           "locale" : "fr"
         },
-        { "field" : "détails structure",
-          "is_visible" : False,
-          "position" : "block_details",
-          "trim" : 0,
-          "locale" : "fr"
-        },
-        { "field" : "étiquettes",
+        { "field" : "type structure",
           "is_visible" : True,
           "position" : "block_tags",
+          "trim" : 50,
+          "locale" : "fr"
+        },
+        { "field" : "date action initiative - début",
+          "is_visible" : True,
+          "position" : "block_period",
+          "trim" : 50,
+          "locale" : "fr"
+         },
+        { "field" : "contact - nom",
+          "is_visible" : True,
+          "position" : "block_contact_surname",
           "trim" : 0,
           "locale" : "fr"
         },
-
-        # optional text contents
-         { "field"       : "services",
-           "is_visible"  : True,
-           "position"    : "block_right_bottom_1",
-           "title_block" : [{ "locale" : "fr", "text" : "Services proposés", "is_visible" : False }],
-         },
-         { "field"       : "infos_pratiques",
-           "is_visible"  : True,
-           "position"    : "block_right_bottom_1",
-           "title_block" : [{ "locale" : "fr", "text" : "Informations pratiques", "is_visible" : False }],
-         },
-
+        { "field" : "contact - prénom",
+          "is_visible" : True,
+          "position" : "block_contact_name",
+          "trim" : 0,
+          "locale" : "fr"
+        },
+        { "field" : "contact - titre",
+          "is_visible" : True,
+          "position" : "block_contact_title",
+          "trim" : 0,
+          "locale" : "fr"
+        },
+        { "field" : "contact - email",
+          "is_visible" : True,
+          "position" : "block_contact_email",
+          "trim" : 0,
+          "locale" : "fr"
+        },
+        { "field" : "contact - téléphone",
+          "is_visible" : True,
+          "position" : "block_contact_tel",
+          "trim" : 0,
+          "locale" : "fr"
+        },
+        { "field" : "lien document présentation",
+          "is_visible" : True,
+          "position" : "block_file_1",
+          "trim" : 0,
+          "locale" : "fr"
+        },
+        { "field" : "website - initiative",
+          "is_visible" : True,
+          "position" : "block_wesite",
+          "trim" : 0,
+          "locale" : "fr"
+        },
+        { "field" : "retour d'expérience",
+          "is_visible" : True,
+          "position" : "block_right_bottom_1",
+          "trim" : 0,
+          "custom_title" : "Retour d'expérience",
+          "locale" : "fr"
+        },
+        { "field" : "partenaires initiative",
+          "is_visible" : True,
+          "position" : "block_post_abstract_1",
+          "trim" : 0,
+          "custom_title" : "Partenaires de l'initiative",
+          "locale" : "fr"
+        },
+        { "field" : "moyens humains initiative",
+          "is_visible" : True,
+          "position" : "block_post_abstract_2",
+          "trim" : 0,
+          "custom_title" : "Moyens",
+          "locale" : "fr"
+        },
+        { "field" : "mesure d'impact",
+          "is_visible" : True,
+          "position" : "block_right_bottom_2",
+          "trim" : 0,
+          "custom_title" : "Mesure d'impact",
+          "locale" : "fr"
+        },
       ],
 
       "images_fields"     : {
@@ -903,6 +1023,73 @@ default_routes_config = [
         "is_default"        : True
     },
 
+    ### PAGE HOME XP
+    { "field"             : "sonum_xp_home",
+      "is_global_app_homepage" : True,
+      "route_title"       : u"Accueil XP",
+      "route_description" : u"XP sonum default home page",
+      "route_activated"   : True,
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : "banner-sonum-xp"
+      },
+      "in_main_navbar"    : False,
+      "navbar_btn_options" : {
+        "position"   : "middle_right",
+        "link_type"  : "link",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },
+
+      "in_footer"         : False,
+      "link_in_logo"      : True,
+      "urls"              : ["/sonum-xp/accueil"],
+      "template_url"      : "https://raw.githubusercontent.com/co-demos/xp-sonum/master/pages-html/accueil-clean.html",
+      "help"              : u"you can specify a remote template (f.e. a github url)",
+      "languages"         : ["fr"],
+        "app_version"       : version,
+      "comment"           : u"Main project route in french",
+      "is_dynamic"        : True,
+      "dynamic_template"  : "DynamicStatic",
+      "has_navbar"        : True,
+      "has_footer"        : True,
+        "is_default"        : True
+    },
+    ### PAGE STRATEGIE
+    { "field"             : "sonum_xp_strategie",
+      "is_global_app_homepage" : True,
+      "route_title"       : u"Stratégie XP",
+      "route_description" : u"apiviz default home page",
+      "route_activated"   : True,
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : "banner-sonum-xp"
+      },
+      "in_main_navbar"    : False,
+      "navbar_btn_options" : {
+        "position"   : "middle_right",
+        "link_type"  : "link",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "Recherher un lieu" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "Rechercher" }],
+      },
+
+      "in_footer"         : False,
+      "link_in_logo"      : True,
+      "urls"              : ["/sonum-xp/strategie"],
+      "template_url"      : "https://raw.githubusercontent.com/co-demos/xp-sonum/master/pages-html/strategie-clean.html",
+      # "template_url"      : "https://raw.githubusercontent.com/CBalsier/test-content/master/pages-html/le-collectif.html",
+      "help"              : u"you can specify a remote template (f.e. a github url)",
+      "languages"         : ["fr"],
+        "app_version"       : version,
+      "comment"           : u"Main project route in french",
+      "is_dynamic"        : True,
+      "dynamic_template"  : "DynamicStatic",
+      "has_navbar"        : True,
+      "has_footer"        : True,
+        "is_default"        : True
+    },
 
   ### - - - - - - - - - - - - - - - - - ###
   ### CUSTOM ROUTES-PAGES --> TO BE ADDED VIA BACK OFFICE BY ADMIN USER
@@ -979,6 +1166,39 @@ default_routes_config = [
       "is_default"        : True
   },
 
+  ### PAGE TOOLS - FR
+  { "field"             : "app_tools",
+      "is_global_app_homepage" : True,
+      "route_title"       : u"Outils",
+      "route_description" : u"apiviz default tools page",
+      "route_activated"   : True,
+      "banner" : {
+        "activated"  : False,
+        "banner_uri" : ""
+      },
+      "in_main_navbar"    : False,
+      "navbar_btn_options" : {
+        "position"   : "middle_right",
+        "link_type"  : "link",
+        "icon_class" : "",
+        "link_text"  : [{"locale" : "fr", "text" : "" }],
+        "tooltip"    : [{"locale" : "fr", "text" : "" }],
+      },
+
+      "in_footer"         : True,
+      "link_in_logo"      : False,
+      "urls"              : ["/apiviz/outils"],
+      "template_url"      : "https://raw.githubusercontent.com/co-demos/structure/master/pages-html/tools-fr.html",
+      "help"              : u"you can specify a remote template (f.e. a github url)",
+      "languages"         : ["fr"],
+        "app_version"       : version,
+      "comment"           : u"Main apiviz tools route in french",
+      "is_dynamic"        : True,
+      "dynamic_template"  : "DynamicStatic",
+      "has_navbar"        : True,
+      "has_footer"        : True,
+        "is_default"        : True
+    },
   ### ...
 
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="is-light skip-navbar">
+  <!-- <section class="is-light skip-navbar"> -->
 
     <!-- DEBUGGING -->
     <!-- <div>
@@ -11,17 +11,18 @@
     <hr> 
     s-->
 
-    <!-- <div class="hero-body"> -->
 
     <!-- MAIN PART -->
-    <div class="container">
+    <div class="skip-navbar">
+
       <span v-html="rawHtml"></span>
+
     </div>
 
-    <!-- </div> -->
 
 
-  </section>
+
+  <!-- </section> -->
 </template>
 
 <script>
@@ -47,18 +48,18 @@ export default {
 
   watch : {
     routeConfig(old){
-      console.log("\n - - DynamicStatic / watch / routeConfig ... ")
+      // console.log("\n - - DynamicStatic / watch / routeConfig ... ")
       this.rawHtml = ''
       this.getRawHtml()
     }
   },
 
   beforeMount: function () {
-    console.log("\n - - DynamicStatic / beforeMount ... ")
+    // console.log("\n - - DynamicStatic / beforeMount ... ")
   },
 
   mounted(){
-    console.log("\n - - DynamicStatic / mounted ... ")
+    // console.log("\n - - DynamicStatic / mounted ... ")
 
     this.getRawHtml()
     // // hack to scroll top because vue-router scrollBehavior thing doesn't seem to work on Firefox on Linux at least
@@ -104,7 +105,7 @@ export default {
       let template_url = (this.routeConfig && this.routeConfig.template_url) ? this.routeConfig.template_url : 'https://co-demos.com/error'
       let head = { 
         headers: {
-          // 'Access-Control-Allow-Origin': '*',
+          // 'Access-Control-Allow-Origin': '*', // NOT WORKING 
           'accept' : 'text/html',
         }
       }

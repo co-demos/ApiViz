@@ -10,12 +10,12 @@
         ></Brand>
 
         <!-- DEBUGGING -->
-        <!-- currentRouteConfig : {{ currentRouteConfig.field }} -
-        localRouteConfig : {{ localRouteConfig }} -->
-
+        <!-- currentRouteConfig : {{ currentRouteConfig.field }} -->
+      
         <NavBarContent 
           :NavbarLinks="this.navbarConfig.links_options"
           :user="user"
+          :localRouteConfig="localRouteConfig"
         ></NavBarContent>
 
       </div>
@@ -37,9 +37,10 @@ export default {
     'appLocales',
     'logo', 
     'brand', 
+    'localRouteConfig',
     
+    // 'currentDatasetURI',
     // 'currentRouteConfig',
-    // 'localRouteConfig',
 
     'user'
   ]
@@ -48,7 +49,7 @@ export default {
 
 <style>
 nav {
-    height: 60px;
-    z-index: 10;
+  height: 60px;
+  z-index: 10;
 }
 </style>

@@ -314,8 +314,13 @@ export default {
       // console.log("matchItemWithConfig / item : ", item)
       const contentField = this.contentFields.find(f=> f.position == fieldBlock)
       // console.log("matchItemWithConfig / contentField : ", contentField)
-      const field = contentField.field
-      return item[field]
+      if (contentField) {
+        const field = contentField.field
+        return item[field]
+      }
+      else {
+        return undefined
+      }
     },
     itemId(item) {
       // console.log("itemId / item : ", item)
@@ -329,29 +334,6 @@ export default {
         return false
       }
     },
-
-
-
-
-    getIconSize(item, highlightedItem){
-      if (highlightedItem) {
-        return this.itemId(item, 'block_id') === this.itemId(highlightedItem, 'block_id') ? this.iconSizeHighlighted : this.iconSizeNormal
-      } else {
-        return this.iconSizeNormal
-      }
-    },
-    matchItemWithConfig(item, fieldBlock) {
-      // console.log("matchItemWithConfig / item : ", item)
-      const contentField = this.contentFields.find(f=> f.position == fieldBlock)
-      // console.log("matchItemWithConfig / contentField : ", contentField)
-      const field = contentField.field
-      return item[field]
-    },
-    itemId(item) {
-      // console.log("itemId / item : ", item)
-      return this.matchItemWithConfig(item, 'block_id')
-    },
-
 
 
 

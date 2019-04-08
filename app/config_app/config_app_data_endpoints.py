@@ -347,10 +347,10 @@ default_data_endpoints_config = [
       "dataset_uri"   : "sonum-xp",
 
       "placeholder"   : [
-        {"locale" : "fr", "text" : "Tapez le nom d'une expérience" }
+        {"locale" : "fr", "text" : "Tapez le nom d'une initiative" }
       ],
       "items_found"   : [
-        {"locale" : "fr", "text" : "expériences trouvées" }
+        {"locale" : "fr", "text" : "initiatives trouvées" }
       ],
       "reset"   : [
         {"locale" : "fr", "text" : "Effacer" }
@@ -362,6 +362,41 @@ default_data_endpoints_config = [
         {  "app_arg" : "dataToken",      "arg" : "token",             "optional" : True, "in" : ["url","header"],   "default" : "",   "type": "str" },
         {  "app_arg" : "filtersList",    "arg" : "get_filters",       "optional" : False, "in" : ["url"],           "default" : True, "type": "bool" },
         {  "app_arg" : "filterChoices",  "arg" : "get_uniques",       "optional" : False, "in" : ["url"],           "default" : "tag", "type": "str" },
+      ],
+
+      "filter_options" : [
+
+        { "name"		: u"type structure__",
+          "id"      : "filter_1",
+          "dataType" : "text",
+          "fullname": u"Type de structure",		
+          "choices"	: [
+            {"name" : u"structure publique (CCAS, CIAS, bibliothèque, etc...)", "fullname" : u"structure publique"},
+            {"name" : u"collectivité territoriale/EPCI",                        "fullname" : u"collectivité territoriale/EPCI"},
+
+          ]
+        },
+        { "name"		: u"thématique__",
+          "id"      : "filter_2",
+          "dataType" : "text",
+          "fullname": u"Thématique",		
+          "choices"	: [
+            {"name" : u"INCNUM", "fullname" : u"inclusion numérique"},
+            {"name" : u"DEMPAR", "fullname" : u"démocratie participative"},
+            {"name" : u"FORNUM", "fullname" : u"formation aux métiers du numérique"},
+            {"name" : u"POLOUV", "fullname" : u"politique d'ouverture des données"},
+            {"name" : u"MEDNUM", "fullname" : u"médiation numérique"},
+            {"name" : u"FORAGP", "fullname" : u"formation d'agents publics"},
+            {"name" : u"TERINT", "fullname" : u"territoire intelligent"},
+            {"name" : u"CULNUM", "fullname" : u"culture numérique"},
+            {"name" : u"TIELIE", "fullname" : u"tiers lieux"},
+            {"name" : u"COMMUN", "fullname" : u"communs numériques"},
+            {"name" : u"DATLIT", "fullname" : u"data literacy"},
+            {"name" : u"AUTRES", "fullname" : u"autre"},
+          ]
+        },
+
+
       ],
       "app_version"    : version,
       "method"        : "GET",
@@ -417,7 +452,7 @@ default_data_endpoints_config = [
       "is_disabled"   : False,
       "data_type"     : "data",
       "endpoint_type" : "stat",
-      "dataset_uri"    : "sonum-carto",
+      "dataset_uri"    : "sonum-xp",
       "content"       : u"apiviz default API endpoint for stats results",
       "root_url"      : "https://solidata-api.co-demos.com/api/dso/infos/get_one/5c7ebc7d328ed724cebd7fc0",
       "args_options"   : [
@@ -445,6 +480,7 @@ default_data_endpoints_config = [
         "currentCenter"    : [46.2276, 2.2137],
         "zoom"             : 6,
         "maxZoom"          : 18,
+        "minZoom"          : 5,
         "useMarkerCluster" : True,
         "pinIconUrl"       : "/static/icons/icon_pin_plein_violet.svg",
         "pinIconSize"      : { "highlighted" : [46, 46], "normal" : [29, 29]}

@@ -97,7 +97,7 @@ default_app_styles_config = [
         {
           "banner_uri"       : "banner-sonum-xp",
           "dataset_uri"      : "sonum-xp",
-          "template_url"     : "https://raw.githubusercontent.com/co-demos/carto-sonum/master/pages-html/banner-sonum-dft.html",
+          "template_url"     : "https://raw.githubusercontent.com/co-demos/xp-sonum/master/pages-html/banner-sonum-xp.html",
           "is_dynamic"       : False,
           "dynamic_template" : 'DynamicBanner',
           "is_visible"          : False,

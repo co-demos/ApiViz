@@ -4,13 +4,17 @@
     /* padding-top: 125px; */
     margin-top: 100px;
     margin-bottom: 30px;
-    max-height: 170px
+    max-height: 250px
   }
   .banner-height-without-filters {
     padding-top: 60px;
     margin-top: 10px;
     margin-bottom: 30px;
-    height: 160px
+    height: 250px
+  }
+
+  .buttons{
+    margin-right: 3em;
   }
 
   .buttons{
@@ -34,7 +38,7 @@
 
   <section 
     v-show="rawHtml !== '' && bannerVisible"
-    :class="`${ hasFilters ? 'banner-height-with-filters' : 'banner-height-without-filters' } has-text-center skip-navbar`"
+    :class="`is-hidden-touch ${ hasFilters ? 'banner-height-with-filters' : 'banner-height-without-filters' } has-text-center skip-navbar`"
     >
 
     <!-- RAW HTML FOR BANNER -->
@@ -43,19 +47,18 @@
       > -->
 
       <!-- BUTTON TO CLOSE PREVIEW -->
-      <!-- <div class=""> -->
+      <div class="buttons is-right">
+        <button 
+          class="button close is-primary is-inverted" 
+          @click="disableBanners"
+          >
+          <span class="icon is-small">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+      </div>
 
-        <div class="buttons is-right">
-          <button 
-            class="button close is-primary is-inverted" 
-            @click="disableBanners"
-            >
-            <span class="icon is-small">
-              <i class="fas fa-times"></i>
-            </span>
-          </button>
-        </div>
-
+      <!-- CONTENT HTML -->
       <div class="container">
         <div class="content">
           <span v-html="rawHtml"></span>

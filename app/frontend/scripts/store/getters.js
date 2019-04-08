@@ -16,6 +16,11 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
     return textFromLocale( textsData.texts, locale, textField )
   }
 
+// UX GETTERS
+const getNavbarVisibility = state => {
+  return state.showNav
+}
+
 // GLOBAL APP CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
   const getRootUrlBackend = state => {
@@ -201,11 +206,15 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 
     // console.log("getImageUrl - obj : ", obj)
     const item = obj.item
+    console.log("getImageUrl - item : ", item)
+    
     const position = obj.position
+    console.log("getImageUrl - position : ", position)
 
     const defaultImages = getters.getRouteConfigDefaultDatasetImages
     // console.log("getImageUrl - defaultImages : ", defaultImages)
 
+    console.log("getImageUrl - state.search.currentRouteConfig : ", state.search.currentRouteConfig)
     const routeContentImagesFields = state.search.currentRouteConfig.images_fields
     // console.log("getImageUrl - routeContentImagesFields : ", routeContentImagesFields)
 
@@ -214,6 +223,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
     // console.log("getImageUrl - fieldImage : ", fieldImage)
 
     let image = item[fieldImage]
+    console.log("getImageUrl - image (A) : ", image)
 
     if(!image){
       let d = defaultImages
@@ -231,6 +241,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
         image = `/static/illustrations/textures/medium_fiche_${ (parseInt(id.substr(id.length - 6), 16)%textureCount) + 1}.png`
       }
     }
+    console.log("getImageUrl - image (B) : ", image)
     return image
   }
 
@@ -295,7 +306,8 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 // - - - - - - - - - - - - - - - //
   export default {
     getTranslation,
-
+    getNavbarVisibility,
+    
     getRootUrlBackend,
     getSearchConfigColumnCount,
     getSearchConfigDefaultShowCount,
