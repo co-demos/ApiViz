@@ -141,6 +141,10 @@ export default {
         return undefined
       }
     },
+    itemImage(fieldBlock){
+      return this.$store.getters.getImageUrl({item: this.item, position: fieldBlock})
+      // return this.item
+    },
     projectId() {
       return this.matchItemWithConfig('block_id')
     },

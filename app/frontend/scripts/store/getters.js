@@ -206,19 +206,24 @@ const getNavbarVisibility = state => {
 
     // console.log("getImageUrl - obj : ", obj)
     const item = obj.item
+    console.log("getImageUrl - item : ", item)
+    
     const position = obj.position
+    console.log("getImageUrl - position : ", position)
 
     const defaultImages = getters.getRouteConfigDefaultDatasetImages
-    // console.log("getImageUrl - defaultImages : ", defaultImages)
+    console.log("getImageUrl - defaultImages : ", defaultImages)
 
+    console.log("getImageUrl - state.search.currentRouteConfig : ", state.search.currentRouteConfig)
     const routeContentImagesFields = state.search.currentRouteConfig.images_fields
-    // console.log("getImageUrl - routeContentImagesFields : ", routeContentImagesFields)
+    console.log("getImageUrl - routeContentImagesFields : ", routeContentImagesFields)
 
     let fieldToGet = routeContentImagesFields[position]
     let fieldImage = fieldToGet.field
-    // console.log("getImageUrl - fieldImage : ", fieldImage)
+    console.log("getImageUrl - fieldImage : ", fieldImage)
 
     let image = item[fieldImage]
+    console.log("getImageUrl - image (A) : ", image)
 
     if(!image){
       let d = defaultImages
@@ -236,6 +241,7 @@ const getNavbarVisibility = state => {
         image = `/static/illustrations/textures/medium_fiche_${ (parseInt(id.substr(id.length - 6), 16)%textureCount) + 1}.png`
       }
     }
+    console.log("getImageUrl - image (B) : ", image)
     return image
   }
 

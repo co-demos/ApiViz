@@ -105,7 +105,7 @@ export default {
       let template_url = (this.routeConfig && this.routeConfig.template_url) ? this.routeConfig.template_url : 'https://co-demos.com/error'
       let head = { 
         headers: {
-          // 'Access-Control-Allow-Origin': '*',
+          // 'Access-Control-Allow-Origin': '*', // NOT WORKING 
           'accept' : 'text/html',
         }
       }
