@@ -26,7 +26,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
     if (!state.config
       || !state.config.global
       ) {
-        console.log('getGlobalConfig - some condition not respected');       return undefined;
+        // console.log('getGlobalConfig - some condition not respected');       return undefined;
     }
     return state.config.global
   }
@@ -35,7 +35,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
     if (!state.config
       || !state.config.styles
       ) {
-        console.log('getStylesConfig - some condition not respected');       return undefined;
+        // console.log('getStylesConfig - some condition not respected');       return undefined;
     }
     return state.config.styles
   }
@@ -53,7 +53,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
     if (!state.config
       || !state.config.navbar
       ) {
-        console.log('getNavbarConfig - some condition not respected');       return undefined;
+        // console.log('getNavbarConfig - some condition not respected');       return undefined;
     }
     return state.config.navbar.app_navbar
   }
@@ -62,7 +62,7 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
     if (!state.config
       || !state.config.footer
       ) {
-        console.log('getFooterConfig - some condition not respected');       return undefined;
+        // console.log('getFooterConfig - some condition not respected');       return undefined;
     }
     return state.config.footer.app_footer
   }
@@ -71,8 +71,8 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 // ROUTE CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
   const getCurrentRouteConfig = (state) => (currentRoute) => {
-    console.log('\n ++ getCurrentRouteConfig / currentRoute : \n', currentRoute)
-    console.log(' ++ getCurrentRouteConfig / state.config.routes : \n', state.config.routes)
+    // console.log('\n ++ getCurrentRouteConfig / currentRoute : \n', currentRoute)
+    // console.log(' ++ getCurrentRouteConfig / state.config.routes : \n', state.config.routes)
     try {
       return state.config.routes.find(function(r) {
         return r.urls.indexOf(currentRoute) !== -1;
@@ -152,10 +152,10 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 
   const getGeoResults = (state, getters) => {
     let allResults = getters.getResults
-    console.log(" ++ getGeoResults / allResults : ", allResults)
+    // console.log(" ++ getGeoResults / allResults : ", allResults)
     if (typeof allResults !== 'undefined'){
       let filtered = allResults.filter(i => !i.lat && !i.lon)
-      console.log(" ++ getGeoResults / filtered : ", filtered)
+      // console.log(" ++ getGeoResults / filtered : ", filtered)
       return filtered
     } else {
       return undefined
@@ -199,19 +199,19 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
 
   const getImageUrl = (state, getters) => (obj) => {
 
-    console.log("getImageUrl - obj : ", obj)
+    // console.log("getImageUrl - obj : ", obj)
     const item = obj.item
     const position = obj.position
 
     const defaultImages = getters.getRouteConfigDefaultDatasetImages
-    console.log("getImageUrl - defaultImages : ", defaultImages)
+    // console.log("getImageUrl - defaultImages : ", defaultImages)
 
     const routeContentImagesFields = state.search.currentRouteConfig.images_fields
-    console.log("getImageUrl - routeContentImagesFields : ", routeContentImagesFields)
+    // console.log("getImageUrl - routeContentImagesFields : ", routeContentImagesFields)
 
     let fieldToGet = routeContentImagesFields[position]
     let fieldImage = fieldToGet.field
-    console.log("getImageUrl - fieldImage : ", fieldImage)
+    // console.log("getImageUrl - fieldImage : ", fieldImage)
 
     let image = item[fieldImage]
 

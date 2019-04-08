@@ -1,10 +1,10 @@
 <style scoped>
 
   .banner-height-with-filters {
-    padding-top: 125px;
-    margin-top: 10px;
+    /* padding-top: 125px; */
+    margin-top: 100px;
     margin-bottom: 30px;
-    height: 160px
+    max-height: 170px
   }
   .banner-height-without-filters {
     padding-top: 60px;
@@ -13,14 +13,19 @@
     height: 160px
   }
 
+  .buttons{
+    margin-right: 3em;
+  }
+
   .close{
     z-index: 2;
     position:absolute;
+
     /* float: right;
     display: flex;  */
-    align-self: flex-end;
+    /* align-self: flex-end; */
     /* justify-content: flex-end !important; */
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 }
 
 </style>
@@ -28,32 +33,36 @@
 <template>
 
   <section 
-    v-show="rawHtml !== '' "
+    v-show="rawHtml !== '' && bannerVisible"
     :class="`${ hasFilters ? 'banner-height-with-filters' : 'banner-height-without-filters' } has-text-center skip-navbar`"
     >
 
     <!-- RAW HTML FOR BANNER -->
-    <div
+    <!-- <div
       :class="`container `"
-      >
+      > -->
 
       <!-- BUTTON TO CLOSE PREVIEW -->
-      <div class="content">
+      <!-- <div class=""> -->
 
-        <button 
-          class="button close is-primary is-inverted" 
-          @click="rawHtml = ''"
-          >
-          <span class="icon is-small">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
+        <div class="buttons is-right">
+          <button 
+            class="button close is-primary is-inverted" 
+            @click="disableBanners"
+            >
+            <span class="icon is-small">
+              <i class="fas fa-times"></i>
+            </span>
+          </button>
+        </div>
 
-        <span v-html="rawHtml"></span>
-
+      <div class="container">
+        <div class="content">
+          <span v-html="rawHtml"></span>
+        </div>
       </div>
 
-    </div>
+    <!-- </div> -->
 
 
   </section>
@@ -78,7 +87,8 @@ export default {
   },
   computed: {
     ...mapState({
-      user: 'user'
+      user: 'user',
+      bannerVisible : 'bannerVisible'
     }),
     hasFilters(){
       return (this.dynamicTemplate === 'DynamicStatic' )? false : true
@@ -103,10 +113,14 @@ export default {
     .catch( (err) => {this.rawHtml = '<br><br>there is an <strong> Error </strong><br><br>'} )
   },
   methods: {
-  goBack(e){
-    e.preventDefault()
-    this.$router.back()
-  }
+    disableBanners() {
+      this.rawHtml = ''
+      this.$store.commit('disableBanners')
+    },
+    goBack(e){
+      e.preventDefault()
+      this.$router.back()
+    }
   }
 }
 </script>

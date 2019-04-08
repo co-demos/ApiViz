@@ -45,7 +45,7 @@ export const dynamicRoutesGenerator = function(store){
           store.commit('setRunMode', configName)
         }
 
-        console.log("... dynamicRoutesGenerator / store.state :  \n ", store.state)
+        // console.log("... dynamicRoutesGenerator / store.state :  \n ", store.state)
         // console.log("... dynamicRoutesGenerator / store.state.config :  \n ", store.state.config)
 
 

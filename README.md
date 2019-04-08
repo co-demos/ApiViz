@@ -1,8 +1,4 @@
 
-<!-- <h1 align=center> APIVIZ </h1>
-
---------- -->
-
 <h2 align=center>
 	<img src="./app/static/logos/app_default/logo_apiviz_15.png">
 </h2>
@@ -15,7 +11,7 @@ Visualize data coming from an API in a CMS-like app
 
 --------
 
-## DEVELOPPERS
+## DEVELOPERS
 
 Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 
@@ -37,6 +33,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 	sudo apt install virtualenv
 	```
 
+
 1. **install a [virtual environment](https://pypi.python.org/pypi/virtualenv)**
 	```sh
 	virtualenv venv
@@ -49,12 +46,12 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 	sudo pip install -r requirements.txt
 	```
 
-1. **optional** : _if you encounter problems installing the requirements try to install the 'cryptography' library following those steps :_
+1. if any problem occur here try to reinstall pip with 
 
-	```sh
-	# install crypto
-	pip install cryptography --global-option=build_ext --global-option="-L/usr/local/opt/openssl/lib" --global-option="-I/usr/local/opt/openssl/include"
-	```
+  ```sh
+    curl https://bootstrap.pypa.io/get-pip.py | python
+  ```
+
 
 1. **optional** : _update the `app/config_app/config_secret_vars_example.py` file with your mongoDB URI (if you're not using default mongoDB connection_
 	>
@@ -70,7 +67,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 	python run_apiviz.py --help
 
 	# for example : run with a custom port number in testing mode
-	pythom run_apiviz.py --port=8200 --mode=testing
+	pythom run_apiviz.py --port=8200 --mode=preprod
 	```
 
 1. **Install Node.js and npm**
@@ -120,36 +117,13 @@ git pull origin master
 cd app/frontend
 
 # build the frontend
-npm ci
+npm install
 npm run build
 
 # rerun app
 sudo systemctl restart apiviz
 ```
 
-
-#### Creating the first admin account
-
-Go to `/register`, create an account, then:
-```sh
-# Connect to MongoDB
-mongo
-# => mongo shell prompts
-
-# Use cis-front database
-use apiviz
-
-# list users
-db.users.find()
-
-# get the id of the user you want to move to admin
-# abcdef
-
-# Modify user
-db.users.updateOne({_id: ObjectId('abcdef')}, {$set: {userAuthLevel: 'admin'}})
-```
-
-Then, you can login with your admin user which can change settings of other users 
 
 
 
@@ -160,8 +134,8 @@ Then, you can login with your admin user which can change settings of other user
 #### Tech stack
 - _Language_ : **Python**... because ... uuh ... eeeh ... I like this language too much ? 
 - _Backend_  : **[Flask](http://flask.pocoo.org/)**... minimalistic Python framework
-- _Frontend_ : **[Bulma](https://bulma.io/)** as CSS framework, **[Vue.js](https://vuejs.org/)** as JS framework, **[Ajax]()** for API queries (to make queries to [Openscraper](https://github.com/entrepreneur-interet-general/OpenScraper) )
-- _Server_   : **[Ubuntu 16.04]()**, **[NGINX](https://www.nginx.com/)**, **[Gunicorn](http://gunicorn.org/)**, hosted in **[Digital Ocean](http://digitalocean.com/)**, domain name from **[OVH](http://ovh.com/)**
+- _Frontend_ : **[Bulma](https://bulma.io/)** as CSS framework, **[Vue.js](https://vuejs.org/)** as JS framework, **[Axios](https://github.com/axios/axios)** for API queries (to make queries to [Solidata](https://github.com/entrepreneur-interet-general/solidata_backend) or else), **[Leaflet](https://leafletjs.com)** and **[Vue2Leaflet](https://github.com/KoRiGaN/Vue2Leaflet)** for map layout
+- _Server_   : **[Ubuntu 18.04]()**, **[NGINX](https://www.nginx.com/)**, **[Gunicorn](http://gunicorn.org/)**, hosted in **[Digital Ocean](http://digitalocean.com/)**, domain name from **[OVH](http://ovh.com/)**
 
 
 -------
@@ -170,14 +144,16 @@ Then, you can login with your admin user which can change settings of other user
 
 #### ApiViz's team thanks :
 
-- the [SocialConnect](https://entrepreneur-interet-general.etalab.gouv.fr/defi/2017/09/26/socialconnect/) project, aka "Carrefour des Innovations Sociales"
 - the [EIG](https://entrepreneur-interet-general.etalab.gouv.fr/) program by [Etalab](https://www.etalab.gouv.fr/)
+- the [SocialConnect](https://entrepreneur-interet-general.etalab.gouv.fr/defi/2017/09/26/socialconnect/) project, aka "Carrefour des Innovations Sociales"
 - the [CGET](http://www.cget.gouv.fr/)
+- the [MedNum](https://lamednum.coop)
+- the [Mission Société Numérique](https://societenumerique.gouv.fr)
 
 #### Contacts - maintainance :
 
 - [Julien Paris](<mailto:codemos.infos@gmail.com>) (aka [JPy](https://github.com/JulienParis) on Github)
-- [Guillaume Lancrenon](<mailto:codemos.infos@gmail.com>) (aka [Guillim](https://github.com/guillim) on Github)
+- [Guillaume Lancrenon](https://guillim.github.io) (aka [Guillim](https://github.com/guillim) on Github)
 
 
 -------
@@ -185,15 +161,6 @@ Then, you can login with your admin user which can change settings of other user
 ## SCREENSHOTS (development)
 
 
-
-<h4 align=center><br>login</h4>
-
-![alt text](./screenshots/cis-front-login.png "home")
-
--------
-
-<h4 align=center><br>register</h4>
-
-![alt text](./screenshots/cis-front-register.png "register")
+...TO DO 
 
 

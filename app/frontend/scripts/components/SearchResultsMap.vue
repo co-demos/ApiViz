@@ -5,7 +5,7 @@
 
         <CISSearchResultsCountAndTabs 
           :view="VIEW_MAP" 
-          :open="!!highlightedItem"
+          :open="!!showCard"
           >
           
           <!-- HIGHLIGHTED ITEM  -->
@@ -32,15 +32,25 @@
 
               <!-- LOADER -->
               <div 
-                class="columns is-mobile is-vcentered"
+                class="columns is-mobile is-vcentered "
                 v-show="!itemLoaded"
                 >
-                <div class="column is-12 has-text-centered has-text-primary"
+                <div 
+                  class="column is-12 has-text-centered has-text-primary"
                   >
+                  <div 
+                    class="lds-roller"
+                    >
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                  </div>
+                </div>
+                <!-- <div class="column is-12 has-text-centered has-text-primary">
                   <span class="icon app-loader">
                     <i class="fas fa-spinner fa-pulse fa-3x"></i>
                   </span>
-                </div>
+                </div> -->
+
+
               </div>
 
               <!-- ITEM DATA -->
@@ -48,6 +58,7 @@
                 v-if="itemLoaded"
                 :item="highlightedItem"
                 :contentFields="contentFields"
+                :view="VIEW_MAP"
                 >
               </ProjectCard>
 
@@ -61,6 +72,15 @@
       </div>
   </div>
 
+  <!-- LOADER -->
+  <div 
+    v-show="!projects || itemLoading"
+    class="lds-roller floating"
+    >
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <!-- class="leaflet-control-loader lds-roller" -->
+  </div>
+
   <l-map
     :zoom="zoom"
     :bounds="bounds"
@@ -71,6 +91,7 @@
     :center="center"
     @update:center="centerUpdate"
     @update:zoom="zoomUpdate"
+    ref='map'
     >
 
     <l-control-zoom position="bottomright"/>
@@ -80,42 +101,37 @@
       :attribution="attribution"/>
 
       <!-- MARKER CLUSTER -->
-      <v-marker-cluster 
+      <!-- <v-marker-cluster 
         v-if="projects"
         :options="{showCoverageOnHover: false, iconCreateFunction: iconCreateFunction}"
         >
-        <!-- <l-marker 
-          v-for="p in displayedProjects"
-          :key="p.sd_id"
-          :lat-lng="itemToMarker(p)"
-          @click="highlightItem(p)"
-          >
-          <l-icon
-            iconUrl="/static/icons/icon_pin_plein_violet.svg"
-            :iconSize="p === highlightedItem ? [46, 46] : [29, 29]"
-          />
-        </l-marker> -->
-
-
-          <!-- v-for="(item, i) in projects" -->
         <l-marker 
           v-for="(item, i) in itemsForMap()"
           :key="i"
           :lat-lng="{lng: parseFloat(item.lon), lat: parseFloat(item.lat)}"
           @click="showCard=true; highlightItem(item)"
           >
-          <!-- :lat-lng="{lng: parseFloat(p.lon), lat: parseFloat(p.lat)}" -->
-          <!-- :lat-lng="{lng: parseFloat(p.lon), lat: parseFloat(p.lat)}" -->
-          <!-- :lat-lng="{lng: geolocByProjectId.get(p.id).lon, lat: geolocByProjectId.get(p.id).lat}" -->
           <l-icon
             v-if="checkIfItemHasLatLng(item)"
             iconUrl="/static/icons/icon_pin_plein_violet.svg"
-            :iconSize="item === highlightedItem ? [46, 46] : [29, 29]"
+            :iconSize="getIconSize(item, highlightedItem)"
           />
+            <!-- :iconSize="item.sd_id === highlightedItem.sd_id ? [46, 46] : [29, 29]" -->
+            <!-- :iconSize="itemId(item, 'block_id') === itemId(highlightedItem, 'block_id') ? [46, 46] : [29, 29]" -->
         </l-marker>
+      </v-marker-cluster> -->
 
+      <CustomMarkers
+        :routeConfig="routeConfig"
+        :endPointConfig="endPointConfig"
+        :itemsForMap="itemsForMap"
+        :checkIfStringFloat="checkIfStringFloat"
+        :mapObject="this.$refs.map"
 
-      </v-marker-cluster>
+        :contentFields="contentFields"
+        @getSelectedItem="handleIconSignal"
+        :highlightedItem="highlightedItem"
+      />
 
     </l-map>
 
@@ -134,6 +150,7 @@ import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
 
 import ProjectCard from './ProjectCard.vue'
 import CISSearchResultsCountAndTabs from './CISSearchResultsCountAndTabs.vue'
+import CustomMarkers from './CustomMarkers.vue'
 
 import {VIEW_MAP} from '../constants.js'
 import {getItemById} from '../utils.js';
@@ -150,8 +167,9 @@ export default {
     LTileLayer,
     LMarker,
     LIcon,
-    'v-marker-cluster': Vue2LeafletMarkerCluster,
 
+    CustomMarkers,
+    // 'v-marker-cluster': Vue2LeafletMarkerCluster,
     // PruneCluster,
     // PruneClusterForLeaflet,
 
@@ -170,6 +188,8 @@ export default {
 
       // LOCAL DATA
       VIEW_MAP,
+      iconSizeNormal : [29, 29],
+      iconSizeHighlighted : [49, 49],
 
       // FIELDS MAPPER
       contentFields : undefined,
@@ -177,6 +197,7 @@ export default {
       // ITEMS
       highlightedItem: undefined,
       itemLoaded: false,
+      itemLoading: false,
       showCard:false,
       itemsOnMap : [
         // {sd_id : 'A', lat : '47.412', lon : '-1.218' },
@@ -203,16 +224,16 @@ export default {
   },
 
   beforeMount: function () {
-    console.log("- - - - - MAP TIME !!!! - - - - - -")
-    console.log("\n - - SearchResultsMap / beforeMount ... ")
-    console.log(" - - SearchResultsMap / routeConfig : \n", this.routeConfig)
-    console.log(" - - SearchResultsMap / endPointConfig : \n", this.endPointConfig)
+    // console.log("- - - - - MAP TIME !!!! - - - - - -")
+    // console.log("\n - - SearchResultsMap / beforeMount ... ")
+    // console.log(" - - SearchResultsMap / routeConfig : \n", this.routeConfig)
+    // console.log(" - - SearchResultsMap / endPointConfig : \n", this.endPointConfig)
 
     // let pruneCluster = new PruneClusterForLeaflet();
 
     // set up fields mapper
     this.contentFields = this.routeConfig.contents_fields
-    console.log(" - - SearchResultsMap / contentFields : \n", this.contentFields)
+    // console.log(" - - SearchResultsMap / contentFields : \n", this.contentFields)
 
     // console.log("test marker / L.latLng(47.412, -1.218)", L.latLng(47.412, -1.218))
     // set up leaflet options
@@ -232,7 +253,7 @@ export default {
 
   mounted(){
 
-    console.log(" - - SearchResultsMap / mounted... ")
+    // console.log(" - - SearchResultsMap / mounted... ")
     // if(this.projects){
     //   const projectsWithMissingAddress = this.projects.filter(p => !p.lat)
     //   // if(projectsWithMissingAddress.length >= 1)
@@ -273,11 +294,65 @@ export default {
 
   methods: {
 
+    handleIconSignal(itemData){
+      // console.log('handleIconSignal / itemData : ', itemData)
+      this.highlightItem(itemData)
+    },
     itemsForMap(){
       if (this.projects){
         return this.projects.filter(item => this.checkIfItemHasLatLng(item) )
       }
     },
+    getIconSize(item, highlightedItem){
+      if (highlightedItem) {
+        return this.itemId(item, 'block_id') === this.itemId(highlightedItem, 'block_id') ? this.iconSizeHighlighted : this.iconSizeNormal
+      } else {
+        return this.iconSizeNormal
+      }
+    },
+    matchItemWithConfig(item, fieldBlock) {
+      // console.log("matchItemWithConfig / item : ", item)
+      const contentField = this.contentFields.find(f=> f.position == fieldBlock)
+      // console.log("matchItemWithConfig / contentField : ", contentField)
+      const field = contentField.field
+      return item[field]
+    },
+    itemId(item) {
+      // console.log("itemId / item : ", item)
+      return this.matchItemWithConfig(item, 'block_id')
+    },
+    getHighlightedItemId(){
+      if ( this.highlightedItem ) {
+        // console.log("itemId / this.highlightedItem : ", this.highlightedItem)
+        return this.itemId(highlightedItem, 'block_id') 
+      } else {
+        return false
+      }
+    },
+
+
+
+
+    getIconSize(item, highlightedItem){
+      if (highlightedItem) {
+        return this.itemId(item, 'block_id') === this.itemId(highlightedItem, 'block_id') ? this.iconSizeHighlighted : this.iconSizeNormal
+      } else {
+        return this.iconSizeNormal
+      }
+    },
+    matchItemWithConfig(item, fieldBlock) {
+      // console.log("matchItemWithConfig / item : ", item)
+      const contentField = this.contentFields.find(f=> f.position == fieldBlock)
+      // console.log("matchItemWithConfig / contentField : ", contentField)
+      const field = contentField.field
+      return item[field]
+    },
+    itemId(item) {
+      // console.log("itemId / item : ", item)
+      return this.matchItemWithConfig(item, 'block_id')
+    },
+
+
 
 
     checkIfStringFloat(value){
@@ -288,12 +363,12 @@ export default {
         return false
       }
     },
-    getLatLng(item){
-      return { lat : this.checkIfStringFloat(item.lat) , lng : checkIfStringFloat(item.lon) }
-    },
-    getLatLngDense(item){
-      return { lat : this.checkIfStringFloat(item.latlng[0]) , lng : checkIfStringFloat(item.latlng[1]) }
-    },
+    // getLatLng(item){
+    //   return { lat : this.checkIfStringFloat(item.lat) , lng : checkIfStringFloat(item.lon) }
+    // },
+    // getLatLngDense(item){
+    //   return { lat : this.checkIfStringFloat(item.latlng[0]) , lng : checkIfStringFloat(item.latlng[1]) }
+    // },
     checkIfItemHasLatLng(item){
       return this.checkIfStringFloat(item.lat) && this.checkIfStringFloat(item.lon)
     },
@@ -308,21 +383,25 @@ export default {
 
 
     highlightItem(i) {
-      // console.log("highlightItem / p : \n", p)
+      // console.log("highlightItem / i : ", i)
       // show loader 
       this.showCard = true
       this.itemLoaded = false
-      // get 
-      // get item info
-      getItemById(i.sd_id, this.$store.state.search.endpoint)
-      .then(item => {
-        // this.$store.commit('setDisplayedProject', {item})
-        // console.log(" - - DynamicDetail / item : \n ", item)
-        this.highlightedItem = item;
-        this.itemLoaded = true
-      })
-      .catch(function(err) { this.isError = true ; console.error('item route error', err) })
-
+      // this.itemLoading = true
+      this.center = [i.lat, i.lon]
+      // this.center = [i.lon, i.lat]
+      // get item ID
+      // const item_id = this.itemId(i)
+      const item_id = i.ID
+      getItemById( item_id, this.$store.state.search.endpoint)
+        .then(item => {
+          // this.$store.commit('setDisplayedProject', {item})
+          // console.log(" - - DynamicDetail / item : ", item)
+          this.highlightedItem = item;
+          this.itemLoaded = true
+          // this.itemLoading = false
+        })
+        .catch(function(err) { this.isError = true ; console.error('item route error', err) })
     },
 
 
@@ -337,9 +416,7 @@ export default {
         iconSize: new L.Point(40, 40)
       });
     },
-    // ...mapActions([
-    //   'findProjectsGeolocs'
-    // ])
+
   },
 
 
@@ -348,6 +425,121 @@ export default {
 
 <style>
   
+  /* LOADERS */
+  .floating {
+    position: absolute;
+    z-index:200;
+    top: 50%;
+    left: 50%;
+  }
+
+  /* from : https://github.com/stefanocudini/leaflet-loader */
+  .leaflet-control-loader {
+    /* position: absolute;
+    z-index:200;
+    top: 50%;
+    left: 50%; */
+    margin-top: -40px;
+    margin-left: -50px;
+    height: 80px;
+    width: 100px;
+    border-radius: 10px;
+    background: url('/static/illustrations/leaflet-loader.gif') center center no-repeat rgba(255,255,255,0.8);
+  }
+
+  /* from : https://loading.io/css/ */
+  .lds-roller {
+    display: inline-block;
+    /* position: absolute;
+    z-index:200;
+    top: 50%;
+    left: 50%; */
+    /* margin-top: -40px; */
+    margin-left: 30px;
+    height: 80px;
+    width: 100px;
+    border-radius: 10px;
+  }
+  .lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 32px 32px;
+  }
+  .lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background:  #513085;
+    margin: -3px 0 0 -3px;
+  }
+  .lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .lds-roller div:nth-child(1):after {
+    top: 50px;
+    left: 50px;
+  }
+  .lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .lds-roller div:nth-child(2):after {
+    top: 54px;
+    left: 45px;
+  }
+  .lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .lds-roller div:nth-child(3):after {
+    top: 57px;
+    left: 39px;
+  }
+  .lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .lds-roller div:nth-child(4):after {
+    top: 58px;
+    left: 32px;
+  }
+  .lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .lds-roller div:nth-child(5):after {
+    top: 57px;
+    left: 25px;
+  }
+  .lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .lds-roller div:nth-child(6):after {
+    top: 54px;
+    left: 19px;
+  }
+  .lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .lds-roller div:nth-child(7):after {
+    top: 50px;
+    left: 14px;
+  }
+  .lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .lds-roller div:nth-child(8):after {
+    top: 45px;
+    left: 10px;
+  }
+  @keyframes lds-roller {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
   .app-loader {
     margin: 1.5em;
     padding: 1.5em

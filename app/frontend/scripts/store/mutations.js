@@ -12,16 +12,24 @@ export default {
     state.rootUrlBackend = roots.rootURL
   },
 
+  // UX OPTIONS-RELATED
+  disableBanners(state){
+    state.bannerVisible = false
+  },
+
 
   // FILTERS-RELATED
   setDatasetFilters(state, datasetFilter ){
-    console.log("\n=== setDatasetFilters / datasetFilter : ", datasetFilter )
+    // console.log("\n=== setDatasetFilters / datasetFilter : ", datasetFilter )
     const filterOptions = datasetFilter.filter_options
-    console.log("=== setDatasetFilters / filterOptions : ", filterOptions )
+    // console.log("=== setDatasetFilters / filterOptions : ", filterOptions )
     state.datasetFilters = filterOptions
   },
-
+  
   // SEARCH-RELATED
+  setDatasetURI(state, datasetURI){
+    state.search.dataset_uri = datasetURI
+  },
   setIsMapSearch (state, routeConfig) {
     // console.log("\n=== setIsMapSearch / routeConfig : ", routeConfig )
     state.search.question.forMap = ( routeConfig.dynamic_template === 'DynamicMap' ) ? true : false
@@ -58,7 +66,7 @@ export default {
 
   // RESULTS-RELATED
   setSearchResult(state, {result}){
-    console.log("== setSearchResult / result : ", result)
+    // console.log("== setSearchResult / result : ", result)
     state.search.answer = {
       pendingAbort: undefined,
       result,
