@@ -980,4 +980,39 @@ default_routes_config = [
   },
 
   ### ...
+
+
+  ### - - - - - - - - - - - - - - - - - ###
+  ### CUSTOM ROUTES-LOGIN 
+  ### - - - - - - - - - - - - - - - - - ###
+
+  { "field"             : "app_login",
+    "is_global_app_homepage" : False,
+    "route_title"       : u"Login",
+    "route_description" : u"apiviz default login page",
+    "route_activated"   : True,
+    "banner" : {
+      "activated"  : False,
+      "banner_uri" : ""
+    },
+
+    "in_main_navbar"    : False,
+    "navbar_btn_options" : {
+    },
+
+    "in_footer"         : False,
+    "link_in_logo"      : False,
+    "urls"              : ["/login"],
+    "template_url"      : "",
+    "help"              : u"default login page for Apiviz",
+    "languages"         : ["fr"],
+      "app_version"       : version,
+    "comment"           : u"Main login route ",
+    "is_dynamic"        : True,
+    "dynamic_template"  : "Login",
+    "has_navbar"        : True,
+    "has_footer"        : True,
+      "is_default"        : True
+  },
+
 ]

@@ -83,6 +83,28 @@
 
 
 
+    <!-- LOGIN/LOGOUT/REGISTER ROUTES -->
+    <LoginScreen 
+      v-if="localRouteConfig.dynamic_template == 'Login' "
+      :routeConfig="localRouteConfig"
+      :endPointConfig="localEndpointConfig"
+    ></LoginScreen>
+
+    <LogoutScreen 
+      v-if="localRouteConfig.dynamic_template == 'Logout' "
+      :routeConfig="localRouteConfig"
+      :endPointConfig="localEndpointConfig"
+    ></LogoutScreen>
+
+    <RegisterScreen 
+      v-if="localRouteConfig.dynamic_template == 'Register' "
+      :routeConfig="localRouteConfig"
+      :endPointConfig="localEndpointConfig"
+    ></RegisterScreen>
+
+
+
+
     <!-- FOOTERS -->
     <Footer 
       v-if="this.has_footer"
