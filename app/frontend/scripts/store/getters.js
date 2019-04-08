@@ -26,6 +26,12 @@ const getNavbarVisibility = state => {
   const getRootUrlBackend = state => {
     return state.rootUrlBackend
   }
+  const getRootUrlAuth = state => {
+    return state.rootUrlAuth
+  }
+  const getRootUrlUser = state => {
+    return state.rootUrlUser
+  }
   const getGlobalConfig = state => {
     // console.log("state.config : \n", state.config )
     if (!state.config
@@ -309,6 +315,9 @@ const getNavbarVisibility = state => {
     getNavbarVisibility,
     
     getRootUrlBackend,
+    getRootUrlAuth,
+    getRootUrlUser,
+
     getSearchConfigColumnCount,
     getSearchConfigDefaultShowCount,
     getSearchConfigMoreProjectOnScrollCount,

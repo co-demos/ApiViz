@@ -3,20 +3,21 @@
 
 import DynamicScreen from '../components/screens/DynamicScreen.vue'
 import NotFoundScreen from '../components/screens/NotFoundScreen.vue'
+import { getConfigName } from '../utils.js';
 
 // import axios from 'axios';
 // import { BRAND_DATA } from '../config/brand.js';
 
 // FUNCTION TO GET THE RUN MODE FROM <HEAD>
-function getConfigName(metaName) {
-  const metas = document.getElementsByTagName('meta');
-  for (let i = 0; i < metas.length; i++) {
-    if (metas[i].getAttribute('name') === metaName) {
-      return metas[i].getAttribute('content');
-    }
-  }
-  return '';
-}
+// function getConfigName(metaName) {
+//   const metas = document.getElementsByTagName('meta');
+//   for (let i = 0; i < metas.length; i++) {
+//     if (metas[i].getAttribute('name') === metaName) {
+//       return metas[i].getAttribute('content');
+//     }
+//   }
+//   return '';
+// }
 
 export const dynamicRoutesGenerator = function(store){
   return [

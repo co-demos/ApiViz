@@ -1,13 +1,25 @@
 <template>
     <div>
 
-      <form v-on:submit.prevent="sendLoginForm" name="form" v-if="!user.isLoggedin">
-        <span>{{ this.customformError }}</span>
+      <h5 class="title has-text-grey">
+        Se connecter
+      </h5>
 
+      <form 
+        v-if="!user.isLoggedin"
+        v-on:submit.prevent="sendLoginForm" 
+        name="form" 
+        >
+        <span>{{ this.customformError }}</span>
 
       	<div class="field">
       		<div class="control has-icons-left">
-            <input v-validate="'required|email'" name="userEmail" type="email" v-model="userEmail">
+            <input class="input" 
+              v-model="userEmail"
+              v-validate="'required|email'" 
+              name="userEmail" 
+              type="email" 
+              >
             <span>{{ errors.first('userEmail') }}</span>
       			<span class="icon is-small is-left">
       				<i class="fas fa-envelope"></i>
@@ -17,7 +29,12 @@
 
       	<div class="field">
       		<div class="control has-icons-left">
-            <input v-validate="'required'" name="userPassword" type="password" v-model="userPassword">
+            <input class="input" 
+              v-validate="'required'" 
+              v-model="userPassword"
+              name="userPassword" 
+              type="password" 
+              >
             <span>{{ errors.first('userPassword') }}</span>
       			<span class="icon is-small is-left">
       				<i class="fas fa-key"></i>
@@ -26,66 +43,83 @@
       	</div>
 
       	<div class="field">
-          <input type="checkbox" name="userRememberMe" value="">
-          <label for="checkbox">remember me</label>
+          <input class="checkbox" 
+            type="checkbox" 
+            name="userRememberMe" 
+            value=""
+            >
+          <label for="checkbox">
+            remember me
+          </label>
       	</div>
 
 
-      	<button class="button is-block is-primary is-large is-fullwidth" type="submit" v-model="userRememberMe">
+      	<button 
+          class="button is-block is-primary is-large is-fullwidth" 
+          type="submit" 
+          >
+          <!-- @click="sendLoginForm" -->
       		Se connecter
       	</button>
 
       </form>
 
-      <button class="button is-block is-primary is-large is-fullwidth" type="submit" v-if="user.isLoggedin" @click="sendLogout">
-        Se deconnecter
+      <button 
+        v-if="user.isLoggedin" 
+        class="button is-block is-primary is-large is-fullwidth" 
+        type="submit" 
+        @click="sendLogout"
+        >
+        Se déconnecter
       </button>
 
     </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 import axios from 'axios';
-import { apiConfig } from '../config/api.js';
+// import { apiConfig } from '../config/api.js';
+// import { getConfigName } from '../utils.js';
 
 
 export default {
-    data: function () {
-      return {
-        userEmail: '',
-        userPassword: '',
-        userRememberMe: true,
-        customformError: ''
-      }
-    },
-    computed: mapState({
-        user: 'user'
-    }),
-    methods: {
-        sendLoginForm(e){
-          this.customformError = ''
-          e.preventDefault()
-          axios
-            .post(apiConfig.toktokURL+'/auth/login',
-            {
-              email:this.userEmail,
-              pwd:this.userPassword
-            })
-            .catch( (error) => {
-              console.log(error)
-              this.customformError = 'Login failed'
-            })
-            .then(response => this.$store.dispatch('saveLoginInfos',{APIresponse:response}) )
-          this.userPassword = ''
-        },
-        sendLogout(e){
-          e.preventDefault()
-          this.userEmail = ''
-          this.userPassword = ''
-          this.$store.dispatch('logout')
-          this.$router.push('logout')
-        },
+  data: function () {
+    return {
+      userEmail: '',
+      userPassword: '',
+      userRememberMe: true,
+      customformError: ''
     }
+  },
+  computed: mapState({
+    user: 'user'
+  }),
+  methods: {
+    sendLoginForm(e){
+      this.customformError = ''
+      e.preventDefault()
+      const urlAuth = this.$store.getters.getRootUrlAuth
+      let payload = {
+        email:this.userEmail,
+        pwd:this.userPassword
+      }
+      axios
+        .post( urlAuth + '/login', payload)
+        .catch( (error) => {
+          console.log(error)
+          this.customformError = 'Login failed'
+        })
+        .then(response => this.$store.dispatch('saveLoginInfos',{APIresponse:response}) )
+      this.userPassword = ''
+    },
+    sendLogout(e){
+      e.preventDefault()
+      this.userEmail = ''
+      this.userPassword = ''
+      this.$store.dispatch('logout')
+      this.$router.push('logout')
+    },
+  }
 }
 </script>

@@ -1,45 +1,50 @@
 <template>
-    <div>
-        <NavBar :logo="logo" :brand="brand"/>
+  <!-- <div> -->
+      <!-- <NavBar :logo="logo" :brand="brand"/> -->
 
-        <section class="hero is-light is-fullheight skip-navbar">
+  <section class="hero has-background-white-ter is-fullheight skip-navbar">
 
-        	<div class="hero-body">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <div class="columns is-mobile is-centered">
 
-        		<div class="container has-text-centered">
+          <div class="column is-6" 
+            v-if="!user.isLoggedin">
 
-        			<div class="column is-4 is-offset-4" v-if="!user.isLoggedin">
+            <h3 class="title has-text-grey">Vous avez été déconnecté</h3>
+            <p class="subtitle has-text-grey">avec succès</p>
+            <p class="has-text-grey">
+              <router-link 
+                class="button is-block is-primary is-large is-fullwidth" 
+                type="submit" 
+                :to="'/login'"
+                >
+                Se re-connecter
+              </router-link>
+            </p>
 
-        				<h3 class="title has-text-grey">Vous avez été déconnecté</h3>
-                <p class="subtitle has-text-grey">avec succes</p>
-        				<p class="has-text-grey">
+          </div>
 
-                  <router-link class="button is-block is-primary is-large is-fullwidth" type="submit" :to="{ name: 'login'}">Se re-connecter</router-link>
+          <div class="column is-6" 
+            v-if="user.isLoggedin">
 
-                </p>
+            <h3 class="title has-text-grey">Vous voulez vous déconnecter?</h3>
+            <div class="box">
 
-        			</div>
-
-
-              <div class="column is-4 is-offset-4" v-if="user.isLoggedin">
-
-                <h3 class="title has-text-grey">Vous voulez vous deconnecter?</h3>
-                <div class="box">
-
-                  <button class="button is-block is-primary is-large is-fullwidth" type="submit" @click="sendLogout">Se deconnecter</button>
-
-                </div>
-
-              </div>
+              <button class="button is-block is-primary is-large is-fullwidth" type="submit" @click="sendLogout">Se deconnecter</button>
 
             </div>
 
-        	</div>
+          </div>
 
-        </section>
-
-        <Footer/>
+        </div>
+      </div>
     </div>
+
+  </section>
+
+      <!-- <Footer/> -->
+  <!-- </div> -->
 </template>
 
 <script>

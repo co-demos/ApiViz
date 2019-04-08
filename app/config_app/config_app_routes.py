@@ -1235,4 +1235,62 @@ default_routes_config = [
       "is_default"        : True
   },
 
+  { "field"             : "app_register",
+    "is_global_app_homepage" : False,
+    "route_title"       : u"Register",
+    "route_description" : u"apiviz default register page",
+    "route_activated"   : True,
+    "banner" : {
+      "activated"  : False,
+      "banner_uri" : ""
+    },
+
+    "in_main_navbar"    : False,
+    "navbar_btn_options" : {
+    },
+
+    "in_footer"         : False,
+    "link_in_logo"      : False,
+    "urls"              : ["/register"],
+    "template_url"      : "",
+    "help"              : u"default register page for Apiviz",
+    "languages"         : ["fr"],
+      "app_version"       : version,
+    "comment"           : u"Main register route ",
+    "is_dynamic"        : True,
+    "dynamic_template"  : "Register",
+    "has_navbar"        : True,
+    "has_footer"        : True,
+      "is_default"        : True
+  },
+
+  { "field"             : "app_logout",
+    "is_global_app_homepage" : False,
+    "route_title"       : u"logout",
+    "route_description" : u"apiviz default logout page",
+    "route_activated"   : True,
+    "banner" : {
+      "activated"  : False,
+      "banner_uri" : ""
+    },
+
+    "in_main_navbar"    : False,
+    "navbar_btn_options" : {
+    },
+
+    "in_footer"         : False,
+    "link_in_logo"      : False,
+    "urls"              : ["/logout"],
+    "template_url"      : "",
+    "help"              : u"default logout page for Apiviz",
+    "languages"         : ["fr"],
+      "app_version"       : version,
+    "comment"           : u"Main logout route ",
+    "is_dynamic"        : True,
+    "dynamic_template"  : "Logout",
+    "has_navbar"        : True,
+    "has_footer"        : True,
+      "is_default"        : True
+  },
+
 ]

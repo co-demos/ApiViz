@@ -10,20 +10,20 @@
 
 // Nexa
 @font-face {
-    font-family: 'Nexa';
-    font-style: normal;
-    font-weight: 400;
-    src: url("https://github.com/co-demos/carto-sonum/blob/master/graphisme/Nexa/Nexa-Book.otf?raw=true") format("opentype");
-    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  font-family: 'Nexa';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://github.com/co-demos/carto-sonum/blob/master/graphisme/Nexa/Nexa-Book.otf?raw=true") format("opentype");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 // BonvenoCF
 @font-face {
-    font-family: 'BonvenoCF';
-    font-style: normal;
-    font-weight: 400;
-    src: url("https://github.com/co-demos/carto-sonum/blob/master/graphisme/BonvenoCF/BonvenoCF-Light.otf?raw=true") format("opentype");
-    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  font-family: 'BonvenoCF';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://github.com/co-demos/carto-sonum/blob/master/graphisme/BonvenoCF/BonvenoCF-Light.otf?raw=true") format("opentype");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 $primary        : $apiviz-primary; 
@@ -67,10 +67,10 @@ $family-secondary   : $family-BonvenoCF ;
 
 // BULMA OVERRIDE
 
-form .control{
-    font-size: rem(14px);
-}
+// form .control{
+//   font-size: rem(14px);
+// }
 
 .is-checkradio[type="checkbox"] + label{
-    font-size: $apiviz-navbar-font-size
+  font-size: $apiviz-navbar-font-size
 }

@@ -10,6 +10,8 @@ export default {
     // console.log("=== setRunMode / apiConfig : \n ", apiConfig )
     const roots = apiConfig[runMode]
     state.rootUrlBackend = roots.rootURL
+    state.rootUrlAuth = roots.authURL
+    state.rootUrlUser = roots.userURL
   },
 
   // UX OPTIONS-RELATED

@@ -189,6 +189,14 @@ export default {
   
   beforeMount: function () {
 
+    const DynamicComponents = [ 
+      'DynamicList' , 
+      'DynamicDetail' , 
+      'DynamicMap' , 
+      // 'DynamicStat', 
+      // 'DynamicListDense' 
+    ]
+
     // console.log("\n - - DynamicScreen / beforeMount ... ")
     // console.log(" - - state.config : \n ", this.$store.state.config)
     // console.log(" - - DynamicScreen / this.routeConfig : \n ", this.routeConfig)
@@ -200,7 +208,8 @@ export default {
     // console.log(" - - DynamicScreen / currentTemplate : ", currentTemplate)
     // console.log(" - - DynamicScreen / localRouteConfig.dynamic_templates  : ", this.localRouteConfig.dynamic_templates )
 
-    if( this.routeConfig.dynamic_template !== 'DynamicStatic' ) {
+    // if( this.routeConfig.dynamic_template !== 'DynamicStatic' ) {
+    if( DynamicComponents.indexOf(this.routeConfig.dynamic_template) !== -1 ) {
 
       // setting localEndpointConfig
       // console.log(" - - DynamicScreen / route IS for a dynamic content ... ")

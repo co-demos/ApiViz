@@ -17,6 +17,8 @@ const storeGenerator = new Vuex.Store({
     // APP MODE : default | preprod | prod
     runMode : undefined,
     rootUrlBackend : undefined,
+    rootUrlAuth : undefined,
+    rootUrlUser : undefined,
 
     // UX OPTIONS
     showNav : true,
@@ -26,12 +28,12 @@ const storeGenerator = new Vuex.Store({
     locale: 'fr',
 
     // USER-RELATED
-    user: {
-        infos: undefined,
-        role: undefined,
-        isLoggedin: false
+    user : {
+      infos: undefined,
+      role: undefined,
+      isLoggedin: false
     },
-    jwt:undefined,
+    jwt : undefined,
 
     // LEGACY
     geolocByProjectId: new Map(),

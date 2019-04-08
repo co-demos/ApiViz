@@ -27,17 +27,17 @@
 
 		{% endif %}
 		
-		{# <link rel="stylesheet" href="{{ url_for('static', filename='build/bundle.css') }}"> #}
-		<link rel="stylesheet" href="/static/build/bundle.css?18">
+		<link rel="stylesheet" href="{{ url_for('static', filename='build/bundle.css') }}">
+		{# <link rel="stylesheet" href="/static/build/bundle.css?19"> #}
 
 
 		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js" crossorigin="anonymous"></script>
 
-		<script defer src="{{ url_for('static', filename='json/CHOICES_FILTERS_TAGS.js') }}"></script>
-		<script defer src="{{ url_for('static', filename='json/CHOICES_FILTERS_GEOLOC.js') }}"></script>
-		<script defer src="{{ url_for('static', filename='json/CATEGORIES_CIS_DICT_FLAT.js') }}"></script>
-		<script defer src="{{ url_for('static', filename='json/NORMALIZATION_TAGS_SOURCES_CIS_DICT.js') }}"></script>
-		<script defer src="{{ url_for('static', filename='json/NOMENCLATURE_CIS_DICT.js') }}"></script>
+		{# <script defer src="{{ url_for('static', filename='json/CHOICES_FILTERS_TAGS.js') }}"></script> #}
+		{# <script defer src="{{ url_for('static', filename='json/CHOICES_FILTERS_GEOLOC.js') }}"></script> #}
+		{# <script defer src="{{ url_for('static', filename='json/CATEGORIES_CIS_DICT_FLAT.js') }}"></script> #}
+		{# <script defer src="{{ url_for('static', filename='json/NORMALIZATION_TAGS_SOURCES_CIS_DICT.js') }}"></script> #}
+		{# <script defer src="{{ url_for('static', filename='json/NOMENCLATURE_CIS_DICT.js') }}"></script> #}
 
 
 		<!-- CUSTOM MIXPANEL CALLS  -->
@@ -51,7 +51,7 @@
 		{% endif %}
 
 		{# HACK CACHING : https://stackoverflow.com/questions/32414/how-can-i-force-clients-to-refresh-javascript-files #}
-		<script defer src="/static/build/bundle.js?1604"></script>
+		<script defer src="/static/build/bundle.js?1606"></script>
 
 	</head>
 

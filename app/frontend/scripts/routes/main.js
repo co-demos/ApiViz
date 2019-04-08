@@ -3,14 +3,14 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import { userRoutesGenerator } from './userRoutes.js';
+// import { userRoutesGenerator } from './userRoutes.js';
 import { dynamicRoutesGenerator } from './dynamicRoutes.js';
 
 
 const routerGenerator = function(store){
 
   const routes = [
-    ...userRoutesGenerator(store),
+    // ...userRoutesGenerator(store),
     ...dynamicRoutesGenerator(store)
   ]
 
