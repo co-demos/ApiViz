@@ -117,6 +117,10 @@ import DynamicList      from '../DynamicList.vue';
 import DynamicMap       from '../DynamicMap.vue';
 import DynamicDetail    from '../DynamicDetail.vue';
 
+import LoginScreen       from './LoginScreen.vue';
+import LogoutScreen      from './LogoutScreen.vue';
+import RegisterScreen    from './RegisterScreen.vue';
+
 export default {
   components: {
     NavBar, 
@@ -124,9 +128,14 @@ export default {
     DynamicBanner,
     DynamicStatic, 
     DynamicStaticRaw,
+    DynamicStaticTest,
     DynamicList, 
     DynamicMap, 
-    DynamicDetail
+    DynamicDetail,
+
+    LoginScreen,
+    LogoutScreen,
+    RegisterScreen
   },
 
   props: [
