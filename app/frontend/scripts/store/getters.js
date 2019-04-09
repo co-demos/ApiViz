@@ -32,6 +32,7 @@ const getNavbarVisibility = state => {
   const getRootUrlUser = state => {
     return state.rootUrlUser
   }
+
   const getGlobalConfig = state => {
     // console.log("state.config : \n", state.config )
     if (!state.config
@@ -143,7 +144,6 @@ const getNavbarVisibility = state => {
       return undefined
     }
   }
-
   const getProjectConfigUniform = (state, getters) => (itemData) => {
     // console.log(" ++ getProjectConfigUniform - itemData : ", itemData)
     let res = {}
@@ -156,11 +156,9 @@ const getNavbarVisibility = state => {
     res.fullItem = itemData
     return res
   }
-
   const getResults = (state) => {
     return state.search.answer.result && state.search.answer.result.projects
   }
-
   const getGeoResults = (state, getters) => {
     let allResults = getters.getResults
     // console.log(" ++ getGeoResults / allResults : ", allResults)
@@ -207,7 +205,6 @@ const getNavbarVisibility = state => {
     }
     return image
   }
-
   const getImageUrl = (state, getters) => (obj) => {
 
     // console.log("getImageUrl - obj : ", obj)
@@ -254,6 +251,17 @@ const getNavbarVisibility = state => {
 // - - - - - - - - - - - - - - - //
 // BROADER CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
+
+  const getEndpointConfigAuthUsers = state => {
+    return state.config.endpoints.find(function(r) {
+      return r.data_type === "user"
+    });
+  }
+  const getEndpointConfigAuthSpecific = (state, getters) => (endpointType) => {
+    return getters.getEndpointConfigAuth.find(function(r) {
+      return r.endpoint_type === endpointType
+    });
+  }
   const getEndpointConfig = state => {
     // console.log("getEndpointConfig - state.config : \n", state.config)
     // if (!state.config
@@ -338,6 +346,9 @@ const getNavbarVisibility = state => {
     getRouteConfigDefaultDatasetImages,
     getSearchDatasetURI,
 
+    getEndpointConfigAuthUsers,
+    getEndpointConfigAuthSpecific,
+    
     getEndpointConfigFilters,
     getEndpointConfigList,
     getEndpointConfigMap,

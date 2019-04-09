@@ -8,12 +8,30 @@ default_data_endpoints_config = [
   ### USER MANAGEMENT
   ### - - - - - - - - - - - - - - - ###
 
+    ### AUTH ROOT URLS
+    { "field"         : "app_data_API_root_auth",
+      "data_type"     : "user",
+      "endpoint_type" : "auth",
+      "content"       : u"apiviz default API endpoint for user authentication (root urls)",
+      "root_url"      : {
+        "default"    : "http://localhost:4100/api",
+        "preprod"    : "https://preprod.toktok.sco-demos.com/api",
+        "production" : "https://toktok.co-demos.com/api"
+      },
+      "args_options"  : [
+      ],
+      "app_version"   : version,
+      "method"        : "GET",
+      "help"          : u"define the endpoints for authentication",
+      "is_default"    : True
+    },
+
     ### CONFIRM JWT
     { "field"         : "app_data_API_user_auth",
       "data_type"     : "user",
       "endpoint_type" : "auth",
       "content"       : u"apiviz default API endpoint for user authentication (confirm acces)",
-      "root_url"      : "http://localhost:4100/api/auth/tokens/confirm_access",
+      "root_url"      : "/auth/tokens/confirm_access",
       "args_options"  : [
         { "app_arg" : "authToken", "arg" : "token",     "optional" : False, "in" : ["url","header"], "default" : "", "type" : "str" },
       ],
@@ -28,7 +46,7 @@ default_data_endpoints_config = [
       "data_type"     : "user",
       "endpoint_type" : "auth",
       "content"       : u"apiviz default API endpoint for user authentication (new acces token) : needs a valid refresh token as token ",
-      "root_url"      : "http://localhost:4100/api/auth/tokens/new_access_token",
+      "root_url"      : "/auth/tokens/new_access_token",
       "args_options"  : [
         { "app_arg" : "authToken", "arg" : "token",     "optional" : False, "in" : ["url","header"], "default" : "", "type" : "str" },
       ],
@@ -43,7 +61,7 @@ default_data_endpoints_config = [
       "data_type"     : "user",
       "endpoint_type" : "auth",
       "content"       : u"apiviz default API endpoint for registering a new user",
-      "root_url"      : "http://localhost:4100/api/usr/register/",
+      "root_url"      : "/usr/register/",
       "args_options"  : [
       ],
       "app_version"   : version,
@@ -58,7 +76,7 @@ default_data_endpoints_config = [
       "data_type"     : "user",
       "endpoint_type" : "auth",
       "content"       : u"apiviz default API endpoint for login",
-      "root_url"      : "http://localhost:4100/api/auth/login/",
+      "root_url"      : "/auth/login/",
       "args_options"  : [
       ],
       "app_version"   : version,
@@ -73,7 +91,7 @@ default_data_endpoints_config = [
       "data_type"     : "user",
       "endpoint_type" : "user_modif",
       "content"       : u"apiviz default API endpoint for users list",
-      "root_url"      : "http://localhost:4100/api/usr/infos/list",
+      "root_url"      : "/usr/infos/list",
       "args_options"  : [
         { "app_arg" : "authToken",    "arg" : "token",     "optional" : False, "in" : ["url","header"],   "default" : "", "type" : "str" },
         { "app_arg" : "pageUser",     "arg" : "page_n",   "optional" : True,   "in" : ["url"],           "default" : 1,   "type": "int" },
@@ -90,7 +108,7 @@ default_data_endpoints_config = [
       "data_type"     : "user",
       "endpoint_type" : "user_modif",
       "content"       : u"apiviz default API endpoint for user infos",
-      "root_url"      : "http://localhost:4100/api/usr/infos/get_one/",
+      "root_url"      : "/usr/infos/get_one/",
       "args_options"  : [
         { "app_arg" : "authToken", "arg" : "token",     "optional" : False, "in" : ["url","header"],   "default" : "", "type" : "str" },
         { "app_arg" : "userID", "arg" : "doc_id",   "optional" : True,   "in" : ["url"],           "default" : "", "type" : "str"}
@@ -106,7 +124,7 @@ default_data_endpoints_config = [
       "data_type"     : "user",
       "endpoint_type" : "user_modif",
       "content"       : u"apiviz default API endpoint for editing an user",
-      "root_url"      : "http://localhost:4100/api/auth/edit/",
+      "root_url"      : "/auth/edit/",
       "args_options"  : [
         { "app_arg" : "authToken", "arg" : "token",     "optional" : False, "in" : ["url","header"],   "default" : "", "type" : "str" },
         { "app_arg" : "userID", "arg" : "doc_id",   "optional" : True,   "in" : ["url"],           "default" : "", "type" : "str"}
@@ -123,7 +141,7 @@ default_data_endpoints_config = [
       "data_type"     : "user",
       "endpoint_type" : "user_modif",
       "content"       : u"apiviz default API endpoint for deleting an user",
-      "root_url"      : "http://localhost:4100/api/auth/edit/",
+      "root_url"      : "/auth/edit/",
       "args_options"  : [
         { "app_arg" : "authToken", "arg" : "token",    "optional" : False, "in" : ["url","header"],   "default" : "", "type" : "str" },
         { "app_arg" : "userID",    "arg" : "doc_id",   "optional" : True,   "in" : ["url"],           "default" : "", "type" : "str"}
@@ -139,7 +157,7 @@ default_data_endpoints_config = [
       "data_type"     : "user",
       "endpoint_type" : "user_modif",
       "content"       : u"apiviz default API endpoint for changing password",
-      "root_url"      : "http://localhost:4100/api/auth/password/password_forgotten",
+      "root_url"      : "/auth/password/password_forgotten",
       "args_options"  : [
       ],
       "app_version"   : version,

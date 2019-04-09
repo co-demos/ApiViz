@@ -39,6 +39,7 @@ default_global_config = [
       "dowload_file"   : [{"locale" : "fr", "text" : "Télécharger le document" }],
 
       "hello"          : [{"locale" : "fr", "text" : "Bonjour" }],
+      "email"          : [{"locale" : "fr", "text" : "email" }],
 
       "connect"        : [{"locale" : "fr", "text" : "Se connecter" }],
       "connected"      : [{"locale" : "fr", "text" : "déjà connecté" }],
@@ -55,7 +56,7 @@ default_global_config = [
       "surname"        : [{"locale" : "fr", "text" : "nom" }],
       "password"       : [{"locale" : "fr", "text" : "mot de passe" }],
       "password_bis"   : [{"locale" : "fr", "text" : "répéter le mot de passe" }],
-      "remember_me"    : [{"locale" : "fr", "text" : "Se souvenir de moi" }],
+      "remember_me"    : [{"locale" : "fr", "text" : "se souvenir de moi" }],
       "forgot_password": [{"locale" : "fr", "text" : "Mot de passe oublié ?" }],
       "create_account" : [{"locale" : "fr", "text" : "créer un compte" }],
       "accept_cgu"     : [{"locale" : "fr", "text" : "J'accepte les CGU" }],

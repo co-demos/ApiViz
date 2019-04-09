@@ -60,7 +60,7 @@
               v-validate="'required|email'" 
               name="userEmail" 
               type="email" 
-              placeholder="email" 
+              :placeholder="getText('email')"
               v-model="userEmail"
               >
             <span>{{ errors.first('userEmail') }}</span>

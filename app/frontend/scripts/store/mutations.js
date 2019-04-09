@@ -1,5 +1,5 @@
 import { apiConfig } from '../config/api.js';
-import {makeEmptySelectedFilters} from '../utils';
+import { makeEmptySelectedFilters } from '../utils';
 
 export default {
 
@@ -10,6 +10,8 @@ export default {
     // console.log("=== setRunMode / apiConfig : \n ", apiConfig )
     const roots = apiConfig[runMode]
     state.rootUrlBackend = roots.rootURL
+
+    // TO DO --> check in config which authURL and 
     state.rootUrlAuth = roots.authURL
     state.rootUrlUser = roots.userURL
   },

@@ -18,6 +18,7 @@
               v-model="userEmail"
               v-validate="'required|email'" 
               name="userEmail" 
+              :placeholder="getText('email')"
               type="email" 
               >
             <span>{{ errors.first('userEmail') }}</span>
@@ -33,6 +34,7 @@
               v-validate="'required'" 
               v-model="userPassword"
               name="userPassword" 
+              :placeholder="getText('password')"
               type="password" 
               >
             <span>{{ errors.first('userPassword') }}</span>
