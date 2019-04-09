@@ -25,9 +25,11 @@
 
           <div class="column is-6" v-if="user.isLoggedin">
             <p class="subtitle has-text-grey">
-              Bonjour 
+              <!-- Bonjour  -->
+              {{ getText('hello') }}
               {{user.infos.email}}, 
-              vous êtes déjà enregistré.e
+              <!-- vous êtes déjà enregistré.e -->
+              {{ getText('is_registered') }}
             </p>
 
           </div>

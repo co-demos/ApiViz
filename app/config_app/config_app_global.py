@@ -49,6 +49,7 @@ default_global_config = [
       "is_account"     : [{"locale" : "fr", "text" : "Vous avez déjà un compte ?" }],
       "no_account"     : [{"locale" : "fr", "text" : "Vous n'avez pas encore de compte ?" }],
       "register"       : [{"locale" : "fr", "text" : "S'inscrire" }],
+      "is_registered"  : [{"locale" : "fr", "text" : "Vous êtes déjà inscrit.e" }],
       "logout"         : [{"locale" : "fr", "text" : "Se déconnecter" }],
       "name"           : [{"locale" : "fr", "text" : "prénom" }],
       "surname"        : [{"locale" : "fr", "text" : "nom" }],
