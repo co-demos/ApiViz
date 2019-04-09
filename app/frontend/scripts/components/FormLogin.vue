@@ -1,7 +1,9 @@
 <template>
     <div>
 
-      <h5 class="title has-text-grey">
+      <h5 class="title has-text-grey"
+        v-if="!user.isLoggedin"
+        >
         {{ getText('connect') }}
       </h5>
 
@@ -107,13 +109,21 @@ export default {
     sendLoginForm(e){
       this.customformError = ''
       e.preventDefault()
-      const urlAuth = this.$store.getters.getRootUrlAuth
+
+      const urlAuthRoot = this.$store.getters.getRootUrlAuth
+      // console.log("urlAuthRoot : ", urlAuthRoot)
+
+      const urlAuthLogin = this.$store.getters.getEndpointConfigAuthSpecific('login')
+      const urlAuthLoginSuffix = urlAuthLogin.root_url
+      // console.log("urlAuthLoginSuffix : ", urlAuthLoginSuffix)
+
       let payload = {
         email:this.userEmail,
         pwd:this.userPassword
       }
+
       axios
-        .post( urlAuth + '/login', payload)
+        .post( urlAuthRoot + urlAuthLoginSuffix, payload)
         .catch( (error) => {
           console.log(error)
           this.customformError = 'Login failed'

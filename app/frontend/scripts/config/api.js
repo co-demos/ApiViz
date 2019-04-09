@@ -5,20 +5,20 @@ export const apiConfig = Object.freeze({
   
   default : {
     rootURL: 'http://localhost:8100/backend/api',
-    authURL: 'http://localhost:4100/api/auth',
-    userURL: 'http://localhost:4100/api/usr',
+    // authURL: 'http://localhost:4100/api',
+    // userURL: 'http://localhost:4100/api',
   },
 
   preprod : {
     rootURL: 'https://preprod.sonum-beta.fr/backend/api',
-    authURL: 'https://preprod.toktok.sonum-beta.fr/api/auth',
-    userURL: 'http://preprod.toktok.sonum-beta.fr/api/usr',
+    // authURL: 'https://preprod.toktok.co-demos.com/api',
+    // userURL: 'https://preprod.toktok.co-demos.com/api',
   },
 
   production : {
     rootURL: 'https://sonum-beta.fr/backend/api',
-    authURL: 'https://toktok.sonum-beta.fr/api/auth',
-    userURL: 'http://toktok.sonum-beta.fr/api/usr',
+    // authURL: 'https://toktok.co-demos.com/api',
+    // userURL: 'https://toktok.co-demos.com/api',
   }
 
 })

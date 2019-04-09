@@ -23,15 +23,19 @@ const getNavbarVisibility = state => {
 
 // GLOBAL APP CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
+  const getRunMode = state => {
+    return state.runMode
+  }
   const getRootUrlBackend = state => {
+    console.log( "...I'm roooot... ", state.rootUrlBackend )
     return state.rootUrlBackend
   }
   const getRootUrlAuth = state => {
     return state.rootUrlAuth
   }
-  const getRootUrlUser = state => {
-    return state.rootUrlUser
-  }
+  // const getRootUrlUser = state => {
+  //   return state.rootUrlUser
+  // }
 
   const getGlobalConfig = state => {
     // console.log("state.config : \n", state.config )
@@ -253,12 +257,16 @@ const getNavbarVisibility = state => {
 // - - - - - - - - - - - - - - - //
 
   const getEndpointConfigAuthUsers = state => {
-    return state.config.endpoints.find(function(r) {
+    // console.log("getEndpointConfigAuthUsers...")
+    return state.config.endpoints.filter(function(r) {
       return r.data_type === "user"
     });
   }
   const getEndpointConfigAuthSpecific = (state, getters) => (endpointType) => {
-    return getters.getEndpointConfigAuth.find(function(r) {
+    // console.log("getEndpointConfigAuthSpecific / endpointType : ", endpointType)
+    let allAuthEndpoints =  getters.getEndpointConfigAuthUsers
+    // console.log("getEndpointConfigAuthSpecific / allAuthEndpoints", allAuthEndpoints)
+    return allAuthEndpoints.find(function(r) {
       return r.endpoint_type === endpointType
     });
   }
@@ -322,9 +330,10 @@ const getNavbarVisibility = state => {
     getTranslation,
     getNavbarVisibility,
     
+    getRunMode,
     getRootUrlBackend,
     getRootUrlAuth,
-    getRootUrlUser,
+    // getRootUrlUser,
 
     getSearchConfigColumnCount,
     getSearchConfigDefaultShowCount,
@@ -348,7 +357,7 @@ const getNavbarVisibility = state => {
 
     getEndpointConfigAuthUsers,
     getEndpointConfigAuthSpecific,
-    
+
     getEndpointConfigFilters,
     getEndpointConfigList,
     getEndpointConfigMap,

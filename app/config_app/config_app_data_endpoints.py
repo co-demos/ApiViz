@@ -11,7 +11,7 @@ default_data_endpoints_config = [
     ### AUTH ROOT URLS
     { "field"         : "app_data_API_root_auth",
       "data_type"     : "user",
-      "endpoint_type" : "auth",
+      "endpoint_type" : "auth_root",
       "content"       : u"apiviz default API endpoint for user authentication (root urls)",
       "root_url"      : {
         "default"    : "http://localhost:4100/api",
@@ -29,7 +29,7 @@ default_data_endpoints_config = [
     ### CONFIRM JWT
     { "field"         : "app_data_API_user_auth",
       "data_type"     : "user",
-      "endpoint_type" : "auth",
+      "endpoint_type" : "confirm_jwt",
       "content"       : u"apiviz default API endpoint for user authentication (confirm acces)",
       "root_url"      : "/auth/tokens/confirm_access",
       "args_options"  : [
@@ -44,7 +44,7 @@ default_data_endpoints_config = [
     ### NEW ACCESS JWT
     { "field"         : "app_data_API_user_new_access_token",
       "data_type"     : "user",
-      "endpoint_type" : "auth",
+      "endpoint_type" : "new_access_token",
       "content"       : u"apiviz default API endpoint for user authentication (new acces token) : needs a valid refresh token as token ",
       "root_url"      : "/auth/tokens/new_access_token",
       "args_options"  : [
@@ -59,9 +59,9 @@ default_data_endpoints_config = [
     ### REGISTER
     { "field"         : "app_data_API_user_register",
       "data_type"     : "user",
-      "endpoint_type" : "auth",
+      "endpoint_type" : "register",
       "content"       : u"apiviz default API endpoint for registering a new user",
-      "root_url"      : "/usr/register/",
+      "root_url"      : "/usr/register",
       "args_options"  : [
       ],
       "app_version"   : version,
@@ -74,9 +74,9 @@ default_data_endpoints_config = [
     ### LOGIN
     { "field"         : "app_data_API_user_login",
       "data_type"     : "user",
-      "endpoint_type" : "auth",
+      "endpoint_type" : "login",
       "content"       : u"apiviz default API endpoint for login",
-      "root_url"      : "/auth/login/",
+      "root_url"      : "/auth/login",
       "args_options"  : [
       ],
       "app_version"   : version,
@@ -108,7 +108,7 @@ default_data_endpoints_config = [
       "data_type"     : "user",
       "endpoint_type" : "user_modif",
       "content"       : u"apiviz default API endpoint for user infos",
-      "root_url"      : "/usr/infos/get_one/",
+      "root_url"      : "/usr/infos/get_one",
       "args_options"  : [
         { "app_arg" : "authToken", "arg" : "token",     "optional" : False, "in" : ["url","header"],   "default" : "", "type" : "str" },
         { "app_arg" : "userID", "arg" : "doc_id",   "optional" : True,   "in" : ["url"],           "default" : "", "type" : "str"}

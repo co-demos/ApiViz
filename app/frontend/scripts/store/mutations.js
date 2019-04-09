@@ -4,7 +4,7 @@ import { makeEmptySelectedFilters } from '../utils';
 export default {
 
   // APP MODE AND ROOT URL BACKEND
-  setRunMode(state, runMode ){
+  setRunMode( state, runMode ){
     // console.log("\n=== setRunMode / runMode : ", runMode )
     state.runMode = runMode
     // console.log("=== setRunMode / apiConfig : \n ", apiConfig )
@@ -12,8 +12,11 @@ export default {
     state.rootUrlBackend = roots.rootURL
 
     // TO DO --> check in config which authURL and 
-    state.rootUrlAuth = roots.authURL
-    state.rootUrlUser = roots.userURL
+    // state.rootUrlAuth = roots.authURL
+    // state.rootUrlUser = roots.userURL
+  },
+  setAuthUrlRoot( state, urlRoot ){
+    state.rootUrlAuth = urlRoot
   },
 
   // UX OPTIONS-RELATED

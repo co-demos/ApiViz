@@ -18,7 +18,7 @@ const storeGenerator = new Vuex.Store({
     runMode : undefined,
     rootUrlBackend : undefined,
     rootUrlAuth : undefined,
-    rootUrlUser : undefined,
+    // rootUrlUser : undefined,
 
     // UX OPTIONS
     showNav : true,

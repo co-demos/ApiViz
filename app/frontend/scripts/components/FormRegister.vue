@@ -205,8 +205,15 @@ export default {
         if (!boo) {
             this.customformError = 'Register failed - ' + this.errors.all();
         } else {
+
           // if the form looks good, we send it to the backend
-          const urlRegister = this.$store.getters.getRootUrlUser
+          // const urlRegister = this.$store.getters.getRootUrlUser
+          const urlAuthRoot = this.$store.getters.getRootUrlAuth
+
+          const urlAuthRegister = this.$store.getters.getEndpointConfigAuthSpecific('register')
+          const urlAuthRegisterSuffix = urlAuthRegister.root_url
+          console.log("urlAuthRegisterSuffix : ", urlAuthRegisterSuffix)
+
           let payload = {
             name: this.userName,
             surname: this.userSurname,
@@ -216,7 +223,7 @@ export default {
             agreement: this.userAcceptCGU
           }
           axios
-            .post( urlRegister + '/register', payload)
+            .post( urlAuthRoot + urlAuthRegisterSuffix, payload)
             .then(response =>
             {
               // case where code is 200 => success

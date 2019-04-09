@@ -56,6 +56,12 @@ export const dynamicRoutesGenerator = function(store){
           store.dispatch('getConfigAll')
           .then(() => {
             // console.log("... dynamicRoutesGenerator / after getConfigAll ... ");
+            let authUrlRoots = store.getters.getEndpointConfigAuthSpecific('auth_root')
+            // console.log("... dynamicRoutesGenerator / authUrlRoots : ", authUrlRoots);
+            const runMode = store.getters.getRunMode
+            const authUrlRoot = authUrlRoots.root_url[runMode]
+            // console.log("... dynamicRoutesGenerator / authUrlRoot : ", authUrlRoot);
+            store.commit('setAuthUrlRoot', authUrlRoot)
             next()
           })
           .catch(() => {console.log( 'error...'); next('error')})
