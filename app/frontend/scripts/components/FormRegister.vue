@@ -2,9 +2,9 @@
     <div>
 
 
-      <!-- <h5 class="title has-text-grey">
-        S'enregister
-      </h5> -->
+      <h5 class="title has-text-grey">
+        {{ getText('register') }}
+      </h5>
 
       <form 
         v-on:submit.prevent="sendRegisterForm" 
@@ -117,7 +117,7 @@
               name="userAcceptCGU" 
               type="checkbox" 
               v-model="userAcceptCGU"
-              >
+            >
             <span>{{ errors.first('userAcceptCGU') }}</span>
             <label for="userAcceptCGU">
 
@@ -133,7 +133,7 @@
         <br>
 
         <!-- SUBMIT -->
-      	<button class="button is-block is-primary is-large is-fullwidth " 
+      	<button class="button is-block is-primary is-fullwidth " 
           :disabled="!enableBtn" 
           type="submit"
           >
@@ -141,7 +141,7 @@
           {{ getText('register') }}
       	</button>
 
-        <br>
+        <!-- <br>
 
         <p class="has-text-grey">
           <router-link 
@@ -149,12 +149,12 @@
             >
             {{ getText('connect') }}
           </router-link>
-        </p>
+        </p> -->
 
       </form>
 
       <p 
-        class="button is-block is-primary is-large is-fullwidth" 
+        class="button is-block is-primary is-fullwidth" 
         type="submit" 
         v-if="user.isLoggedin"
         >

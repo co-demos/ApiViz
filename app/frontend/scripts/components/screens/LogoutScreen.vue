@@ -10,38 +10,38 @@
 
           <div class="column is-6" 
             v-if="!user.isLoggedin">
-
             <h3 class="title has-text-grey">
               <!-- Vous avez été déconnecté -->
               {{ getText('disconnect_msg') }}
             </h3>
-            <p class="has-text-grey">
+            <div class="box">
               <router-link 
-                class="button is-block is-primary is-large is-fullwidth" 
+                class="button is-block is-primary is-fullwidth" 
                 type="submit" 
                 :to="'/login'"
                 >
                 <!-- Se re-connecter -->
                 {{ getText('reconnect') }}
               </router-link>
-            </p>
-
+            </div>
           </div>
 
           <div class="column is-6" 
             v-if="user.isLoggedin">
-
             <h3 class="title has-text-grey">
               <!-- Vous voulez vous déconnecter? -->
               {{ getText('want_disconnect') }}
             </h3>
             <div class="box">
-
-              <button class="button is-block is-primary is-large is-fullwidth" type="submit" @click="sendLogout">Se deconnecter</button>
-
+              <button 
+                class="button is-block is-primary is-fullwidth" 
+                type="submit" 
+                @click="sendLogout">
+                {{ getText('disconnect') }}
+              </button>
             </div>
-
           </div>
+
 
         </div>
       </div>

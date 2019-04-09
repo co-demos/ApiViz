@@ -21,6 +21,13 @@
               <FormRegister/>
             </div>
 
+            <p class="has-text-grey">              
+              <router-link :to="'/login'">
+                <!-- créer un compte -->
+                {{ getText('connect') }}
+              </router-link>
+            </p>
+
           </div>
 
           <div class="column is-6" v-if="user.isLoggedin">

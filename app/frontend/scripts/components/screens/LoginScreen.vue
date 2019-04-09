@@ -8,6 +8,9 @@
       <div class="container has-text-centered">
         <div class="columns is-mobile is-centered">
 
+          <!-- DEBUGGING -->
+          <!-- {{ user }} -->
+
           <div class="column is-6" 
             v-if="!user.isLoggedin"
             >
@@ -22,19 +25,29 @@
               <FormLogin/>
             </div>
 
-            <p class="has-text-grey">
-              <router-link :to="'/register'">
-                <!-- créer un compte -->
-                {{ getText('create_account') }}
-              </router-link>
-              
-              &nbsp;&nbsp;
-              
-              <router-link disabled :to="'/forgot-password'">
-                <!-- password oublié ? -->
-                {{ getText('forgot_password') }}
-              </router-link>&nbsp;&nbsp;
-            </p>
+            <div class="columns is-mobile is-centered">
+
+              <div class="column is-6" >
+                <p class="has-text-grey">
+                  <router-link :to="'/register'">
+                    <!-- créer un compte -->
+                    {{ getText('create_account') }}
+                  </router-link>
+                </p>
+              </div>
+
+              <div class="column is-6" >
+                <p class="has-text-grey">
+                  <router-link disabled :to="'/forgot-password'">
+                    <!-- password oublié ? -->
+                    {{ getText('forgot_password') }}
+                  </router-link>
+                </p>
+              </div>
+
+            </div>
+
+
 
             <br>
             <br>
@@ -65,7 +78,7 @@
             <p class="subtitle has-text-grey">
               <!-- Bonjour  -->
               {{ getText('hello') }}
-              {{user.infos.email}}
+              {{ user.infos.name }}
             </p>
 
             <div class="box">
@@ -85,7 +98,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 
 // import NavBar from '../NavBar.vue';
 // import Footer from '../Footer.vue';

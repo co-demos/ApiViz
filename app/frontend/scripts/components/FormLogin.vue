@@ -4,7 +4,7 @@
       <h5 class="title has-text-grey"
         v-if="!user.isLoggedin"
         >
-        {{ getText('connect') }}
+        {{ getText('login') }}
       </h5>
 
       <form 
@@ -47,20 +47,24 @@
       	</div>
 
       	<div class="field">
-          <input class="checkbox" 
-            type="checkbox" 
-            name="userRememberMe" 
-            value=""
+          <!-- <div class="control has-icons-left"> -->
+            <input 
+              class="checkbox" 
+              name="userRememberMe" 
+              type="checkbox" 
+              value=""
             >
-          <label for="checkbox">
-            <!-- remember me -->
-            {{ getText('remember_me') }}
-          </label>
+            <label for="checkbox">
+              <!-- remember me -->
+              {{ getText('remember_me') }}
+            </label>
+          <!-- </div> -->
       	</div>
 
+        <br>
 
       	<button 
-          class="button is-block is-primary is-large is-fullwidth" 
+          class="button is-block is-primary is-fullwidth" 
           type="submit" 
           >
           <!-- @click="sendLoginForm" -->
@@ -71,7 +75,7 @@
 
       <button 
         v-if="user.isLoggedin" 
-        class="button is-block is-primary is-large is-fullwidth" 
+        class="button is-block is-primary is-fullwidth" 
         type="submit" 
         @click="sendLogout"
         >

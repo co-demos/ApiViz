@@ -22,8 +22,12 @@
   // .spacer{
   //   padding: 1em 0em 1.5em 0em;
   // }
+  .buttons{
+    margin-bottom: 0em;
+  }
   .btn-menu{
     margin-left: 1em;
+    margin-bottom: 0em;
   }
   .is-flex-touch{
     margin-top: 1em;
@@ -103,6 +107,7 @@
         
         <hr 
           v-if="link.link_type == 'link' && link.is_visible == true"
+          :key="index"
           class="is-flex-touch menu-delimiter"
         >
       
@@ -119,7 +124,7 @@
           <router-link
             v-if="!link.has_dropdown && !link.is_external_link && link.link_type == 'button' && link.is_visible == true"
             :class="`navbar-item button is-primary is-outlined is-small btn-menu`"
-            :key="`'btnlink-ext-' + ${index}`"
+            v-bind:key="`'btnlink-ext-' + ${index}`"
             :to="link.link_to"
             >
             <span>{{ translate( link,'link_text' ) }}</span>
@@ -129,7 +134,7 @@
             v-if="!link.has_dropdown && link.is_external_link && link.link_type == 'button' && link.is_visible == true"
             :class="`navbar-item button is-primary is-outlined is-small btn-menu`"
             :href="link.link_to"
-            :key="`'sublink-int-' + ${i}`"
+            v-bind:key="`'sublink-int-' + ${i}`"
             target="_blank"
             >
             <span>{{ translate( link,'link_text' ) }}</span>
@@ -137,13 +142,59 @@
 
           <hr 
             v-if="!link.has_dropdown && link.link_type == 'button' && link.is_visible == true"
-            :key="`'sublink-div-' + ${i}`"
+            v-bind:key="`'sublink-div-' + ${i}`"
             class="is-flex-touch menu-delimiter"
           >
 
         </template>
 
       </div>
+
+
+      <!-- USER DROPDOWN -->
+      <div class="navbar-item has-dropdown is-hoverable"
+        v-if="user.isLoggedin"
+        >
+
+        <a class="navbar-link is-arrowless">
+          <span class="icon">
+            <i class="far fa-user-circle"></i>
+          </span>
+        </a>
+
+        <div class="navbar-dropdown is-right">
+
+          <p class="navbar-item">
+            {{ getText('hello') }} {{ user.infos.name }}
+          </p>
+
+          <hr class="navbar-divider">
+
+          <router-link class="navbar-item"
+            v-if="user.role === 'admin'"
+            :to="'/backoffice'"
+            >
+            {{ getText('backoffice') }}
+          </router-link>
+
+          <router-link class="navbar-item"
+            :to="'/backoffice/user'"
+            >
+            {{ getText('pref_user') }}
+          </router-link>
+
+          <hr class="navbar-divider">
+
+          <router-link class="navbar-item"
+            :to="'/logout'"
+            >
+            {{ getText('disconnect') }}
+          </router-link>
+
+        </div>
+
+      </div>
+
 
     </div>
 
@@ -153,6 +204,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   props : [
     'NavbarLinks',
@@ -164,11 +217,19 @@ export default {
     // console.log("// currentDatasetURI : ", this.currentDatasetURI)
   },
   computed : {
+    ...mapState({
+      user: 'user'
+    }),
     showNav() {
       return this.$store.getters.getNavbarVisibility
     }
   },
   methods : {
+
+    getText(textCode) {
+      return this.$store.getters.defaultText({txt:textCode})
+    },
+
     // isCurrentRoute(linkTo){
     //   console.log("\n...... linkTo : ", linkTo)
     //   let path = this.$router.currentRoute.path

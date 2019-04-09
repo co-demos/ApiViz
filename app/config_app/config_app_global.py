@@ -39,14 +39,17 @@ default_global_config = [
       "dowload_file"   : [{"locale" : "fr", "text" : "Télécharger le document" }],
 
       "hello"          : [{"locale" : "fr", "text" : "Bonjour" }],
+      "pref_user"      : [{"locale" : "fr", "text" : "Préférences" }],
+      "backoffice"     : [{"locale" : "fr", "text" : "Back-office" }],
       "email"          : [{"locale" : "fr", "text" : "email" }],
 
+      "login"          : [{"locale" : "fr", "text" : "Login" }],
       "connect"        : [{"locale" : "fr", "text" : "Se connecter" }],
       "connected"      : [{"locale" : "fr", "text" : "déjà connecté" }],
       "reconnect"      : [{"locale" : "fr", "text" : "Se reconnecter" }],
       "disconnect"     : [{"locale" : "fr", "text" : "Se déconnecter" }],
       "disconnect_msg" : [{"locale" : "fr", "text" : "Vous avez été déconnecté.e avec succès" }],
-      "want_disconnect": [{"locale" : "fr", "text" : "Vous voulez vous déconnecter ?" }],
+      "want_disconnect": [{"locale" : "fr", "text" : "Voulez-vous vous déconnecter ?" }],
       "is_account"     : [{"locale" : "fr", "text" : "Vous avez déjà un compte ?" }],
       "no_account"     : [{"locale" : "fr", "text" : "Vous n'avez pas encore de compte ?" }],
       "register"       : [{"locale" : "fr", "text" : "S'inscrire" }],
@@ -58,7 +61,7 @@ default_global_config = [
       "password_bis"   : [{"locale" : "fr", "text" : "répéter le mot de passe" }],
       "remember_me"    : [{"locale" : "fr", "text" : "se souvenir de moi" }],
       "forgot_password": [{"locale" : "fr", "text" : "Mot de passe oublié ?" }],
-      "create_account" : [{"locale" : "fr", "text" : "créer un compte" }],
+      "create_account" : [{"locale" : "fr", "text" : "Créer un compte" }],
       "accept_cgu"     : [{"locale" : "fr", "text" : "J'accepte les CGU" }],
 
       "is_default"  : True
