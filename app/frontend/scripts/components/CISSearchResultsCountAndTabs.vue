@@ -185,7 +185,7 @@ export default {
       justify-content: left;
 
       img{
-          max-height: 1.8em;
+          max-height: 1.5em;
       }
 
       span{

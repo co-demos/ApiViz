@@ -157,7 +157,7 @@
         >
 
         <a class="navbar-link is-arrowless">
-          <span class="icon">
+          <span class="icon is-large">
             <i class="far fa-user-circle"></i>
           </span>
         </a>
