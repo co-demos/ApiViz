@@ -22,7 +22,7 @@
               v-validate="'required'" 
               name="userName" 
               type="text" 
-              placeholder="Name" 
+              :placeholder="getText('name')" 
               v-model="userName"
               >
             <span>{{ errors.first('userName') }}</span>
@@ -41,7 +41,7 @@
               v-validate="'required'" name
               ="userSurname" 
               type="text" 
-              placeholder="Surname" 
+              :placeholder="getText('surname')" 
               v-model="userSurname"
               >
             <span>{{ errors.first('userSurname') }}</span>
@@ -78,7 +78,7 @@
               v-validate="'required'" 
               name="userPassword" 
               type="password" 
-              placeholder="Password" 
+              :placeholder="getText('password')" 
               ref="userPassword" 
               v-model="userPassword"
               >
@@ -98,7 +98,7 @@
               name="userConfirmPassword" 
               type="password" 
               data-vv-as="userPassword" 
-              placeholder="Password, Again"
+              :placeholder="getText('password_bis')"
               >
             <span>{{ errors.first('userConfirmPassword') }}</span>
             <span class="icon is-small is-left">
@@ -120,9 +120,10 @@
               >
             <span>{{ errors.first('userAcceptCGU') }}</span>
             <label for="userAcceptCGU">
-              J'accepte les
+
               <a class="modal-button has-text-primary" data-target="modal_legal" aria-haspopup="true">
-                Conditions Générales d'Utilisation
+                <!-- Conditions Générales d'Utilisation -->
+                {{ getText('accept_cgu') }}
               </a>
             </label>
           </div>
@@ -136,7 +137,8 @@
           :disabled="!enableBtn" 
           type="submit"
           >
-      		S'enregistrer
+      		<!-- S'enregistrer -->
+          {{ getText('register') }}
       	</button>
 
         <br>
@@ -145,7 +147,7 @@
           <router-link 
             :to="'/login'"
             >
-            Se connecter
+            {{ getText('connect') }}
           </router-link>
         </p>
 
@@ -156,7 +158,8 @@
         type="submit" 
         v-if="user.isLoggedin"
         >
-        déjà connecté
+        <!-- déjà connecté -->
+        {{ getText('connected') }}
       </p>
 
     </div>
@@ -188,6 +191,11 @@ export default {
     }
   },
   methods: {
+
+    getText(textCode) {
+      return this.$store.getters.defaultText({txt:textCode})
+    },
+
     sendRegisterForm(e){
       this.customformError = ''
       e.preventDefault()

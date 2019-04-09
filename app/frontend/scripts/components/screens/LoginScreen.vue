@@ -13,7 +13,8 @@
             >
 
             <p class="subtitle has-text-grey">
-              Vous avez déjà un compte ?
+              <!-- Vous avez déjà un compte ? -->
+              {{ getText('is_account') }}
             </p>
 
             <!-- main login form -->
@@ -23,10 +24,15 @@
 
             <p class="has-text-grey">
               <router-link :to="'/register'">
-                créer un compte
-              </router-link>&nbsp;&nbsp;
-              <router-link :to="'/forgot-password'">
-                password oublié ?
+                <!-- créer un compte -->
+                {{ getText('create_account') }}
+              </router-link>
+              
+              &nbsp;&nbsp;
+              
+              <router-link disabled :to="'/forgot-password'">
+                <!-- password oublié ? -->
+                {{ getText('forgot_password') }}
               </router-link>&nbsp;&nbsp;
             </p>
 
@@ -57,7 +63,9 @@
             v-if="user.isLoggedin"
             >
             <p class="subtitle has-text-grey">
-              Bonjour {{user.infos.email}}
+              <!-- Bonjour  -->
+              {{ getText('hello') }}
+              {{user.infos.email}}
             </p>
 
             <div class="box">
@@ -84,37 +92,43 @@ import {mapState} from 'vuex'
 import FormLogin from '../FormLogin.vue';
 
 export default {
-    components: {
-      // NavBar, 
-      // Footer, 
-      FormLogin
-    },
-    props: [
-      'logo', 'brand'
-    ],
+  components: {
+    // NavBar, 
+    // Footer, 
+    FormLogin
+  },
+  props: [
+    'logo', 
+    'brand'
+  ],
 
-    computed: mapState({
-      user: 'user'
-    }),
+  computed: mapState({
+    user: 'user'
+  }),
 
-    mounted(){
-      // hack to scroll top because vue-router scrollBehavior thing doesn't seem to work on Firefox on Linux at least
-      const int = setInterval(() => {
-        if(window.pageYOffset < 50){
-          clearInterval(int)
-        }
-        else{
-          window.scrollTo(0, 0)
-        }
-      }, 100);
-    },
-
-    methods: {
-      goBack(e){
-        e.preventDefault()
-        this.$router.back()
+  mounted(){
+    // hack to scroll top because vue-router scrollBehavior thing doesn't seem to work on Firefox on Linux at least
+    const int = setInterval(() => {
+      if(window.pageYOffset < 50){
+        clearInterval(int)
       }
+      else{
+        window.scrollTo(0, 0)
+      }
+    }, 100);
+  },
+
+  methods: {
+
+    getText(textCode) {
+      return this.$store.getters.defaultText({txt:textCode})
+    },
+
+    goBack(e){
+      e.preventDefault()
+      this.$router.back()
     }
+  }
 
 }
 </script>

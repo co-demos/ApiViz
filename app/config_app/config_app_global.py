@@ -38,6 +38,27 @@ default_global_config = [
       "services"       : [{"locale" : "fr", "text" : "Services proposés" }],
       "dowload_file"   : [{"locale" : "fr", "text" : "Télécharger le document" }],
 
+      "hello"          : [{"locale" : "fr", "text" : "Bonjour" }],
+
+      "connect"        : [{"locale" : "fr", "text" : "Se connecter" }],
+      "connected"      : [{"locale" : "fr", "text" : "déjà connecté" }],
+      "reconnect"      : [{"locale" : "fr", "text" : "Se reconnecter" }],
+      "disconnect"     : [{"locale" : "fr", "text" : "Se déconnecter" }],
+      "disconnect_msg" : [{"locale" : "fr", "text" : "Vous avez été déconnecté.e avec succès" }],
+      "want_disconnect": [{"locale" : "fr", "text" : "Vous voulez vous déconnecter ?" }],
+      "is_account"     : [{"locale" : "fr", "text" : "Vous avez déjà un compte ?" }],
+      "no_account"     : [{"locale" : "fr", "text" : "Vous n'avez pas encore de compte ?" }],
+      "register"       : [{"locale" : "fr", "text" : "S'inscrire" }],
+      "logout"         : [{"locale" : "fr", "text" : "Se déconnecter" }],
+      "name"           : [{"locale" : "fr", "text" : "prénom" }],
+      "surname"        : [{"locale" : "fr", "text" : "nom" }],
+      "password"       : [{"locale" : "fr", "text" : "mot de passe" }],
+      "password_bis"   : [{"locale" : "fr", "text" : "répéter le mot de passe" }],
+      "remember_me"    : [{"locale" : "fr", "text" : "Se souvenir de moi" }],
+      "forgot_password": [{"locale" : "fr", "text" : "Mot de passe oublié ?" }],
+      "create_account" : [{"locale" : "fr", "text" : "créer un compte" }],
+      "accept_cgu"     : [{"locale" : "fr", "text" : "J'accepte les CGU" }],
+
       "is_default"  : True
     },
 

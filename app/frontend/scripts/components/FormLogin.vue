@@ -2,7 +2,7 @@
     <div>
 
       <h5 class="title has-text-grey">
-        Se connecter
+        {{ getText('connect') }}
       </h5>
 
       <form 
@@ -49,7 +49,8 @@
             value=""
             >
           <label for="checkbox">
-            remember me
+            <!-- remember me -->
+            {{ getText('remember_me') }}
           </label>
       	</div>
 
@@ -59,7 +60,7 @@
           type="submit" 
           >
           <!-- @click="sendLoginForm" -->
-      		Se connecter
+      		{{ getText('connect') }}
       	</button>
 
       </form>
@@ -70,7 +71,7 @@
         type="submit" 
         @click="sendLogout"
         >
-        Se déconnecter
+        {{ getText('disconnect') }}
       </button>
 
     </div>
@@ -96,6 +97,11 @@ export default {
     user: 'user'
   }),
   methods: {
+
+    getText(textCode) {
+      return this.$store.getters.defaultText({txt:textCode})
+    },
+
     sendLoginForm(e){
       this.customformError = ''
       e.preventDefault()
@@ -113,6 +119,7 @@ export default {
         .then(response => this.$store.dispatch('saveLoginInfos',{APIresponse:response}) )
       this.userPassword = ''
     },
+
     sendLogout(e){
       e.preventDefault()
       this.userEmail = ''
@@ -120,6 +127,7 @@ export default {
       this.$store.dispatch('logout')
       this.$router.push('logout')
     },
+
   }
 }
 </script>
