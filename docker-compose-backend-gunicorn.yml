@@ -1,0 +1,10 @@
+version: '2.1'
+services:
+  backend:
+    container_name: ${APP}-backend
+    build:
+      context: ${BACKEND}
+      dockerfile: Dockerfile.backend-gunicorn
+    restart: always
+    ports:
+      - "8100:8100"
