@@ -246,6 +246,7 @@ default_app_footer = [
 
       },
 
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 

@@ -13,6 +13,7 @@ default_socials_config = [
     "help"        : u"Choose the twitter account for your ApiViz instance",
     "in_footer"   : True,
     "tooltip"     : [{"locale" : "fr", "text" : "notre page Twitter" }],
+    "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
     "is_default"  : True
   },
 
@@ -24,6 +25,7 @@ default_socials_config = [
     "help"        : u"Choose the facebook account for your ApiViz instance",
     "in_footer"   : True,
     "tooltip"     : [{"locale" : "fr", "text" : "notre page sur Facebook" }],
+    "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
     "is_default"  : True
   },
 
@@ -35,6 +37,7 @@ default_socials_config = [
     "help"        : u"Choose the github account for your ApiViz instance",
     "in_footer"   : True,
     "tooltip"     : [{"locale" : "fr", "text" : "notre page Github" }],
+    "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
     "is_default"  : True
   },
 

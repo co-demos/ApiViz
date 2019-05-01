@@ -19,3 +19,4 @@ SERVER_NAME_TEST		= "True"
 
 """ MONGODB """
 MONGO_URI					= 'mongodb://localhost:27017/apiviz'
+MONGO_URI_DISTANT	= 'mongodb://localhost:27017/apiviz'

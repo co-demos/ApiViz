@@ -23,6 +23,7 @@ default_data_endpoints_config = [
       "app_version"   : version,
       "method"        : "GET",
       "help"          : u"define the endpoints for authentication",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -38,6 +39,7 @@ default_data_endpoints_config = [
       "app_version"   : version,
       "method"        : "GET",
       "help"          : u"define the endpoint for a JWT check",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -53,6 +55,7 @@ default_data_endpoints_config = [
       "app_version"   : version,
       "method"        : "GET",
       "help"          : u"define the endpoint for a new access JWT ",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -67,6 +70,7 @@ default_data_endpoints_config = [
       "app_version"   : version,
       "method"        : "POST",
       "help"          : u"define the endpoint for registering a new user",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "needs_form"    : True,
       "is_default"    : True
     },
@@ -82,6 +86,7 @@ default_data_endpoints_config = [
       "app_version"   : version,
       "method"        : "POST",
       "help"          : u"define the endpoint for login an user",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "needs_form"    : True,
       "is_default"    : True
     },
@@ -100,6 +105,7 @@ default_data_endpoints_config = [
       "app_version"   : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : an user ",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -116,6 +122,7 @@ default_data_endpoints_config = [
       "app_version"   : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : an user ",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -133,6 +140,7 @@ default_data_endpoints_config = [
       "method"        : "PUT",
       "help"          : u"define the endpoint to get data for : an user ",
       "needs_form"    : True,
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -149,6 +157,7 @@ default_data_endpoints_config = [
       "app_version"   : version,
       "method"        : "DELETE",
       "help"          : u"define the endpoint to get data for : an user ",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -164,6 +173,7 @@ default_data_endpoints_config = [
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : an user ",
       "needs_form"    : True,
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -244,6 +254,7 @@ default_data_endpoints_config = [
       "app_version"    : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : filters in search navbar",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -268,6 +279,7 @@ default_data_endpoints_config = [
       "app_version"    : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : a view list",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -287,6 +299,7 @@ default_data_endpoints_config = [
       "app_version"    : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : a detailled data",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -306,6 +319,7 @@ default_data_endpoints_config = [
       "app_version"    : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : a stat about the dataset",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -349,6 +363,7 @@ default_data_endpoints_config = [
       "app_version"    : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : map results",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -419,6 +434,7 @@ default_data_endpoints_config = [
       "app_version"    : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : filters in search navbar",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -442,6 +458,7 @@ default_data_endpoints_config = [
       "app_version"   : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : a view list",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -461,6 +478,7 @@ default_data_endpoints_config = [
       "app_version"    : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : a detailled data",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -480,6 +498,7 @@ default_data_endpoints_config = [
       "app_version"    : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : a stat about the dataset",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 
@@ -520,6 +539,7 @@ default_data_endpoints_config = [
       "app_version"    : version,
       "method"        : "GET",
       "help"          : u"define the endpoint to get data for : map results",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"    : True
     },
 

@@ -4,9 +4,11 @@ import os
 from .. import log_app, pformat
 
 config_name = os.getenv('FLASK_CONFIGURATION', 'default') ### 'default' for local dev
+config_backend = os.getenv('BACKEND_MODE', 'local') ### 'local' for local dev
 
 print
 log_app.info("$ config_name : %s", config_name)  
+log_app.info("$ config_backend : %s", config_backend)  
 
 correction_env_path = {
   "development"   : "",
@@ -41,7 +43,15 @@ try :
 
   # os.environ["PORT_EVENTLET"]		= PORT_EVENTLET
 
-  os.environ["MONGODB_URI"]	= MONGO_URI
+
+  if config_backend in ["local"] : 
+    os.environ["MONGODB_URI"]	= MONGO_URI
+
+  if config_backend in ["distant", "standalone"] : 
+    os.environ["MONGODB_URI"]	= MONGO_URI_DISTANT
+
+
+
 
 ### except if no production env 
 except : 
@@ -78,8 +88,8 @@ class Config(object):
   # JWT_SECRET_KEY		= os.getenv("JWT_SECRET_KEY")
   
   """ MONGODB """
-  MONGO_DBNAME								= 'apiviz'
-  MONGO_URI										= os.getenv("MONGODB_URI")
+  # MONGO_DBNAME								= 'apiviz'
+  MONGO_URI	= os.getenv("MONGODB_URI")
   MONGO_COLL_CONFIG_GLOBAL					= "config_global"
   MONGO_COLL_CONFIG_FOOTER					= "config_footer"
   MONGO_COLL_CONFIG_NAVBAR					= "config_navbar"
@@ -149,5 +159,5 @@ def configure_app(app):
   app.config.from_object( config[config_name] )
 
   log_app.info("$ app.config['RUNNING_ENV']  : %s ", app.config["RUNNING_ENV"] )
-  log_app.info("$ app.config['MONGO_DBNAME'] : %s ", app.config["MONGO_DBNAME"] ) 
+  # log_app.info("$ app.config['MONGO_DBNAME'] : %s ", app.config["MONGO_DBNAME"] ) 
   print

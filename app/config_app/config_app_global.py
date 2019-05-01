@@ -10,6 +10,7 @@ default_global_config = [
       "locale"      : "fr",
       "app_version" : version,
       "help"        : u"The default homepage for your ApiViz instance",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -64,6 +65,7 @@ default_global_config = [
       "create_account" : [{"locale" : "fr", "text" : "Créer un compte" }],
       "accept_cgu"     : [{"locale" : "fr", "text" : "J'accepte les CGU" }],
 
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -79,6 +81,7 @@ default_global_config = [
       "tab_stat"    : { 
         "link_text"  : [ {"locale" : "fr", "text" : "données" }],
       },
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -88,6 +91,7 @@ default_global_config = [
       "url"          : "https://github.com/co-demos/carto-sonum/blob/master/logos/logo%2Bmarianne_typo%20sombre%404x.png?raw=true",
       "app_version" : version,
       "help"        : u"The official default logo for your ApiViz instance",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -97,6 +101,8 @@ default_global_config = [
       "url"          : "/",
       "app_version" : version,
       "help"        : u"The default favicon for your ApiViz instance",
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -104,6 +110,8 @@ default_global_config = [
     { "field"       : "app_title",
       "app_version" : version,
       "help"        : u"Choose a title for your ApiViz instance",
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "content"     : u"SoNum",
       "is_default"  : True
     },
@@ -111,6 +119,8 @@ default_global_config = [
     { "field"       : "app_description",
       "app_version" : version,
       "help"        : u"Choose a description for your ApiViz instance",
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "content"     : [{ "locale" : "fr", "text" : ""}],
       "is_default"  : True
     },
@@ -119,6 +129,8 @@ default_global_config = [
       "app_version" : version,
       "help"        : u"Choose a set of keywords for your ApiViz instance",
       "content"     : u"""dataviz,data visualisation,data visualization,SIG,commons,digital commons,API,opensource,open source,open data,opendata,MIT licence,github,sJS,javascript,python,flask,HTML,CSS,JSON,bulma,Vue.js,sEtalab,co-demos, codemos""",
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -127,6 +139,8 @@ default_global_config = [
       "app_version" : version,
       "help"        : u"Choose a welcoming phrase for your ApiViz instance",
       "content"     : [{ "locale" : "fr", "text" : "Bienvenue"}],
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -134,6 +148,8 @@ default_global_config = [
       "app_version" : version,
       "help"        : u"Choose a pitch/catchphrase for your ApiViz instance",
       "content"     : [{ "locale" : "fr", "text" : ""}],
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -145,6 +161,8 @@ default_global_config = [
       "content"     : [{ "locale" : "fr", "text" : "Code source"}],
       "in_navbar"   : False,
       "in_footer"   : True,
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True,
     },
   
@@ -154,6 +172,8 @@ default_global_config = [
       "help"        : u"Choose a token for indexing your ApiViz instance",
       "content"     : u"", 
       "activated"    : False,
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -164,6 +184,8 @@ default_global_config = [
       "content"     : u"your_id_or_token",
       "url"         : "",
       "activated"    : False,
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -174,6 +196,8 @@ default_global_config = [
       "content"     : u"your_id_or_token",
       "url"         : "",
       "activated"    : False,
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 

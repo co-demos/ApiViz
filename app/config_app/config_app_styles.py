@@ -28,6 +28,7 @@ default_app_styles_config = [
       },
       "app_version" : version,
       "help"        : u"Choose a set of colors (an hexa for example) for your ApiViz instance",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -52,6 +53,7 @@ default_app_styles_config = [
       },
       "app_version" : version,
       "help"        : u"Choose a set of colors for your typo for your ApiViz instance",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -63,6 +65,7 @@ default_app_styles_config = [
       "url"         : "",
       "app_version" : version,
       "help"        : u"Choose a typo for your ApiViz instance",
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 
@@ -106,6 +109,7 @@ default_app_styles_config = [
           "disapearing_timeout" : 5, ## in seconds
         },
       ],
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"     : True
     },
 
@@ -139,6 +143,7 @@ default_app_styles_config = [
         }
       ],
 
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
       "is_default"  : True
     },
 

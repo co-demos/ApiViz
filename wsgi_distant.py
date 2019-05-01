@@ -8,8 +8,8 @@ import os, sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-os.environ['FLASK_CONFIGURATION'] = "preprod"
-os.environ['BACKEND_MODE'] = "local"
+os.environ['FLASK_CONFIGURATION'] = "production"
+os.environ['BACKEND_MODE'] = "distant"
 
 from app import app, log_app
 
@@ -22,7 +22,7 @@ if __name__ == '__main__':
 	in command line just type : 
 	"python wsgi.py"
 	or
-	"gunicorn --bind 0.0.0.0:8200 --workers=1 wsgi_preprod:app" for instance
+	"gunicorn --bind 0.0.0.0:8100 --workers=1 wsgi:app" for instance
 
 	"""
 

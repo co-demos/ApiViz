@@ -41,7 +41,8 @@ default_routes_config = [
     "dynamic_template"  : "DynamicStatic",
     "has_navbar"        : True,
     "has_footer"        : True,
-      "is_default"        : True
+    "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+    "is_default"        : True
   },
 
   
@@ -82,7 +83,9 @@ default_routes_config = [
       "dynamic_template"  : "DynamicStatic",
       "has_navbar"        : True,
       "has_footer"        : True,
-        "is_default"        : True
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+      "is_default"        : True
     },
 
     ## PAGE - map
@@ -112,7 +115,7 @@ default_routes_config = [
       "template_url"      : "/static/spa.html",
       "help"             : u"you can specify a remote template (f.e. a github url)",
       "languages"         : ["fr"],
-        "app_version"        : version,
+      "app_version"        : version,
       "comment"           : u"Main search route in french",
       "is_dynamic"        : True,
       "dataset_uri"        : "sonum-carto",
@@ -219,7 +222,9 @@ default_routes_config = [
       "has_footer"        : True,
       "deactivate_btn"    : False,
       "is_visible"        : True,
-        "is_default"      : True
+
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+      "is_default"        : True
     },
     ## PAGE - list
     { "field"             : "sonum_carto_liste",
@@ -349,7 +354,8 @@ default_routes_config = [
       "has_footer"        : True,
       "deactivate_btn"    : False,
       "is_visible"        : True,
-        "is_default"        : True
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+      "is_default"        : True
     },
     ## PAGE - detail
     { "field"             : "sonum_carto_detail",
@@ -532,7 +538,8 @@ default_routes_config = [
       "has_footer"        : True,
       "deactivate_btn"    : False,
       "is_visible"        : True,
-        "is_default"        : True
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+      "is_default"        : True
     },
 
   ### DATASETS XP SONUM
@@ -652,7 +659,8 @@ default_routes_config = [
       "has_footer"        : True,
       "deactivate_btn"    : False,
       "is_visible"        : True,
-        "is_default"        : True
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+      "is_default"        : True
     },
     ## PAGE - list
     { "field"             : "sonum_xp_liste",
@@ -770,7 +778,8 @@ default_routes_config = [
       "has_footer"        : True,
       "deactivate_btn"    : False,
       "is_visible"        : True,
-        "is_default"        : True
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+      "is_default"        : True
     },
     ## PAGE - detail
     { "field"               : "sonum_xp_detail",
@@ -1020,7 +1029,8 @@ default_routes_config = [
       "has_footer"        : True,
       "deactivate_btn"    : False,
       "is_visible"        : True,
-        "is_default"        : True
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+      "is_default"        : True
     },
 
     ### PAGE HOME XP
@@ -1054,7 +1064,8 @@ default_routes_config = [
       "dynamic_template"  : "DynamicStatic",
       "has_navbar"        : True,
       "has_footer"        : True,
-        "is_default"        : True
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+      "is_default"        : True
     },
     ### PAGE STRATEGIE
     { "field"             : "sonum_xp_strategie",
@@ -1088,7 +1099,8 @@ default_routes_config = [
       "dynamic_template"  : "DynamicStatic",
       "has_navbar"        : True,
       "has_footer"        : True,
-        "is_default"        : True
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+      "is_default"        : True
     },
 
   ### - - - - - - - - - - - - - - - - - ###
@@ -1128,7 +1140,8 @@ default_routes_config = [
     "dynamic_template"  : 'DynamicStatic',
     "has_navbar"        : True,
     "has_footer"        : True,
-      "is_default"        : True
+    "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+    "is_default"        : True
   },
 
   ### PAGES : TOOLS
@@ -1163,7 +1176,8 @@ default_routes_config = [
     "dynamic_template"  : None,
     "has_navbar"        : True,
     "has_footer"        : True,
-      "is_default"        : True
+    "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+    "is_default"        : True
   },
 
   ### PAGE TOOLS - FR
@@ -1197,7 +1211,8 @@ default_routes_config = [
       "dynamic_template"  : "DynamicStatic",
       "has_navbar"        : True,
       "has_footer"        : True,
-        "is_default"        : True
+      "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+      "is_default"        : True
     },
   ### ...
 
@@ -1232,7 +1247,8 @@ default_routes_config = [
     "dynamic_template"  : "Login",
     "has_navbar"        : True,
     "has_footer"        : True,
-      "is_default"        : True
+    "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+    "is_default"        : True
   },
 
   { "field"             : "app_register",
@@ -1261,7 +1277,8 @@ default_routes_config = [
     "dynamic_template"  : "Register",
     "has_navbar"        : True,
     "has_footer"        : True,
-      "is_default"        : True
+    "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+    "is_default"        : True
   },
 
   { "field"             : "app_logout",
@@ -1290,7 +1307,8 @@ default_routes_config = [
     "dynamic_template"  : "Logout",
     "has_navbar"        : True,
     "has_footer"        : True,
-      "is_default"        : True
+    "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+    "is_default"        : True
   },
 
   { "field"             : "app_backoffice",
@@ -1319,7 +1337,8 @@ default_routes_config = [
     "dynamic_template"  : "BackOffice",
     "has_navbar"        : True,
     "has_footer"        : True,
-      "is_default"        : True
+    "apiviz_front_uuid" : "c5efafab-1733-4ad1-9eb8-d529bc87c481",
+    "is_default"        : True
   },
 
 ]
