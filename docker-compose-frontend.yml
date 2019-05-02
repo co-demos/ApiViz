@@ -1,0 +1,9 @@
+version: '2.1'
+services:
+  frontend:
+    container_name: ${APP}-frontend
+    build:
+      context: ${FRONTEND}
+      dockerfile: Dockerfile.frontend
+    volumes:
+      - ./app/static:/app_in_docker/static
