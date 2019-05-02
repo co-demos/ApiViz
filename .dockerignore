@@ -1,0 +1,4 @@
+app/frontend/node_modules
+venv
+.git
+nginx
