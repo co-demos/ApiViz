@@ -29,34 +29,34 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
     - go to your apiviz folder
     - launch docker and run : 
         ```sh
-        docker up
+        make up
         ```
     - check the following URL in your browser : 
       ```
-      http://localhost:8100
+      http://localhost:8081
       ```
     - you can also use those other docker commands : 
       ```sh
        
       ### for local dev 
       # local DB
-      docker up
-      docker restart
-      docker down
+      make up
+      make restart
+      make down
       # distant DB - you need to set up "app/config/config_secret_vars_example.py" 
-      docker up-dist
-      docker restart-dist
-      docker down-dist
+      make up-dist
+      make restart-dist
+      make down-dist
 
       ### for testing
       # local DB 
-      docker up-test
-      docker restart-test
-      docker down-test
+      make up-test
+      make restart-test
+      make down-test
       # distant DB - you need to set up "app/config/config_secret_vars_example.py"  
-      docker up-test-dist
-      docker restart-test-dist
-      docker down-test-dist
+      make up-test-dist
+      make restart-test-dist
+      make down-test-dist
       ```
 
 1. **in production** 
@@ -67,41 +67,41 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
     - create and set a `app/config_app/config_secret_vars_prod.py` file based on `config_secret_vars_example.py` structure
     - lauch docker and run the command : 
       ```sh
-      docker up-prod
+      make up-prod
       ```
     - you can also use those other docker commands : 
       ```sh
        
       ### for production 
       # distant DB 
-      docker up-prod
-      docker restart-prod
-      docker down-prod
+      make up-prod
+      make restart-prod
+      make down-prod
       # server DB 
-      docker up-prod-server
-      docker restart-prod-server
-      docker down-prod-server
+      make up-prod-server
+      make restart-prod-server
+      make down-prod-server
 
       ### for preprod 
       # distant DB 
-      docker up-preprod
-      docker restart-preprod
-      docker down-preprod
+      make up-preprod
+      make restart-preprod
+      make down-preprod
       # server DB 
-      docker up-preprod-server
-      docker restart-preprod-server
-      docker down-preprod-server
+      make up-preprod-server
+      make restart-preprod-server
+      make down-preprod-server
 
 
       ### for testing 
       # distant DB 
-      docker up-test-dist
-      docker restart-test-dist
-      docker down-test-dist
+      make up-test-dist
+      make restart-test-dist
+      make down-test-dist
       # server DB 
-      docker up-test-server
-      docker restart-test-server
-      docker down-test-server
+      make up-test-server
+      make restart-test-server
+      make down-test-server
 
       ```
 

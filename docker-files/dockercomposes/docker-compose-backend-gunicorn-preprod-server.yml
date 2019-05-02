@@ -1,0 +1,10 @@
+version: '2.1'
+services:
+  backend:
+    container_name: ${APP}-backend-preprod-server
+    build:
+      context: ${APP_PATH}
+      dockerfile: ${DF_FOLDER_SUBPATH}/Dockerfile.backend-gunicorn-preprod-dist
+    restart: always
+    ports:
+      - "8200:8200"

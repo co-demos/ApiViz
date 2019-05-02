@@ -283,9 +283,13 @@ def spa(path):
   log_app.debug("entering SPA page")
   app_config = getDocuments(mongo_config_global)
 
+  run_mode = config_name
+  if config_docker == "docker_on" and config_name == "default":
+    run_mode = "default_docker"
+
   return render_template(
     "spa.html",
-    config_name		= config_name, # prod, testing, default...
+    config_name		= run_mode, # prod, testing, default, default_docker...
     app_config 		= app_config,
     app_metas			= app_metas,
     language			= "fr"

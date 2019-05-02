@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt
 COPY . /app_in_docker
 
 ENTRYPOINT ["gunicorn"]
-CMD ["wsgi-local-docker:app","--bind","0.0.0.0:8100"]
+CMD ["wsgi_prod_distant_docker:app","--bind","0.0.0.0:8100"]

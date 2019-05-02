@@ -2,7 +2,7 @@ FROM node:8
 
 WORKDIR /app_in_docker
 
-COPY /app .
+COPY ./app .
 
 WORKDIR /app_in_docker/frontend
 # cache package.json and node_modules to speed up builds

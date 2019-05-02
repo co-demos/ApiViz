@@ -8,22 +8,22 @@ import os, sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-os.environ['FLASK_CONFIGURATION'] = "preprod"
-os.environ['MONGODB_MODE'] = "distant"
-os.environ['DOCKER_MODE'] = "docker_off" 
+os.environ['FLASK_CONFIGURATION'] = "testing"
+os.environ['MONGODB_MODE'] = "server"
+os.environ['DOCKER_MODE'] = "docker_on"
 
 from app import app, log_app
 
 
 if __name__ == '__main__':
-	""" 
-	runner for the CIS front Flask app 
+	"""
+	runner for the CIS front Flask app
 	- warning : gets most of its variables at start from environment variables
 
-	in command line just type : 
+	in command line just type :
 	"python wsgi.py"
 	or
-	"gunicorn --bind 0.0.0.0:8200 --workers=1 wsgi_preprod_distant:app" for instance
+	"gunicorn --bind 0.0.0.0:8100 --workers=1 wsgi_testing_server_docker:app" for instance
 
 	"""
 

@@ -7,6 +7,10 @@ export const apiConfig = Object.freeze({
     rootURL: 'http://localhost:8100/backend/api',
   },
 
+  default_docker : {
+    rootURL: 'http://localhost:8081/backend/api',
+  },
+
   preprod : {
     rootURL: 'https://preprod.sonum-beta.fr/backend/api',
   },

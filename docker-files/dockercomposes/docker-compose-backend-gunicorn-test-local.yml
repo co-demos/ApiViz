@@ -1,0 +1,10 @@
+version: '2.1'
+services:
+  backend:
+    container_name: ${APP}-backend-test-local
+    build:
+      context: ${APP_PATH}
+      dockerfile: ${DF_FOLDER_SUBPATH}/Dockerfile.backend-gunicorn-test-local
+    restart: always
+    ports:
+      - "8300:8300"
