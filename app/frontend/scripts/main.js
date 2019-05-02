@@ -8,6 +8,7 @@ Vue.use(VueRouter)
 
 import store from './store/store.js';
 import routerGenerator from './routes/main.js'
+// import { getConfigName } from './utils.js';
 
 // because of this call 'beforeEnter' in dynamicRoutesGenerator is triggered first
 const router = routerGenerator(store)

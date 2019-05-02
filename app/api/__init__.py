@@ -94,25 +94,25 @@ from app.config_app.config_app_socials        import default_socials_config
 
 ### retrieve default config for every collection
 existing_app_config             = list( mongo_config_global.find({}) )
-log_app.debug(">>> existing_app_config : \n%s \n", pformat(existing_app_config))
+# log_app.debug(">>> existing_app_config : \n%s \n", pformat(existing_app_config))
 
 existing_app_footer_config      = list( mongo_config_footer.find({}) )
-log_app.debug(">>> existing_app_config : \n%s \n", pformat(existing_app_footer_config))
+# log_app.debug(">>> existing_app_config : \n%s \n", pformat(existing_app_footer_config))
 
 existing_app_navbar_config      = list( mongo_config_navbar.find({}) )
-log_app.debug(">>> existing_app_config : \n%s \n", pformat(existing_app_navbar_config))
+# log_app.debug(">>> existing_app_config : \n%s \n", pformat(existing_app_navbar_config))
 
 existing_data_endpoints_config   = list( mongo_config_data_endpoints.find({}) )
-log_app.debug(">>> existing_data_endpoints_config : \n%s \n", pformat(existing_data_endpoints_config))
+# log_app.debug(">>> existing_data_endpoints_config : \n%s \n", pformat(existing_data_endpoints_config))
 
 existing_app_styles_config       = list( mongo_config_app_styles.find({}) )
-log_app.debug(">>> existing_app_styles_config : \n%s \n", pformat(existing_app_styles_config))
+# log_app.debug(">>> existing_app_styles_config : \n%s \n", pformat(existing_app_styles_config))
 
 existing_routes_config           = list( mongo_config_routes.find({}) )
-log_app.debug(">>> existing_routes_config : \n%s \n", pformat(existing_routes_config))
+# log_app.debug(">>> existing_routes_config : \n%s \n", pformat(existing_routes_config))
 
 existing_socials_config         = list( mongo_config_socials.find({}) )
-log_app.debug(">>> existing_socials_config : \n%s \n", pformat(existing_socials_config))
+# log_app.debug(">>> existing_socials_config : \n%s \n", pformat(existing_socials_config))
 
 ### setup every collection with default
 setupDefaultConfig( mongo_config_global,           default_global_config )

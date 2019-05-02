@@ -3,12 +3,14 @@ import os
 
 from .. import log_app, pformat
 
-config_name = os.getenv('FLASK_CONFIGURATION', 'default') ### 'default' for local dev
-config_backend = os.getenv('BACKEND_MODE', 'local') ### 'local' for local dev
+config_name    = os.getenv('FLASK_CONFIGURATION', 'default')
+config_mongodb = os.getenv('MONGODB_MODE', 'local')
+config_docker  = os.getenv('DOCKER_MODE',  'docker_off')
 
 print
 log_app.info("$ config_name : %s", config_name)  
-log_app.info("$ config_backend : %s", config_backend)  
+log_app.info("$ config_mongodb : %s", config_mongodb)  
+log_app.info("$ config_docker : %s", config_docker)  
 
 correction_env_path = {
   "development"   : "",
@@ -23,12 +25,12 @@ repath_env_vars = correction_env_path[config_name]
 ### set environment default variables from gitignored : config_secret_vars_prod.py
 try :
   
-  ### load secret env vars and keys
+  ### load secret env vars and keys from secret | public file
 
-  if config_name in ["default", "testing"] : 
+  if config_name in ["default"] : 
     from .config_secret_vars_example import *
-  
-  elif config_name in ["preprod", "production"] : 
+
+  elif config_name in ["testing", "preprod", "production"] : 
     from .config_secret_vars_prod import *
 
   ### load env vars
@@ -44,11 +46,63 @@ try :
   # os.environ["PORT_EVENTLET"]		= PORT_EVENTLET
 
 
-  if config_backend in ["local"] : 
-    os.environ["MONGODB_URI"]	= MONGO_URI
 
-  if config_backend in ["distant", "standalone"] : 
-    os.environ["MONGODB_URI"]	= MONGO_URI_DISTANT
+
+  ### load correct MONGO_URI given env vars
+  # config_name : default | testing | preprod | production
+  # x 
+  # config_docker : true | false
+  # x 
+  # config_mongodb : local | distant | server
+
+
+  # temporary dicts
+  mongodb_roots_dict = {
+    "local"  : { 
+      "docker_off" : MONGO_ROOT_LOCAL,  
+      "docker_on"  : MONGO_ROOT_DOCKER  
+    },
+    "server" : { 
+      "docker_off" : MONGO_ROOT_SERVER, 
+      "docker_on"  : MONGO_ROOT_DOCKER  
+    },
+  }
+
+  mongodb_ports_dict = {
+    "local"  : MONGO_PORT_LOCAL,
+    "server" : MONGO_PORT_SERVER,
+  }
+
+  mongodb_dbnames_dict = {
+    "default"     : MONGO_DBNAME,
+    "testing"     : MONGO_DBNAME_TEST,
+    "preprod"     : MONGO_DBNAME_PREPROD,
+    "production"  : MONGO_DBNAME
+  }
+
+  ### get DB name
+  mongodb_dbname = mongodb_dbnames_dict[config_name]
+
+  ### get MONGODB FULL URI 
+  ### format : mongodb://<USER>:<PASSWORD>@<HOST>:<PORT>/<DBNAME>?<OPTIONS>
+
+  if config_mongodb == "distant" :
+    mongodb_uri = "{}/{}{}".format(MONGO_DISTANT_URI, mongodb_dbname, MONGO_DISTANT_URI_OPTIONS)
+  
+  else : 
+    mongodb_root = mongodb_roots_dict[config_mongodb][config_docker]
+    mongodb_port = mongodb_ports_dict[config_mongodb]
+
+    ### get login if mongodb hosted on a server
+    mongodb_login = "" 
+    mongodb_options = "" 
+    if config_name == "server" : 
+      mongodb_login = "{}:{}@".format(MONGO_USER_SERVER, MONGO_PASS_SERVER)
+      mongodb_options = MONGO_OPTIONS_SERVER ### must begin with "?"
+
+    mongodb_uri = "mongodb://{}{}:{}/{}{}".format(mongodb_login, mongodb_root, mongodb_port, mongodb_dbname, mongodb_options)
+
+  os.environ["MONGODB_URI"] = mongodb_uri 
 
 
 

@@ -39,7 +39,9 @@ export const dynamicRoutesGenerator = function(store){
       beforeEnter(to, from, next){
 
         // console.log("\n... dynamicRoutesGenerator / beforeEnter ... ")
-        
+
+        console.log("... process.env.NODE_ENV : \n", process.env.NODE_ENV)
+
         // SET RUN MODE AND rootUrlBackend FOR SEARCHES
         if ( typeof store.state.runMode === 'undefined' || typeof store.state.rootUrlBackend === 'undefined' ) {
           const configName = getConfigName('config_name')

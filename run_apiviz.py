@@ -17,12 +17,13 @@ debug = True
 
 
 @click.command()
-@click.option('--mode', 	  default="default", 		nargs=1,	help="The <mode> you need to run the app : default, testing, preprod, production" )
-@click.option('--backend', 	default="local", 	  	nargs=1,	help="The <backend> you need to run the app : local, distant, standalone" )
+@click.option('--mode', 	  default="default", 		nargs=1,	help="The <mode> you need to run the app : default | testing | preprod | production" )
+@click.option('--docker', 	default="docker_off", nargs=1,	help="Are you running the app with <docker> : docker_off | docker_on" )
+@click.option('--mongodb', 	default="local", 	  	nargs=1,	help="The <mongodb> you need to run the app : local | distant | server" )
 @click.option('--host', 	  default="localhost", 	nargs=1,	help="The <host> name you want the app to run on : <IP_NUMBER> " )
 @click.option('--port',   	default="8100", 			nargs=1,	help="The <port> number you want the app to run on : <PORT_NUMBER>")
 @click.option('--https', 	  default="false", 			nargs=1,	help="The <https> mode you want the app to run on : true | false")
-def app_runner(mode, backend, host, port, https) :
+def app_runner(mode, docker, mongodb, host, port, https) :
   """
   app_runner
 
@@ -36,7 +37,8 @@ def app_runner(mode, backend, host, port, https) :
   ### WARNING : CLIck will treat every input as string as defaults values are string too
   print "\n=== CUSTOM CONFIG FROM CLI ===\n"
   print "=== mode 	 : ", mode
-  print "=== backend : ", backend
+  print "=== docker  : ", docker
+  print "=== mongodb : ", mongodb
   print "=== host    : ", host
   print "=== port  	 : ", port
   print "=== https 	 : ", https
@@ -55,7 +57,8 @@ def app_runner(mode, backend, host, port, https) :
 
   ### SET UP ENV VARS FROM CLI 
   os.environ["DOMAIN_ROOT"]	 = host
-  os.environ["BACKEND_MODE"] = backend
+  os.environ["DOCKER_MODE"]  = docker
+  os.environ["MONGODB_MODE"] = mongodb
   os.environ["DOMAIN_PORT"]	 = port
   os.environ["SERVER_NAME"]	 = host + ":" + port
   os.environ["DOMAIN_NAME"]	 = http_mode + "://" + host + ":" + port

@@ -9,7 +9,8 @@ import os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 os.environ['FLASK_CONFIGURATION'] = "preprod"
-os.environ['BACKEND_MODE'] = "local"
+os.environ['MONGODB_MODE'] = "server"
+os.environ['DOCKER_MODE'] = "docker_off"
 
 from app import app, log_app
 

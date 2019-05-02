@@ -23,6 +23,7 @@ catch(e){
 
 // FUNCTION TO GET THE RUN MODE FROM <HEAD>
 export function getConfigName(metaName) {
+
   const metas = document.getElementsByTagName('meta');
   for (let i = 0; i < metas.length; i++) {
     if (metas[i].getAttribute('name') === metaName) {
