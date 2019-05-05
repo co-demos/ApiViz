@@ -40,8 +40,15 @@ default_data_endpoints_config = [
       "content"       : u"apiviz default API endpoint for user authentication (confirm acces)",
       "root_url"      : "/auth/tokens/confirm_access",
       "args_options"  : [
-        { "app_arg" : "authToken", "arg" : "token",     "optional" : False, "in" : ["url","header"], "default" : "", "type" : "str" },
+        { "app_arg" : "authToken", "arg" : "token", "optional" : False, "in" : ["url","header"], "default" : "", "type" : "str" },
       ],
+      "resp_fields" : {
+        "user_role"    : { "path" : "/data/auth/role" },
+        "user_id"      : { "path" : "/data/_id" },
+        "user_name"    : { "path" : "/data/infos/name" },
+        "user_surname" : { "path" : "/data/infos/surname" },
+        "user_email"   : { "path" : "/data/infos/email" },
+      },
       "app_version"   : version,
       "method"        : "GET",
       "help"          : u"define the endpoint for a JWT check",
@@ -56,7 +63,7 @@ default_data_endpoints_config = [
       "content"       : u"apiviz default API endpoint for user authentication (new acces token) : needs a valid refresh token as token ",
       "root_url"      : "/auth/tokens/new_access_token",
       "args_options"  : [
-        { "app_arg" : "authToken", "arg" : "token",     "optional" : False, "in" : ["url","header"], "default" : "", "type" : "str" },
+        { "app_arg" : "authToken", "arg" : "token", "optional" : False, "in" : ["url","header"], "default" : "", "type" : "str" },
       ],
       "app_version"   : version,
       "method"        : "GET",
@@ -122,8 +129,8 @@ default_data_endpoints_config = [
       "content"       : u"apiviz default API endpoint for user infos",
       "root_url"      : "/usr/infos/get_one",
       "args_options"  : [
-        { "app_arg" : "authToken", "arg" : "token",     "optional" : False, "in" : ["url","header"],   "default" : "", "type" : "str" },
-        { "app_arg" : "userID", "arg" : "doc_id",   "optional" : True,   "in" : ["url"],           "default" : "", "type" : "str"}
+        { "app_arg" : "authToken", "arg" : "token",  "optional" : False, "in" : ["url","header"],   "default" : "", "type" : "str" },
+        { "app_arg" : "userID",    "arg" : "doc_id", "optional" : True,   "in" : ["url"],           "default" : "", "type" : "str"}
       ],
       "app_version"   : version,
       "method"        : "GET",
@@ -139,8 +146,8 @@ default_data_endpoints_config = [
       "content"       : u"apiviz default API endpoint for editing an user",
       "root_url"      : "/auth/edit/",
       "args_options"  : [
-        { "app_arg" : "authToken", "arg" : "token",     "optional" : False, "in" : ["url","header"],   "default" : "", "type" : "str" },
-        { "app_arg" : "userID", "arg" : "doc_id",   "optional" : True,   "in" : ["url"],           "default" : "", "type" : "str"}
+        { "app_arg" : "authToken", "arg" : "token",  "optional" : False, "in" : ["url","header"],   "default" : "", "type" : "str" },
+        { "app_arg" : "userID",    "arg" : "doc_id", "optional" : True,   "in" : ["url"],           "default" : "", "type" : "str"}
       ],
       "app_version"   : version,
       "method"        : "PUT",
@@ -157,8 +164,8 @@ default_data_endpoints_config = [
       "content"       : u"apiviz default API endpoint for deleting an user",
       "root_url"      : "/auth/edit/",
       "args_options"  : [
-        { "app_arg" : "authToken", "arg" : "token",    "optional" : False, "in" : ["url","header"],   "default" : "", "type" : "str" },
-        { "app_arg" : "userID",    "arg" : "doc_id",   "optional" : True,   "in" : ["url"],           "default" : "", "type" : "str"}
+        { "app_arg" : "authToken", "arg" : "token",  "optional" : False, "in" : ["url","header"],   "default" : "", "type" : "str" },
+        { "app_arg" : "userID",    "arg" : "doc_id", "optional" : True,   "in" : ["url"],           "default" : "", "type" : "str"}
       ],
       "app_version"   : version,
       "method"        : "DELETE",

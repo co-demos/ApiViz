@@ -108,7 +108,7 @@ def DocOidToString(data):
   # log_app.debug("obj : %s", obj)
   return obj
 
-def getDocuments(collection, query={}, uuid="", oid_to_id=True, as_list=False, field="field") :
+def getDocuments(collection, query={}, oid_to_id=True, as_list=False, field="field") :
 
   ### query collection and transform as list
   results = list(collection.find(query) )
@@ -126,15 +126,59 @@ def getDocuments(collection, query={}, uuid="", oid_to_id=True, as_list=False, f
 
   return results
 
-def checkJWT(token, url_check="http://localhost:4100/api/auth/tokens/confirm_access"):
-  ### TO DO
+def checkJWT(token, uuid="", url_check="http://localhost:4100/api/auth/tokens/confirm_access"):
+  """ 
+  authenticate a token 
+  sending request to the auth url / service 
+  specified in config
+  ... doing so to avoid middle man risk when editing
+  """
+
+  print ". "*50
+
+  ### set the collection to user
+  mongoColl = mongoConfigColls['endpoints']
+  auth_mode = app.config['AUTH_MODE']
+
+  ### retrieving the root_url for authentication in general given the AUTH_MODE
+  root_auth_doc = mongoColl.find_one({'apiviz_front_uuid': uuid, 'field' : 'app_data_API_root_auth'})
+  auth_url = root_auth_doc['root_url'][auth_mode]
+  # log_app.debug( "config app route / auth_url : %s", pformat(auth_url) )
+
+  ### retrieving the root_url and args for authentication
+  confirm_auth_doc = mongoColl.find_one({'apiviz_front_uuid': uuid, 'field' : 'app_data_API_user_auth'})
+  confirm_rooturl = confirm_auth_doc['root_url']
+  confirm_basestring = auth_url + confirm_rooturl
+  # log_app.debug( "config app route / confirm_basestring : %s", pformat(confirm_basestring) )
+  
+  confirm_options = confirm_auth_doc['args_options']
+  confirm_token_arg = ''
+  for arg in confirm_options : 
+    if arg['app_arg'] == 'authToken' : 
+      confirm_arg = '?{}={}'.format(arg['arg'], token)
+  
+  confirm_url = confirm_basestring + confirm_arg
+  log_app.debug( "config app route / confirm_url : %s", pformat(confirm_url) )
+
+  ### send request to service and read response
+  auth_response = requests.get(confirm_url)
+  auth_response_status = auth_response.status_code
+  log_app.debug( "config app route / auth_response_status : %s", auth_response_status )
+  auth_response_data = auth_response.json()
+  log_app.debug( "config app route / auth_response : \n%s", pformat(auth_response_data) )
+
+  # log_app.debug( "config app route / auth_response : ..." )
+  # log_app.debug( "config app route / auth_response.content : \n%s", pformat(auth_response.content) )
+
+  print ". "*50
+
   return True
 
 
 @app.route('/backend/api/config/<string:collection>/<string:doc_id>', methods=['GET','POST','DELETE'])
 @app.route('/backend/api/config/<string:collection>', methods=['GET'], defaults={"doc_id" : None})
 @app.route('/backend/api/config', methods=['GET'], defaults={'collection': 'global', "doc_id" : None})
-def get_configs(collection, doc_id=None):
+def backend_configs(collection, doc_id=None):
   """
   Main route to GET and POST/PUT/DELETE
   choices 	: global | endpoints | styles | routes | socials
@@ -142,7 +186,8 @@ def get_configs(collection, doc_id=None):
   arguments : as_list (bool), field (str)
   example 	: http://localhost:8100/backend/api/config?as_list=true
   """
-
+  
+  print ""
   log_app.debug("config app route")
   log_app.debug("config app route / collection : %s", collection )
   log_app.debug("config app route / doc_id : %s", doc_id )
@@ -158,10 +203,13 @@ def get_configs(collection, doc_id=None):
   apiviz_uuid = request.args.get('uuid',    default="", 	type=str)
   log_app.debug("config app route / apiviz_uuid : %s", apiviz_uuid )
 
+  field 	    = request.args.get('field', 	default='field', 	type=str)
   as_list     = request.args.get('as_list', default=False, 		type=bool)
-  field 	    = request.args.get('field', 	default="field", 	type=str)
-  token 	    = request.args.get('token', 	default=None, 		type=str)
   log_app.debug("config app route / as_list : %s", as_list )
+
+  token 	    = request.args.get('token', 	default='', 	  	type=str)
+  ### example of access token :
+  # eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTcwODI3OTQsIm5iZiI6MTU1NzA4Mjc5NCwianRpIjoiNjA4YWRhMDktMzA4My00ZmE1LTg1NDMtNjRkNDJmM2E4ZmZhIiwiZXhwIjoxNTU3MTI1OTk0LCJpZGVudGl0eSI6IjVjY2YzMmExODYyNmEwM2MzNmY1MzYzNCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7Il9pZCI6IjVjY2YzMmExODYyNmEwM2MzNmY1MzYzNCIsImluZm9zIjp7Im5hbWUiOiJFbGlub3IiLCJzdXJuYW1lIjoiT3N0cm9tIiwiZW1haWwiOiJlbGlub3Iub3N0cm9tQGVtYWlsbmEuY28iLCJwc2V1ZG8iOiJBbm9ueW1vdXMgVXNlciJ9LCJhdXRoIjp7InJvbGUiOiJndWVzdCIsImNvbmZfdXNyIjpmYWxzZX0sInByb2ZpbGUiOnsibGFuZyI6ImVuIiwiYWdyZWVtZW50IjpmYWxzZSwidXNyX3ZpZXciOiJtaW5pbWFsIiwidXNyX3Byb2ZpbGVzIjpbXX19fQ.Iux2Grzvv-6VBXzKME5ub31iLtl-LHYea_0JSdQ22eM
 
   ### filter out field arg to unique identifiers fields in documents
   if field not in ['_id', 'field'] :
@@ -177,8 +225,9 @@ def get_configs(collection, doc_id=None):
 
 
   ### check if token allows user to POST
-  if token :
-    is_authorized = checkJWT(token)
+  # if True : ### only for tests
+  if token != '' :
+    is_authorized = checkJWT(token, uuid=apiviz_uuid)
 
   ### TO DO
   if request.method == 'POST':
@@ -196,19 +245,19 @@ def get_configs(collection, doc_id=None):
 
   elif request.method == 'GET':
 
-    app_config_dict = getDocuments(mongoColl, query=query, uuid=apiviz_uuid, as_list=as_list, field=field)
+    app_config_dict = getDocuments(mongoColl, query=query, as_list=as_list, field=field)
 
     return jsonify( {
-        "msg" 				: "this is the results from your query on the '%s' config collection" % collection,
-        "query"				: query,
-        "request"			: {
-          "url" 				: request.url,
-          "args" 				: request.args,
-          "method"			: request.method,
-          "collection"	: collection,
-          "doc_id"			: doc_id,
-        },
-        "app_config" 	: app_config_dict
+      "msg" 				: "this is the results from your query on the '%s' config collection" % collection,
+      "query"				: query,
+      "request"			: {
+        "url" 				: request.url,
+        "args" 				: request.args,
+        "method"			: request.method,
+        "collection"	: collection,
+        "doc_id"			: doc_id,
+      },
+      "app_config" 	: app_config_dict
     } )
 
 

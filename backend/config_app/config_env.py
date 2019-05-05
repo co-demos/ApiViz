@@ -4,8 +4,9 @@ import os
 from .. import log_app, pformat
 
 config_name    = os.getenv('FLASK_CONFIGURATION', 'default')
-config_mongodb = os.getenv('MONGODB_MODE', 'local')
-config_docker  = os.getenv('DOCKER_MODE',  'docker_off')
+config_mongodb = os.getenv('MONGODB_MODE',        'local')
+config_docker  = os.getenv('DOCKER_MODE',         'docker_off')
+config_auth    = os.getenv('AUTH_MODE',           'default')
 
 print
 log_app.info("$ config_name : %s", config_name)  
@@ -26,7 +27,6 @@ repath_env_vars = correction_env_path[config_name]
 try :
   
   ### load secret env vars and keys from secret | public file
-
   if config_name in ["default"] : 
     from .config_secret_vars_example import *
 
@@ -151,6 +151,9 @@ class Config(object):
   MONGO_COLL_CONFIG_DATA_ENDPOINTS	= "config_data_endpoints"
   MONGO_COLL_CONFIG_ROUTES					= "config_routes"
   MONGO_COLL_CONFIG_SOCIALS					= "config_socials"
+
+  """ AUTH MODE """
+  AUTH_MODE = config_auth
 
 
 class DevelopmentConfig(Config):
