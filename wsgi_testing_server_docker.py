@@ -12,7 +12,7 @@ os.environ['FLASK_CONFIGURATION'] = "testing"
 os.environ['MONGODB_MODE'] = "server"
 os.environ['DOCKER_MODE'] = "docker_on"
 
-from app import app, log_app
+from backend import app, log_app
 
 
 if __name__ == '__main__':

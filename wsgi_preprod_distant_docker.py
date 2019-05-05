@@ -12,7 +12,7 @@ os.environ['FLASK_CONFIGURATION'] = "preprod"
 os.environ['MONGODB_MODE'] = "distant"
 os.environ['DOCKER_MODE'] = "docker_on"
 
-from app import app, log_app
+from backend import app, log_app
 
 
 if __name__ == '__main__':
@@ -23,7 +23,7 @@ if __name__ == '__main__':
 	in command line just type : 
 	"python wsgi.py"
 	or
-	"gunicorn --bind 0.0.0.0:8200 --workers=1 wsgi_preprod_docker:app" for instance
+	"gunicorn --bind 0.0.0.0:8200 --workers=1 wsgi_preprod_distant_docker:app" for instance
 
 	"""
 

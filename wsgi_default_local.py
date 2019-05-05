@@ -2,6 +2,11 @@
 
 """
 wsgi file to run app in production mode from gunicorn
+
+TO DO : https://stackoverflow.com/questions/8495367/using-additional-command-line-arguments-with-gunicorn
+$ gunicorn 'mypackage:build_app(foo="bar")'
+and 
+def app(*args, **kwargs):...
 """
 
 import os, sys
@@ -11,8 +16,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 os.environ['FLASK_CONFIGURATION'] = "default"
 os.environ['MONGODB_MODE'] = "local"
 os.environ['DOCKER_MODE'] = "docker_off"
+os.environ["AUTH_MODE"] = "default"
 
-from app import app, log_app
+from backend import app, log_app
 
 
 if __name__ == '__main__':
@@ -23,7 +29,7 @@ if __name__ == '__main__':
 	in command line just type :
 	"python wsgi.py"
 	or
-	"gunicorn --bind 0.0.0.0:8100 --workers=1 wsgi_default_docker:app" for instance
+	"gunicorn --bind 0.0.0.0:8100 --workers=1 wsgi_default_local:app" for instance
 
 	"""
 

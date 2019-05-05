@@ -2,9 +2,10 @@ FROM node:8
 
 WORKDIR /app_in_docker
 
-COPY ./app .
+# COPY ./frontend .
+COPY ./backend/frontend .
 
-WORKDIR /app_in_docker/frontend
+WORKDIR /app_in_docker
 # cache package.json and node_modules to speed up builds
 RUN npm install
 

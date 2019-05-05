@@ -61,7 +61,14 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 
 1. **in production** 
     - install [Docker](https://phoenixnap.com/kb/how-to-install-docker-on-ubuntu-18-04) on your server (here for Ubuntu 18) 
-    - set up UFW, GIT, NGINX, 
+      ```sh
+      sudo apt-get update
+      sudo apt-get remove docker docker-engine docker.io
+      sudo apt install docker.io
+      sudo systemctl start docker
+      sudo systemctl enable docker
+      ```
+    - set up UFW, GIT, NGINX, ...
     - (optional) [install MongoDB](https://docs.mongodb.com/manual/installation/) (if the ApiViz's DB for config is hosted on your own server)
     - add the github repo
     - create and set a `app/config_app/config_secret_vars_prod.py` file based on `config_secret_vars_example.py` structure

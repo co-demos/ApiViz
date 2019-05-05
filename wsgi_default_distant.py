@@ -11,8 +11,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 os.environ['FLASK_CONFIGURATION'] = "default"
 os.environ['MONGODB_MODE'] = "distant"
 os.environ['DOCKER_MODE'] = "docker_off"
+os.environ["AUTH_MODE"] = "distant_preprod"
 
-from app import app, log_app
+from backend import app, log_app
 
 
 if __name__ == '__main__':
@@ -23,7 +24,7 @@ if __name__ == '__main__':
 	in command line just type :
 	"python wsgi.py"
 	or
-	"gunicorn --bind 0.0.0.0:8100 --workers=1 wsgi_default_distant_docker:app" for instance
+	"gunicorn --bind 0.0.0.0:8100 --workers=1 wsgi_default_distant:app" for instance
 
 	"""
 
