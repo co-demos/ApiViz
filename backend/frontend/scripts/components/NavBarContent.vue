@@ -171,14 +171,14 @@
           <hr class="navbar-divider">
 
           <router-link class="navbar-item"
-            v-if="user.role === 'admin'"
+            v-if="isUserAdmin || isUserStaff"
             :to="'/backoffice'"
             >
             {{ getText('backoffice') }}
           </router-link>
 
           <router-link class="navbar-item"
-            :to="'/backoffice/user'"
+            :to="'/preferences'"
             >
             {{ getText('pref_user') }}
           </router-link>
@@ -222,7 +222,13 @@ export default {
     }),
     showNav() {
       return this.$store.getters.getNavbarVisibility
-    }
+    },
+    isUserAdmin () {
+      return this.$store.getters.getCheckUserRole('admin')
+    },
+    isUserStaff () {
+      return this.$store.getters.getCheckUserRole('staff')
+    },
   },
   methods : {
 

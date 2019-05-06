@@ -167,9 +167,6 @@ def checkJWT(token, uuid="", url_check="http://localhost:4100/api/auth/tokens/co
   auth_response_data = auth_response.json()
   log_app.debug( "config app route / auth_response : \n%s", pformat(auth_response_data) )
 
-  # log_app.debug( "config app route / auth_response : ..." )
-  # log_app.debug( "config app route / auth_response.content : \n%s", pformat(auth_response.content) )
-
   print ". "*50
 
   return True
@@ -186,7 +183,7 @@ def backend_configs(collection, doc_id=None):
   arguments : as_list (bool), field (str)
   example 	: http://localhost:8100/backend/api/config?as_list=true
   """
-  
+
   print ""
   log_app.debug("config app route")
   log_app.debug("config app route / collection : %s", collection )
@@ -201,11 +198,11 @@ def backend_configs(collection, doc_id=None):
 
   ### get request args if any
   apiviz_uuid = request.args.get('uuid',    default="", 	type=str)
-  log_app.debug("config app route / apiviz_uuid : %s", apiviz_uuid )
+  # log_app.debug("config app route / apiviz_uuid : %s", apiviz_uuid )
 
   field 	    = request.args.get('field', 	default='field', 	type=str)
   as_list     = request.args.get('as_list', default=False, 		type=bool)
-  log_app.debug("config app route / as_list : %s", as_list )
+  # log_app.debug("config app route / as_list : %s", as_list )
 
   token 	    = request.args.get('token', 	default='', 	  	type=str)
   ### example of access token :

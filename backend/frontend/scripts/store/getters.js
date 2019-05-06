@@ -17,9 +17,9 @@ const getSearchConfigScrollBeforeBottomTrigger = state => state.search.config.di
   }
 
 // UX GETTERS
-const getNavbarVisibility = state => {
-  return state.showNav
-}
+  const getNavbarVisibility = state => {
+    return state.showNav
+  }
 
 // GLOBAL APP CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
@@ -86,7 +86,6 @@ const getNavbarVisibility = state => {
     }
     return state.config.footer.app_footer
   }
-
 
 // ROUTE CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
@@ -260,6 +259,21 @@ const getNavbarVisibility = state => {
 // BROADER CONFIG GETTERS
 // - - - - - - - - - - - - - - - //
 
+
+// USER-RELATED / BACKOFFICE GETTERS
+// - - - - - - - - - - - - - - - //
+  const getConfirmTokenConfig = (state) => {
+    return state.config.endpoints.find(function(r) {
+      return r.field === 'app_data_API_user_auth'
+    });
+  }
+  const getCheckUserRole = (state, getters) => (roleToCheck) => {
+    const user = state.user
+    const userRole = user.role // role from auth confirm access response
+    const authConfig = getters.getConfirmTokenConfig 
+    const roleUserToCheck = authConfig.roles[roleToCheck]['resp_role'] // role corresponding to roleToCheck
+    return roleUserToCheck === userRole
+  }
   const getEndpointConfigAuthUsers = state => {
     // console.log("getEndpointConfigAuthUsers...")
     return state.config.endpoints.filter(function(r) {
@@ -275,14 +289,6 @@ const getNavbarVisibility = state => {
     });
   }
   const getEndpointConfig = state => {
-    // console.log("getEndpointConfig - state.config : \n", state.config)
-    // if (!state.config
-    //   || !state.config.endpoints
-    //   || !state.search.endpoint_type
-    //   || !state.search.dataset_uri
-    //   ) {
-    //     console.log('some condition not respected');       return undefined;
-    // }
     return state.config.endpoints.find(function(r) {
       return r.endpoint_type === state.search.endpoint_type
       && r.dataset_uri === state.search.dataset_uri;
@@ -351,7 +357,7 @@ const getNavbarVisibility = state => {
 
     getNavbarConfig,
     getFooterConfig,
-
+    
     getEndpointConfig,
     getCurrentRouteConfig,
     getRouteConfigListForDataset,
@@ -359,7 +365,10 @@ const getNavbarVisibility = state => {
     getRouteConfigStatForDataset,
     getRouteConfigDefaultDatasetImages,
     getSearchDatasetURI,
-
+    
+    getConfirmTokenConfig, 
+    getCheckUserRole,
+    
     getEndpointConfigAuthUsers,
     getEndpointConfigAuthSpecific,
 

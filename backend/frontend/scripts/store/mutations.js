@@ -121,27 +121,27 @@ export default {
   },
 
 
-  ///GEOLOC
+  // GEOLOC
   addGeolocs(state, {geolocByProjectId}){
-      state.geolocByProjectId = new Map([...state.geolocByProjectId, ...geolocByProjectId])
+    state.geolocByProjectId = new Map([...state.geolocByProjectId, ...geolocByProjectId])
   },
 
   // CONFIG
   setConfig(state, {type,result}) {
-      // console.log("result : ", result)
-      state.config[type] = result
+    // console.log("result : ", result)
+    state.config[type] = result
   },
 
   // USER-RELATED
   setTokens (state, {tokens}) {
-      state.jwt = (tokens && tokens.access_token && tokens.refresh_token) ? tokens : undefined
+    state.jwt = (tokens && tokens.access_token && tokens.refresh_token) ? tokens : undefined
   },
   setInfos (state, {infos}) {
-      state.user.infos = (infos && infos.email) ? infos : undefined
-      state.user.isLoggedin = (infos && infos.email) ? true : false
+    state.user.infos = (infos && infos.email) ? infos : undefined
+    state.user.isLoggedin = (infos && infos.email) ? true : false
   },
   setRole (state, {role}) {
-      state.user.role = (typeof role === 'string') ? role : undefined
+    state.user.role = (typeof role === 'string') ? role : undefined
   },
 
 

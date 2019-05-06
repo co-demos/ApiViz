@@ -1,14 +1,14 @@
-<!-- Tufts VUE 3.3.0 concept-map (APIVIZ CONFIGURATIONS.vue) 2019-05-05 -->
+<!-- Tufts VUE 3.3.0 concept-map (APIVIZ CONFIGURATIONS.vue) 2019-05-06 -->
 <!-- Tufts VUE: http://vue.tufts.edu/ -->
 <!-- Do Not Remove: VUE mapping @version(1.1) jar:file:/Applications/VUE.app/Contents/Resources/Java/VUE.jar!/tufts/vue/resources/lw_mapping_1_1.xml -->
-<!-- Do Not Remove: Saved date Sun May 05 16:48:12 CEST 2019 by jpy on platform Mac OS X 10.14.4 in JVM 9.0.4+11 -->
+<!-- Do Not Remove: Saved date Mon May 06 12:30:02 CEST 2019 by jpy on platform Mac OS X 10.14.4 in JVM 9.0.4+11 -->
 <!-- Do Not Remove: Saving version @(#)VUE: built October 8 2015 at 1658 by tomadm on Linux 2.6.32-504.23.4.el6.x86_64 i386 JVM 1.7.0_21-b11(bits=32) -->
 <?xml version="1.0" encoding="US-ASCII"?>
 <LW-MAP xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="none" ID="0"
     label="APIVIZ CONFIGURATIONS.vue" created="1557058466769" x="0.0"
     y="0.0" width="2949.4136" height="2113.1765" strokeWidth="0.0" autoSized="false">
-    <resource referenceCreated="1557067693018" size="143776"
+    <resource referenceCreated="1557138602192" size="143773"
         spec="/Users/jpy/Dropbox/_FLASK/_CIS/_POC_EIG/apiviz/APIVIZ CONFIGURATIONS.vue"
         type="1" xsi:type="URLResource">
         <title>APIVIZ CONFIGURATIONS.vue</title>
@@ -1971,7 +1971,8 @@
         <URIString>http://vue.tufts.edu/rdf/resource/886f673d52d86f1a2f994f6b6039ca25</URIString>
         <shape xsi:type="ellipse"/>
     </child>
-    <child ID="31" label="PARTIAL SOVEREIGN CLIENT - LOCAL DB"
+    <child ID="31"
+        label="CONFIG SOV A&#xa;PARTIAL SOVEREIGN CLIENT - LOCAL DB"
         layerID="30" created="1557059391974" x="-764.1322" y="-170.75"
         width="951.1322" height="42.5" strokeWidth="1.0" strokeStyle="4"
         autoSized="false" xsi:type="node">
@@ -1982,7 +1983,8 @@
         <URIString>http://vue.tufts.edu/rdf/resource/87fa488a52d86f1a2e736fb2118acfae</URIString>
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
-    <child ID="32" label="PARTIAL LOCAL DEVELOPMENT - DISTANT DBs"
+    <child ID="32"
+        label="CONFIG DEV B &#xa;PARTIAL LOCAL DEVELOPMENT - DISTANT DBs"
         layerID="30" created="1557059509812" x="-1630.8826" y="773.2235"
         width="758.4762" height="42.5" strokeWidth="1.0" strokeStyle="4"
         autoSized="false" xsi:type="node">
@@ -1993,8 +1995,9 @@
         <URIString>http://vue.tufts.edu/rdf/resource/8809942b52d86f1a2e736fb294e1c7cf</URIString>
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
-    <child ID="53" label="SAAS CLIENT - CONFIG A" layerID="30"
-        created="1557059595076" x="-762.0106" y="766.0965"
+    <child ID="53"
+        label="CONFIG SERVICE A&#xa;CLIENT - CONFIG MAIN DISTANT DBs"
+        layerID="30" created="1557059595076" x="-762.0106" y="766.0965"
         width="945.6592" height="42.5" strokeWidth="1.0" strokeStyle="4"
         autoSized="false" xsi:type="node">
         <fillColor>#7F7F7F</fillColor>
@@ -2004,7 +2007,8 @@
         <URIString>http://vue.tufts.edu/rdf/resource/8809942c52d86f1a2e736fb2e10db913</URIString>
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
-    <child ID="124" label="PARTIAL SOVEREIGN CLIENT - DISTANT DB"
+    <child ID="124"
+        label="CONFIG SOV B&#xa;PARTIAL SOVEREIGN CLIENT - DISTANT DB"
         layerID="30" created="1557061794318" x="349.7391" y="-174.20645"
         width="951.1322" height="42.5" strokeWidth="1.0" strokeStyle="4"
         autoSized="false" xsi:type="node">
@@ -2015,8 +2019,9 @@
         <URIString>http://vue.tufts.edu/rdf/resource/8824ab5352d86f1a2e736fb28370a0b3</URIString>
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
-    <child ID="228" label="SAAS CLIENT - CONFIG B" layerID="30"
-        created="1557062524726" x="349.08444" y="764.3186"
+    <child ID="228"
+        label="CONFIG SERVICE B&#xa;CLIENT - CONFIG FULL DISTANT DBs"
+        layerID="30" created="1557062524726" x="349.08444" y="764.3186"
         width="945.6592" height="42.5" strokeWidth="1.0" strokeStyle="4"
         autoSized="false" xsi:type="node">
         <fillColor>#7F7F7F</fillColor>
@@ -2036,7 +2041,8 @@
         <URIString>http://vue.tufts.edu/rdf/resource/8839c58452d86f1a2e736fb27c59a5e1</URIString>
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
-    <child ID="280" label="PARTIAL LOCAL DEVELOPMENT - LOCAL DBs"
+    <child ID="280"
+        label="CONFIG DEV A &#xa;PARTIAL LOCAL DEVELOPMENT - LOCAL DBs"
         layerID="30" created="1557066996134" x="-1646.8619"
         y="-158.09966" width="758.4762" height="42.5" strokeWidth="1.0"
         strokeStyle="4" autoSized="false" xsi:type="node">
@@ -2718,8 +2724,8 @@
         y="0.0" width="1.4E-45" height="1.4E-45" strokeWidth="0.0" autoSized="false">
         <URIString>http://vue.tufts.edu/rdf/resource/8824ab5952d86f1a2e736fb2afe1f695</URIString>
     </layer>
-    <userZoom>0.6047412126062188</userZoom>
-    <userOrigin x="-1517.3365" y="-337.416"/>
+    <userZoom>0.5402494986888906</userZoom>
+    <userOrigin x="-1027.5149" y="-302.4992"/>
     <presentationBackground>#202020</presentationBackground>
     <PathwayList currentPathway="0" revealerIndex="-1">
         <pathway ID="0" label="Chemin sans nom" created="1557058466768"

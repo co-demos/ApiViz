@@ -9,14 +9,13 @@
         <div class="columns is-mobile is-centered">
 
           <!-- DEBUGGING -->
-          <!-- {{ user }} -->
+          {{ user }}
 
           <div class="column is-6" 
             v-if="!user.isLoggedin"
             >
 
             <p class="subtitle has-text-grey">
-              <!-- Vous avez déjà un compte ? -->
               {{ getText('is_account') }}
             </p>
 
@@ -30,7 +29,6 @@
               <div class="column is-6" >
                 <p class="has-text-grey">
                   <router-link :to="'/register'">
-                    <!-- créer un compte -->
                     {{ getText('create_account') }}
                   </router-link>
                 </p>
@@ -39,7 +37,6 @@
               <div class="column is-6" >
                 <p class="has-text-grey">
                   <router-link disabled :to="'/forgot-password'">
-                    <!-- password oublié ? -->
                     {{ getText('forgot_password') }}
                   </router-link>
                 </p>
@@ -47,28 +44,8 @@
 
             </div>
 
-
-
             <br>
             <br>
-
-            <!-- <p class="subtitle has-text-grey">Pas encore de compte ?</p> -->
-            <!-- <h3 class="title has-text-grey">Enregistrez-vous</h3> -->
-
-            <!-- <div class="box"> -->
-              <!-- <div class="content is-size-7">
-                <p>
-                  Profitez d’un compte sur la plateforme, et
-                  participez à l’amélioration du site.
-                </p>
-              </div> -->
-              <!-- <router-link 
-                id="btn_register" 
-                class="button is-primary is-large is-outlined is-fullwidth tooltip is-tooltip-right is-tooltip-multiline" 
-                :to="'/register'">
-                <strong> S'inscrire </strong>
-              </router-link>
-            </div> -->
 
           </div>
 

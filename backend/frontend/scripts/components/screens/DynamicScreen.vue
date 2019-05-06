@@ -108,6 +108,12 @@
     ></RegisterScreen>
 
 
+    <!-- BACKOFFICE ROUTES -->
+    <BackOfficeScreen 
+      v-if="localRouteConfig.dynamic_template == 'BackOffice' "
+      :routeConfig="localRouteConfig"
+      :endPointConfig="localEndpointConfig"
+    ></BackOfficeScreen>
 
 
     <!-- FOOTERS -->
@@ -149,6 +155,8 @@ import LoginScreen       from './LoginScreen.vue';
 import LogoutScreen      from './LogoutScreen.vue';
 import RegisterScreen    from './RegisterScreen.vue';
 
+import BackOfficeScreen  from './BackOfficeScreen.vue';
+
 export default {
   components: {
     NavBar, 
@@ -163,7 +171,9 @@ export default {
 
     LoginScreen,
     LogoutScreen,
-    RegisterScreen
+    RegisterScreen,
+
+    BackOfficeScreen
   },
 
   props: [

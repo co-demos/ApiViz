@@ -73,6 +73,19 @@
 
       </form>
 
+
+      <div
+        v-if="isUserAdmin || isUserStaff" 
+        >
+        <router-link
+          class="button is-block is-primary is-fullwidth" 
+          :to="'/backoffice'"
+          >
+          back office
+        </router-link>
+       <br>
+      </div>
+
       <button 
         v-if="user.isLoggedin" 
         class="button is-block is-primary is-fullwidth" 
@@ -101,9 +114,17 @@ export default {
       customformError: ''
     }
   },
-  computed: mapState({
-    user: 'user'
-  }),
+  computed: {
+    ...mapState({
+      user: 'user'
+    }),
+    isUserAdmin () {
+      return this.$store.getters.getCheckUserRole('admin')
+    },
+    isUserStaff () {
+      return this.$store.getters.getCheckUserRole('staff')
+    },
+  },
   methods: {
 
     getText(textCode) {
@@ -127,7 +148,7 @@ export default {
       }
 
       axios
-        .post( urlAuthRoot + urlAuthLoginSuffix, payload)
+        .post( urlAuthRoot + urlAuthLoginSuffix, payload )
         .catch( (error) => {
           console.log(error)
           this.customformError = 'Login failed'

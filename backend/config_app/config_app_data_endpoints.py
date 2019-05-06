@@ -16,11 +16,11 @@ default_data_endpoints_config = [
       "auth_activated" : True,
       "root_url"       : {
         ### needs a local instance of toktok if not changed
-        "default"        : "http://localhost:4100/api", 
-        "default_docker" : "http://host.docker.internal:4100/api",
+        "default"         : "http://localhost:4100/api",            # toktok instance on local machine
+        "default_docker"  : "http://host.docker.internal:4100/api", # toktok instance on local machine + docker
         ### on server ...
-        "server"          : "http://localhost:4100/api", 
-        "server_docker"   : "http://host.docker.internal:4100/api",
+        "server"          : "http://localhost:4100/api",            # toktok instance on server
+        "server_docker"   : "http://host.docker.internal:4100/api", # toktok instance on server + docker
         "distant_preprod" : "https://preprod.toktok.co-demos.com/api",
         "distant_prod"    : "https://toktok.co-demos.com/api"
       },
@@ -43,11 +43,23 @@ default_data_endpoints_config = [
         { "app_arg" : "authToken", "arg" : "token", "optional" : False, "in" : ["url","header"], "default" : "", "type" : "str" },
       ],
       "resp_fields" : {
-        "user_role"    : { "path" : "/data/auth/role" },
-        "user_id"      : { "path" : "/data/_id" },
-        "user_name"    : { "path" : "/data/infos/name" },
-        "user_surname" : { "path" : "/data/infos/surname" },
-        "user_email"   : { "path" : "/data/infos/email" },
+        "access_token"  : { "path" : "tokens/access_token" },
+        "refresh_token" : { "path" : "tokens/refresh_token" },
+        "msg"           : { "path" : "msg" },
+        "user_role"     : { "path" : "data/auth/role" },
+        "user_id"       : { "path" : "data/_id" },
+        "user_name"     : { "path" : "data/infos/name" },
+        "user_surname"  : { "path" : "data/infos/surname" },
+        "user_pseudo"   : { "path" : "data/infos/pseudo" },
+        "user_email"    : { "path" : "data/infos/email" },
+      },
+      "roles" : { 
+        ### defining roles in frontend
+        "admin"     : { "resp_role" : "admin",     "help" : "can access all backoffice (lox level access)" },
+        "staff"     : { "resp_role" : "staff",     "help" : "can access backoffice (high level access)" },
+        "registred" : { "resp_role" : "registred", "help" : "registred user" },
+        "guest"     : { "resp_role" : "guest",     "help" : "logged but not registred" },
+        "anonymous" : { "resp_role" : "anonymous", "help" : "logged as anonymous" },
       },
       "app_version"   : version,
       "method"        : "GET",

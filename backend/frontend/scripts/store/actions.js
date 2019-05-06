@@ -1,7 +1,12 @@
 import axios from 'axios';
 // import {apiConfig} from '../config/api.js';
-import {csvParse} from 'd3-dsv';
-import {searchItems, searchEnpointCreator, searchEndpointGenerator, createSelectedFiltersForSearch} from '../utils.js';
+import { csvParse } from 'd3-dsv';
+import {  getObjectDataFromPath,
+          searchItems, 
+          searchEnpointCreator, 
+          searchEndpointGenerator, 
+          createSelectedFiltersForSearch
+        } from '../utils.js';
 
 
 export default {
@@ -209,20 +214,52 @@ export default {
   },
 
   // USER-RELATED
-  saveLoginInfos({commit}, {APIresponse}){
+  saveLoginInfos({commit, getters}, {APIresponse}){
+
+    const authConfig = getters.getConfirmTokenConfig
+    console.log("\n// authConfig : \n", authConfig )
+
+    const accessTokenPath = authConfig.resp_fields.access_token.path
+    const refreshTokenPath = authConfig.resp_fields.refresh_token.path
+    const userRolePath = authConfig.resp_fields.user_role.path
+    const userIdPath = authConfig.resp_fields.user_id.path
+    const userNamePath = authConfig.resp_fields.user_name.path
+    const userSurnamePath = authConfig.resp_fields.user_surname.path
+    const userPseudoPath = authConfig.resp_fields.user_pseudo.path
+    const userEmailPath = authConfig.resp_fields.user_email.path
+
     let r = APIresponse
-    let tokens = (r && r.data && r.data.tokens) ? r.data.tokens : undefined
-    let infos = (r && r.data && r.data.data && r.data.data.infos) ? r.data.data.infos : undefined
-    let role = (r && r.data && r.data.data && r.data.data.auth && r.data.data.auth.role) ? r.data.data.auth.role : undefined
+    console.log("\n// r = APIresponse : \n", r )
+
+    // let tokens = (r && r.data && r.data.data && r.data.data.tokens) ? r.data.data.tokens : undefined
+    let tokens = (r && r.data ) ? { 
+      acces_token   : getObjectDataFromPath(r.data, accessTokenPath), 
+      refresh_token : getObjectDataFromPath(r.data, refreshTokenPath), 
+    } : undefined
+
+    // let infos = (r && r.data && r.data.data && r.data.data.infos) ? r.data.data.infos : undefined
+    let infos = ( r && r.data ) ? {
+        name    : getObjectDataFromPath(r.data, userNamePath), 
+        surname : getObjectDataFromPath(r.data, userSurnamePath), 
+        email   : getObjectDataFromPath(r.data, userEmailPath), 
+        id      : getObjectDataFromPath(r.data, userIdPath), 
+        pseudo  : getObjectDataFromPath(r.data, userPseudoPath), 
+    } : undefined
+
+    // let role = (r && r.data && r.data.data && r.data.data.auth && r.data.data.auth.role) ? r.data.data.auth.role : undefined
+    let role = ( r && r.data ) ? getObjectDataFromPath(r.data, userRolePath) : undefined
 
     commit('setTokens', {tokens})
-    commit('setInfos', {infos})
-    commit('setRole', {role})
+    commit('setInfos',  {infos})
+    commit('setRole',   {role})
+
+    // test user role
+    console.log('then... getCheckUserRole : ', getters.getCheckUserRole('guest'))
   },
   logout({commit}){
     commit('setTokens', {})
-    commit('setInfos', {})
-    commit('setRole', {})
+    commit('setInfos',  {})
+    commit('setRole',   {})
   },
 
 
@@ -231,9 +268,9 @@ export default {
 
     let routeConfig = getters.getCurrentRouteConfig(path)
 
-    commit('setSearchParam',{type:'currentRouteConfig',result:routeConfig})
-    commit('setSearchParam',{type:'dataset_uri',result:routeConfig.dataset_uri})
-    commit('setSearchParam',{type:'endpoint_type',result:routeConfig.endpoint_type})
+    commit('setSearchParam',{type:'currentRouteConfig', result:routeConfig})
+    commit('setSearchParam',{type:'dataset_uri', result:routeConfig.dataset_uri})
+    commit('setSearchParam',{type:'endpoint_type', result:routeConfig.endpoint_type})
     
     let endpointConfig = getters.getEndpointConfig
     commit('setSearchParam',{type:'endpoint',result:endpointConfig})

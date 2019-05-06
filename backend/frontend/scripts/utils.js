@@ -20,6 +20,16 @@ catch(e){
   abortableFetchSupported = false;
 }
 
+// FUNCTION TO PARSE AN OBJECT GIVEN A PATH
+export function getObjectDataFromPath(obj, path, splitter='/') {
+  let current = obj; 
+  // console.log("+ + + getObjectDataFromPath / current raw : \n", current )
+  path.split(splitter).forEach( function(p) { 
+    current = current[p]; 
+  }); 
+  // console.log("+ + + getObjectDataFromPath / current final : \n", current )
+  return current;
+}
 
 // FUNCTION TO GET THE RUN MODE FROM <HEAD>
 export function getConfigName(metaName) {
