@@ -20,13 +20,13 @@
           >
           <a 
             href="#" 
-            :class="`${uMenu == activeMenu ? 'is-active' : ''}`"
-            @click="setActiveMenu(uMenu)"
+            :class="`${uMenu.config_field == activeMenu ? 'is-active' : ''}`"
+            @click="setActiveMenu(uMenu.config_field)"
             >
-            <!-- <span class="icon">
+            <span class="icon">
               <i :class="uMenu.icon"></i>
-            </span>  -->
-            {{ uMenu }}
+            </span> 
+            {{ uMenu.title }}
           </a>
         </li>
       </ul>
@@ -123,8 +123,16 @@ export default {
       activeTab : 'gl_general',
 
       userMenu : [
-        'infos',
-        'password'
+        { 'config_field' : 'u_infos', 
+          'title' : 'infos',
+          "is_divider" : false,
+          'icon' : 'far fa-user',
+        },
+        { 'config_field' : 'u_password', 
+          'title' : 'password',
+          "is_divider" : false,
+          'icon' : 'fas fa-unlock',
+        },
       ],
 
       backOfficeMenu: [
@@ -249,7 +257,7 @@ export default {
         { 'config_field' : 'navbar',
           'title' : 'navbar',
           "is_divider" : false,
-          'icon' : 'fas fa-cog',
+          'icon' : 'fas fa-bars',
           'tabs'  : [
             { 
               'tab_code' : 'na_logo', 
@@ -269,7 +277,7 @@ export default {
         { 'config_field' : 'routes',
           'title' : 'routes',
           "is_divider" : false,
-          'icon' : 'fas fa-cog',
+          'icon' : 'far fa-sticky-note',
           'tabs'  : [
             { 
               'tab_code' : 'ro_home', 
@@ -289,7 +297,7 @@ export default {
         { 'config_field' : 'endpoints',
           'title' : 'API endpoints',
           "is_divider" : false,
-          'icon' : 'fas fa-cog',
+          'icon' : 'fas fa-database',
           'tabs'  : [
             { 
               'tab_code' : 'ep_data', 
@@ -305,7 +313,7 @@ export default {
         { 'config_field' : 'footer',
           'title' : 'footer',
           "is_divider" : false,
-          'icon' : 'fas fa-cog',
+          'icon' : 'fas fa-link',
           'tabs'  : [
             { 
               'tab_code' : 'fo_settings', 
@@ -329,7 +337,7 @@ export default {
         { 'config_field' : 'socials',
           'title' : 'socials',
           "is_divider" : false,
-          'icon' : 'fas fa-cog',
+          'icon' : 'fas fa-share-alt',
           'tabs'  : [
             { 
               'tab_code' : 'so_settings', 
@@ -341,7 +349,7 @@ export default {
         { 'config_field' : 'styles',
           'title' : 'styles',
           "is_divider" : false,
-          'icon' : 'fas fa-cog',
+          'icon' : 'fas fa-paint-brush',
           'tabs'  : [
             { 
               'tab_code' : 'st_colors', 
@@ -369,7 +377,7 @@ export default {
         { 'config_field' : 'users',
           'title' : 'users',
           "is_divider" : false,
-          'icon' : 'fas fa-cog',
+          'icon' : 'fas fa-users',
           'tabs'  : [
             { 
               'tab_code' : 'us_users', 

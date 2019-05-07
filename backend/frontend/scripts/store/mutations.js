@@ -61,13 +61,13 @@ export default {
     state.filterDescriptions = filterDescriptions
   },
   emptyOneFilter (state, {filter}) {
-      state.search.question.selectedFilters.set(filter, new Set())
+    state.search.question.selectedFilters.set(filter, new Set())
 
-      // trigger re-render
-      state.search.question.selectedFilters = new Map(state.search.question.selectedFilters)
+    // trigger re-render
+    state.search.question.selectedFilters = new Map(state.search.question.selectedFilters)
   },
   clearAllFilters(state){
-      state.search.question.selectedFilters = makeEmptySelectedFilters(state.filterDescriptions)
+    state.search.question.selectedFilters = makeEmptySelectedFilters(state.filterDescriptions)
   },
   setSearchParam(state,{type,result}){
     // console.log("\n== setSearchParam / state.search : ", state.search)

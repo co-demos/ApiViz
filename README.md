@@ -1,6 +1,6 @@
 
 <h2 align=center>
-	<img src="./app/static/logos/app_default/logo_apiviz_15.png">
+	<img src="./backend/static/logos/app_default/logo_apiviz_15.png">
 </h2>
 
 
@@ -14,6 +14,26 @@ Visualize data coming from an API in a CMS-like app
 ## DEVELOPERS
 
 Please check out our *[guidelines](./GUIDELINES_DEV.md)*
+
+--------
+
+## THE APIVIZ ECOSYSTEM
+
+ApiViz is designed in a way to display data and provide an engine to deploy a datavisualisation website, not regarding to the service serving and storing the data. To do so an instance of ApiViz must be connected to several external services : one for authentication, one for serving the data, one for storing the static contents (html pages, images...).
+
+The goal of ApiViz is to work with any external service fulfilling those roles, but we created an eco-system of open source applications allowing a complete and free way to deploy such a datavisualisation service. 
+
+- [Apiviz]() as the high-level app for visualisation, a sort of open source CMS for data-visualisation ; 
+- [Solidata]() to "API-fy" your data and manage projects of data 
+- [TokTok]() for a dedicated authentication service to manage users, JWT, and roles. 
+
+In the following illustration you can have a general idea of how those several services could work altogether. You will note we indicated a non open source service (MLAB) for DB management, but the ApiViz eco-system also works with a local instanciation of MongoDB on the servers.
+
+Check the [`/documentation`](./documentation) folder to have a broader look to [other configurations](./documentation/APIVIZ_CONFIGURATIONS-export.pdf).
+
+<h2 align=center>
+	<img src="./documentation/APIVIZ CONFIGURATIONS-export-details.jpg">
+</h2>
 
 --------
 
@@ -244,6 +264,9 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 
 - [Julien Paris](<mailto:codemos.infos@gmail.com>) (aka [JPy](https://github.com/JulienParis) on Github)
 - [Guillaume Lancrenon](https://guillim.github.io) (aka [Guillim](https://github.com/guillim) on Github)
+
+#### Design UI-UX
+- [Elise Lalique]()
 
 
 -------

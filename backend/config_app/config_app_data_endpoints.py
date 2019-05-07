@@ -50,7 +50,7 @@ default_data_endpoints_config = [
         "user_id"       : { "path" : "data/_id" },
         "user_name"     : { "path" : "data/infos/name" },
         "user_surname"  : { "path" : "data/infos/surname" },
-        "user_pseudo"   : { "path" : "data/infos/pseudo" },
+        "user_pseudo"   : { "path" : "data/infos/pseudo"  },
         "user_email"    : { "path" : "data/infos/email" },
       },
       "roles" : { 

@@ -24,11 +24,16 @@ catch(e){
 export function getObjectDataFromPath(obj, path, splitter='/') {
   let current = obj; 
   // console.log("+ + + getObjectDataFromPath / current raw : \n", current )
-  path.split(splitter).forEach( function(p) { 
-    current = current[p]; 
-  }); 
-  // console.log("+ + + getObjectDataFromPath / current final : \n", current )
-  return current;
+  try {
+    let current_temp = current
+    path.split(splitter).forEach( function(p) { 
+      current_temp = current_temp[p]; 
+    }); 
+    // console.log("+ + + getObjectDataFromPath / current final : \n", current )
+    return current_temp
+  } catch (e) {
+    return ""
+  }
 }
 
 // FUNCTION TO GET THE RUN MODE FROM <HEAD>
