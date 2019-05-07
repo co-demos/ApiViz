@@ -7,15 +7,34 @@
     <aside class="column is-3 is-narrow-mobile is-fullheight section">
       
       <p 
+        v-if="user.isLoggedin"
         class="menu-label is-hidden-touch"
         >
         PREFERENCES
       </p>
+      <ul 
+        v-if="user.isLoggedin"
+        class="menu-list">
+        <li 
+          v-for="uMenu in userMenu"
+          >
+          <a 
+            href="#" 
+            :class="`${uMenu == activeMenu ? 'is-active' : ''}`"
+            @click="setActiveMenu(uMenu)"
+            >
+            <!-- <span class="icon">
+              <i :class="uMenu.icon"></i>
+            </span>  -->
+            {{ uMenu }}
+          </a>
+        </li>
+      </ul>
 
       <p 
         class="menu-label is-hidden-touch"
         >
-        SETTINGS
+        APP SETTINGS
       </p>
 
       <!-- MENUS -->
@@ -35,6 +54,7 @@
           </a>
         </li>
       </ul>
+
     </aside>
 
     <div class="container column is-9">
@@ -66,24 +86,13 @@
         <template
           v-for="fieldConfig in tabFields()"
           >
-          <div 
-            class="card"
+
+          <BackOfficeForm
+            :fieldConfig="fieldConfig"
+            :config="config[activeMenu]"
             >
-            <div class="card-header">
-              <p class="card-header-title">
-                {{ fieldConfig.field }}
-              </p>
-            </div>
-            <div class="card-content">
-              <div class="content">
-                <BackOfficeForm
-                  :fieldConfig="fieldConfig"
-                  :config="config[activeMenu]"
-                  >
-                </BackOfficeForm>
-              </div>
-            </div>
-          </div>
+          </BackOfficeForm>
+
           <br />
         </template>
 
@@ -113,6 +122,11 @@ export default {
       activeMenu : 'global',
       activeTab : 'gl_general',
 
+      userMenu : [
+        'infos',
+        'password'
+      ],
+
       backOfficeMenu: [
 
         { 'config_field' : 'global', 
@@ -132,7 +146,7 @@ export default {
                 { 'field' : 'app_description',
                   'type' : 'bloc', 
                   'edit' : [
-                    {'subfield' : 'content', 'type' : 'text', 'list' : false}
+                    {'subfield' : 'content', 'type' : 'text-lang', 'list' : false}
                   ], 
                 },
                 { 'field' : 'app_languages',
@@ -179,7 +193,7 @@ export default {
                 { 'field' : 'app_keywords',
                   'type' : 'bloc', 
                   'edit' : [
-                    {'subfield' : 'url', 'type' : 'text', 'list' : false}
+                    {'subfield' : 'content', 'type' : 'text', 'list' : false}
                   ], 
                 },
                 { 'field' : 'app_code',

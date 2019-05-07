@@ -9,7 +9,7 @@
         <div class="columns is-mobile is-centered">
 
           <!-- DEBUGGING -->
-          {{ user }}
+          <!-- {{ user }} -->
 
           <div class="column is-6" 
             v-if="!user.isLoggedin"

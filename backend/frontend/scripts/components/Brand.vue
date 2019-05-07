@@ -18,10 +18,12 @@
       </router-link>
 
       <!-- cf : https://jsfiddle.net/tbonz/80jkq0Ls/ -->
+        <!-- class="navbar-burger"  -->
       <div 
-        class="navbar-burger" 
+        :class="`navbar-burger ${ showNav ? 'is-active' : '' }`"
         @click="triggerBurger()" 
-        :class="{ 'is-active': showNav }"
+        aria-expanded="false" 
+        data-target="navbar-main"
         >
         <span></span>
         <span></span>

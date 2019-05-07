@@ -1,101 +1,101 @@
 <template>
-    <div>
+  <div>
 
-      <h5 class="title has-text-grey"
-        v-if="!user.isLoggedin"
-        >
-        {{ getText('login') }}
-      </h5>
+    <h5 class="title has-text-grey"
+      v-if="!user.isLoggedin"
+      >
+      {{ getText('login') }}
+    </h5>
 
-      <form 
-        v-if="!user.isLoggedin"
-        v-on:submit.prevent="sendLoginForm" 
-        name="form" 
-        >
-        <span>{{ this.customformError }}</span>
+    <form 
+      v-if="!user.isLoggedin"
+      v-on:submit.prevent="sendLoginForm" 
+      name="form" 
+      >
+      <span>{{ this.customformError }}</span>
 
-      	<div class="field">
-      		<div class="control has-icons-left">
-            <input class="input" 
-              v-model="userEmail"
-              v-validate="'required|email'" 
-              name="userEmail" 
-              :placeholder="getText('email')"
-              type="email" 
-              >
-            <span>{{ errors.first('userEmail') }}</span>
-      			<span class="icon is-small is-left">
-      				<i class="fas fa-envelope"></i>
-      			</span>
-      		</div>
-      	</div>
-
-      	<div class="field">
-      		<div class="control has-icons-left">
-            <input class="input" 
-              v-validate="'required'" 
-              v-model="userPassword"
-              name="userPassword" 
-              :placeholder="getText('password')"
-              type="password" 
-              >
-            <span>{{ errors.first('userPassword') }}</span>
-      			<span class="icon is-small is-left">
-      				<i class="fas fa-key"></i>
-      			</span>
-      		</div>
-      	</div>
-
-      	<div class="field">
-          <!-- <div class="control has-icons-left"> -->
-            <input 
-              class="checkbox" 
-              name="userRememberMe" 
-              type="checkbox" 
-              value=""
+      <div class="field">
+        <div class="control has-icons-left">
+          <input class="input" 
+            v-model="userEmail"
+            v-validate="'required|email'" 
+            name="userEmail" 
+            :placeholder="getText('email')"
+            type="email" 
             >
-            <label for="checkbox">
-              <!-- remember me -->
-              {{ getText('remember_me') }}
-            </label>
-          <!-- </div> -->
-      	</div>
-
-        <br>
-
-      	<button 
-          class="button is-block is-primary is-fullwidth" 
-          type="submit" 
-          >
-          <!-- @click="sendLoginForm" -->
-      		{{ getText('connect') }}
-      	</button>
-
-      </form>
-
-
-      <div
-        v-if="isUserAdmin || isUserStaff" 
-        >
-        <router-link
-          class="button is-block is-primary is-fullwidth" 
-          :to="'/backoffice'"
-          >
-          back office
-        </router-link>
-       <br>
+          <span>{{ errors.first('userEmail') }}</span>
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </div>
       </div>
 
+      <div class="field">
+        <div class="control has-icons-left">
+          <input class="input" 
+            v-validate="'required'" 
+            v-model="userPassword"
+            name="userPassword" 
+            :placeholder="getText('password')"
+            type="password" 
+            >
+          <span>{{ errors.first('userPassword') }}</span>
+          <span class="icon is-small is-left">
+            <i class="fas fa-key"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <!-- <div class="control has-icons-left"> -->
+          <input 
+            class="checkbox" 
+            name="userRememberMe" 
+            type="checkbox" 
+            value=""
+          >
+          <label for="checkbox">
+            <!-- remember me -->
+            {{ getText('remember_me') }}
+          </label>
+        <!-- </div> -->
+      </div>
+
+      <br>
+
       <button 
-        v-if="user.isLoggedin" 
         class="button is-block is-primary is-fullwidth" 
         type="submit" 
-        @click="sendLogout"
         >
-        {{ getText('disconnect') }}
+        <!-- @click="sendLoginForm" -->
+        {{ getText('connect') }}
       </button>
 
+    </form>
+
+
+    <div
+      v-if="isUserAdmin || isUserStaff" 
+      >
+      <router-link
+        class="button is-block is-primary is-fullwidth" 
+        :to="'/backoffice'"
+        >
+        back office
+      </router-link>
+      <br>
     </div>
+
+    <button 
+      v-if="user.isLoggedin" 
+      class="button is-block is-primary is-fullwidth" 
+      type="submit" 
+      @click="sendLogout"
+      >
+      {{ getText('disconnect') }}
+    </button>
+
+  </div>
 </template>
 
 <script>
