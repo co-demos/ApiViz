@@ -25,7 +25,7 @@
           :key="filter.name"
           :id="filter.name"
           href="#"
-          class="navbar-item navbar-item-filter has-dropdown is-hoverable"
+          class="navbar-item navbar-item-filter has-dropdown is-hoverable "
           >
 
           <a 
@@ -41,7 +41,7 @@
           <div  
             :id="filter.name" 
             :ref="filter.name"
-            class="navbar-dropdown is-right"
+            class="navbar-dropdown is-right hide-choices"
             > <!-- here make it collapsable -->
 
             <a

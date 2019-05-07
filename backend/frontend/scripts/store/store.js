@@ -24,7 +24,7 @@ const storeGenerator = new Vuex.Store({
     // rootUrlUser : undefined,
 
     // UX OPTIONS
-    showNav : true,
+    showNav : false,
     bannerVisible : true,
     
     // FOR TRANSLATIONS
