@@ -233,9 +233,10 @@ export default {
 
     // let tokens = (r && r.data && r.data.data && r.data.data.tokens) ? r.data.data.tokens : undefined
     let tokens = (r && r.data ) ? { 
-      acces_token   : getObjectDataFromPath(r.data, accessTokenPath), 
+      access_token   : getObjectDataFromPath(r.data, accessTokenPath), 
       refresh_token : getObjectDataFromPath(r.data, refreshTokenPath), 
-    } : undefined
+    } : undefined ;
+    // console.log('tokens : \n', tokens)
 
     // let infos = (r && r.data && r.data.data && r.data.data.infos) ? r.data.data.infos : undefined
     let infos = ( r && r.data ) ? {
@@ -244,7 +245,8 @@ export default {
         email   : getObjectDataFromPath(r.data, userEmailPath), 
         id      : getObjectDataFromPath(r.data, userIdPath), 
         pseudo  : getObjectDataFromPath(r.data, userPseudoPath), 
-    } : undefined
+    } : undefined ;
+    // console.log('infos : \n', infos)
 
     // let role = (r && r.data && r.data.data && r.data.data.auth && r.data.data.auth.role) ? r.data.data.auth.role : undefined
     let role = ( r && r.data ) ? getObjectDataFromPath(r.data, userRolePath) : undefined
@@ -254,7 +256,8 @@ export default {
     commit('setRole',   {role})
 
     // test user role
-    console.log('then... getCheckUserRole : ', getters.getCheckUserRole('guest'))
+    console.log('then... getCheckUserRole - guest : ', getters.getCheckUserRole('guest'))
+    console.log('then... getCheckUserRole - admin : ', getters.getCheckUserRole('admin'))
   },
   logout({commit}){
     commit('setTokens', {})

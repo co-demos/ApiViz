@@ -6,10 +6,13 @@
 
     <div class="hero-body">
       <div class="container has-text-centered">
+       
+        <!-- DEBUGGING -->
+        <!-- user : <code>{{ user }}</code><br> -->
+        <!-- jwt : <code>{{ jwt }}</code></br> -->
+        
+        
         <div class="columns is-mobile is-centered">
-
-          <!-- DEBUGGING -->
-          <!-- {{ user }} -->
 
           <div class="column is-6" 
             v-if="!user.isLoggedin"
@@ -93,7 +96,8 @@ export default {
   ],
 
   computed: mapState({
-    user: 'user'
+    user : 'user',
+    jwt : 'jwt'
   }),
 
   mounted(){

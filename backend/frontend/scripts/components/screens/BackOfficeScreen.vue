@@ -17,11 +17,12 @@
         class="menu-list">
         <li 
           v-for="uMenu in userMenu"
+          :key="uMenu.config_coll"
           >
           <a 
             href="#" 
-            :class="`${uMenu.config_field == activeMenu ? 'is-active' : ''}`"
-            @click="setActiveMenu(uMenu.config_field)"
+            :class="`${uMenu.config_coll == activeMenu ? 'is-active' : ''}`"
+            @click="setActiveMenu(uMenu.config_coll)"
             >
             <span class="icon">
               <i :class="uMenu.icon"></i>
@@ -41,11 +42,12 @@
       <ul class="menu-list">
         <li 
           v-for="menu in backOfficeMenu"
+          :key="menu.config_coll"
           >
           <a 
             href="#" 
-            :class="`${menu.config_field == activeMenu ? 'is-active' : ''}`"
-            @click="setActiveMenu(menu.config_field)"
+            :class="`${menu.config_coll == activeMenu ? 'is-active' : ''}`"
+            @click="setActiveMenu(menu.config_coll)"
             >
             <span class="icon">
               <i :class="menu.icon"></i>
@@ -65,6 +67,7 @@
           <ul>
             <li
               v-for="tab in menuTabs(activeMenu)" 
+              :key="tab.tab_code"
               :class="`${tab.tab_code == activeTab ? 'is-active' : ''}`"
               >
               <a
@@ -84,16 +87,18 @@
         <br /> -->
         
         <template
-          v-for="fieldConfig in tabFields()"
           >
 
           <BackOfficeForm
+            v-for="fieldConfig in tabFields()"
+            :key="fieldConfig.field"
+            :configCollection="activeMenu"
+            :currentTab="activeTab"
             :fieldConfig="fieldConfig"
             :config="config[activeMenu]"
             >
           </BackOfficeForm>
 
-          <br />
         </template>
 
       </div>
@@ -123,12 +128,12 @@ export default {
       activeTab : 'gl_general',
 
       userMenu : [
-        { 'config_field' : 'u_infos', 
+        { 'config_coll' : 'u_infos', 
           'title' : 'infos',
           "is_divider" : false,
           'icon' : 'far fa-user',
         },
-        { 'config_field' : 'u_password', 
+        { 'config_coll' : 'u_password', 
           'title' : 'password',
           "is_divider" : false,
           'icon' : 'fas fa-unlock',
@@ -137,7 +142,7 @@ export default {
 
       backOfficeMenu: [
 
-        { 'config_field' : 'global', 
+        { 'config_coll' : 'global', 
           'title' : 'global settings',
           "is_divider" : false,
           'icon' : 'fas fa-cog',
@@ -254,7 +259,7 @@ export default {
           ]
         },
 
-        { 'config_field' : 'navbar',
+        { 'config_coll' : 'navbar',
           'title' : 'navbar',
           "is_divider" : false,
           'icon' : 'fas fa-bars',
@@ -274,7 +279,7 @@ export default {
           ]
         },
   
-        { 'config_field' : 'routes',
+        { 'config_coll' : 'routes',
           'title' : 'routes',
           "is_divider" : false,
           'icon' : 'far fa-sticky-note',
@@ -294,7 +299,7 @@ export default {
           ]
         },
         
-        { 'config_field' : 'endpoints',
+        { 'config_coll' : 'endpoints',
           'title' : 'API endpoints',
           "is_divider" : false,
           'icon' : 'fas fa-database',
@@ -310,7 +315,7 @@ export default {
           ]
         },
 
-        { 'config_field' : 'footer',
+        { 'config_coll' : 'footer',
           'title' : 'footer',
           "is_divider" : false,
           'icon' : 'fas fa-link',
@@ -334,19 +339,45 @@ export default {
           ]
         },
 
-        { 'config_field' : 'socials',
+        { 'config_coll' : 'socials',
           'title' : 'socials',
           "is_divider" : false,
           'icon' : 'fas fa-share-alt',
           'tabs'  : [
             { 
               'tab_code' : 'so_settings', 
-              'title' : 'settings' 
+              'title' : 'settings',
+              'fields' : [
+                { 'field' : 'app_twitter',
+                  'type' : 'bloc', 
+                  'edit' : [
+                    {'subfield' : 'url', 'type' : 'text', 'list' : false},
+                    {'subfield' : 'tooltip', 'type' : 'text-lang', 'list' : false},
+                    {'subfield' : 'in_footer', 'type' : 'bool', 'list' : false},
+                  ], 
+                },
+                { 'field' : 'app_facebook',
+                  'type' : 'bloc', 
+                  'edit' : [
+                    {'subfield' : 'url', 'type' : 'text', 'list' : false},
+                    {'subfield' : 'tooltip', 'type' : 'text-lang', 'list' : false},
+                    {'subfield' : 'in_footer', 'type' : 'bool', 'list' : false},
+                  ], 
+                },
+                { 'field' : 'app_github',
+                  'type' : 'bloc', 
+                  'edit' : [
+                    {'subfield' : 'url', 'type' : 'text', 'list' : false},
+                    {'subfield' : 'tooltip', 'type' : 'text-lang', 'list' : false},
+                    {'subfield' : 'in_footer', 'type' : 'bool', 'list' : false},
+                  ], 
+                },
+              ] 
             },
           ]
         },
 
-        { 'config_field' : 'styles',
+        { 'config_coll' : 'styles',
           'title' : 'styles',
           "is_divider" : false,
           'icon' : 'fas fa-paint-brush',
@@ -374,7 +405,7 @@ export default {
           ]
         },
 
-        { 'config_field' : 'users',
+        { 'config_coll' : 'users',
           'title' : 'users',
           "is_divider" : false,
           'icon' : 'fas fa-users',
@@ -428,7 +459,7 @@ export default {
 
     getMenuConfig(menuConfigField) {
       let menuConfig = this.backOfficeMenu.find(function(menu) {
-        return menu.config_field === menuConfigField
+        return menu.config_coll === menuConfigField
       });
       return menuConfig
     },

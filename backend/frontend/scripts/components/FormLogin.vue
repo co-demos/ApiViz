@@ -116,7 +116,8 @@ export default {
   },
   computed: {
     ...mapState({
-      user: 'user'
+      user : 'user',
+      jwt : 'jwt'
     }),
     isUserAdmin () {
       return this.$store.getters.getCheckUserRole('admin')
@@ -143,8 +144,8 @@ export default {
       // console.log("urlAuthLoginSuffix : ", urlAuthLoginSuffix)
 
       let payload = {
-        email:this.userEmail,
-        pwd:this.userPassword
+        email : this.userEmail,
+        pwd : this.userPassword
       }
 
       axios

@@ -133,8 +133,11 @@ export default {
   },
 
   // USER-RELATED
-  setTokens (state, {tokens}) {
-    state.jwt = (tokens && tokens.access_token && tokens.refresh_token) ? tokens : undefined
+  setTokens (state, {tokens} ) {
+    console.log('tokens : ', tokens)
+    // state.jwt = (tokens && tokens.access_token && tokens.refresh_token) ? tokens : undefined
+    state.jwt = tokens
+    console.log('state.jwt : ', state.jwt)
   },
   setInfos (state, {infos}) {
     state.user.infos = (infos && infos.email) ? infos : undefined

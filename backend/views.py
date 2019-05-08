@@ -126,7 +126,23 @@ def getDocuments(collection, query={}, oid_to_id=True, as_list=False, field="fie
 
   return results
 
-def checkJWT(token, uuid="", url_check="http://localhost:4100/api/auth/tokens/confirm_access"):
+def getValueFromDictAndPathString(dictToSearch, path) : 
+  """ 
+  """ 
+  print " "
+  currentValue = dictToSearch
+  path_splitted = path.split('/')
+  while(len(path_splitted)):
+    key = path_splitted.pop(0)
+    currentValue = currentValue.get(key)
+    if (type(currentValue) is not dict and len(path_splitted)):
+      print("Path does not exist!")
+      return None 
+
+  return currentValue
+
+  
+def checkJWT(token, roles_to_check, uuid="", url_check="http://localhost:4100/api/auth/tokens/confirm_access"):
   """ 
   authenticate a token 
   sending request to the auth url / service 
@@ -136,20 +152,29 @@ def checkJWT(token, uuid="", url_check="http://localhost:4100/api/auth/tokens/co
 
   print ". "*50
 
+  # is_authorized = True
+
   ### set the collection to user
   mongoColl = mongoConfigColls['endpoints']
   auth_mode = app.config['AUTH_MODE']
+  log_app.debug("checkJWT / auth_mode : %s", auth_mode )
+  log_app.debug("checkJWT / roles_to_check : %s", roles_to_check )
 
   ### retrieving the root_url for authentication in general given the AUTH_MODE
   root_auth_doc = mongoColl.find_one({'apiviz_front_uuid': uuid, 'field' : 'app_data_API_root_auth'})
+  log_app.debug("checkJWT / root_auth_doc : \n%s", pformat(root_auth_doc) )
+
   auth_url = root_auth_doc['root_url'][auth_mode]
-  # log_app.debug( "config app route / auth_url : %s", pformat(auth_url) )
+  log_app.debug( "checkJWT / auth_url : %s", pformat(auth_url) )
 
   ### retrieving the root_url and args for authentication
   confirm_auth_doc = mongoColl.find_one({'apiviz_front_uuid': uuid, 'field' : 'app_data_API_user_auth'})
   confirm_rooturl = confirm_auth_doc['root_url']
+  confirm_user_role_path = confirm_auth_doc['resp_fields']['user_role']['path']
+  log_app.debug( "checkJWT / confirm_user_role_path : %s", confirm_user_role_path) 
+
   confirm_basestring = auth_url + confirm_rooturl
-  # log_app.debug( "config app route / confirm_basestring : %s", pformat(confirm_basestring) )
+  # log_app.debug( "checkJWT / confirm_basestring : %s", pformat(confirm_basestring) )
   
   confirm_options = confirm_auth_doc['args_options']
   confirm_token_arg = ''
@@ -158,22 +183,27 @@ def checkJWT(token, uuid="", url_check="http://localhost:4100/api/auth/tokens/co
       confirm_arg = '?{}={}'.format(arg['arg'], token)
   
   confirm_url = confirm_basestring + confirm_arg
-  log_app.debug( "config app route / confirm_url : %s", pformat(confirm_url) )
+  log_app.debug( "checkJWT / confirm_url : %s", pformat(confirm_url) )
 
   ### send request to service and read response
   auth_response = requests.get(confirm_url)
   auth_response_status = auth_response.status_code
-  log_app.debug( "config app route / auth_response_status : %s", auth_response_status )
+  log_app.debug( "checkJWT / auth_response_status : %s", auth_response_status )
   auth_response_data = auth_response.json()
-  log_app.debug( "config app route / auth_response : \n%s", pformat(auth_response_data) )
+  log_app.debug( "checkJWT / auth_response : \n%s", pformat(auth_response_data) )
+
+  ### get role to check value in response
+  auth_response_user_role = getValueFromDictAndPathString(auth_response_data, confirm_user_role_path)
+  log_app.debug( "checkJWT / auth_response_user_role : %s", auth_response_user_role) 
+
 
   print ". "*50
 
-  return True
-
+  # return is_authorized
+  return auth_response_user_role in roles_to_check or 'all' in roles_to_check
 
 @app.route('/backend/api/config/<string:collection>/<string:doc_id>', methods=['GET','POST','DELETE'])
-@app.route('/backend/api/config/<string:collection>', methods=['GET'], defaults={"doc_id" : None})
+@app.route('/backend/api/config/<string:collection>', methods=['GET', 'POST'], defaults={"doc_id" : None})
 @app.route('/backend/api/config', methods=['GET'], defaults={'collection': 'global', "doc_id" : None})
 def backend_configs(collection, doc_id=None):
   """
@@ -186,6 +216,7 @@ def backend_configs(collection, doc_id=None):
 
   print ""
   log_app.debug("config app route")
+  log_app.debug("config app route / method : %s", request.method )
   log_app.debug("config app route / collection : %s", collection )
   log_app.debug("config app route / doc_id : %s", doc_id )
 
@@ -198,13 +229,26 @@ def backend_configs(collection, doc_id=None):
 
   ### get request args if any
   apiviz_uuid = request.args.get('uuid',    default="", 	type=str)
-  # log_app.debug("config app route / apiviz_uuid : %s", apiviz_uuid )
+  log_app.debug("config app route / apiviz_uuid : %s", apiviz_uuid )
 
-  field 	    = request.args.get('field', 	default='field', 	type=str)
-  as_list     = request.args.get('as_list', default=False, 		type=bool)
-  # log_app.debug("config app route / as_list : %s", as_list )
+  field 	      = request.args.get('field', 	default='field', type=str)
+  as_list       = request.args.get('as_list', default=False,   type=bool)
 
-  token 	    = request.args.get('token', 	default='', 	  	type=str)
+
+  # role_to_check = request.args.get('role',    default='admin', type=str)
+  roles_to_check = COLLECTIONS_AUTH_MODIFICATIONS[collection][request.method]
+  log_app.debug("config app route / roles_to_check : %s", roles_to_check )
+
+  # req_data 	  = request.data
+  # log_app.debug("config app route / request.data : \n%s", pformat(request.data ))
+  req_json    = request.get_json()
+  log_app.debug("config app route / req_json : \n%s", pformat(req_json) )
+
+  ### retrieve access token 
+  token = request.args.get('token', default='', type=str)
+  if req_json : 
+    token = req_json.get('token', '')
+
   ### example of access token :
   # eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTcwODI3OTQsIm5iZiI6MTU1NzA4Mjc5NCwianRpIjoiNjA4YWRhMDktMzA4My00ZmE1LTg1NDMtNjRkNDJmM2E4ZmZhIiwiZXhwIjoxNTU3MTI1OTk0LCJpZGVudGl0eSI6IjVjY2YzMmExODYyNmEwM2MzNmY1MzYzNCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7Il9pZCI6IjVjY2YzMmExODYyNmEwM2MzNmY1MzYzNCIsImluZm9zIjp7Im5hbWUiOiJFbGlub3IiLCJzdXJuYW1lIjoiT3N0cm9tIiwiZW1haWwiOiJlbGlub3Iub3N0cm9tQGVtYWlsbmEuY28iLCJwc2V1ZG8iOiJBbm9ueW1vdXMgVXNlciJ9LCJhdXRoIjp7InJvbGUiOiJndWVzdCIsImNvbmZfdXNyIjpmYWxzZX0sInByb2ZpbGUiOnsibGFuZyI6ImVuIiwiYWdyZWVtZW50IjpmYWxzZSwidXNyX3ZpZXciOiJtaW5pbWFsIiwidXNyX3Byb2ZpbGVzIjpbXX19fQ.Iux2Grzvv-6VBXzKME5ub31iLtl-LHYea_0JSdQ22eM
 
@@ -224,20 +268,30 @@ def backend_configs(collection, doc_id=None):
   ### check if token allows user to POST
   # if True : ### only for tests
   if token != '' :
-    is_authorized = checkJWT(token, uuid=apiviz_uuid)
+    log_app.debug("config app route / checking jwt..." )
 
   ### TO DO
-  if request.method == 'POST':
-    if is_authorized :
-      return "hello config master / POST ... praise be"
-    else :
-      return "noooope"
+  if request.method != 'GET':
 
-  elif request.method == 'DELETE':
-    if is_authorized :
-      return "hello config master / DELETE ... praise be"
-    else :
-      return "noooope"
+    if request.method == 'POST':
+
+      log_app.debug("config app route / POST" )
+      is_authorized = checkJWT(token, roles_to_check, uuid=apiviz_uuid)
+
+      if is_authorized :
+        return "hello config master / POST ... praise be"
+      else :
+        return "noooope"
+
+    elif request.method == 'DELETE':
+
+      log_app.debug("config app route / DELETE" )
+      is_authorized = checkJWT(token, roles_to_check, uuid=apiviz_uuid)
+
+      if is_authorized :
+        return "hello config master / DELETE ... praise be"
+      else :
+        return "noooope"
 
 
   elif request.method == 'GET':
