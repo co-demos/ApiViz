@@ -10,19 +10,16 @@
 Visualize data coming from an API in a CMS-like app. 
 If your data is somewhere, ApiViz can transform it into a full website to show it at its best. 
 
---------
-
-## DEVELOPERS
-
-Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 
 --------
 
 ## THE APIVIZ ECOSYSTEM
 
-ApiViz is designed in a way to **display data** and provide an engine to deploy a datavisualisation website without (too much) pain, not regarding to the service(s) serving and storing the data. Nevertheless and to do so an instance of ApiViz must be connected to several external services : one for authentication, one for serving the data, one for storing the static contents (html pages, images...).
+ApiViz is designed to **agnosticaly display data** and provide an engine to deploy a **datavisualisation website** without (too much) pain, not regarding to the service(s) serving and storing the data. 
 
-The goal of ApiViz is to **work with any external service** fulfilling those roles, but we created an **eco-system of open source applications** allowing a complete and free way to deploy such a datavisualisation service. 
+Nevertheless to do so an instance of ApiViz must be connected to several external services : one for authentication, one for serving the data, one for storing the static contents (html pages, images...).
+
+The goal of ApiViz is to **work with any external service** fulfilling those roles, but we developed an **eco-system of open source applications** allowing a complete and free way to deploy such a datavisualisation service. 
 
 - [Apiviz](https://github.com/co-demos/ApiViz) as the high-level app for visualisation, a sort of open source CMS for data-visualisation ; 
 - [Solidata](https://github.com/entrepreneur-interet-general/solidata_frontend) to "API-fy" your data and manage open data projects ;
@@ -35,6 +32,12 @@ Check the [`/documentation`](./documentation) folder to have a broader look to [
 <h2 align=center>
 	<img src="./documentation/APIVIZ CONFIGURATIONS-export-details.jpg">
 </h2>
+
+You can also check those several projects and repository to find some layout for your specific new datavisualisation website : 
+- Sonum repo ;
+- CIS repo ;
+- ... and more to come...
+
 
 --------
 
@@ -58,6 +61,12 @@ Check the [`/documentation`](./documentation) folder to have a broader look to [
 1. deploy (if not done already) and enjoy ;
 
 More detailed configuration documentation on its way...
+
+--------
+
+## DEVELOPERS
+
+Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 
 --------
 
