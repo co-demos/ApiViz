@@ -7,7 +7,8 @@
 -------
 ## PRESENTATION
 
-Visualize data coming from an API in a CMS-like app
+Visualize data coming from an API in a CMS-like app. 
+If your data is somewhere, ApiViz can transform it into a full website to show it at its best. 
 
 --------
 
@@ -19,15 +20,15 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 
 ## THE APIVIZ ECOSYSTEM
 
-ApiViz is designed in a way to display data and provide an engine to deploy a datavisualisation website, not regarding to the service serving and storing the data. To do so an instance of ApiViz must be connected to several external services : one for authentication, one for serving the data, one for storing the static contents (html pages, images...).
+ApiViz is designed in a way to **display data** and provide an engine to deploy a datavisualisation website without (too much) pain, not regarding to the service(s) serving and storing the data. Nevertheless and to do so an instance of ApiViz must be connected to several external services : one for authentication, one for serving the data, one for storing the static contents (html pages, images...).
 
-The goal of ApiViz is to work with any external service fulfilling those roles, but we created an eco-system of open source applications allowing a complete and free way to deploy such a datavisualisation service. 
+The goal of ApiViz is to **work with any external service** fulfilling those roles, but we created an **eco-system of open source applications** allowing a complete and free way to deploy such a datavisualisation service. 
 
-- [Apiviz]() as the high-level app for visualisation, a sort of open source CMS for data-visualisation ; 
-- [Solidata]() to "API-fy" your data and manage projects of data 
-- [TokTok]() for a dedicated authentication service to manage users, JWT, and roles. 
+- [Apiviz](https://github.com/co-demos/ApiViz) as the high-level app for visualisation, a sort of open source CMS for data-visualisation ; 
+- [Solidata](https://github.com/entrepreneur-interet-general/solidata_frontend) to "API-fy" your data and manage open data projects ;
+- [TokTok](https://github.com/co-demos/toktok) for a dedicated authentication service to manage users, JWT, and roles. 
 
-In the following illustration you can have a general idea of how those several services could work altogether. You will note we indicated a non open source service (MLAB) for DB management, but the ApiViz eco-system also works with a local instanciation of MongoDB on the servers.
+In the following illustration you can have a general idea of how those several services could work altogether. You will note we indicated a non open source service (MLAB) for DB management, but the ApiViz eco-system also works with a custom instanciation of MongoDB on the servers.
 
 Check the [`/documentation`](./documentation) folder to have a broader look to [other configurations](./documentation/APIVIZ_CONFIGURATIONS-export.pdf).
 
@@ -37,13 +38,36 @@ Check the [`/documentation`](./documentation) folder to have a broader look to [
 
 --------
 
+## HOW TO CONFIGURE YOUR APIVIZ INSTANCE
+
+1. register an user (user data will stored and managed in TokTok) ;
+1. make this user an `admin` (in TokTok) ;
+1. log in (`admin` link in the default footer) ;
+1. go to the `back office` ;
+1. set up your ApiViz configuration : 
+    
+    - set up the global variables ; 
+    - set up your data endpoints ; 
+    - set up your authentication endpoints ; 
+    - set up your routes (pages must point out to html contents, f.e. on Github) ; 
+    - set up the styles ;
+    - set up your navbar ; 
+    - set up your footer ;
+
+1. save your configuration ;
+1. deploy (if not done already) and enjoy ;
+
+More detailed configuration documentation on its way...
+
+--------
+
 ## INSTALLATION WALKTHROUGH 
 
 ### _WITH DOCKER (locally or in production)_
 
 
 1. **locally - in your browser check this url**
-    - install [Docker](https://docs.docker.com/docker-for-mac/install/) (here for mac OS) 
+    - install [Docker (here for mac OS)](https://docs.docker.com/docker-for-mac/install/) 
     - clone or [download](https://github.com/co-demos/ApiViz/archive/master.zip) the repo
     - [install MongoDB](https://docs.mongodb.com/manual/installation/) locally/on your server** or get the URI of the MongoDB you're using
     - go to your apiviz folder
@@ -55,7 +79,7 @@ Check the [`/documentation`](./documentation) folder to have a broader look to [
       ```
       http://localhost:8081
       ```
-    - you can also use those other docker commands : 
+    - (optional) you can also use those other docker commands : 
       ```sh
        
       ### for local dev 
@@ -63,17 +87,17 @@ Check the [`/documentation`](./documentation) folder to have a broader look to [
       make up
       make restart
       make down
-      # distant DB - you need to set up "app/config/config_secret_vars_example.py" 
+      # distant DB - you will need to set up your mongodb URI in "app/config/config_secret_vars_example.py"  
       make up-dist
       make restart-dist
       make down-dist
 
-      ### for testing
+      ### for testing mode
       # local DB 
       make up-test
       make restart-test
       make down-test
-      # distant DB - you need to set up "app/config/config_secret_vars_example.py"  
+      # distant DB - you will need to set up your mongodb URI in "app/config/config_secret_vars_example.py"  
       make up-test-dist
       make restart-test-dist
       make down-test-dist
@@ -118,7 +142,6 @@ Check the [`/documentation`](./documentation) folder to have a broader look to [
       make up-preprod-server
       make restart-preprod-server
       make down-preprod-server
-
 
       ### for testing 
       # distant DB 
@@ -242,9 +265,9 @@ Check the [`/documentation`](./documentation) folder to have a broader look to [
 ## TECHNICAL POINTS
 
 #### Tech stack
-- _Language_ : **Python**... because ... uuh ... eeeh ... I like this language too much ? 
+- _Language_ : **Python**... because ... uuh ... eeeh ... we like this language too much ? 
 - _Backend_  : **[Flask](http://flask.pocoo.org/)**... minimalistic Python framework
-- _Frontend_ : **[Bulma](https://bulma.io/)** as CSS framework, **[Vue.js](https://vuejs.org/)** as JS framework, **[Axios](https://github.com/axios/axios)** for API queries (to make queries to [Solidata](https://github.com/entrepreneur-interet-general/solidata_backend) or else), **[Leaflet](https://leafletjs.com)** and **[Vue2Leaflet](https://github.com/KoRiGaN/Vue2Leaflet)** for map layout
+- _Frontend_ : **[Bulma](https://bulma.io/)** as CSS framework, **[Vue.js](https://vuejs.org/)** as JS framework, **[Axios](https://github.com/axios/axios)** for API queries (to make queries to [Solidata](https://github.com/entrepreneur-interet-general/solidata_backend) or else), **[Leaflet](https://leafletjs.com)**, **[Vue2Leaflet](https://github.com/KoRiGaN/Vue2Leaflet)**, and [PruneCluster]() for map layout
 - _Server_   : **[Ubuntu 18.04]()**, **[NGINX](https://www.nginx.com/)**, **[Gunicorn](http://gunicorn.org/)**, hosted in **[Digital Ocean](http://digitalocean.com/)**, domain name from **[NameCheap](http://namecheap.com/)**
 
 
@@ -259,6 +282,7 @@ Check the [`/documentation`](./documentation) folder to have a broader look to [
 - the [CGET](http://www.cget.gouv.fr/)
 - the [MedNum](https://lamednum.coop)
 - the [Mission Société Numérique](https://societenumerique.gouv.fr)
+- and all those who believed and helped in this project...
 
 #### Contacts - maintainance :
 
