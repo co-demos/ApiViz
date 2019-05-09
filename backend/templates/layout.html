@@ -59,20 +59,20 @@
 		{% block content %}
 		{% endblock %}
 
-		{% include "footer.html" %}
+		{# {% include "footer.html" %} #}
 
-        <!-- ANALYTICS  -->
-        {% if config_name == "production" %}
+    <!-- ANALYTICS  -->
+    {% if config_name == "production" %}
 
-        <script>
-            {# // https://blog.toky.co/mixpanels-basic-tutorial-guide-to-start-custom-event-tracking-on-your-website/
-            console.log("sending data to Mix Panel")
-            mixpanel.track("page_view"); #}
-        </script> 
+    <script>
+        {# // https://blog.toky.co/mixpanels-basic-tutorial-guide-to-start-custom-event-tracking-on-your-website/
+        console.log("sending data to Mix Panel")
+        mixpanel.track("page_view"); #}
+    </script> 
 
-        {# <script src="{{ url_for('static', filename='js/cis-mixpanel-metrics.js') }}"></script> #}
-        
-        {% endif %}
+    {# <script src="{{ url_for('static', filename='js/cis-mixpanel-metrics.js') }}"></script> #}
+    
+    {% endif %}
 
 	</body>
 </html>

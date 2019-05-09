@@ -31,6 +31,11 @@ COLLECTIONS_AUTH_MODIFICATIONS	= {
     'DELETE'  : ['admin'], 
     'GET'     : ['all']
   },
+  "tabs"    : {
+    'POST'    : ['admin', 'staff'], 
+    'DELETE'  : ['admin'], 
+    'GET'     : ['all']
+  },
   "endpoints" : {
     'POST'    : ['admin'], 
     'DELETE'  : ['admin'], 

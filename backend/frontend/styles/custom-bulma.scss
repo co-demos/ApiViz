@@ -76,3 +76,48 @@ $family-secondary   : $family-BonvenoCF ;
 .is-checkradio[type="checkbox"] + label{
   font-size: $apiviz-navbar-font-size
 }
+
+
+
+// Bulma default behaviour darkens the button, doesn't fit for CIS
+.button.is-primary:hover{
+  background-color:$primary-invert;
+  color:$primary;
+  border-color:$primary;
+}
+// Bulma default has a transparent background, causing the button
+// to become invisible on a purple background
+.button.is-primary.is-outlined{
+  background-color:$primary-invert;
+}
+.button.is-primary.is-outlined:hover{
+  border-color:$primary-invert;
+}
+
+
+
+
+
+
+// BULMA-CAROUSEL OVERRIDE
+.slider-navigation-previous, .slider-navigation-next {
+  top: unset !important;
+  margin: 1em;
+
+  &:hover {
+box-shadow : $apiviz-strong-shadow;
+  }
+
+}
+.slider:focus {
+  outline: none !important;
+}
+
+.slider-navigation-previous {
+  background-image: url('../icons/icon_chevron2_violet.svg');
+  left: calc( 50% + (-4em)); // To ensure correct spacing and alignment on various screen sizes; avoid buttons to overflow
+}
+.slider-navigation-next {
+  background-image: url('../icons/icon_chevron1_violet.svg');
+  right: calc( 50% + (-4em)); // Same as above
+}

@@ -312,6 +312,10 @@ export default {
               'tab_code' : 'ep_user', 
               'title' : 'user' 
             },
+            { 
+              'tab_code' : 'ep_auth', 
+              'title' : 'authentication' 
+            },
           ]
         },
 

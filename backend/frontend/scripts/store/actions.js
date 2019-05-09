@@ -12,7 +12,6 @@ import {  getObjectDataFromPath,
 export default {
 
 
-
   // FOR FILTERS
   createDatasetFilters({state, getters, commit}){
     // console.log("\n// createDatasetFilters / state : ", state )
@@ -175,13 +174,14 @@ export default {
   // FOR CONFIGs
   getConfigAll({dispatch}) {
     let arr = []
-    arr.push(dispatch('getConfigType',{type:'global',configTypeEndpoint:'global', args:''}) )
-    arr.push(dispatch('getConfigType',{type:'styles',configTypeEndpoint:'styles', args:''}) )
-    arr.push(dispatch('getConfigType',{type:'socials',configTypeEndpoint:'socials', args:''}) )
-    arr.push(dispatch('getConfigType',{type:'footer',configTypeEndpoint:'footer', args:''}) )
-    arr.push(dispatch('getConfigType',{type:'navbar',configTypeEndpoint:'navbar', args:''}) )
-    arr.push(dispatch('getConfigType',{type:'routes',configTypeEndpoint:'routes', args:'&as_list=true'}) )
-    arr.push(dispatch('getConfigType',{type:'endpoints',configTypeEndpoint:'endpoints', args:'&as_list=true'}) )
+    arr.push(dispatch('getConfigType',{type:'global',    configTypeEndpoint:'global', args:''}) )
+    arr.push(dispatch('getConfigType',{type:'styles',    configTypeEndpoint:'styles', args:''}) )
+    arr.push(dispatch('getConfigType',{type:'socials',   configTypeEndpoint:'socials', args:''}) )
+    arr.push(dispatch('getConfigType',{type:'footer',    configTypeEndpoint:'footer', args:''}) )
+    arr.push(dispatch('getConfigType',{type:'navbar',    configTypeEndpoint:'navbar', args:''}) )
+    arr.push(dispatch('getConfigType',{type:'routes',    configTypeEndpoint:'routes', args:'&as_list=true'}) )
+    arr.push(dispatch('getConfigType',{type:'tabs',      configTypeEndpoint:'tabs', args:'&as_list=true'}) )
+    arr.push(dispatch('getConfigType',{type:'endpoints', configTypeEndpoint:'endpoints', args:'&as_list=true'}) )
     return Promise.all(arr)
   },
 

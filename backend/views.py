@@ -221,7 +221,7 @@ def backend_configs(collection, doc_id=None):
   log_app.debug("config app route / doc_id : %s", doc_id )
 
   ### target right config collection
-  if collection in ["global" , "footer", "navbar", "endpoints" , "styles" , "routes", "socials" ] :
+  if collection in ["global" , "footer", "navbar", "tabs", "endpoints" , "styles" , "routes", "socials" ] :
     mongoColl = mongoConfigColls[collection] ### imported from . (and from there from .api.__init__ )
   else :
     log_app.warning("error : -%s- is not a valid config collection (redirect)", collection)
@@ -231,8 +231,8 @@ def backend_configs(collection, doc_id=None):
   apiviz_uuid = request.args.get('uuid',    default="", 	type=str)
   log_app.debug("config app route / apiviz_uuid : %s", apiviz_uuid )
 
-  field 	      = request.args.get('field', 	default='field', type=str)
-  as_list       = request.args.get('as_list', default=False,   type=bool)
+  field 	= request.args.get('field', 	default='field', type=str)
+  as_list = request.args.get('as_list', default=False,   type=bool)
 
 
   # role_to_check = request.args.get('role',    default='admin', type=str)
