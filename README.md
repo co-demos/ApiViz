@@ -8,7 +8,7 @@
 ## PRESENTATION
 
 Visualize data coming from an API in a CMS-like app. 
-If your data is somewhere, ApiViz can transform it into a full website to show it at its best. 
+If your data is stored somewhere and accessible via an API, ApiViz can transform it into a full website to show it at its best. 
 
 
 --------
@@ -379,8 +379,8 @@ In the following illustration you can grasp a more detailed comprehension of how
     - footer configuration : define the links present in the apiviz instance's footer.
     - styles configuration : define the CSS styles for your apiviz instance.
     - global configuration : define some metadata for your apiviz instance.
-    - routes configuration : define the pages and routes of your apiviz instance.
-    - data endpoints configuration : define the data endpoints feeding your apiviz instance.
+    - routes configuration : define the pages and routes of your apiviz instance, either statics contents or data views.
+    - data endpoints configuration : define the data endpoints feeding your apiviz instance and the fields you want to display.
 
 <hr>
 
