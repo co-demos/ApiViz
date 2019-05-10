@@ -41,7 +41,7 @@ In the following illustration you can have a general idea of how those several s
 You can also check those several projects and repository to find some layout for your specific new datavisualisation website : 
 - Sonum repo ;
 - CIS repo ;
-- ... and more to come...
+- ... and more to come... 
 
 **Note** : all the schemas were realized with [VUE - Visual Understanding Environment](https://vue.tufts.edu/index.cfm), an open source mind mapping tool. The source file for the schemas is [here](./documentation/configurations/APIVIZ_CONFIGURATIONS.vue)
 
