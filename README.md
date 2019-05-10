@@ -10,7 +10,7 @@
 Visualize data coming from an API in a CMS-like app. 
 If your data is stored somewhere and accessible via an API, ApiViz can transform it into a full website to show it at its best. 
 
-ApiViz includes "out-the-box" a back-office to fully configure an original datavisualisation website : 
+ApiViz (soon will) includes "out-the-box" a back-office to fully configure an original datavisualisation website : 
   - **navbar** : define the logo, links, and menus in your apiviz instance's navabr. 
   - **styles** : define the CSS styles for your apiviz instance.
   - **routes** : define the pages and routes of your apiviz instance, either statics contents or data views.
@@ -50,8 +50,8 @@ You can also check those several projects and repository to find some layout for
 
 1. register an user (user data will stored and managed in TokTok) ;
 1. make this user an `admin` (in TokTok) ;
-1. log in (`admin` link in the default footer) ;
-1. go to the `back office` ;
+1. log in (`admin` link in the default footer, `/login` route by default) ;
+1. go to the `/back office` ;
 1. set up your ApiViz configuration : 
     
     - set up the global variables ; 
