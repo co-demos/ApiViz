@@ -1,6 +1,6 @@
 export const apivizFrontUUID = Object.freeze({
-  // apiviz_front_uuid : "c5efafab-1733-4ad1-9eb8-d529bc87c481" // config SONUM
-  apiviz_front_uuid : "f0a482da-28be-4929-a443-f22ecb03ee68" // config APCIS
+  apiviz_front_uuid : "c5efafab-1733-4ad1-9eb8-d529bc87c481" // config SONUM
+  // apiviz_front_uuid : "f0a482da-28be-4929-a443-f22ecb03ee68" // config APCIS
 })
 
 export const apiConfig = Object.freeze({
