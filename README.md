@@ -25,10 +25,10 @@ The goal of ApiViz is to **work with any external service** fulfilling those rol
 - [Solidata](https://github.com/entrepreneur-interet-general/solidata_frontend) to "API-fy" your data and manage open data projects ;
 - [TokTok](https://github.com/co-demos/toktok) for a dedicated authentication service to manage users, JWT, and roles. 
 
-In the following illustration you can have a general idea of how those several services could work altogether. Check the [`/documentation`](./documentation) folder to have a broader look to [other configurations](./documentation/APIVIZ_CONFIGURATIONS-export.pdf).
+In the following illustration you can have a general idea of how those several services could work altogether. Check the [`/documentation/configurations`](./documentation/configurations) folder to have a broader look to [other configurations](./documentation/configurations/APIVIZ_CONFIGURATIONS-export.pdf).
 
 <h2 align=center>
-	<img src="./documentation/APIVIZ CONFIGURATIONS-export-details.jpg">
+	<img src="./documentation/configurations/APIVIZ CONFIGURATIONS-export-details.jpg">
 </h2>
 
 You can also check those several projects and repository to find some layout for your specific new datavisualisation website : 
@@ -308,3 +308,11 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 ...TO DO 
 
 
+
+--------
+
+## THE APIVIZ ECOSYSTEM - DETAILED SCHEMA
+
+<h2 align=center>
+	<img src="./documentation/configurations/APIVIZ CONFIGURATIONS-export-details-full.jpg">
+</h2>
