@@ -428,9 +428,7 @@ In the following illustration you can grasp a more detailed comprehension of how
 
 ## DEPLOYMENT CONFIGURATIONS
 
---------
 
-#### LEGEND
 <h2 align=center>
 	<img src="./documentation/configurations/APIVIZ CONFIGURATIONS-export-legends.jpg">
 </h2>
