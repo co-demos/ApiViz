@@ -304,8 +304,37 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 
 ## SCREENSHOTS (development)
 
+------------
 
-...TO DO 
+#### MAP VIEW 
+displays your geolocalized data, given your configuration set in backoffice
+<h2 align=center>
+	<img src="./documentation/screenshots/map-view-sonum-01.png">
+</h2>
+
+
+------------
+
+#### LIST VIEW 
+displays your data as a cards list, given your configuration set in backoffice
+<h2 align=center>
+	<img src="./documentation/screenshots/list-view-apcis-01.png">
+</h2>
+
+------------
+
+#### DETAIL VIEW 
+displays your data as a detailed pages, given your configuration set in backoffice
+<h2 align=center>
+	<img src="./documentation/screenshots/detail-view-sonum-01.png">
+</h2>
+
+------------
+
+#### ADMIN / BACKOFFICE 
+<h2 align=center>
+	<img src="./documentation/screenshots/backoffice-sonum-01.png">
+</h2>
 
 
 
@@ -313,6 +342,49 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 
 ## THE APIVIZ ECOSYSTEM - DETAILED SCHEMA
 
+<hr>
+
+#### GLOBAL BLUEPRINT
+In the following illustration you can grasp a more detailed comprehension of how every application of the ApiViz's "ecosystem" are in dialog one with the other : 
+
+- **Toktok** centralizes requests concerning user's authentication : 
+
+    - login : given an email and a password responds with an `access_token` and a `refresh_token`
+    - register an new user : 
+    - modify an user :  
+    - retrieves user's infos : 
+    - confirm an `access_token` is authorized, valid, or not.
+  
+  <br>
+
+- **Solidata** centralizes data management : 
+
+    - stores data as open data projects.
+    - "API-fy" your tabular data. 
+    - allows distant modifications on data thanks to its backend API.
+    - allows you to gather and normalize several datasets into a single open data project / dataset output.
+
+<br>
+
+- **Github/Gitlab repo** centralizes html pages, images and external scripts you'll need for your original wabapp : 
+
+    - by storing your static contents on a Github/Gitlab repo, modifying a content for your online server doesn't need to change your app source code anymore, you just need to modify your html/images/scripts on Github/Gitlab, and a few minute after your content is changed directly online.
+    - that way you can separate in your team those in charge to modify contents, and those in charge of code maintenance.
+
+<br>
+
+- **ApiViz** gathers data and app configuration to display an original website : 
+
+    - navbar configuration : define the logo, links, and menus in your apiviz instance's navabr. 
+    - footer configuration : define the links present in the apiviz instance's footer.
+    - styles configuration : define the CSS styles for your apiviz instance.
+    - global configuration : define some metadata for your apiviz instance.
+    - routes configuration : define the pages and routes of your apiviz instance.
+    - data endpoints configuration : define the data endpoints feeding your apiviz instance.
+
+<hr>
+
+#### GLOBAL BLUEPRINT
 <h2 align=center>
 	<img src="./documentation/configurations/APIVIZ CONFIGURATIONS-export-details-full.jpg">
 </h2>
