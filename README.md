@@ -35,7 +35,7 @@ The goal of ApiViz is to **work with any external service** fulfilling those rol
 In the following illustration you can have a general idea of how those several services could work altogether. Check the [`/documentation/configurations`](./documentation/configurations) folder to have a broader look to [other configurations](./documentation/configurations/APIVIZ_CONFIGURATIONS-export.pdf).
 
 <h2 align=center>
-	<img src="./documentation/configurations/APIVIZ CONFIGURATIONS-export-details.jpg">
+	<img src="./documentation/configurations/APIVIZ CONFIGURATIONS-export-details-light.jpg">
 </h2>
 
 You can also check those several projects and repository to find some layout for your specific new datavisualisation website : 
