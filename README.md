@@ -48,10 +48,10 @@ You can also check those several projects and repository to find some layout for
 
 ## HOW TO CONFIGURE YOUR APIVIZ INSTANCE
 
-1. register an user (user data will stored and managed in TokTok) ;
+1. register an user (user data will stored and managed in TokTok, so you'd need to install Toktok locally) ;
 1. make this user an `admin` (in TokTok) ;
 1. log in (`admin` link in the default footer, `/login` route by default) ;
-1. go to the `/back office` ;
+1. go to the `/backoffice` route by clicking on the button ;
 1. set up your ApiViz configuration : 
     
     - set up the global variables ; 
@@ -85,7 +85,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 - **locally - in your browser check this url**
     - install [Docker (here for mac OS)](https://docs.docker.com/docker-for-mac/install/) 
     - clone or [download](https://github.com/co-demos/ApiViz/archive/master.zip) the repo
-    - [install MongoDB](https://docs.mongodb.com/manual/installation/) locally/on your server** or get the URI of the MongoDB you're using
+    - [install MongoDB](https://docs.mongodb.com/manual/installation/) locally/on your server or get the URI of the MongoDB you're using
     - go to your apiviz folder
     - launch docker and run : 
         ```sh
@@ -131,7 +131,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
     - set up UFW, GIT, NGINX, ...
     - (optional) [install MongoDB](https://docs.mongodb.com/manual/installation/) (if the ApiViz's DB for config is hosted on your own server)
     - add the github repo
-    - create and set a `app/config_app/config_secret_vars_prod.py` file based on `config_secret_vars_example.py` structure
+    - create and set of secret variables in a file (`backend/config_app/config_secret_vars_prod.py`) based on `config_secret_vars_example.py` structure
     - lauch docker and run the command : 
       ```sh
       make up-prod
@@ -204,7 +204,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
     ```
 
 
-1. **optional** : _update the `app/config_app/config_secret_vars_example.py` file with your mongoDB URI (if you're not using default mongoDB connection_
+1. **optional** : _update the `backend/config_app/config_secret_vars_example.py` file with your mongoDB URI (if you're not using default mongoDB connection_
 	>
 
 1. **Go to your app folder and run :**
@@ -227,7 +227,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 1. **Build the front-end**
 	
 	```sh
-	cd app/frontend
+	cd backend/frontend
 	npm install
 
 	# build the bundle.js
@@ -240,7 +240,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 1. **optional** : _if you encounter problems while building try this_
 	
 	```sh
-	rm -rf app/frontend/node_modules
+	rm -rf backend/frontend/node_modules
 	npm install 
 	npm run build
 	```
@@ -253,7 +253,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 1. **get a server** - check digital ocean, OVH, ...
 1. optionnal : get a domain name : check OVH, namecheap, godaddy.... + setup DNS
 1. **follow (most of) these [instructions](https://github.com/entrepreneur-interet-general/tutos-2018/wiki/Admin-Sys)**
-1. **create a `app/config_app/config_secret_vars_prod.py` file** based on `config_secret_vars_example.py` structure
+1. **create a `backend/config_app/config_secret_vars_prod.py` file** based on `config_secret_vars_example.py` structure
 1. **go to app folder and create a virtual env** (for instance called "venv")
 1. **set up the [gunicorn service](./unit/working_service_config.service) and [NGINX](./nginx/working_nginx_config)** accordingly 
 
@@ -264,7 +264,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
     ```sh
     cd /<your_app_folder>/<username>/app_apiviz
     git pull origin master
-    cd app/frontend
+    cd backend/frontend
 
     # build the frontend
     npm install
