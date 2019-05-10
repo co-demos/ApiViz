@@ -77,10 +77,12 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 
 ## INSTALLATION WALKTHROUGH 
 
+<hr>
+
 ### _WITH DOCKER (locally or in production)_
 
 
-1. **locally - in your browser check this url**
+- **locally - in your browser check this url**
     - install [Docker (here for mac OS)](https://docs.docker.com/docker-for-mac/install/) 
     - clone or [download](https://github.com/co-demos/ApiViz/archive/master.zip) the repo
     - [install MongoDB](https://docs.mongodb.com/manual/installation/) locally/on your server** or get the URI of the MongoDB you're using
@@ -92,7 +94,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
     - check the following URL in your browser : 
       ```
       http://localhost:8081
-      ```
+      ```    
     - (optional) you can also use those other docker commands : 
       ```sh
        
@@ -117,7 +119,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
       make down-test-dist
       ```
 
-1. **in production** 
+- **in production** 
     - install [Docker](https://phoenixnap.com/kb/how-to-install-docker-on-ubuntu-18-04) on your server (here for Ubuntu 18) 
       ```sh
       sudo apt-get update
@@ -168,6 +170,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
       make down-test-server
 
       ```
+<hr>
 
 ### _WITHOUT DOCKER - LOCALLY_
 
@@ -279,10 +282,32 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 ## TECHNICAL POINTS
 
 #### Tech stack
-- _Language_ : **Python**... because ... uuh ... eeeh ... we like this language too much ? 
-- _Backend_  : **[Flask](http://flask.pocoo.org/)**... minimalistic Python framework
-- _Frontend_ : **[Bulma](https://bulma.io/)** as CSS framework, **[Vue.js](https://vuejs.org/)** as JS framework, **[Axios](https://github.com/axios/axios)** for API queries (to make queries to [Solidata](https://github.com/entrepreneur-interet-general/solidata_backend) or else), **[Leaflet](https://leafletjs.com)**, **[Vue2Leaflet](https://github.com/KoRiGaN/Vue2Leaflet)**, and [PruneCluster]() for map layout
-- _Server_   : **[Ubuntu 18.04]()**, **[NGINX](https://www.nginx.com/)**, **[Gunicorn](http://gunicorn.org/)**, hosted in **[Digital Ocean](http://digitalocean.com/)**, domain name from **[NameCheap](http://namecheap.com/)**
+
+- _Language_ : 
+    - **Python**... it's not the hypest but still has a nice ecosystem
+<br>
+
+- _Backend_  : 
+    - **[Flask](http://flask.pocoo.org/)**... minimalistic Python framework to serve configuration
+<br>  
+
+- _Frontend_ : 
+    - **[Vue.js](https://vuejs.org/)** as JS framework, 
+    - **[Axios](https://github.com/axios/axios)** for API queries (to make queries to [Solidata](https://github.com/entrepreneur-interet-general/solidata_backend) or else), 
+    - **[Bulma](https://bulma.io/)** as CSS framework, 
+    - **[Leaflet](https://leafletjs.com)**, **[Vue2Leaflet](https://github.com/KoRiGaN/Vue2Leaflet)**, and **[PruneCluster](https://github.com/SINTEF-9012/PruneCluster)** for map layout
+<br>
+
+- _Server_   : 
+    - **[Ubuntu 18.04]()**, 
+    - **[NGINX](https://www.nginx.com/)**, 
+    - **[Gunicorn](http://gunicorn.org/)**, 
+    - hosted in **[Digital Ocean](http://digitalocean.com/)**, 
+    - domain name from **[NameCheap](http://namecheap.com/)**
+<br>
+
+- _Dev tools_   : 
+    - **[Docker](https://www.docker.com/)**
 
 
 -------
@@ -292,11 +317,17 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 #### ApiViz's team thanks :
 
 - the [EIG](https://entrepreneur-interet-general.etalab.gouv.fr/) program by [Etalab](https://www.etalab.gouv.fr/)
-- the [SocialConnect](https://entrepreneur-interet-general.etalab.gouv.fr/defi/2017/09/26/socialconnect/) project, aka "Carrefour des Innovations Sociales"
+- the [Social Connect](https://entrepreneur-interet-general.etalab.gouv.fr/defi/2017/09/26/socialconnect/) project, aka "Carrefour des Innovations Sociales"
 - the [CGET](http://www.cget.gouv.fr/)
 - the [MedNum](https://lamednum.coop)
 - the [Mission Société Numérique](https://societenumerique.gouv.fr)
-- and all those who believed and helped in this project...
+- and all those who believed and helped in this project : 
+    - Christophe N.
+    - Damla S.
+    - Bastien G. 
+    - Mathilde B. 
+    - Rémy S.
+    - Cécile B.
 
 #### Contacts - maintainance :
 
