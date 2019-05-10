@@ -423,3 +423,28 @@ In the following illustration you can grasp a more detailed comprehension of how
 <h2 align=center>
 	<img src="./documentation/configurations/APIVIZ CONFIGURATIONS-export-details-full.jpg">
 </h2>
+
+---------
+
+## DEPLOYMENT CONFIGURATIONS
+
+--------
+
+#### LEGEND
+<h2 align=center>
+	<img src="./documentation/configurations/APIVIZ CONFIGURATIONS-export-legends.jpg">
+</h2>
+
+------
+
+#### DEPLOYMENT AS FULL MUTUALIZED MICROSERVICES SYTEM
+<h2 align=center>
+	<img src="./documentation/configurations/APIVIZ CONFIGURATIONS-export-paas-D.jpg">
+</h2>
+
+------
+
+#### DEPLOYMENT AS FULL CLIENT SOVEREIGNETY ON SERVICES 
+<h2 align=center>
+	<img src="./documentation/configurations/APIVIZ CONFIGURATIONS-export-server-C.jpg">
+</h2>
