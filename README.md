@@ -297,7 +297,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 - [Guillaume Lancrenon](https://guillim.github.io) (aka [Guillim](https://github.com/guillim) on Github)
 
 #### Design UI-UX
-- [Elise Lalique]()
+- [Elise Lalique](https://github.com/Eliselalique)
 
 
 -------
