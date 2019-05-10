@@ -4,7 +4,16 @@
   <section class="main-content skip-navbar columns is-fullheight">
     
     <!-- SIDE MENU -->
-    <aside class="column is-3 is-narrow-mobile is-fullheight section">
+      <!-- is-2 is-mobile is-fullheight  -->
+    <aside class="column 
+    
+      is-full-mobile 
+      is-one-third-tablet 
+      is-one-quarter-desktop 
+      is-one-quarter-widescreen 
+      is-3-fullhd
+
+      section">
       
       <p 
         v-if="user.isLoggedin"
@@ -59,7 +68,15 @@
 
     </aside>
 
-    <div class="container column is-9">
+    <div class="container column 
+
+      is-full-mobile 
+      is-three-thirds-tablet 
+      is-three-quarters-desktop 
+      is-three-quarters-widescreen 
+      is-9-fullhd
+
+      ">
       <div class="section">
 
         <!-- TABS -->
