@@ -313,7 +313,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 
 ------------
 
-#### MAP VIEW 
+#### MAP VIEW (Sonum client configuration)
 displays your geolocalized data, given your configuration set in backoffice
 <h2 align=center>
 	<img src="./documentation/screenshots/map-view-sonum-01.png">
@@ -322,7 +322,7 @@ displays your geolocalized data, given your configuration set in backoffice
 
 ------------
 
-#### LIST VIEW 
+#### LIST VIEW (APCIS client configuration)
 displays your data as a cards list, given your configuration set in backoffice
 <h2 align=center>
 	<img src="./documentation/screenshots/list-view-apcis-01.png">
@@ -330,7 +330,7 @@ displays your data as a cards list, given your configuration set in backoffice
 
 ------------
 
-#### DETAIL VIEW 
+#### DETAIL VIEW (Sonum client configation)
 displays your data as a detailed pages, given your configuration set in backoffice
 <h2 align=center>
 	<img src="./documentation/screenshots/detail-view-sonum-01.png">
