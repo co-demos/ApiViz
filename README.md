@@ -10,6 +10,13 @@
 Visualize data coming from an API in a CMS-like app. 
 If your data is stored somewhere and accessible via an API, ApiViz can transform it into a full website to show it at its best. 
 
+ApiViz includes "out-the-box" a back-office to fully configure an original datavisualisation website : 
+  - **navbar** : define the logo, links, and menus in your apiviz instance's navabr. 
+  - **styles** : define the CSS styles for your apiviz instance.
+  - **routes** : define the pages and routes of your apiviz instance, either statics contents or data views.
+  - **data endpoints** : define the data endpoints feeding your apiviz instance and the fields you want to display.
+  - **global** : define some metadata for your apiviz instance.
+  - **footer** : define the links present in the apiviz instance's footer.
 
 --------
 
@@ -331,7 +338,7 @@ displays your data as a detailed pages, given your configuration set in backoffi
 
 ------------
 
-#### ADMIN / BACKOFFICE 
+#### ADMIN / BACKOFFICE (in development)
 <h2 align=center>
 	<img src="./documentation/screenshots/backoffice-sonum-01.png">
 </h2>
@@ -344,36 +351,33 @@ displays your data as a detailed pages, given your configuration set in backoffi
 
 <hr>
 
-#### GLOBAL BLUEPRINT
+#### OPEN SOURCE SERVICES FOR A SOVEREIGN AND DECENTRALIZED DATA FLOW
 In the following illustration you can grasp a more detailed comprehension of how every application of the ApiViz's "ecosystem" are in dialog one with the other : 
 
-- **Toktok** centralizes requests concerning user's authentication : 
+- **[TokTok](https://github.com/co-demos/toktok)** centralizes requests concerning user's authentication : 
 
     - login : given an email and a password responds with an `access_token` and a `refresh_token`
     - register an new user : 
     - modify an user :  
     - retrieves user's infos : 
     - confirm an `access_token` is authorized, valid, or not.
-  
   <br>
 
-- **Solidata** centralizes data management : 
+- **[Solidata](https://github.com/entrepreneur-interet-general/solidata_frontend)** centralizes data management : 
 
     - stores data as open data projects.
     - "API-fy" your tabular data. 
     - allows distant modifications on data thanks to its backend API.
     - allows you to gather and normalize several datasets into a single open data project / dataset output.
-
 <br>
 
 - **Github/Gitlab repo** centralizes html pages, images and external scripts you'll need for your original wabapp : 
 
     - by storing your static contents on a Github/Gitlab repo, modifying a content for your online server doesn't need to change your app source code anymore, you just need to modify your html/images/scripts on Github/Gitlab, and a few minute after your content is changed directly online.
     - that way you can separate in your team those in charge to modify contents, and those in charge of code maintenance.
-
 <br>
 
-- **ApiViz** gathers data and app configuration to display an original website : 
+- **[Apiviz](https://github.com/co-demos/ApiViz)** gathers data and app configuration to display an original website : 
 
     - navbar configuration : define the logo, links, and menus in your apiviz instance's navabr. 
     - footer configuration : define the links present in the apiviz instance's footer.
@@ -384,7 +388,7 @@ In the following illustration you can grasp a more detailed comprehension of how
 
 <hr>
 
-#### GLOBAL BLUEPRINT
+#### GLOBAL BLUEPRINT - MAIN DATA FLOWS AND APPS SERVICES
 <h2 align=center>
 	<img src="./documentation/configurations/APIVIZ CONFIGURATIONS-export-details-full.jpg">
 </h2>
