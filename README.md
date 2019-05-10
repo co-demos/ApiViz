@@ -307,7 +307,7 @@ Please check out our *[guidelines](./GUIDELINES_DEV.md)*
 <br>
 
 - _Dev tools_   : 
-    - **[Docker](https://www.docker.com/)**
+    - **[Docker](https://www.docker.com/)**... also check this [introduction to Docker](https://guillim.github.io/docker/2018/11/18/docker-hands-on-intro.html)
 
 
 -------
