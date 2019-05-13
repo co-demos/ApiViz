@@ -684,6 +684,10 @@ ul.members{
     }
 }
 
+// OVERRIDE cis-tabs
+.cis-tabs{
+    padding-top: unset !important;
+}
 
 // Animation: bar unter the text, filling itself when hovered
 .navbar:not(.search-bar) .container .navbar-item:not(.selected) a:not(.selected),

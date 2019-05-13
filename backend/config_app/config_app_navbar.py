@@ -116,10 +116,12 @@ default_app_navbar = [
               "icon_class" : "",
               "link_text"  : [{"locale" : "fr", "text" : "Moteur de recherche" }],
               "tooltip"    : [{"locale" : "fr", "text" : "Lancer une recherche" }],
-              "has_dropdown" : False,
+              "has_dropdown" : True,
               "dropdowns"  : [
-                { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/accueil",   "link_text" : [{"locale" : "fr", "text" : "Accueil"}] },
-                { "is_divider" : True,  "is_external_link" : False },
+                { "is_divider" : False, "is_external_link" : False, "link_to" : "/recherche",   "link_text" :
+                    [{"locale" : "fr", "text" : "Liste"}] },
+                { "is_divider" : False, "is_external_link" : False, "link_to" : "/recherche/carte",   "link_text" :
+                    [{"locale" : "fr", "text" : "Carte"}] },
               ]
             },
             { "is_visible" : True,
@@ -130,10 +132,16 @@ default_app_navbar = [
               "icon_class" : "",
               "link_text"  : [{"locale" : "fr", "text" : "Projet" }],
               "tooltip"    : [{"locale" : "fr", "text" : "Plus d’informations sur ce site" }],
-              "has_dropdown" : False,
+              "has_dropdown" : True,
               "dropdowns"  : [
-                { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/accueil",   "link_text" : [{"locale" : "fr", "text" : "Accueil"}] },
-                { "is_divider" : True,  "is_external_link" : False },
+                { "is_divider" : False, "is_external_link" : False, "link_to" : "/le-projet",   "link_text" :
+                    [{"locale" : "fr", "text" : "À propos"}] },
+                { "is_divider" : False, "is_external_link" : False, "link_to" : "/le-projet/outils",   "link_text" :
+                    [{"locale" : "fr", "text" : "Les outils techniques"}] },
+                { "is_divider" : False, "is_external_link" : False, "link_to" : "/le-projet/parlent-de-nous",   "link_text" :
+                    [{"locale" : "fr", "text" : "Ils parlent de nous"}] },
+                { "is_divider" : False, "is_external_link" : False, "link_to" : "/le-projet/recompenses",   "link_text" :
+                    [{"locale" : "fr", "text" : "Récompenses"}] },
               ]
             },
             { "is_visible" : True,
@@ -144,10 +152,12 @@ default_app_navbar = [
               "icon_class" : "",
               "link_text"  : [{"locale" : "fr", "text" : "Qui sommes-nous ?" }],
               "tooltip"    : [{"locale" : "fr", "text" : "Plus d’informations sur l’initiative" }],
-              "has_dropdown" : False,
+              "has_dropdown" : True,
               "dropdowns"  : [
-                { "is_divider" : False, "is_external_link" : False, "link_to" : "/sonum-xp/accueil",   "link_text" : [{"locale" : "fr", "text" : "Accueil"}] },
-                { "is_divider" : True,  "is_external_link" : False },
+                { "is_divider" : False, "is_external_link" : False, "link_to" : "/qui-sommes-nous",   "link_text" :
+                    [{"locale" : "fr", "text" : "Le collectif"}] },
+                { "is_divider" : False, "is_external_link" : False, "link_to" : "/qui-sommes-nous/qui-fait-quoi",   "link_text" :
+                    [{"locale" : "fr", "text" : "Qui fait quoi ?"}] },
               ]
             },
             { "is_visible" : True,

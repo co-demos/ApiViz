@@ -1974,12 +1974,12 @@ default_routes_config = [
         "is_default"        : True
       },
 
-      ### PAGE : JOIN US/NOUS REJOINDRE CIS
+      ### PAGE : JOIN US/NOUS REJOINDRE CIS
       { "field"             : "app_join_us",
         "is_global_app_homepage" : False,
         "route_title"        : u"Home",
         "route_description"  : u"Nous rejoindre",
-        "route_activated"    : True,
+        "route_activated"    : False, # this page is currently waiting for a redesign + new policy of "who can join?" + template not updated
         "banner" : {
           "activated"  : False,
           "banner_uri" : "default"
