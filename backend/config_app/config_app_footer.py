@@ -262,7 +262,12 @@ default_app_footer = [
         "dynamic_template"  : 'DynamicFooter',
         "has_credits_footer": True,
         "credits_footer_url" : "https://raw.githubusercontent.com/co-demos/carto-sonum/master/pages-html/footer-mednum.html",
-        "active_columns"    : ['block_left', 'block_center_left', 'block_center_right','block_right'],
+        "active_columns"    : [
+            #'block_left', 
+            'block_center_left', 
+            #'block_center_right',
+            'block_right'
+        ],
 
         "contents_fields" : {
 
@@ -317,7 +322,7 @@ default_app_footer = [
           "block_left" : {
             "is_visible"  : False,
             "position"    : "block_top_left",
-            "title_block" : [{ "locale" : "fr", "text" : "", "is_visible" : False}],
+            "title_block" : [{ "locale" : "fr", "text" : "test", "is_visible" : False}],
             "links"       : []
           },
 

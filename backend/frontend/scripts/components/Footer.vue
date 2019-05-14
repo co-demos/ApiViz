@@ -4,18 +4,20 @@
       <div class="columns">
 
 
-        <div class="column is-3 is-offset-1"
-          v-for="(block_pos, index) in ['block_center_left', 'block_center_right','block_right']"
+        <div 
+          v-bind:class="footerClass(block_pos)"
+          v-for="(block_pos, index) in getActiveColumns()"
+          v-if="isVisible( footerLinks(block_pos) )"
           :key="index"
           >
-
-          <h3 class="has-text-left has-text-primary"> 
-            {{ translate(footerLinks(block_pos), 'title_block') }}
-          </h3>
 
           <template 
             v-if="isVisible( footerLinks(block_pos) )"
             >
+            <h3 class="is-left has-text-primary"> 
+              {{ translate(footerLinks(block_pos), 'title_block') }}
+            </h3>
+
             <ul>
               <li 
                 v-for="(link, index) in footerLinks(block_pos)['links']"
@@ -29,7 +31,7 @@
           </template>
 
           <!-- ADD SOCIAL AT THE END -->
-          <template v-if="block_pos === 'block_right' ">
+          <template v-if="block_pos === getLastBlock() ">
             
             <br>
             <div class="content">
@@ -122,9 +124,47 @@ export default {
       let blockContents = allContents[position]
       return blockContents
     },
+    footerClass(block_pos) {
+        //console.log(block_pos, this.footerConfig.active_columns[0])
+        //console.log(this.footerConfig)
+        let num_of_cols = this.footerConfig.active_columns.length
+        let class_ = "column"
+        //console.log(num_of_cols)
+        if (num_of_cols === 0){
+            // Should not happen, but still
+            class_ = class_ + " is-12"
+        } else if(num_of_cols === 1){
+            class_ = class_ + " is-6"
+            if (block_pos === this.footerConfig.active_columns[0]){
+                class_ = class_ + " is-offset-3"
+            }
+        } else if(num_of_cols === 2){
+            class_ = class_ + " is-3"
+            if (block_pos === this.footerConfig.active_columns[0]){
+                class_ = class_ + " is-offset-3"
+            }
+        } else if(num_of_cols === 3){
+            class_ = class_ + " is-3"
+            if (block_pos === this.footerConfig.active_columns[0]){
+                class_ = class_ + " is-offset-1"
+            }
+        } else if(num_of_cols === 4){
+            class_ = class_ + " is-3"
+        }
 
+        return class_
+    },
+    
+    getActiveColumns() {
+        return this.footerConfig.active_columns
+    },
+
+    getLastBlock(){
+        console.log(this.footerConfig.active_columns.slice(-1).pop())
+        return this.footerConfig.active_columns.slice(-1).pop()
+    },
     isVisible(block) {
-      // console.log("block : ", block)
+      // console.log("block : ", block, block.is_visible)
       return block.is_visible
     },
 
