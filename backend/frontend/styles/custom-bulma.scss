@@ -114,10 +114,16 @@ box-shadow : $apiviz-strong-shadow;
 }
 
 .slider-navigation-previous {
-  background-image: url('../icons/icon_chevron2_violet.svg');
-  left: calc( 50% + (-4em)); // To ensure correct spacing and alignment on various screen sizes; avoid buttons to overflow
+  background-image: url('../icons/icon_chevron2_violet.svg') !important;
 }
 .slider-navigation-next {
-  background-image: url('../icons/icon_chevron1_violet.svg');
+  background-image: url('../icons/icon_chevron1_violet.svg') !important;
+}
+
+// .carousel.is-6 = carousel taking half the page
+.carousel.is-6 div div.slider-navigation-previous {
+  left: calc( 50% + (-4em)); // To ensure correct spacing and alignment on various screen sizes; avoid buttons to overflow
+}
+.carousel.is-6 div div.slider-navigation-next {
   right: calc( 50% + (-4em)); // Same as above
 }
