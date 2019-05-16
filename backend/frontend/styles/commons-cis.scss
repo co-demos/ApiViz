@@ -636,8 +636,6 @@ ul.members{
 // CAROUSELS
 .carousel {
     overflow-x: hidden;
-    overflow-y: visible;
-    height: 29em;
 }
 
 .carousel-item {
@@ -665,6 +663,11 @@ ul.members{
 		margin-bottom: 1em;
 	}
 
+}
+
+.carousel.is-8{
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 // LISTS
@@ -732,7 +735,7 @@ html[lang="en"] nav #navbar-main .navbar-item [lang="en"] {
 }
 
 
-// TODO: USE BULMA-CAROUSEL!
+// NOW WITH BULMA-CAROUSEL!
     section#témoignages {
 
         .background{
@@ -741,6 +744,12 @@ html[lang="en"] nav #navbar-main .navbar-item [lang="en"] {
             background-color: transparent;
 
             padding-top: 6em;
+
+            .carousel .slider .slider-navigation-previous,
+            .carousel .slider .slider-navigation-next {
+                top: 90% !important;
+            }
+
         }
 
         h1{
@@ -748,77 +757,16 @@ html[lang="en"] nav #navbar-main .navbar-item [lang="en"] {
             color: $apiviz-primary;
         }
 
-        ul li img{
-            height: 10em;
-            margin-bottom: 1em;
-        }
-
-        .caroussel{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-
-            button{
-                border: 0;
-                font-size: 2em;
-                font-weight: bold;
-
-                background-repeat: no-repeat;
-                background-color: transparent;
-
-                &:focus,
-                &:active{
-                    box-shadow: none;
-                    border: 0;
-                }
-
-                &.previous{
-                    background-image: url('/static/icons/icon_chevron2.svg');
-                }
-                &.next{
-                    background-image: url('/static/icons/icon_chevron1.svg');
-                }
+        .carousel-item {
+            background-color: $apiviz-primary-invert;
+            img{
+                height: 10em;
+                margin-bottom: 1em;            
             }
+
+
         }
 
-        $CAROUSSEL_ELEMENT_WIDTH: 17em;
+        //$CAROUSSEL_ELEMENT_WIDTH: 17em;
 
-        .caroussel-container{
-            width: $CAROUSSEL_ELEMENT_WIDTH * 3;
-            overflow: hidden;
-
-            ul.caroussel-content{
-                white-space: nowrap;
-                padding-bottom: 2em;
-
-                li{
-                    width: $CAROUSSEL_ELEMENT_WIDTH;
-                    padding: 0 0.5em;
-
-                    background-color: transparent;
-                    white-space: normal;
-
-                    vertical-align: top;
-
-                    display: inline-flex;
-                    flex-direction: column;
-                    align-items: center;
-
-                    .text{
-                        font-size: 0.9em;
-                        line-height: 1.2em;
-                        background-color: white;
-                        padding: 1em;
-                        box-shadow: $apiviz-discrete-shadow;
-
-                        h1{
-                            color: $apiviz-primary;
-                            font-weight: bold;
-                            margin-bottom: 1em;
-                        }
-                    }
-                }
-            }
-        }
     }

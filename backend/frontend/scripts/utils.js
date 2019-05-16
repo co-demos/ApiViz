@@ -266,7 +266,8 @@ export function loadScript(url, callback){
 // To activate carousels from components
 export function activateCarousel(slidesNumber=2, isInfinite=true, hasPagination=false){
   console.log("activate carousel from utils")
-  var carousels = bulmaCarousel.attach('.carousel', {
+// Parameters for "half-width" carousels
+  var carousels = bulmaCarousel.attach('.carousel.is-6', {
     // TODO: give the parameters as args?
     slidesToShow: 2,
     infinite: true,
@@ -277,6 +278,18 @@ export function activateCarousel(slidesNumber=2, isInfinite=true, hasPagination=
     // pagination: hasPagination
   });
 
+// Parameters for "full-width" carousels
+//console.log(document.getElementsByClassName("carousel"))
+  var carousels_ = bulmaCarousel.attach('.carousel.is-8', {
+    // TODO: give the parameters as args?
+    slidesToShow: 3,
+    infinite: true,
+    pagination: false
+
+    // slidesToShow: slidesNumber,
+    // infinite: isInfinite,
+    // pagination: hasPagination
+  });
     // "hacky" way to get custom icons
   document.getElementsByClassName("slider-navigation-previous")[0].childNodes[0].remove();
   document.getElementsByClassName("slider-navigation-next")[0].childNodes[0].remove();

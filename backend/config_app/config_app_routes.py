@@ -1395,7 +1395,7 @@ default_routes_config = [
         "template_url"      : "https://raw.githubusercontent.com/co-demos/cis-data/master/pages-html/home.html",
         "has_ext_script"    : True,
         "ext_script_url"    : "https://cdn.jsdelivr.net/gh/co-demos/cis-data/scripts/home.js",
-        "has_carousel"      : False,
+        "has_carousel"      : True,
         "help"              : u"you can specify a remote template (f.e. a github url)",
         "languages"         : ["fr"],
         "app_version"       : version,
